@@ -4,7 +4,7 @@
   "id": "9ngs66k9b",
   "center": [4.097, 39.952],
   "zoom": 9,
-  "sprite": "",
+  "sprite": "https://raw.githubusercontent.com/openmaptiles/dark-matter-gl-style/gh-pages/sprite",
   "glyphs": "https://tileserver.geomatico.es/fonts/{fontstack}/{range}.pbf",
   "sources": {
     "base_referencia": {
@@ -14,7 +14,7 @@
         "https://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Abase_referencia@MVT@pbf/{z}/{x}/{y}.pbf"
       ],
       "minZoom": 0,
-      "maxZoom": 19
+      "maxZoom": 22
     },
     "ombres1": {
       "type": "raster",
@@ -23,7 +23,8 @@
         "https://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Aombres1@EPSG%3A3857@png8/{z}/{x}/{y}.png"
       ],
       "tileSize": 256,
-      "bounds": [3.7884253534268955, 39.79875258137996, 4.332048197404517, 40.09680861981502]
+      "bounds": [3.7884253534268955, 39.79875258137996, 4.332048197404517, 40.09680861981502],
+      "maxZoom": 22
     }
   },
   "layers": [
@@ -185,7 +186,7 @@
       "paint": {
         "line-color": "#6E6E6E",
         "line-opacity": 0.6,
-        "line-width": 0.5
+        "line-width": 0.1
       }
     },
     {
@@ -240,7 +241,7 @@
       "source-layer": "re007rus_parets5000",
       "paint": {
         "line-color": "#D6D0C9",
-        "line-width": 0.5
+        "line-width": 0.1
       }
     },
     {
@@ -250,7 +251,7 @@
       "source-layer": "re007rus_torrents",
       "paint": {
         "line-color": "#92B3DE",
-        "line-width": 0.5
+        "line-width": 0.1
       }
     },{
       "id": "re007rus_torrents_label",
@@ -284,7 +285,7 @@
       "source-layer": "re007rus_corbesnivell",
       "paint": {
         "line-color": "#8F7957",
-        "line-width": 0.5,
+        "line-width": 0.1,
         "line-opacity": 0.5
       }
     },{
@@ -305,6 +306,313 @@
         "text-color": "#8F7957",
         "text-halo-color": "#E1E1E1",
         "text-halo-width": 1
+      }
+    },
+    {
+      "id": "re007urb_carrer_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_carrer",
+      "paint": {
+        "fill-color": "#FFFFFF",
+        "fill-opacity": 0.5
+      }
+    },
+    {
+      "id": "re007urb_carrer_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_edificis25000",
+      "paint": {
+        "line-color": "#CCCCCC",
+        "line-opacity": 0.5,
+        "line-width": 0.1
+      }
+    },
+    {
+      "id": "re007urb_zverda",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_zverda",
+      "paint": {
+        "fill-color": "#9CB56B"
+      }
+    },
+    {
+      "id": "re007urb_vorera_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_vorera",
+      "paint": {
+        "fill-color": "#B0A080"
+      }
+    },
+    {
+      "id": "re007urb_vorera_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007urb_vorera",
+      "paint": {
+        "line-color": "#6E6E6E",
+        "line-width": 0.1
+      }
+    },
+    {
+      "id": "re007urb_escala_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_escala",
+      "paint": {
+        "fill-color": "#B0A080",
+        "fill-pattern": "wood-pattern"
+      }
+    },
+    {
+      "id": "re007urb_escala_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007urb_escala",
+      "paint": {
+        "line-color": "#B0A080",
+        "line-width": 0.1
+      }
+    },
+    {
+      "id": "re007urb_torrent_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_torrent",
+      "paint": {
+        "fill-color": "#73B2FF"
+      }
+    },
+    {
+      "id": "re007urb_torrent_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007urb_torrent",
+      "paint": {
+        "line-color": "#4065EB",
+        "line-width": 0.1
+      }
+    },
+    {
+      "id": "re007urb_parking",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_parking",
+      "paint": {
+        "fill-color": "#A87000",
+        "fill-opacity": 0.7
+      }
+    },
+    {
+      "id": "re007urb_constru_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_constru",
+      "paint": {
+        "fill-color": "#C4B79B"
+      }
+    },
+    {
+      "id": "re007urb_constru_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007urb_constru",
+      "paint": {
+        "line-color": "#A7A193",
+        "line-width": 0.1
+      }
+    },{
+      "id": "re007urb_piscina_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_piscina",
+      "paint": {
+        "fill-color": "#73B2FF"
+      }
+    },
+    {
+      "id": "re007urb_piscina_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007urb_piscina",
+      "paint": {
+        "line-color": "#6677CD",
+        "line-width": 0.1
+      }
+    },
+    {
+      "id": "re007rus_linauxiliar",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_linauxiliar",
+      "paint": {
+        "line-color": "#B2B2B2",
+        "line-width": 0.1
+      }
+    },
+    {
+      "id": "re007urb_eixcarrerprod",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_eixcarrer",
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Arial Unicode MS Regular"],
+        "text-size": 10,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "line"
+      },
+      "paint": {
+        "text-color": "#343434",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "re007urb_portalsprod_circle",
+      "type": "circle",
+      "source": "base_referencia",
+      "source-layer": "re007urb_portals",
+      "paint": {
+        "circle-radius": 5,
+        "circle-color": "#FF0000"
+      }
+    },
+    {
+      "id": "re007urb_portalsprod",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_portals",
+      "layout": {
+        "text-field": "{nomportal}",
+        "text-font": ["Arial Unicode MS Regular"],
+        "text-size": 10,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FF0000"
+      }
+    },
+    {
+      "id": "re007urb_arbres_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_arbres",
+      "layout": {
+        "text-field": "\u006E",
+        "text-font": ["ESRI Enviro Hazard Analysis"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#96CD60"
+      }
+    },
+    {
+      "id": "re007urb_arbres_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_arbres",
+      "layout": {
+        "text-field": "\u006D",
+        "text-font": ["ESRI Enviro Hazard Analysis"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_jardins_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007urb_jardins",
+      "paint": {
+        "fill-color": "#70A800",
+        "fill-opacity": 0.5
+      }
+    },
+    {
+      "id": "re007urb_jardins_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007urb_jardins",
+      "paint": {
+        "line-color": "#737300",
+        "line-opacity": 0.5,
+        "line-width": 0.1
+      }
+    },{
+      "id": "re007rus_llocs",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_llocs",
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro"],
+        "text-size": 12,
+        "text-anchor": "bottom-left",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -6],
+        "text-color": ["interpolate", ["linear"], ["zoom"],
+          14, "#686868",
+          15, "#343434"
+        ]
+      }
+    },{
+      "id": "re007rus_lterme",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_lterme",
+      "paint": {
+        "line-color": "#70A800",
+        "line-width": 0.1,
+        "line-dasharray": [40, 20]
+      }
+    },{
+      "id": "re007rus_puntsquilometrics_circle",
+      "type": "circle",
+      "source": "base_referencia",
+      "source-layer": "re007rus_puntsquilometrics",
+      "paint": {
+        "circle-radius": 1.5,
+        "circle-color": "#4E4E4E"
+      }
+    },{
+      "id": "re007rus_puntsquilometrics_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_puntsquilometrics",
+      "layout": {
+        "text-field": "pk-{numpk}",
+        "text-font": ["Source Sans Pro"],
+        "text-size": 11,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -12],
+        "text-halo-color": "#FFFFFF",
+        "text-halo-width": 1,
+        "text-color": "#686868"
       }
     }
   ]
