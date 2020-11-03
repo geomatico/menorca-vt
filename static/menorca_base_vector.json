@@ -1,0 +1,311 @@
+{
+  "version": 8,
+  "name": "Menorca base referencia",
+  "id": "9ngs66k9b",
+  "center": [4.097, 39.952],
+  "zoom": 9,
+  "sprite": "",
+  "glyphs": "https://tileserver.geomatico.es/fonts/{fontstack}/{range}.pbf",
+  "sources": {
+    "base_referencia": {
+      "type": "vector",
+      "scheme": "tms",
+      "tiles": [
+        "http://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Abase_referencia@MVT@pbf/{z}/{x}/{y}.pbf"
+      ],
+      "minZoom": 0,
+      "maxZoom": 19
+    },
+    "ombres1": {
+      "type": "raster",
+      "scheme": "tms",
+      "tiles": [
+        "http://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Aombres1@EPSG%3A3857@png8/{z}/{x}/{y}.png"
+      ],
+      "tileSize": 256,
+      "bounds": [3.7884253534268955, 39.79875258137996, 4.332048197404517, 40.09680861981502]
+    }
+  },
+  "layers": [
+    {
+      "id": "fons",
+      "type": "background",
+      "paint": {
+        "background-color": "#B0C4DD"
+      }
+    },
+    {
+      "id": "ombres1",
+      "source": "ombres1",
+      "type": "raster",
+      "minzoom": 11
+    },
+    {
+      "id": "re000rus_provincies_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re000rus_provincies",
+      "paint": {
+        "fill-color": ["match", ["get", "idprov"],
+          7, "#E1E1E1",
+          77, "#DEDE81",
+          "#EDEDED"
+        ],
+        "fill-outline-color": ["match", ["get", "idprov"],
+          7, "#9C9C9C",
+          77, "#A8A800",
+          "#CCCCCC"
+        ]
+      }
+    },
+    {
+      "id": "re000rus_provincies_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re000rus_provincies",
+      "layout": {
+        "text-field": "{dsprov}",
+        "text-font": ["Arial Unicode MS Bold"],
+        "text-size": 11,
+        "text-anchor": "center",
+        "text-justify": "center"
+      },
+      "paint": {
+        "text-color": ["match", ["get", "idprov"],
+          7, "#343434",
+          77, "#737300",
+          "#828282"
+        ]
+      }
+    },
+    {
+      "id": "re007rus_balears_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_balears",
+      "maxzoom": 10,
+      "paint": {
+        "fill-color": "#EDEDED",
+        "fill-outline-color": "#9C9C9C"
+      }
+    },
+    {
+      "id": "re007rus_balears_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_balears",
+      "maxzoom": 10,
+      "layout": {
+        "text-field": "{dsmun}",
+        "text-font": ["Arial Unicode MS Bold"],
+        "text-size": ["match", ["get", "dsmun"],
+          "PALMA", 14,
+          10
+        ],
+        "text-anchor": "center",
+        "text-justify": "center"
+      },
+      "paint": {
+        "text-color": ["match", ["get", "dsmun"],
+          ["PALMA", "CIUTADELLA", "MAÓ"], "#343434",
+          "#686868"
+        ]
+      }
+    },
+    {
+      "id": "re007rus_municipis_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_municipis",
+      "paint": {
+        "fill-color": "#FEFEFE",
+        "fill-opacity": 0.82
+      }
+    },
+    {
+      "id": "re007rus_municipis_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_municipis",
+      "layout": {
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#F4EDE5",
+        "line-opacity": 0.82,
+        "line-width": 1.5
+      }
+    },
+    {
+      "id": "re007rus_entitatsurbanes_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_entitatsurbanes",
+      "paint": {
+        "fill-color": ["match", ["get", "origen"],
+          "BCN0501S_ENT_POB", "#D9D4CC",
+          "BCN0504S_AGR_EDI", "#E3DCDC",
+          "BCN0662S_PIS_ATER", "#C9C5BD",
+          "BCN0665S_ZON_ATER_S", "#D1CDC5",
+          "BCN0719S_TRA_ELEC", "#E1E1E1",
+          "#E1E1E1"
+        ],
+        "fill-opacity": 0.7
+      }
+    },
+    {
+      "id": "orp01por_limipn",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "or007por_limipn",
+      "paint": {
+        "fill-color": "#73B273",
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "re007rus_edificis25000_fill",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_edificis25000",
+      "paint": {
+        "fill-color": ["match", ["get", "origen"],
+          "BCN0507S_EDIFIC", "#686868",
+          "BCN0513S_INS_IND", "#828282",
+          "#828282"
+        ],
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "re007rus_edificis25000_outline",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_edificis25000",
+      "paint": {
+        "line-color": "#6E6E6E",
+        "line-opacity": 0.6,
+        "line-width": 0.5
+      }
+    },
+    {
+      "id": "re007rus_edificis5000_10",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_edificis10000",
+      "paint": {
+        "fill-color": "#9C9C9C"
+      }
+    },
+    {
+      "id": "re007rus_edificis5000_5",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_edificis5000",
+      "paint": {
+        "fill-color": "#9C9C9C"
+      }
+    },
+    {
+      "id": "re007rus_piscines_5",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_piscines",
+      "paint": {
+        "fill-color": "#73B2F2"
+      }
+    },
+    {
+      "id": "re007rus_piscines_10",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_piscines_s2",
+      "paint": {
+        "fill-color": "#73B2F2"
+      }
+    },
+    {
+      "id": "re007rus_zoneshumides",
+      "type": "fill",
+      "source": "base_referencia",
+      "source-layer": "re007rus_zoneshumides",
+      "paint": {
+        "fill-color": "#8DBAF2"
+      }
+    },
+    {
+      "id": "re007rus_parets5000",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_parets5000",
+      "paint": {
+        "line-color": "#D6D0C9",
+        "line-width": 0.5
+      }
+    },
+    {
+      "id": "re007rus_torrents_line",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_torrents",
+      "paint": {
+        "line-color": "#92B3DE",
+        "line-width": 0.5
+      }
+    },{
+      "id": "re007rus_torrents_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_torrents",
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Arial Unicode MS Regular"],
+        "text-size": ["interpolate", ["linear"], ["zoom"],
+          14, 11.5,
+          15, 12
+        ],
+        "text-anchor": "bottom",
+        "text-justify": "center",
+        "text-letter-spacing": ["interpolate", ["linear"], ["zoom"],
+          14, 0.2,
+          15, 0.4
+        ],
+        "symbol-spacing": 512,
+        "symbol-placement": "line"
+      },
+      "paint": {
+        "text-color": "#0084A8"
+      }
+    },
+    {
+      "id": "re007rus_corbesnivell_line",
+      "type": "line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_corbesnivell",
+      "paint": {
+        "line-color": "#8F7957",
+        "line-width": 0.5,
+        "line-opacity": 0.5
+      }
+    },{
+      "id": "re007rus_corbesnivell_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_corbesnivell",
+      "layout": {
+        "text-field": "{cota}",
+        "text-font": ["Arial Unicode MS Regular"],
+        "text-size": 8,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-spacing": 512,
+        "symbol-placement": "line"
+      },
+      "paint": {
+        "text-color": "#8F7957",
+        "text-halo-color": "#E1E1E1",
+        "text-halo-width": 1
+      }
+    }
+  ]
+}
