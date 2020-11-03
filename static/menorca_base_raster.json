@@ -11,7 +11,7 @@
       "type": "raster",
       "scheme": "tms",
       "tiles": [
-        "http://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Abase_referencia@EPSG%3A3857@png8/{z}/{x}/{y}.png"
+        "https://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Abase_referencia@EPSG%3A3857@png8/{z}/{x}/{y}.png"
       ],
       "tileSize": 256
     }
