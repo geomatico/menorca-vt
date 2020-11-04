@@ -309,6 +309,294 @@
       }
     },
     {
+      "id":"re007rus_xarxaviaria_5_outline",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["<=", ["get", "idtipus"], 3],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": ["match", ["get", "idtipus"],
+          1, 4,
+          2, 3,
+          3, 3,
+          0
+        ],
+        "line-color": ["match", ["get", "idtipus"],
+          1, "#BA663C",
+          2, "#3C5900",
+          3, "#B2B2B2",
+          "#FF00FF"
+        ],
+        "line-opacity": 0.8
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_inline",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["<=", ["get", "idtipus"], 3],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": ["match", ["get", "idtipus"],
+          1, 2.6,
+          2, 1.8,
+          3, 0.4,
+          0
+        ],
+        "line-color": ["match", ["get", "idtipus"],
+          1, "#FFFFFF",
+          2, "#FFFFFF",
+          3, "#E1E1E1",
+          "#FF00FF"
+        ],
+        "line-opacity": 0.8
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_tipus4",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 0.4,
+        "line-color": "#686868",
+        "line-opacity": 0.8,
+        "line-dasharray": [7, 8]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_tipus6",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 1.2,
+        "line-color": "#828282",
+        "line-opacity": 0.8,
+        "line-dasharray": [5, 2.5, 1, 2.5]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_tipus7",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["==", ["get", "idtipus"], 7],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 0.4,
+        "line-color": "#4E4E4E",
+        "line-opacity": 0.8,
+        "line-dasharray": [10, 7, 5, 8]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_25_outline",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["<=", ["get", "idtipus"], 3],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": ["match", ["get", "idtipus"],
+          1, 4,
+          2, 3,
+          3, 3,
+          0
+        ],
+        "line-color": ["match", ["get", "idtipus"],
+          1, "#BA663C",
+          2, "#3C5900",
+          3, "#B2B2B2",
+          "#FF00FF"
+        ],
+        "line-opacity": 0.8
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_25_inline",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["<=", ["get", "idtipus"], 3],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": ["match", ["get", "idtipus"],
+          1, 2.6,
+          2, 1.8,
+          3, 0.4,
+          0
+        ],
+        "line-color": ["match", ["get", "idtipus"],
+          1, "#FFFFFF",
+          2, "#FFFFFF",
+          3, "#E1E1E1",
+          "#FF00FF"
+        ],
+        "line-opacity": 0.8
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_25_tipus4",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 0.4,
+        "line-color": "#686868",
+        "line-opacity": 0.8,
+        "line-dasharray": [7, 8]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_25_tipus6",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 1.2,
+        "line-color": "#828282",
+        "line-opacity": 0.8,
+        "line-dasharray": [5, 2.5, 1, 2.5]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_25_tipus7",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["==", ["get", "idtipus"], 7],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 0.4,
+        "line-color": "#4E4E4E",
+        "line-opacity": 0.8,
+        "line-dasharray": [10, 7, 5, 8]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_50_line",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria50000",
+      "filter": ["<=", ["get", "idtipus"], 3],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": ["match", ["get", "idtipus"],
+          1, 1.5,
+          2, 1.2,
+          3, 0.5,
+          0
+        ],
+        "line-color": ["match", ["get", "idtipus"],
+          1, "#262421",
+          2, "#686868",
+          3, "#828282",
+          "#FF00FF"
+        ]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_50_tipus4",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria50000",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 0.9,
+        "line-color": "#828282",
+        "line-dasharray": [2, 5]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_100_line",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "filter": ["<=", ["get", "idtipus"], 3],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": ["match", ["get", "idtipus"],
+          1, 1.5,
+          2, 1.2,
+          3, 0.5,
+          0
+        ],
+        "line-color": ["match", ["get", "idtipus"],
+          1, "#262421",
+          2, "#686868",
+          3, "#828282",
+          "#FF00FF"
+        ]
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_100_tipus4",
+      "type":"line",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-width": 0.9,
+        "line-color": "#828282",
+        "line-dasharray": [2, 5]
+      }
+    },
+    {
       "id": "re007urb_carrer_fill",
       "type": "fill",
       "source": "base_referencia",
