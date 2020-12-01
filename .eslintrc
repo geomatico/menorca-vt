@@ -1,12 +1,13 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "es2021": true,
     "mocha": true
   },
   "extends": [
-    "plugin:react/recommended",
-    "airbnb"
+    "eslint:recommended",
+    "plugin:react/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -19,13 +20,13 @@
     "react"
   ],
   "rules": {
-    "react/jsx-filename-extension": [
-      1, {
-        "extensions": [
-          ".js", ".jsx"
-        ]
-      }
-    ],
-    "no-console": "off"
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "indent": ["error", 2]
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+    }
   }
 }

@@ -3,23 +3,16 @@ import PropTypes from 'prop-types';
 
 import Map from './Map';
 
-function TwinMaps(props) {
-  const {
-    leftStyle, rightStyle, initialLon, initialLat, initialZoom,
-  } = props;
-  const [lon, setLon] = useState(initialLon);
-  const [lat, setLat] = useState(initialLat);
-  const [zoom, setZoom] = useState(initialZoom);
-  const [bearing, setBearing] = useState(0);
-  const [pitch, setPitch] = useState(0);
+function TwinMaps({ leftStyle, rightStyle, initialViewport }) {
+  const [viewport, setViewport] = useState(initialViewport);
 
-  const onMapMoved = (pos) => {
-    setLon(pos.lon);
-    setLat(pos.lat);
-    setZoom(pos.zoom);
-    setBearing(pos.bearing);
-    setPitch(pos.pitch);
-  };
+  const onViewportChange = ({ latitude, longitude, zoom, bearing, pitch }) => setViewport({
+    latitude,
+    longitude,
+    zoom,
+    bearing,
+    pitch,
+  });
 
   return (
     <div style={{
@@ -35,12 +28,8 @@ function TwinMaps(props) {
       >
         <Map
           mapStyle={leftStyle}
-          lon={lon}
-          lat={lat}
-          zoom={zoom}
-          bearing={bearing}
-          pitch={pitch}
-          onMapMoved={onMapMoved}
+          viewport={viewport}
+          onViewportChange={onViewportChange}
           hash
         />
       </div>
@@ -52,13 +41,8 @@ function TwinMaps(props) {
       >
         <Map
           mapStyle={rightStyle}
-          lon={lon}
-          lat={lat}
-          zoom={zoom}
-          bearing={bearing}
-          pitch={pitch}
-          onMapMoved={onMapMoved}
-          hash
+          viewport={viewport}
+          onViewportChange={onViewportChange}
         />
       </div>
     </div>
@@ -68,15 +52,23 @@ function TwinMaps(props) {
 TwinMaps.propTypes = {
   leftStyle: PropTypes.oneOfType([PropTypes.instanceOf(Object), PropTypes.string]).isRequired,
   rightStyle: PropTypes.oneOfType([PropTypes.instanceOf(Object), PropTypes.string]).isRequired,
-  initialLon: PropTypes.number,
-  initialLat: PropTypes.number,
-  initialZoom: PropTypes.number,
+  initialViewport: PropTypes.shape({
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+    zoom: PropTypes.number,
+    bearing: PropTypes.number,
+    pitch: PropTypes.number,
+  })
 };
 
 TwinMaps.defaultProps = {
-  initialLon: 0,
-  initialLat: 0,
-  initialZoom: 1,
+  initialViewport: {
+    latitude: 39.945,
+    longitude: 4.060,
+    zoom: 10,
+    bearing: 0,
+    pitch: 0
+  }
 };
 
 export default TwinMaps;

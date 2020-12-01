@@ -1,11 +1,16 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
 module.exports = (env) => ({
   mode: env.prod ? 'production' : 'development',
   devtool: env.prod ? 'source-map' : 'inline-source-map',
   devServer: {
     open: true,
+  },
+  entry: env.test ? '' : {
+    twinmaps: './src/twinmaps.js',
+    expedients: './src/expedients.js',
   },
   module: {
     rules: [
@@ -38,8 +43,14 @@ module.exports = (env) => ({
   },
   plugins: env.test ? [] : [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
+      template: './src/template.html',
+      filename: './twinmaps.html',
+      chunks: ['twinmaps'],
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/template.html',
+      filename: './expedients.html',
+      chunks: ['expedients'],
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -48,5 +59,8 @@ module.exports = (env) => ({
         },
       ],
     }),
+    new DotenvWebpackPlugin({
+      safe: true
+    })
   ],
 });
