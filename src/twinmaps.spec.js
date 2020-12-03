@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 
-import App from './index';
+import App from './twinmaps';
 import TwinMaps from './components/TwinMaps';
 
 describe('index', () => {
