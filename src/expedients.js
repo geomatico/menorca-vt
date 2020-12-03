@@ -1,7 +1,10 @@
 import ReactDOM from 'react-dom';
 import React, {useState} from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
 import {debounce} from 'throttle-debounce';
 import Map from './components/Map';
+import ChartCard from './components/ChartCard';
 
 const colors = {
   // Negociat 45 - a
@@ -16,10 +19,10 @@ const colors = {
   INF: '#C29ED7',
   ORD: '#E69800',
   PO: '#E60000',
-  altres: '#E9FFBE',
-  // Altres codis
-  default: '#FF00FF'
+  altres: '#E9FFBE'
 };
+
+const fallback_color = '#FF00FF';
 
 const sources = {
   'expedients': {
@@ -42,7 +45,7 @@ const layers = [
       'circle-color': ['match', ['get', 'tipus'],
         'CED', colors.CED,
         'DUP', colors.DUP,
-        colors.default
+        fallback_color
       ],
       'circle-radius': ['interpolate', ['linear'], ['zoom'],
         10, 1.5,
@@ -64,7 +67,7 @@ const layers = [
       'circle-color': ['match', ['get', 'tipus'],
         'AUT', colors.AUT,
         'DTQ', colors.DTQ,
-        colors.altres
+        fallback_color
       ],
       'circle-radius': ['interpolate', ['linear'], ['zoom'],
         10, 1.5,
@@ -113,7 +116,9 @@ const App = () => {
     bearing: 0,
     pitch: 0
   });
-  
+
+  const [data, setData] = useState([]);
+
   const onViewportChange = ({ latitude, longitude, zoom, bearing, pitch }) => setViewport({
     latitude,
     longitude,
@@ -122,12 +127,33 @@ const App = () => {
     pitch,
   });
 
-  const calcStats = debounce(100, (map) => {
+  const calcStats = debounce(10, (map) => {
     console.log('Calculating statistics.');
     const features = map.queryRenderedFeatures({
       layers: ['or007exp_expedients_a', 'or007exp_expedients_b', 'or007exp_expedients_c']
     });
-    console.log(features.length);
+
+    const stats = features
+      .map(feature => feature.properties)
+      .reduce((stats, props) => {
+        const year = props.idordena.split('/')[0];
+        const type = props.tipus;
+
+        stats[year] = stats[year] || {};
+        stats[year][type] = stats[year][type] ? stats[year][type] + 1 : 1;
+        return stats;
+      }, {});
+
+    const data = Object.keys(stats)
+      .reduce((data, year) => {
+        data.push({
+          year: year,
+          ...stats[year]
+        });
+        return data;
+      }, []);
+
+    setData(data);
   });
 
   const onMapSet = (map) => {
@@ -141,16 +167,27 @@ const App = () => {
     });
   };
 
-  return <Map
-    mapStyle = 'https://geoserveis.icgc.cat/contextmaps/fulldark.json'
-    authHeader = {'Basic ' + btoa(process.env.EXPEDIENTS_USER + ':' + process.env.EXPEDIENTS_PASSWORD)}
-    authUrl = {process.env.EXPEDIENTS_HOST}
-    sources = {sources}
-    layers = {layers}
-    viewport = {viewport}
-    onMapSet = {onMapSet}
-    onViewportChange = {onViewportChange}
-  />;
+  const theme = createMuiTheme({
+    palette: {
+      type: 'dark',
+    },
+  });
+
+  return (<ThemeProvider theme={theme}>
+    <Map
+      mapStyle = 'https://geoserveis.icgc.cat/contextmaps/fulldark.json'
+      authHeader = {'Basic ' + btoa(process.env.EXPEDIENTS_USER + ':' + process.env.EXPEDIENTS_PASSWORD)}
+      authUrl = {process.env.EXPEDIENTS_HOST}
+      sources = {sources}
+      layers = {layers}
+      viewport = {viewport}
+      onMapSet = {onMapSet}
+      onViewportChange = {onViewportChange}
+    />
+    <div style={{position: 'absolute', bottom: 30, right: 10}}>
+      <ChartCard data={data} colors={colors} />
+    </div>
+  </ThemeProvider>);
 };
 
 const target = document.getElementById('app');
