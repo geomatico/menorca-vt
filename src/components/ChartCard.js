@@ -8,19 +8,19 @@ import {
 
 import StackedAreaChart from './StackedAreaChart';
 
-function ChartCard({data, colors}) {
+function ChartCard({data, categories}) {
 
   return (
     <Card elevation={5}>
       <CardContent>
-        <StackedAreaChart colors={colors} data={data} />
+        <StackedAreaChart categories={categories} data={data} />
       </CardContent>
     </Card>
   );
 }
 
 ChartCard.propTypes = {
-  colors: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };
 

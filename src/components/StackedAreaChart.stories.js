@@ -4,30 +4,24 @@ import StackedAreaChart from './StackedAreaChart';
 export default {
   title: 'Common/StackedAreaChart',
   component: StackedAreaChart,
-  argTypes: {
-    data: {control: 'object'},
-  },
 };
 
 const Template = (args) => <StackedAreaChart {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  colors: {
-    // Negociat 45 - a
-    CED: '#C9C900',
-    DUP: '#FFFF73',
-    // Negociat 41 - b
-    AUT: '#00C5FF',
-    DTQ: '#0084A8',
-    // Negociat 37 - c
-    NUI: '#E69800',
-    ERE: '#FFEBAF',
-    INF: '#C29ED7',
-    ORD: '#E69800',
-    PO: '#E60000',
-    altres: '#E9FFBE',
-  },
+  categories: [
+    {id: 'CED', values: ['CED'], color: '#C9C900', label: 'CED. Cèdules urbanístiques' },
+    {id: 'DUP', values: ['DUP'], color: '#FFFF73', label: 'DUP. Expedients de duplicat de cèdules' },
+    {id: 'AUT', values: ['AUT'], color: '#00C5FF', label: 'AUT. Litoral' },
+    {id: 'DTQ', values: ['DTQ'], color: '#0084A8', label: 'DTQ. Declaracio responsable litoral' },
+    {id: 'NUI', values: ['NUI'], color: '#E69800', label: 'NUI. Declaració interés general' },
+    {id: 'ERE', values: ['ERE'], color: '#FFEBAF', label: 'ERE. Edificacions en sòl rúsic' },
+    {id: 'INF', values: ['INF'], color: '#C29ED7', label: 'INF. Informes urbanístics i d\'ordenació. Inclou AIA' },
+    {id: 'ORD', values: ['ORD'], color: '#E69800', label: 'ORD. Expedients diversos ordenació' },
+    {id: 'PO', values: ['PO'], color: '#E60000', label: 'PO. Procediments judicials' },
+    {id: 'altres', values: ['INU', 'LIA', 'LIC', 'NUH', 'PRCED', 'SAN'], color: '#E9FFBE', label: 'Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)' },
+  ],
   data: [
     {
       'year': '1976',

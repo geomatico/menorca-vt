@@ -5,24 +5,28 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {debounce} from 'throttle-debounce';
 import Map from './components/Map';
 import ChartCard from './components/ChartCard';
+import CategoricFilter from './components/CategoricFilter';
 
-const colors = {
-  // Negociat 45 - a
-  CED: '#C9C900',
-  DUP: '#FFFF73',
-  // Negociat 41 - b
-  AUT: '#00C5FF',
-  DTQ: '#0084A8',
-  // Negociat 37 - c
-  NUI: '#E69800',
-  ERE: '#FFEBAF',
-  INF: '#C29ED7',
-  ORD: '#E69800',
-  PO: '#E60000',
-  altres: '#E9FFBE'
-};
+const sourceLayers = [
+  'or007exp_negociat45',
+  'or007exp_negociat41',
+  'or007exp_negociat37'
+];
 
-const fallback_color = '#FF00FF';
+const categories = [
+  {id: 'CED', values: ['CED'], color: '#C9C900', label: 'CED. Cèdules urbanístiques' },
+  {id: 'DUP', values: ['DUP'], color: '#FFFF73', label: 'DUP. Expedients de duplicat de cèdules' },
+  {id: 'AUT', values: ['AUT'], color: '#00C5FF', label: 'AUT. Litoral' },
+  {id: 'DTQ', values: ['DTQ'], color: '#0084A8', label: 'DTQ. Declaracio responsable litoral' },
+  {id: 'NUI', values: ['NUI'], color: '#E69800', label: 'NUI. Declaració interés general' },
+  {id: 'ERE', values: ['ERE'], color: '#FFEBAF', label: 'ERE. Edificacions en sòl rúsic' },
+  {id: 'INF', values: ['INF'], color: '#C29ED7', label: 'INF. Informes urbanístics i d\'ordenació. Inclou AIA' },
+  {id: 'ORD', values: ['ORD'], color: '#E69800', label: 'ORD. Expedients diversos ordenació' },
+  {id: 'PO', values: ['PO'], color: '#E60000', label: 'PO. Procediments judicials' },
+  {id: 'altres', values: ['INU', 'LIA', 'LIC', 'NUH', 'PRCED', 'SAN'], color: '#E9FFBE', label: 'Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)' },
+];
+
+const fallbackColor = '#FF00FF';
 
 const sources = {
   'expedients': {
@@ -35,79 +39,6 @@ const sources = {
   }
 };
 
-const layers = [
-  {
-    'id': 'or007exp_expedients_a',
-    'type': 'circle',
-    'source': 'expedients',
-    'source-layer': 'or007exp_negociat45',
-    'paint': {
-      'circle-color': ['match', ['get', 'tipus'],
-        'CED', colors.CED,
-        'DUP', colors.DUP,
-        fallback_color
-      ],
-      'circle-radius': ['interpolate', ['linear'], ['zoom'],
-        10, 1.5,
-        13, 2,
-        19, 8
-      ],
-      'circle-opacity': ['interpolate', ['linear'], ['zoom'],
-        9, 0.33,
-        17, 0.9
-      ],
-    }
-  },
-  {
-    'id': 'or007exp_expedients_b',
-    'type': 'circle',
-    'source': 'expedients',
-    'source-layer': 'or007exp_negociat41',
-    'paint': {
-      'circle-color': ['match', ['get', 'tipus'],
-        'AUT', colors.AUT,
-        'DTQ', colors.DTQ,
-        fallback_color
-      ],
-      'circle-radius': ['interpolate', ['linear'], ['zoom'],
-        10, 1.5,
-        13, 2,
-        19, 8
-      ],
-      'circle-opacity': ['interpolate', ['linear'], ['zoom'],
-        9, 0.33,
-        17, 0.9
-      ],
-    }
-  },
-  {
-    'id': 'or007exp_expedients_c',
-    'type': 'circle',
-    'source': 'expedients',
-    'source-layer': 'or007exp_negociat37',
-    'paint': {
-      'circle-color': ['match', ['get', 'tipus'],
-        'NUI', colors.NUI,
-        'ERE', colors.ERE,
-        'INF', colors.INF,
-        'ORD', colors.ORD,
-        'PO', colors.PO,
-        colors.altres
-      ],
-      'circle-radius': ['interpolate', ['linear'], ['zoom'],
-        10, 1.5,
-        13, 2,
-        19, 8
-      ],
-      'circle-opacity': ['interpolate', ['linear'], ['zoom'],
-        9, 0.33,
-        17, 0.9
-      ],
-    }
-  }
-];
-
-
 const App = () => {
   const [viewport, setViewport] = useState({
     latitude: 39.945,
@@ -116,6 +47,8 @@ const App = () => {
     bearing: 0,
     pitch: 0
   });
+
+  const [selectedCategories, setSelectedCategories] = useState(categories.map(({id}) => id));
 
   const [data, setData] = useState([]);
 
@@ -127,10 +60,36 @@ const App = () => {
     pitch,
   });
 
+  const layers = sourceLayers.map(sourceLayer => ({
+    'id': sourceLayer,
+    'type': 'circle',
+    'source': 'expedients',
+    'source-layer': sourceLayer,
+    'filter': ['in', ['get', 'tipus'], ['literal',
+      categories.filter(({id}) => selectedCategories.includes(id)).flatMap(({values}) => values)]
+    ],
+    'paint': {
+      'circle-color': ['match', ['get', 'tipus'],
+        ...categories.flatMap(({values, color}) =>
+          values.flatMap(value => [value, color])
+        ),
+        fallbackColor
+      ],
+      'circle-radius': ['interpolate', ['linear'], ['zoom'],
+        10, 1.5,
+        13, 2,
+        19, 8
+      ],
+      'circle-opacity': ['interpolate', ['linear'], ['zoom'],
+        9, 0.33,
+        17, 0.9
+      ],
+    }
+  }));
+
   const calcStats = debounce(10, (map) => {
-    console.log('Calculating statistics.');
     const features = map.queryRenderedFeatures({
-      layers: ['or007exp_expedients_a', 'or007exp_expedients_b', 'or007exp_expedients_c']
+      layers: sourceLayers
     });
 
     const stats = features
@@ -157,13 +116,8 @@ const App = () => {
   });
 
   const onMapSet = (map) => {
-    console.log('The map was set.');
-    map.on('moveend', () => {
-      console.log('A moveend event occurred.');
-      map.once('idle', () => {
-        console.log('Idle after moveend.');
-        calcStats(map);
-      });
+    map.on('idle', () => {
+      calcStats(map);
     });
   };
 
@@ -184,8 +138,11 @@ const App = () => {
       onMapSet = {onMapSet}
       onViewportChange = {onViewportChange}
     />
+    <div style={{position: 'absolute', top: 10, left: 10}}>
+      <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories} />
+    </div>
     <div style={{position: 'absolute', bottom: 30, right: 10}}>
-      <ChartCard data={data} colors={colors} />
+      <ChartCard data={data} categories={categories} />
     </div>
   </ThemeProvider>);
 };
