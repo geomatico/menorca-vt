@@ -5,7 +5,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
 
-const StackedAreaChart = ({ data, colors }) => (
+const StackedAreaChart = ({ data, categories }) => (
   <AreaChart
     width={500}
     height={200}
@@ -18,13 +18,13 @@ const StackedAreaChart = ({ data, colors }) => (
     <XAxis dataKey="year" />
     <YAxis />
     <Tooltip />
-    {Object.entries(colors).map(([tipus, color]) => (<Area key={tipus} type="monotone" dataKey={tipus} stackId="1" stroke={color} fill={color} />))}
+    {categories.map(({id, color}) => (<Area key={id} type="monotone" dataKey={id} stackId="1" stroke={color} fill={color} />))}
   </AreaChart>
 );
 
 StackedAreaChart.propTypes = {
   data: PropTypes.array.isRequired,
-  colors: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
 };
 
 export default StackedAreaChart;
