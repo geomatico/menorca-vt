@@ -5,7 +5,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
 
-const StackedAreaChart = ({ data, categories }) => (
+const TypeCountByYearChart = ({ data, categories }) => (
   <AreaChart
     width={500}
     height={200}
@@ -22,9 +22,9 @@ const StackedAreaChart = ({ data, categories }) => (
   </AreaChart>
 );
 
-StackedAreaChart.propTypes = {
+TypeCountByYearChart.propTypes = {
   data: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
 };
 
-export default StackedAreaChart;
+export default TypeCountByYearChart;

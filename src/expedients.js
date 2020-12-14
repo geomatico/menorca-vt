@@ -1,11 +1,15 @@
 import ReactDOM from 'react-dom';
 import React, {useEffect, useState} from 'react';
+
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {Card, CardContent} from '@material-ui/core';
 
 import {debounce} from 'throttle-debounce';
+
 import Map from './components/Map';
-import ChartCard from './components/ChartCard';
 import CategoricFilter from './components/CategoricFilter';
+import ResolutionStateChart from './components/ResolutionStateChart';
+import TypeCountByYearChart from './components/TypeCountByYearChart';
 
 const sourceLayers = [
   'or007exp_negociat45',
@@ -79,7 +83,10 @@ const App = () => {
 
   const [layers, setLayers]= useState(buildLayers(selectedCategories));
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    typeCountByYear: [],
+    resolutionStateCount: []
+  });
 
   useEffect(() => {
     setLayers(buildLayers(selectedCategories));
@@ -98,7 +105,7 @@ const App = () => {
       layers: sourceLayers
     });
 
-    const stats = features
+    const objTypeCountByYear = features
       .map(feature => feature.properties)
       .reduce((stats, props) => {
         const year = props.idordena.split('/')[0];
@@ -109,16 +116,35 @@ const App = () => {
         return stats;
       }, {});
 
-    const data = Object.keys(stats)
+    const arrTypeCountByYear = Object.keys(objTypeCountByYear)
       .reduce((data, year) => {
         data.push({
           year: year,
-          ...stats[year]
+          ...objTypeCountByYear[year]
         });
         return data;
       }, []);
 
-    setData(data);
+    const objResolutionStateCount = features
+      .map(feature => feature.properties.resolucio)
+      .reduce((stats, resolucio) => {
+        stats[resolucio] = stats[resolucio] ? stats[resolucio] + 1 : 1;
+        return stats;
+      }, {});
+
+    const arrResolutionStateCount = Object.entries(objResolutionStateCount)
+      .reduce((data, [resolucio, count]) => {
+        data.push({
+          name: resolucio,
+          value: count
+        });
+        return data;
+      }, []);
+
+    setData({
+      typeCountByYear: arrTypeCountByYear,
+      resolutionStateCount: arrResolutionStateCount
+    });
   });
 
   const onMapSet = (map) => {
@@ -148,7 +174,18 @@ const App = () => {
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories} />
     </div>
     <div style={{position: 'absolute', bottom: 30, right: 10}}>
-      <ChartCard data={data} categories={categories} />
+      <Card elevation={5}>
+        <CardContent>
+          <TypeCountByYearChart categories={categories} data={data.typeCountByYear} />
+        </CardContent>
+      </Card>
+    </div>
+    <div style={{position: 'absolute', bottom: 30, right: 550}}>
+      <Card elevation={5}>
+        <CardContent>
+          <ResolutionStateChart data={data.resolutionStateCount} />
+        </CardContent>
+      </Card>
     </div>
   </ThemeProvider>);
 };

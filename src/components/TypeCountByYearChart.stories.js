@@ -1,12 +1,12 @@
 import React from 'react';
-import StackedAreaChart from './StackedAreaChart';
+import TypeCountByYearChart from './TypeCountByYearChart';
 
 export default {
-  title: 'Common/StackedAreaChart',
-  component: StackedAreaChart,
+  title: 'Common/TypeCountByYearChart',
+  component: TypeCountByYearChart,
 };
 
-const Template = (args) => <StackedAreaChart {...args} />;
+const Template = (args) => <TypeCountByYearChart {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
