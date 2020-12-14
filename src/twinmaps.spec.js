@@ -16,9 +16,6 @@ describe('index', () => {
       // THEN
       expect(app).to.contain(
         <TwinMaps
-          initialLon={4.0695}
-          initialLat={39.944}
-          initialZoom={10}
           leftStyle="menorca_base_vector.json"
           rightStyle="menorca_base_raster.json"
         />,

@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import {debounce} from 'throttle-debounce';
@@ -39,6 +39,33 @@ const sources = {
   }
 };
 
+const buildLayers = (selectedCategories) => sourceLayers.map(sourceLayer => ({
+  'id': sourceLayer,
+  'type': 'circle',
+  'source': 'expedients',
+  'source-layer': sourceLayer,
+  'filter': ['in', ['get', 'tipus'], ['literal',
+    categories.filter(({id}) => selectedCategories.includes(id)).flatMap(({values}) => values)]
+  ],
+  'paint': {
+    'circle-color': ['match', ['get', 'tipus'],
+      ...categories.flatMap(({values, color}) =>
+        values.flatMap(value => [value, color])
+      ),
+      fallbackColor
+    ],
+    'circle-radius': ['interpolate', ['linear'], ['zoom'],
+      10, 1.5,
+      13, 2,
+      19, 8
+    ],
+    'circle-opacity': ['interpolate', ['linear'], ['zoom'],
+      9, 0.33,
+      17, 0.9
+    ],
+  }
+}));
+
 const App = () => {
   const [viewport, setViewport] = useState({
     latitude: 39.945,
@@ -50,7 +77,13 @@ const App = () => {
 
   const [selectedCategories, setSelectedCategories] = useState(categories.map(({id}) => id));
 
+  const [layers, setLayers]= useState(buildLayers(selectedCategories));
+
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setLayers(buildLayers(selectedCategories));
+  }, [selectedCategories]);
 
   const onViewportChange = ({ latitude, longitude, zoom, bearing, pitch }) => setViewport({
     latitude,
@@ -59,33 +92,6 @@ const App = () => {
     bearing,
     pitch,
   });
-
-  const layers = sourceLayers.map(sourceLayer => ({
-    'id': sourceLayer,
-    'type': 'circle',
-    'source': 'expedients',
-    'source-layer': sourceLayer,
-    'filter': ['in', ['get', 'tipus'], ['literal',
-      categories.filter(({id}) => selectedCategories.includes(id)).flatMap(({values}) => values)]
-    ],
-    'paint': {
-      'circle-color': ['match', ['get', 'tipus'],
-        ...categories.flatMap(({values, color}) =>
-          values.flatMap(value => [value, color])
-        ),
-        fallbackColor
-      ],
-      'circle-radius': ['interpolate', ['linear'], ['zoom'],
-        10, 1.5,
-        13, 2,
-        19, 8
-      ],
-      'circle-opacity': ['interpolate', ['linear'], ['zoom'],
-        9, 0.33,
-        17, 0.9
-      ],
-    }
-  }));
 
   const calcStats = debounce(10, (map) => {
     const features = map.queryRenderedFeatures({
