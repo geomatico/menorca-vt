@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
-import ReactMapGL, {NavigationControl} from 'react-map-gl';
+import ReactMapGL from 'react-map-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -66,7 +66,6 @@ function Map({
     height="100%"
   >
     <div style={{position: 'absolute', right: 10, top: 10}}>
-      <NavigationControl />
     </div>
   </ReactMapGL>;
 }
