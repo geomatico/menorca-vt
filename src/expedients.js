@@ -10,6 +10,35 @@ import Map from './components/Map';
 import CategoricFilter from './components/CategoricFilter';
 import ResolutionStateChart from './components/ResolutionStateChart';
 import TypeCountByYearChart from './components/TypeCountByYearChart';
+import BaseMapPicker from './components/BaseMapPicker';
+
+const styles = [
+  {
+    label: 'IDE Menorca',
+    thumbnail: './img/ide-menorca-vector.png',
+    url: 'menorca_base_vector.json'
+  },{
+    label: 'Base IGO',
+    thumbnail: './img/mapa-base-igo.png',
+    url: 'https://vts.larioja.org/style/mapa-base-igo-v1.json'
+  },{
+    label: 'OSM Bright',
+    thumbnail: 'https://openicgc.github.io/img/osm-bright.png',
+    url: 'https://geoserveis.icgc.cat/contextmaps/osm-bright.json'
+  },{
+    label: 'Positron',
+    thumbnail: 'https://openicgc.github.io/img/positron.png',
+    url: 'https://geoserveis.icgc.cat/contextmaps/positron.json'
+  },{
+    label: 'Hibrid',
+    thumbnail: 'https://openicgc.github.io/img/orto.png',
+    url: 'https://geoserveis.icgc.cat/contextmaps/hibrid.json'
+  },{
+    label: 'Full Dark',
+    thumbnail: 'https://openicgc.github.io/img/fulldark.png',
+    url: 'https://geoserveis.icgc.cat/contextmaps/fulldark.json'
+  }
+];
 
 const sourceLayers = [
   'or007exp_negociat45',
@@ -78,6 +107,8 @@ const App = () => {
     bearing: 0,
     pitch: 0
   });
+
+  const [selectedStyleUrl, setSelectedStyleUrl] = useState('https://geoserveis.icgc.cat/contextmaps/fulldark.json');
 
   const [selectedCategories, setSelectedCategories] = useState(categories.map(({id}) => id));
 
@@ -161,7 +192,7 @@ const App = () => {
 
   return (<ThemeProvider theme={theme}>
     <Map
-      mapStyle = 'https://geoserveis.icgc.cat/contextmaps/fulldark.json'
+      mapStyle ={selectedStyleUrl}
       authHeader = {'Basic ' + btoa(process.env.EXPEDIENTS_USER + ':' + process.env.EXPEDIENTS_PASSWORD)}
       authUrl = {process.env.EXPEDIENTS_HOST}
       sources = {sources}
@@ -170,6 +201,7 @@ const App = () => {
       onMapSet = {onMapSet}
       onViewportChange = {onViewportChange}
     />
+    <BaseMapPicker selectedStyleUrl={selectedStyleUrl} onStyleChange={setSelectedStyleUrl} styles={styles} position='top-right' direction='down' />
     <div style={{position: 'absolute', top: 10, left: 10}}>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories} />
     </div>

@@ -24,7 +24,6 @@
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
-    "@material-ui/core": "^4.11.1",
     "@storybook/addon-actions": "^6.1.9",
     "@storybook/addon-essentials": "^6.1.9",
     "@storybook/addon-links": "^6.1.9",
@@ -57,20 +56,22 @@
     "karma-webpack": "^4.0.2",
     "mocha": "^8.2.0",
     "raw-loader": "^4.0.2",
-    "react-map-gl": "^5.2.10",
-    "recharts": "^1.8.5",
     "sinon": "^9.2.0",
     "style-loader": "^2.0.0",
-    "throttle-debounce": "^3.0.1",
     "url-loader": "^4.1.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.1.0",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "mapbox-gl": "^1.12.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-map-gl": "^5.2.10",
+    "recharts": "^1.8.5",
+    "throttle-debounce": "^3.0.1"
   }
 }
