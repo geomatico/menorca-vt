@@ -11,6 +11,7 @@ import CategoricFilter from './components/CategoricFilter';
 import ResolutionStateChart from './components/ResolutionStateChart';
 import TypeCountByYearChart from './components/TypeCountByYearChart';
 import BaseMapPicker from './components/BaseMapPicker';
+import RangeSlider from './components/RangeSlider';
 
 const styles = [
   {
@@ -61,6 +62,9 @@ const categories = [
 
 const fallbackColor = '#FF00FF';
 
+const minDate = 1977;
+const maxDate = new Date().getFullYear();
+
 const sources = {
   'expedients': {
     'type': 'vector',
@@ -72,13 +76,24 @@ const sources = {
   }
 };
 
-const buildLayers = (selectedCategories) => sourceLayers.map(sourceLayer => ({
+const buildLayers = (selectedCategories, dateRange) => sourceLayers.map(sourceLayer => ({
   'id': sourceLayer,
   'type': 'circle',
   'source': 'expedients',
   'source-layer': sourceLayer,
-  'filter': ['in', ['get', 'tipus'], ['literal',
-    categories.filter(({id}) => selectedCategories.includes(id)).flatMap(({values}) => values)]
+  'filter': ['all',
+    ['in',
+      ['get', 'tipus'],
+      ['literal', categories.filter(({id}) => selectedCategories.includes(id)).flatMap(({values}) => values)]
+    ],
+    ['>=',
+      ['get', 'any'],
+      dateRange[0]
+    ],
+    ['<=',
+      ['get', 'any'],
+      dateRange[1]
+    ]
   ],
   'paint': {
     'circle-color': ['match', ['get', 'tipus'],
@@ -112,7 +127,9 @@ const App = () => {
 
   const [selectedCategories, setSelectedCategories] = useState(categories.map(({id}) => id));
 
-  const [layers, setLayers]= useState(buildLayers(selectedCategories));
+  const [dateRange, setDateRange] = useState([minDate, maxDate]);
+
+  const [layers, setLayers]= useState(buildLayers(selectedCategories, dateRange));
 
   const [data, setData] = useState({
     typeCountByYear: [],
@@ -120,8 +137,8 @@ const App = () => {
   });
 
   useEffect(() => {
-    setLayers(buildLayers(selectedCategories));
-  }, [selectedCategories]);
+    setLayers(buildLayers(selectedCategories, dateRange));
+  }, [selectedCategories, dateRange]);
 
   const onViewportChange = ({ latitude, longitude, zoom, bearing, pitch }) => setViewport({
     latitude,
@@ -132,14 +149,16 @@ const App = () => {
   });
 
   const calcStats = debounce(10, (map) => {
-    const features = map.queryRenderedFeatures({
-      layers: sourceLayers
-    });
-
-    const objTypeCountByYear = features
+    const featureProps = map
+      .queryRenderedFeatures({
+        layers: sourceLayers
+      })
       .map(feature => feature.properties)
+      .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
+
+    const objTypeCountByYear = featureProps
       .reduce((stats, props) => {
-        const year = props.idordena.split('/')[0];
+        const year = props.any;
         const type = props.tipus;
 
         stats[year] = stats[year] || {};
@@ -156,8 +175,8 @@ const App = () => {
         return data;
       }, []);
 
-    const objResolutionStateCount = features
-      .map(feature => feature.properties.resolucio)
+    const objResolutionStateCount = featureProps
+      .map(props => props.resolucio)
       .reduce((stats, resolucio) => {
         stats[resolucio] = stats[resolucio] ? stats[resolucio] + 1 : 1;
         return stats;
@@ -204,6 +223,13 @@ const App = () => {
     <BaseMapPicker selectedStyleUrl={selectedStyleUrl} onStyleChange={setSelectedStyleUrl} styles={styles} position='top-right' direction='down' />
     <div style={{position: 'absolute', top: 10, left: 10}}>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories} />
+    </div>
+    <div style={{position: 'absolute', bottom: 278, right: 10, width: 532}}>
+      <Card elevation={5}>
+        <CardContent>
+          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange} />
+        </CardContent>
+      </Card>
     </div>
     <div style={{position: 'absolute', bottom: 30, right: 10}}>
       <Card elevation={5}>
