@@ -62,6 +62,12 @@ const categories = [
 
 const fallbackColor = '#FF00FF';
 
+const auth = [{
+  urlMatch: process.env.EXPEDIENTS_LAYER,
+  user: process.env.EXPEDIENTS_USER,
+  password: process.env.EXPEDIENTS_PASSWORD
+}];
+
 const minDate = 1977;
 const maxDate = new Date().getFullYear();
 
@@ -69,7 +75,7 @@ const sources = {
   'expedients': {
     'type': 'vector',
     'tiles': [
-      `https://${process.env.EXPEDIENTS_HOST}/geoserver/ordenacio_restringit/wms?service=WMS&version=1.1.0&request=GetMap&layers=ordenacio_restringit:OR007EXP_expedients&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&styles=&format=application/vnd.mapbox-vector-tile`
+      `https://${process.env.TILE_HOST}/geoserver/ordenacio_restringit/wms?service=WMS&version=1.1.0&request=GetMap&layers=${process.env.EXPEDIENTS_LAYER}&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&styles=&format=application/vnd.mapbox-vector-tile`
     ],
     'minzoom': 9,
     'maxzoom': 15
@@ -212,8 +218,7 @@ const App = () => {
   return (<ThemeProvider theme={theme}>
     <Map
       mapStyle ={selectedStyleUrl}
-      authHeader = {'Basic ' + btoa(process.env.EXPEDIENTS_USER + ':' + process.env.EXPEDIENTS_PASSWORD)}
-      authUrl = {process.env.EXPEDIENTS_HOST}
+      auth = {auth}
       sources = {sources}
       layers = {layers}
       viewport = {viewport}

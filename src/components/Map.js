@@ -5,12 +5,15 @@ import ReactMapGL from 'react-map-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const addAuthHeader = (authHeader, authUrl) => (url, resourceType) => {
-  if (resourceType === 'Tile' && (authUrl ? url.match(authUrl) : true)) {
-    return {
-      url: url,
-      headers: { 'Authorization': authHeader }
-    };
+const setBasicAuthHeader = (auth) => (url, resourceType) => {
+  if (resourceType === 'Tile') {
+    const match = auth.find((rule) => url.match(rule.urlMatch));
+    if (match) {
+      return {
+        url,
+        headers: { 'Authorization': 'Basic ' + btoa(match.user + ':' + match.password) }
+      };
+    }
   }
 };
 
@@ -31,7 +34,7 @@ const buildStyle = (mapStyle, sprite, sources, layers) =>
     }));
 
 function Map({
-  mapStyle, authHeader, authUrl, onMapSet, sprite, sources, layers, viewport, onViewportChange, hash
+  mapStyle, auth, onMapSet, sprite, sources, layers, viewport, onViewportChange, hash
 }) {
 
   const mapOptions = {
@@ -61,7 +64,7 @@ function Map({
     {...viewport}
     onViewportChange={onViewportChange && onViewportChange}
     mapOptions={mapOptions}
-    {...(authHeader ? {transformRequest: addAuthHeader(authHeader, authUrl)} : null) }
+    transformRequest={setBasicAuthHeader(auth)}
     width="100%"
     height="100%"
   >
@@ -72,8 +75,11 @@ function Map({
 
 Map.propTypes = {
   mapStyle: PropTypes.string,
-  authHeader: PropTypes.string,
-  authUrl: PropTypes.string,
+  auth: PropTypes.arrayOf(PropTypes.shape({
+    urlMatch: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+  })),
   sprite: PropTypes.string,
   sources: PropTypes.object,
   layers: PropTypes.array,
@@ -91,8 +97,7 @@ Map.propTypes = {
 
 Map.defaultProps = {
   mapStyle: 'menorca_base_vector.json',
-  authHeader: undefined,
-  authUrl: undefined,
+  auth: [],
   sprite: undefined,
   sources: {},
   layers: [],
