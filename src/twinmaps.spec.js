@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 
 import App from './twinmaps';
-import TwinMaps from './components/TwinMaps';
+import TwinMaps from '../../../geomatico/geocomponents/src/components/TwinMaps';
 
 describe('index', () => {
   describe('<App />', () => {

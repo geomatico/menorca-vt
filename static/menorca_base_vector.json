@@ -11,7 +11,7 @@
       "type": "vector",
       "scheme": "tms",
       "tiles": [
-        "https://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Abase_referencia@MVT@pbf/{z}/{x}/{y}.pbf"
+        "https://ide.cime.es/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Abase_referencia@MVT@pbf/{z}/{x}/{y}.pbf"
       ],
       "minZoom": 0,
       "maxZoom": 22
@@ -20,7 +20,7 @@
       "type": "raster",
       "scheme": "tms",
       "tiles": [
-        "https://10.1.100.27/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Aombres1@EPSG%3A3857@png8/{z}/{x}/{y}.png"
+        "https://ide.cime.es/geoserver2/gwc/service/tms/1.0.0/base_referencia%3Aombres1@EPSG%3A3857@png8/{z}/{x}/{y}.png"
       ],
       "tileSize": 256,
       "bounds": [3.7884253534268955, 39.79875258137996, 4.332048197404517, 40.09680861981502],

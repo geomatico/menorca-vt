@@ -1,40 +1,36 @@
 import ReactDOM from 'react-dom';
 import React, {useEffect, useState} from 'react';
-
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import {Card, CardContent} from '@material-ui/core';
-
 import {debounce} from 'throttle-debounce';
 
-import Map from './components/Map';
-import CategoricFilter from './components/CategoricFilter';
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import {Card, CardContent} from '@material-ui/core';
+
+import {BaseMapPicker, CategoricFilter, Map, RangeSlider} from 'geocomponents';
 import ResolutionStateChart from './components/ResolutionStateChart';
 import TypeCountByYearChart from './components/TypeCountByYearChart';
-import BaseMapPicker from './components/BaseMapPicker';
-import RangeSlider from './components/RangeSlider';
 
-const styles = [
+const mapStyles = [
   {
     label: 'IDE Menorca',
     thumbnail: './img/ide-menorca-vector.png',
     url: 'menorca_base_vector.json'
-  },{
+  }, {
     label: 'Base IGO',
     thumbnail: './img/mapa-base-igo.png',
     url: 'https://vts.larioja.org/style/mapa-base-igo-v1.json'
-  },{
+  }, {
     label: 'OSM Bright',
     thumbnail: 'https://openicgc.github.io/img/osm-bright.png',
     url: 'https://geoserveis.icgc.cat/contextmaps/osm-bright.json'
-  },{
+  }, {
     label: 'Positron',
     thumbnail: 'https://openicgc.github.io/img/positron.png',
     url: 'https://geoserveis.icgc.cat/contextmaps/positron.json'
-  },{
+  }, {
     label: 'Hibrid',
     thumbnail: 'https://openicgc.github.io/img/orto.png',
     url: 'https://geoserveis.icgc.cat/contextmaps/hibrid.json'
-  },{
+  }, {
     label: 'Full Dark',
     thumbnail: 'https://openicgc.github.io/img/fulldark.png',
     url: 'https://geoserveis.icgc.cat/contextmaps/fulldark.json'
@@ -48,16 +44,21 @@ const sourceLayers = [
 ];
 
 const categories = [
-  {id: 'CED', values: ['CED'], color: '#C9C900', label: 'CED. Cèdules urbanístiques' },
-  {id: 'DUP', values: ['DUP'], color: '#FFFF73', label: 'DUP. Expedients de duplicat de cèdules' },
-  {id: 'AUT', values: ['AUT'], color: '#00C5FF', label: 'AUT. Litoral' },
-  {id: 'DTQ', values: ['DTQ'], color: '#0084A8', label: 'DTQ. Declaracio responsable litoral' },
-  {id: 'NUI', values: ['NUI'], color: '#E69800', label: 'NUI. Declaració interés general' },
-  {id: 'ERE', values: ['ERE'], color: '#FFEBAF', label: 'ERE. Edificacions en sòl rúsic' },
-  {id: 'INF', values: ['INF'], color: '#C29ED7', label: 'INF. Informes urbanístics i d\'ordenació. Inclou AIA' },
-  {id: 'ORD', values: ['ORD'], color: '#E69800', label: 'ORD. Expedients diversos ordenació' },
-  {id: 'PO', values: ['PO'], color: '#E60000', label: 'PO. Procediments judicials' },
-  {id: 'altres', values: ['INU', 'LIA', 'LIC', 'NUH', 'PRCED', 'SAN'], color: '#E9FFBE', label: 'Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)' },
+  {id: 'CED', values: ['CED'], color: '#C9C900', label: 'CED. Cèdules urbanístiques'},
+  {id: 'DUP', values: ['DUP'], color: '#FFFF73', label: 'DUP. Expedients de duplicat de cèdules'},
+  {id: 'AUT', values: ['AUT'], color: '#00C5FF', label: 'AUT. Litoral'},
+  {id: 'DTQ', values: ['DTQ'], color: '#0084A8', label: 'DTQ. Declaracio responsable litoral'},
+  {id: 'NUI', values: ['NUI'], color: '#E69800', label: 'NUI. Declaració interés general'},
+  {id: 'ERE', values: ['ERE'], color: '#FFEBAF', label: 'ERE. Edificacions en sòl rúsic'},
+  {id: 'INF', values: ['INF'], color: '#C29ED7', label: 'INF. Informes urbanístics i d\'ordenació. Inclou AIA'},
+  {id: 'ORD', values: ['ORD'], color: '#E69800', label: 'ORD. Expedients diversos ordenació'},
+  {id: 'PO', values: ['PO'], color: '#E60000', label: 'PO. Procediments judicials'},
+  {
+    id: 'altres',
+    values: ['INU', 'LIA', 'LIC', 'NUH', 'PRCED', 'SAN'],
+    color: '#E9FFBE',
+    label: 'Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)'
+  },
 ];
 
 const fallbackColor = '#FF00FF';
@@ -135,7 +136,7 @@ const App = () => {
 
   const [dateRange, setDateRange] = useState([minDate, maxDate]);
 
-  const [layers, setLayers]= useState(buildLayers(selectedCategories, dateRange));
+  const [layers, setLayers] = useState(buildLayers(selectedCategories, dateRange));
 
   const [data, setData] = useState({
     typeCountByYear: [],
@@ -146,7 +147,7 @@ const App = () => {
     setLayers(buildLayers(selectedCategories, dateRange));
   }, [selectedCategories, dateRange]);
 
-  const onViewportChange = ({ latitude, longitude, zoom, bearing, pitch }) => setViewport({
+  const onViewportChange = ({latitude, longitude, zoom, bearing, pitch}) => setViewport({
     latitude,
     longitude,
     zoom,
@@ -211,42 +212,55 @@ const App = () => {
 
   const theme = createMuiTheme({
     palette: {
-      type: 'dark',
-    },
+      type: 'light',
+      primary: {
+        main: '#99CC33',
+        contrastText: '#fff',
+      },
+      secondary: {
+        main: '#228042',
+      }
+    }
   });
 
   return (<ThemeProvider theme={theme}>
     <Map
-      mapStyle ={selectedStyleUrl}
-      auth = {auth}
-      sources = {sources}
-      layers = {layers}
-      viewport = {viewport}
-      onMapSet = {onMapSet}
-      onViewportChange = {onViewportChange}
+      mapStyle={selectedStyleUrl}
+      auth={auth}
+      sources={sources}
+      layers={layers}
+      viewport={viewport}
+      onMapSet={onMapSet}
+      onViewportChange={onViewportChange}
     />
-    <BaseMapPicker selectedStyleUrl={selectedStyleUrl} onStyleChange={setSelectedStyleUrl} styles={styles} position='top-right' direction='down' />
+    <BaseMapPicker
+      selectedStyleUrl={selectedStyleUrl}
+      onStyleChange={setSelectedStyleUrl}
+      styles={mapStyles}
+      position='top-right'
+      direction='down'
+    />
     <div style={{position: 'absolute', top: 10, left: 10}}>
-      <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories} />
+      <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
     </div>
     <div style={{position: 'absolute', bottom: 278, right: 10, width: 532}}>
       <Card elevation={5}>
         <CardContent>
-          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange} />
+          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
         </CardContent>
       </Card>
     </div>
     <div style={{position: 'absolute', bottom: 30, right: 10}}>
       <Card elevation={5}>
         <CardContent>
-          <TypeCountByYearChart categories={categories} data={data.typeCountByYear} />
+          <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
         </CardContent>
       </Card>
     </div>
     <div style={{position: 'absolute', bottom: 30, right: 550}}>
       <Card elevation={5}>
         <CardContent>
-          <ResolutionStateChart data={data.resolutionStateCount} />
+          <ResolutionStateChart data={data.resolutionStateCount}/>
         </CardContent>
       </Card>
     </div>
@@ -254,4 +268,4 @@ const App = () => {
 };
 
 const target = document.getElementById('app');
-if (target) ReactDOM.render(<App />, target);
+if (target) ReactDOM.render(<App/>, target);
