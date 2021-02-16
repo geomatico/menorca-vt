@@ -5,63 +5,13 @@ import {debounce} from 'throttle-debounce';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import {Card, CardContent} from '@material-ui/core';
 
+import config from './config.json';
+
 import {BaseMapPicker, CategoricFilter, Map, RangeSlider} from 'geocomponents';
 import ResolutionStateChart from './components/ResolutionStateChart';
 import TypeCountByYearChart from './components/TypeCountByYearChart';
 
-const mapStyles = [
-  {
-    label: 'IDE Menorca',
-    thumbnail: './img/ide-menorca-vector.png',
-    url: 'menorca_base_vector.json'
-  }, {
-    label: 'Base IGO',
-    thumbnail: './img/mapa-base-igo.png',
-    url: 'https://vts.larioja.org/style/mapa-base-igo-v1.json'
-  }, {
-    label: 'OSM Bright',
-    thumbnail: 'https://openicgc.github.io/img/osm-bright.png',
-    url: 'https://geoserveis.icgc.cat/contextmaps/osm-bright.json'
-  }, {
-    label: 'Positron',
-    thumbnail: 'https://openicgc.github.io/img/positron.png',
-    url: 'https://geoserveis.icgc.cat/contextmaps/positron.json'
-  }, {
-    label: 'Hibrid',
-    thumbnail: 'https://openicgc.github.io/img/orto.png',
-    url: 'https://geoserveis.icgc.cat/contextmaps/hibrid.json'
-  }, {
-    label: 'Full Dark',
-    thumbnail: 'https://openicgc.github.io/img/fulldark.png',
-    url: 'https://geoserveis.icgc.cat/contextmaps/fulldark.json'
-  }
-];
-
-const sourceLayers = [
-  'or007exp_negociat45',
-  'or007exp_negociat41',
-  'or007exp_negociat37'
-];
-
-const categories = [
-  {id: 'CED', values: ['CED'], color: '#C9C900', label: 'CED. Cèdules urbanístiques'},
-  {id: 'DUP', values: ['DUP'], color: '#FFFF73', label: 'DUP. Expedients de duplicat de cèdules'},
-  {id: 'AUT', values: ['AUT'], color: '#00C5FF', label: 'AUT. Litoral'},
-  {id: 'DTQ', values: ['DTQ'], color: '#0084A8', label: 'DTQ. Declaracio responsable litoral'},
-  {id: 'NUI', values: ['NUI'], color: '#E69800', label: 'NUI. Declaració interés general'},
-  {id: 'ERE', values: ['ERE'], color: '#FFEBAF', label: 'ERE. Edificacions en sòl rúsic'},
-  {id: 'INF', values: ['INF'], color: '#C29ED7', label: 'INF. Informes urbanístics i d\'ordenació. Inclou AIA'},
-  {id: 'ORD', values: ['ORD'], color: '#E69800', label: 'ORD. Expedients diversos ordenació'},
-  {id: 'PO', values: ['PO'], color: '#E60000', label: 'PO. Procediments judicials'},
-  {
-    id: 'altres',
-    values: ['INU', 'LIA', 'LIC', 'NUH', 'PRCED', 'SAN'],
-    color: '#E9FFBE',
-    label: 'Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)'
-  },
-];
-
-const fallbackColor = '#FF00FF';
+const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
 const auth = [{
   urlMatch: process.env.EXPEDIENTS_LAYER,
@@ -69,7 +19,6 @@ const auth = [{
   password: process.env.EXPEDIENTS_PASSWORD
 }];
 
-const minDate = 1977;
 const maxDate = new Date().getFullYear();
 
 const sources = {
@@ -122,13 +71,7 @@ const buildLayers = (selectedCategories, dateRange) => sourceLayers.map(sourceLa
 }));
 
 const App = () => {
-  const [viewport, setViewport] = useState({
-    latitude: 39.945,
-    longitude: 4.060,
-    zoom: 10,
-    bearing: 0,
-    pitch: 0
-  });
+  const [viewport, setViewport] = useState(initialViewport);
 
   const [selectedStyleUrl, setSelectedStyleUrl] = useState('https://geoserveis.icgc.cat/contextmaps/fulldark.json');
 
@@ -156,17 +99,17 @@ const App = () => {
   });
 
   const calcStats = debounce(10, (map) => {
-    const featureProps = map
+    const featureProperties = map
       .queryRenderedFeatures({
         layers: sourceLayers
       })
       .map(feature => feature.properties)
       .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
 
-    const objTypeCountByYear = featureProps
-      .reduce((stats, props) => {
-        const year = props.any;
-        const type = props.tipus;
+    const objTypeCountByYear = featureProperties
+      .reduce((stats, properties) => {
+        const year = properties.any;
+        const type = properties.tipus;
 
         stats[year] = stats[year] || {};
         stats[year][type] = stats[year][type] ? stats[year][type] + 1 : 1;
@@ -182,8 +125,8 @@ const App = () => {
         return data;
       }, []);
 
-    const objResolutionStateCount = featureProps
-      .map(props => props.resolucio)
+    const objResolutionStateCount = featureProperties
+      .map(properties => properties.resolucio)
       .reduce((stats, resolucio) => {
         stats[resolucio] = stats[resolucio] ? stats[resolucio] + 1 : 1;
         return stats;
