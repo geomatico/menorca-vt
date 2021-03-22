@@ -2,16 +2,35 @@ import ReactDOM from 'react-dom';
 import React, {useEffect, useState} from 'react';
 import {debounce} from 'throttle-debounce';
 
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
-import {Card, CardContent} from '@material-ui/core';
-
-import config from './config.json';
-
+import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
+import {CssBaseline, Typography} from '@material-ui/core';
 import {BaseMapPicker, CategoricFilter, Map, RangeSlider} from 'geocomponents';
+
+import theme from './theme';
+import config from './config.json';
+import ResponsiveHeader from './components/ResponsiveHeader';
+import ResponsiveDrawer from './components/ResponsiveDrawer';
 import ResolutionStateChart from './components/ResolutionStateChart';
 import TypeCountByYearChart from './components/TypeCountByYearChart';
 
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
+
+const drawerWidth = 260;
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    flexGrow: 1,
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    [theme.breakpoints.up('sm')]: {
+      left: drawerWidth,
+    }
+  },
+}));
 
 const auth = [{
   urlMatch: process.env.EXPEDIENTS_LAYER,
@@ -153,60 +172,41 @@ const App = () => {
     });
   };
 
-  const theme = createMuiTheme({
-    palette: {
-      type: 'light',
-      primary: {
-        main: '#99CC33',
-        contrastText: '#fff',
-      },
-      secondary: {
-        main: '#228042',
-      }
-    }
-  });
+  const classes = useStyles();
 
-  return (<ThemeProvider theme={theme}>
-    <Map
-      mapStyle={selectedStyleUrl}
-      auth={auth}
-      sources={sources}
-      layers={layers}
-      viewport={viewport}
-      onMapSet={onMapSet}
-      onViewportChange={onViewportChange}
-    />
-    <BaseMapPicker
-      selectedStyleUrl={selectedStyleUrl}
-      onStyleChange={setSelectedStyleUrl}
-      styles={mapStyles}
-      position='top-right'
-      direction='down'
-    />
-    <div style={{position: 'absolute', top: 10, left: 10}}>
+  const [isDrawerOpen, setDrawerOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => setDrawerOpen(!isDrawerOpen);
+
+  return (<ThemeProvider theme={theme()}>
+    <CssBaseline />
+    <ResponsiveHeader title={'Visor d\'expedients'} drawerWidth={drawerWidth} onMenuClick={handleDrawerToggle}>
+      <Typography variant="caption" noWrap>IDE Menorca</Typography>
+    </ResponsiveHeader>
+    <ResponsiveDrawer width={drawerWidth} isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
-    </div>
-    <div style={{position: 'absolute', bottom: 278, right: 10, width: 532}}>
-      <Card elevation={5}>
-        <CardContent>
-          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
-        </CardContent>
-      </Card>
-    </div>
-    <div style={{position: 'absolute', bottom: 30, right: 10}}>
-      <Card elevation={5}>
-        <CardContent>
-          <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
-        </CardContent>
-      </Card>
-    </div>
-    <div style={{position: 'absolute', bottom: 30, right: 550}}>
-      <Card elevation={5}>
-        <CardContent>
-          <ResolutionStateChart data={data.resolutionStateCount}/>
-        </CardContent>
-      </Card>
-    </div>
+      <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
+      <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
+      <ResolutionStateChart data={data.resolutionStateCount}/>
+    </ResponsiveDrawer>
+    <main className={classes.content}>
+      <Map
+        mapStyle={selectedStyleUrl}
+        auth={auth}
+        sources={sources}
+        layers={layers}
+        viewport={viewport}
+        onMapSet={onMapSet}
+        onViewportChange={onViewportChange}
+      />
+      <BaseMapPicker
+        selectedStyleUrl={selectedStyleUrl}
+        onStyleChange={setSelectedStyleUrl}
+        styles={mapStyles}
+        position='bottom-right'
+        direction='up'
+      />
+    </main>
   </ThemeProvider>);
 };
 
