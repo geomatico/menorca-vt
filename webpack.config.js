@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
+const path = require('path');
 
 module.exports = (env) => ({
   mode: env.prod ? 'production' : 'development',
@@ -12,12 +13,20 @@ module.exports = (env) => ({
     twinmaps: './src/twinmaps.js',
     expedients: './src/expedients.js',
   },
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      '@material-ui/core': path.resolve('./node_modules/@material-ui/core'),
+      '@material-ui/icons': path.resolve('./node_modules/@material-ui/icons'),
+      '@material-ui/lab': path.resolve('./node_modules/@material-ui/lab'),
+    }
+  },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader'],
       },
       {
         test: /\.html$/,

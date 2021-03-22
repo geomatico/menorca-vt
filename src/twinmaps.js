@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import TwinMaps from './components/TwinMaps';
+import {TwinMaps} from 'geocomponents';
 
 const App = () => {
   const leftStyle = 'menorca_base_vector.json';
