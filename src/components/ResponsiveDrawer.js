@@ -1,12 +1,13 @@
-import {Divider, Drawer, Hidden} from '@material-ui/core';
+import {Divider, Drawer, Hidden, IconButton, Toolbar, Typography} from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
 const container = window !== undefined ? () => window.document.body : undefined;
 
 const useStyles = makeStyles((theme) => ({
-  toolbar: theme.mixins.toolbar,
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: ({width}) => width,
@@ -15,11 +16,24 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: ({width}) => width,
+  },
+  drawerHeader: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.primary.contrastText,
+    margin: 0,
+  },
+  drawerContent: {
+    padding: theme.spacing(2)
+  },
+  closeIcon: {
+    color: theme.palette.primary.contrastText
   }
 }));
 
 const ResponsiveDrawer = ({width, isOpen, onClose, children}) => {
   const classes = useStyles({width});
+
+  const handleDrawerClose = () => onClose && onClose();
 
   return (
     <nav className={classes.drawer} aria-label="mailbox folders">
@@ -27,9 +41,9 @@ const ResponsiveDrawer = ({width, isOpen, onClose, children}) => {
         <Drawer
           container={container}
           variant="temporary"
-          anchor="left"
+          anchor="right"
           open={isOpen}
-          onClose={onClose}
+          onClose={handleDrawerClose}
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -37,9 +51,11 @@ const ResponsiveDrawer = ({width, isOpen, onClose, children}) => {
             keepMounted: true, // Better open performance on mobile.
           }}
         >
-          <div>
-            <div className={classes.toolbar} />
-            <Divider />
+          <Toolbar className={classes.drawerHeader}>
+            <Typography variant='h6'>Lista de capas y filtros</Typography>
+          </Toolbar>
+          <Divider/>
+          <div className={classes.drawerContent}>
             {children}
           </div>
         </Drawer>
@@ -49,12 +65,18 @@ const ResponsiveDrawer = ({width, isOpen, onClose, children}) => {
           classes={{
             paper: classes.drawerPaper,
           }}
-          variant="permanent"
-          open
+          variant="persistent"
+          anchor="right"
+          open={isOpen}
         >
-          <div>
-            <div className={classes.toolbar} />
-            <Divider />
+          <Toolbar className={classes.drawerHeader}>
+            <Typography variant='h6'>Lista de capas y filtros</Typography>
+            <IconButton>
+              <ChevronRightIcon onClick={handleDrawerClose} className={classes.closeIcon}/>
+            </IconButton>
+          </Toolbar>
+          <Divider/>
+          <div className={classes.drawerContent}>
             {children}
           </div>
         </Drawer>
