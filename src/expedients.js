@@ -1,24 +1,27 @@
 import ReactDOM from 'react-dom';
 import React, {useEffect, useState} from 'react';
 import {debounce} from 'throttle-debounce';
+import clsx from 'clsx';
 
 import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import {CssBaseline, Typography} from '@material-ui/core';
+import {CssBaseline, Typography, IconButton} from '@material-ui/core';
+
+import FilterListIcon from '@material-ui/icons/FilterList';
+
 import {BaseMapPicker, CategoricFilter, Map, RangeSlider} from 'geocomponents';
 
 import theme from './theme';
 import config from './config.json';
+import SectionTitle from './components/SectionTitle';
 import ResponsiveHeader from './components/ResponsiveHeader';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
-import ResolutionStateChart from './components/ResolutionStateChart';
-import TypeCountByYearChart from './components/TypeCountByYearChart';
 
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
-const drawerWidth = 260;
+const drawerWidth = 360;
 
 const useStyles = makeStyles((theme) => ({
-  content: {
+  contentWithoutDrawer: {
     flexGrow: 1,
     padding: 0,
     position: 'absolute',
@@ -26,10 +29,24 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     left: 0,
     right: 0,
-    [theme.breakpoints.up('sm')]: {
-      left: drawerWidth,
-    }
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
   },
+  contentWithDrawer: {
+    right: drawerWidth,
+    [theme.breakpoints.down('sm')]: {
+      right: 0,
+    },
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+  },
+  filterIcon: {
+    color: theme.palette.primary.contrastText
+  }
 }));
 
 const auth = [{
@@ -179,17 +196,22 @@ const App = () => {
   const handleDrawerToggle = () => setDrawerOpen(!isDrawerOpen);
 
   return (<ThemeProvider theme={theme()}>
-    <CssBaseline />
+    <CssBaseline/>
     <ResponsiveHeader title={'Visor d\'expedients'} drawerWidth={drawerWidth} onMenuClick={handleDrawerToggle}>
       <Typography variant="caption" noWrap>IDE Menorca</Typography>
+      <IconButton onClick={() => setDrawerOpen(true)}>
+        <FilterListIcon className={classes.filterIcon}/>
+      </IconButton>
     </ResponsiveHeader>
     <ResponsiveDrawer width={drawerWidth} isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}>
+      <SectionTitle title='Tipo de expediente'/>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
+      <SectionTitle title='Rango de fechas'/>
       <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
-      <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
-      <ResolutionStateChart data={data.resolutionStateCount}/>
     </ResponsiveDrawer>
-    <main className={classes.content}>
+    <main className={clsx(classes.contentWithoutDrawer, {
+      [classes.contentWithDrawer]: isDrawerOpen,
+    })}>
       <Map
         mapStyle={selectedStyleUrl}
         auth={auth}
