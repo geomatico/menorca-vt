@@ -6,7 +6,7 @@
     "lint": "eslint src",
     "test": "karma start karma.config.js",
     "start": "webpack serve --env dev",
-    "build": "npm run test && webpack --env prod",
+    "build": "npm run lint && webpack --env prod",
     "deploy": "npm run build && gh-pages -d dist",
     "storybook": "start-storybook -s ./static -p 6006",
     "build-storybook": "build-storybook"
