@@ -1,11 +1,10 @@
 import ReactDOM from 'react-dom';
 import React, {useEffect, useState} from 'react';
 import {debounce} from 'throttle-debounce';
-import clsx from 'clsx';
+import ReactCardFlip from 'react-card-flip';
 
 import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import {CssBaseline, Typography, IconButton} from '@material-ui/core';
-
+import {CssBaseline, Typography, IconButton, Hidden, Box} from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
 import {BaseMapPicker, CategoricFilter, Map, RangeSlider} from 'geocomponents';
@@ -14,39 +13,33 @@ import theme from './theme';
 import config from './config.json';
 import SectionTitle from './components/SectionTitle';
 import ResponsiveHeader from './components/ResponsiveHeader';
-import ResponsiveDrawer from './components/ResponsiveDrawer';
+import RightDrawer from './components/RightDrawer';
+import LeftDrawer from './components/LeftDrawer';
+import TypeCountByYearChart from './components/TypeCountByYearChart';
+import ResolutionStateChart from './components/ResolutionStateChart';
 
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
-const drawerWidth = 360;
+const RIGHT_DRAWER_WIDTH = 340;
+const LEFT_DEFAULT_DRAWER_WIDTH = 400;
+
 
 const useStyles = makeStyles((theme) => ({
-  contentWithoutDrawer: {
+  content: {
+    width: ({leftDrawerWidth}) => `calc(100% - ${leftDrawerWidth}px)`,
+    height: '100vh',
     flexGrow: 1,
     padding: 0,
     position: 'absolute',
     top: 0,
     bottom: 0,
-    left: 0,
     right: 0,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-  },
-  contentWithDrawer: {
-    right: drawerWidth,
-    [theme.breakpoints.down('sm')]: {
-      right: 0,
-    },
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    }),
+    left: ({leftDrawerWidth}) => leftDrawerWidth,
   },
   filterIcon: {
-    color: theme.palette.primary.contrastText
-  }
+    color: theme.palette.primary.contrastText,
+    margin: 0
+  },
 }));
 
 const auth = [{
@@ -108,19 +101,17 @@ const buildLayers = (selectedCategories, dateRange) => sourceLayers.map(sourceLa
 
 const App = () => {
   const [viewport, setViewport] = useState(initialViewport);
-
   const [selectedStyleUrl, setSelectedStyleUrl] = useState('https://geoserveis.icgc.cat/contextmaps/fulldark.json');
-
   const [selectedCategories, setSelectedCategories] = useState(categories.map(({id}) => id));
-
   const [dateRange, setDateRange] = useState([minDate, maxDate]);
-
   const [layers, setLayers] = useState(buildLayers(selectedCategories, dateRange));
-
   const [data, setData] = useState({
     typeCountByYear: [],
     resolutionStateCount: []
   });
+  const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
+  const [isFlipped, setFlipped] = useState(false);
+  const [leftDrawerWidth, setLeftDrawerWidth] = useState(LEFT_DEFAULT_DRAWER_WIDTH);
 
   useEffect(() => {
     setLayers(buildLayers(selectedCategories, dateRange));
@@ -189,47 +180,95 @@ const App = () => {
     });
   };
 
-  const classes = useStyles();
+  const classes = useStyles({leftDrawerWidth});
 
-  const [isDrawerOpen, setDrawerOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => setDrawerOpen(!isDrawerOpen);
+  const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
+  const handleCardFlip = () => setFlipped(!isFlipped);
+  const handleDrawerWidthChange = (width) => {
+    setLeftDrawerWidth(width);
+  };
 
   return (<ThemeProvider theme={theme()}>
     <CssBaseline/>
-    <ResponsiveHeader title={'Visor d\'expedients'} drawerWidth={drawerWidth} onMenuClick={handleDrawerToggle}>
-      <Typography variant="caption" noWrap>IDE Menorca</Typography>
-      <IconButton onClick={() => setDrawerOpen(true)}>
+    <ResponsiveHeader title={'Visor d\'expedients'} drawerWidth={RIGHT_DRAWER_WIDTH} onMenuClick={handleCardFlip}>
+      <Hidden smDown implementation="css">{/*DESKTOP*/}
+        <Typography variant="caption" noWrap>IDE Menorca</Typography>
+      </Hidden>
+      <IconButton onClick={handleDrawerToggle}>
         <FilterListIcon className={classes.filterIcon}/>
       </IconButton>
     </ResponsiveHeader>
-    <ResponsiveDrawer width={drawerWidth} isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}>
-      <SectionTitle title='Tipo de expediente'/>
+
+    {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
+    <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
+      <SectionTitle title={'Tipus d\'expedients'}/>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
-      <SectionTitle title='Rango de fechas'/>
+      <SectionTitle title='Rang de dates'/>
       <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
-    </ResponsiveDrawer>
-    <main className={clsx(classes.contentWithoutDrawer, {
-      [classes.contentWithDrawer]: isDrawerOpen,
-    })}>
-      <Map
-        mapStyle={selectedStyleUrl}
-        auth={auth}
-        sources={sources}
-        layers={layers}
-        viewport={viewport}
-        onMapSet={onMapSet}
-        onViewportChange={onViewportChange}
-      />
-      <BaseMapPicker
-        selectedStyleUrl={selectedStyleUrl}
-        onStyleChange={setSelectedStyleUrl}
-        styles={mapStyles}
-        position='bottom-right'
-        direction='up'
-      />
-    </main>
+    </RightDrawer>
+
+    {/*LEFTDRAWER MOBILE*/}
+    <Hidden smUp implementation="js">
+      <ReactCardFlip isFlipped={isFlipped}>
+        <main style={{width: '100vw', height: '100vh'}}>
+          <Map
+            mapStyle={selectedStyleUrl}
+            auth={auth}
+            sources={sources}
+            layers={layers}
+            viewport={viewport}
+            onMapSet={onMapSet}
+            onViewportChange={onViewportChange}
+          />
+          <BaseMapPicker
+            selectedStyleUrl={selectedStyleUrl}
+            onStyleChange={setSelectedStyleUrl}
+            styles={mapStyles}
+            position='bottom-right'
+            direction='up'
+          />
+        </main>
+        <Box px={2} style={{width: '100%', height: '100%'}}>
+          <SectionTitle title={'Nombre d\'expedients per any'}/>
+          <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
+          <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
+          <ResolutionStateChart data={data.resolutionStateCount}/>
+        </Box>
+      </ReactCardFlip>
+    </Hidden>
+
+    {/*LEFTDRAWER DESKTOP*/}
+    <Hidden xsDown implementation="css">
+      <LeftDrawer
+        defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
+        onDrawerWidthChange={handleDrawerWidthChange}
+      >
+        <SectionTitle title={'Nombre d\'expedients per any'}/>
+        <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
+        <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
+        <ResolutionStateChart data={data.resolutionStateCount}/>
+      </LeftDrawer>
+      <main className={classes.content}>
+        <Map
+          mapStyle={selectedStyleUrl}
+          auth={auth}
+          sources={sources}
+          layers={layers}
+          viewport={viewport}
+          onMapSet={onMapSet}
+          onViewportChange={onViewportChange}
+        />
+        <BaseMapPicker
+          selectedStyleUrl={selectedStyleUrl}
+          onStyleChange={setSelectedStyleUrl}
+          styles={mapStyles}
+          position='bottom-right'
+          direction='up'
+        />
+      </main>
+    </Hidden>
   </ThemeProvider>);
+
 };
 
 const target = document.getElementById('app');
