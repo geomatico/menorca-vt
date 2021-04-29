@@ -3,31 +3,35 @@ import PropTypes from 'prop-types';
 
 import {Drawer} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+
+import LogoBlanco from '../../static/img/LogoBlanco';
+import ResponsiveHeader from './ResponsiveHeader';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerContent: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(2.5, 4, 2.5, 2),
   },
   dragger: {
-    width: '5px',
+    display: 'flex',
+    alignItems: 'center',
+    width: '35px',
+    height: '100%',
     cursor: 'ew-resize',
     padding: '4px 0 0',
     position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
+    right: -10,
     zIndex: 100,
-    backgroundColor: theme.palette.grey[500]
+    color: theme.palette.grey[500]
   }
 }));
 
-
 const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
-  const classes = useStyles({defaultDrawerWidth});
   const minDrawerWidth = defaultDrawerWidth*0.75;
   const maxDrawerWidth = defaultDrawerWidth*1.50;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
+  const classes = useStyles({defaultDrawerWidth, drawerWidth});
 
   const handleMouseDown = () => {
     document.addEventListener('mouseup', handleMouseUp, true);
@@ -53,7 +57,10 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
       PaperProps={{style: {width: drawerWidth}}}
     >
       <div className={classes.toolbar}/>
-      <div onMouseDown={e => handleMouseDown(e)} className={classes.dragger}/>
+      <ResponsiveHeader logo={<LogoBlanco/>} width={drawerWidth}/>
+      <div onMouseDown={e => handleMouseDown(e)} className={classes.dragger}>
+        <ArrowForwardIosIcon/>
+      </div>
       <div className={classes.drawerContent}>
         {children}
       </div>
