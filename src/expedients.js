@@ -8,7 +8,7 @@ import {CssBaseline, Typography, IconButton, Hidden, Box} from '@material-ui/cor
 import FilterListIcon from '@material-ui/icons/FilterList';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import {BaseMapPicker, CategoricFilter, Map, RangeSlider} from 'geocomponents';
+import {CategoricFilter, Map, RangeSlider} from 'geocomponents';
 
 import theme from './theme';
 import config from './config.json';
@@ -21,12 +21,14 @@ import ResolutionStateChart from './components/ResolutionStateChart';
 import SquareButtonIcon from './components/SquareButtonIcon';
 import LogoBlanco from '../static/img/LogoBlanco';
 
+import BaseMapList from './components/BaseMapList';
+
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
 const RIGHT_DRAWER_WIDTH = 360;
 const LEFT_DEFAULT_DRAWER_WIDTH = 400;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   content: {
     width: ({leftDrawerWidth}) => `calc(100% - ${leftDrawerWidth}px)`,
     height: '100vh',
@@ -42,14 +44,18 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'flex-end',
     height: 'auto',
-    width: ({isRightDrawerOpen}) => isRightDrawerOpen? `calc(100% - ${RIGHT_DRAWER_WIDTH}px)`: '100%',
+    width: ({isRightDrawerOpen}) => isRightDrawerOpen ? `calc(100% - ${RIGHT_DRAWER_WIDTH}px)` : '100%',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   filterIconContainer: {
     zIndex: 40,
     position: 'absolute',
     top: 100,
   },
-});
+}));
 
 const auth = [{
   urlMatch: process.env.EXPEDIENTS_LAYER,
@@ -200,11 +206,25 @@ const App = () => {
   return (<ThemeProvider theme={theme()}>
     <CssBaseline/>
     {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
+    <div className={classes.buttonContent}>
+      <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
+        <FilterListIcon/>
+      </SquareButtonIcon>
+    </div>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
       <SectionTitle title={'Tipus d\'expedients'}/>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
       <SectionTitle title='Rang de dates'/>
-      <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
+      <div style={{padding: '0 16px'}}>
+        <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
+      </div>
+      <SectionTitle title='Mapes base'/>
+      <BaseMapList
+        isSelected={selectedStyleUrl === mapStyles.url}
+        styles={mapStyles}
+        selectedStyleUrl={selectedStyleUrl}
+        onStyleChange={setSelectedStyleUrl}
+      />
     </RightDrawer>
 
     {/*LEFTDRAWER MOBILE*/}
@@ -229,13 +249,6 @@ const App = () => {
             onMapSet={onMapSet}
             onViewportChange={onViewportChange}
           />
-          <BaseMapPicker
-            selectedStyleUrl={selectedStyleUrl}
-            onStyleChange={setSelectedStyleUrl}
-            styles={mapStyles}
-            position='bottom-right'
-            direction='up'
-          />
         </main>
         <Box px={2} style={{width: '100%', height: '100%'}}>
           <SectionTitle title={'Nombre d\'expedients per any'}/>
@@ -258,11 +271,11 @@ const App = () => {
         <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
         <ResolutionStateChart data={data.resolutionStateCount}/>
       </LeftDrawer>
-      <div className={classes.buttonContent}>
+      {/*      <div className={classes.buttonContent}>
         <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
           <FilterListIcon/>
         </SquareButtonIcon>
-      </div>
+      </div>*/}
       <main className={classes.content}>
         <Map
           mapStyle={selectedStyleUrl}
@@ -272,13 +285,6 @@ const App = () => {
           viewport={viewport}
           onMapSet={onMapSet}
           onViewportChange={onViewportChange}
-        />
-        <BaseMapPicker
-          selectedStyleUrl={selectedStyleUrl}
-          onStyleChange={setSelectedStyleUrl}
-          styles={mapStyles}
-          position='bottom-right'
-          direction='up'
         />
       </main>
     </Hidden>

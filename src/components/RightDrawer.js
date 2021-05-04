@@ -49,7 +49,6 @@ const RightDrawer = ({width, isOpen, onClose, children}) => {
           anchor="right"
           open={isOpen}
         >
-
           <div className={classes.drawerContent}>
             {children}
           </div>
