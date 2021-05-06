@@ -4,7 +4,7 @@
   "description": "Menorca Vector Tiles",
   "scripts": {
     "lint": "eslint src",
-    "test": "karma start karma.config.js",
+    "test": "npm run lint",
     "start": "webpack serve --env dev",
     "build": "npm run lint && webpack --env prod",
     "deploy": "npm run build && gh-pages -d dist",
@@ -54,6 +54,7 @@
     "karma-sourcemap-loader": "^0.3.8",
     "karma-webpack": "^4.0.2",
     "mocha": "^8.2.0",
+    "pre-commit": "^1.2.2",
     "raw-loader": "^4.0.2",
     "sinon": "^9.2.0",
     "style-loader": "^2.0.0",

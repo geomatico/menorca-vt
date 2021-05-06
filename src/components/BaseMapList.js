@@ -22,17 +22,17 @@ const useStyles = makeStyles((theme) => ({
   thumbnail: {
     border: `1px solid ${theme.palette.grey[400]}`,
     borderRadius: 2,
-    width: ({width}) => width,
-    height: ({height}) => height,
+    width: ({thumbnailWidth}) => thumbnailWidth,
+    height: ({thumbnailHeight}) => thumbnailHeight,
     textTransform: 'initial',
     margin: 0,
     padding: 0,
   },
 }));
 
-function BaseMapList({width, height, styles, selectedStyleUrl, onStyleChange}) {
+function BaseMapList({thumbnailWidth, thumbnailHeight, styles, selectedStyleUrl, onStyleChange}) {
   const {thumbnail} = styles.find(({url}) => url === selectedStyleUrl);
-  const classes = useStyles({width, height, thumbnail});
+  const classes = useStyles({thumbnailWidth, thumbnailHeight, thumbnail});
   const handleClick = (url) => () => onStyleChange(url);
 
   return (
@@ -69,8 +69,8 @@ BaseMapList.propTypes = {
 };
 
 BaseMapList.defaultProps = {
-  width: 60,
-  height: 40,
+  thumbnailWidth: 60,
+  thumbnailHeight: 40,
 };
 
 export default BaseMapList;

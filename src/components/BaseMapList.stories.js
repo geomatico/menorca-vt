@@ -36,8 +36,8 @@ const Template = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  width: 60,
-  height: 40,
+  thumbnailWidth: 60,
+  thumbnailHeight: 40,
   styles,
   selectedStyleUrl: 'https://tileserver.geomatico.es/styles/klokantech-basic/style.json',
 };
