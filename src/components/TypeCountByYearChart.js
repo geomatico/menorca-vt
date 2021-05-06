@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 
 const TypeCountByYearChart = ({data, categories}) => (
-  <ResponsiveContainer width='100%' height='40%'>
+  <ResponsiveContainer width='100%' height={200}>
     <AreaChart
       minwidth={200}
       data={data}

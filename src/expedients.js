@@ -6,8 +6,9 @@ import ReactCardFlip from 'react-card-flip';
 import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
 import {CssBaseline, Typography, IconButton, Hidden, Box} from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import MenuIcon from '@material-ui/icons/Menu';
 
-import {BaseMapPicker, CategoricFilter, Map, RangeSlider} from 'geocomponents';
+import {CategoricFilter, Map, RangeSlider} from 'geocomponents';
 
 import theme from './theme';
 import config from './config.json';
@@ -17,12 +18,15 @@ import RightDrawer from './components/RightDrawer';
 import LeftDrawer from './components/LeftDrawer';
 import TypeCountByYearChart from './components/TypeCountByYearChart';
 import ResolutionStateChart from './components/ResolutionStateChart';
+import SquareButtonIcon from './components/SquareButtonIcon';
+import LogoBlanco from '../static/img/LogoBlanco';
+
+import BaseMapList from './components/BaseMapList';
 
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
-const RIGHT_DRAWER_WIDTH = 340;
+const RIGHT_DRAWER_WIDTH = 360;
 const LEFT_DEFAULT_DRAWER_WIDTH = 400;
-
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -36,9 +40,20 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     left: ({leftDrawerWidth}) => leftDrawerWidth,
   },
-  filterIcon: {
-    color: theme.palette.primary.contrastText,
-    margin: 0
+  buttonContent: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    height: 'auto',
+    width: ({isRightDrawerOpen}) => isRightDrawerOpen ? `calc(100% - ${RIGHT_DRAWER_WIDTH}px)` : '100%',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  filterIconContainer: {
+    zIndex: 40,
+    position: 'absolute',
+    top: 100,
   },
 }));
 
@@ -180,7 +195,7 @@ const App = () => {
     });
   };
 
-  const classes = useStyles({leftDrawerWidth});
+  const classes = useStyles({isRightDrawerOpen, leftDrawerWidth});
 
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
   const handleCardFlip = () => setFlipped(!isFlipped);
@@ -190,25 +205,39 @@ const App = () => {
 
   return (<ThemeProvider theme={theme()}>
     <CssBaseline/>
-    <ResponsiveHeader title={'Visor d\'expedients'} drawerWidth={RIGHT_DRAWER_WIDTH} onMenuClick={handleCardFlip}>
-      <Hidden smDown implementation="css">{/*DESKTOP*/}
-        <Typography variant="caption" noWrap>IDE Menorca</Typography>
-      </Hidden>
-      <IconButton onClick={handleDrawerToggle}>
-        <FilterListIcon className={classes.filterIcon}/>
-      </IconButton>
-    </ResponsiveHeader>
-
     {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
+    <div className={classes.buttonContent}>
+      <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
+        <FilterListIcon/>
+      </SquareButtonIcon>
+    </div>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
       <SectionTitle title={'Tipus d\'expedients'}/>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
       <SectionTitle title='Rang de dates'/>
-      <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
+      <div style={{padding: '0 16px'}}>
+        <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
+      </div>
+      <SectionTitle title='Mapes base'/>
+      <BaseMapList
+        isSelected={selectedStyleUrl === mapStyles.url}
+        styles={mapStyles}
+        selectedStyleUrl={selectedStyleUrl}
+        onStyleChange={setSelectedStyleUrl}
+      />
     </RightDrawer>
 
     {/*LEFTDRAWER MOBILE*/}
     <Hidden smUp implementation="js">
+      <ResponsiveHeader
+        startIcon={<MenuIcon/>}
+        onMenuClick={handleCardFlip}
+        logo={<LogoBlanco/>}
+      >
+        <IconButton onClick={handleDrawerToggle}>
+          <FilterListIcon style={{color: 'white'}}/>
+        </IconButton>
+      </ResponsiveHeader>
       <ReactCardFlip isFlipped={isFlipped}>
         <main style={{width: '100vw', height: '100vh'}}>
           <Map
@@ -219,13 +248,6 @@ const App = () => {
             viewport={viewport}
             onMapSet={onMapSet}
             onViewportChange={onViewportChange}
-          />
-          <BaseMapPicker
-            selectedStyleUrl={selectedStyleUrl}
-            onStyleChange={setSelectedStyleUrl}
-            styles={mapStyles}
-            position='bottom-right'
-            direction='up'
           />
         </main>
         <Box px={2} style={{width: '100%', height: '100%'}}>
@@ -243,6 +265,7 @@ const App = () => {
         defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
         onDrawerWidthChange={handleDrawerWidthChange}
       >
+        <Typography variant='h6'>Visor d&#039;expedients</Typography>
         <SectionTitle title={'Nombre d\'expedients per any'}/>
         <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
         <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
@@ -257,13 +280,6 @@ const App = () => {
           viewport={viewport}
           onMapSet={onMapSet}
           onViewportChange={onViewportChange}
-        />
-        <BaseMapPicker
-          selectedStyleUrl={selectedStyleUrl}
-          onStyleChange={setSelectedStyleUrl}
-          styles={mapStyles}
-          position='bottom-right'
-          direction='up'
         />
       </main>
     </Hidden>
