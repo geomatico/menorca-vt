@@ -55,8 +55,8 @@ function BaseMapList({width, height, styles, selectedStyleUrl, onStyleChange}) {
 }
 
 BaseMapList.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+  thumbnailWidth: PropTypes.number,
+  thumbnailHeight: PropTypes.number,
   styles: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

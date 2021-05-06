@@ -271,11 +271,6 @@ const App = () => {
         <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
         <ResolutionStateChart data={data.resolutionStateCount}/>
       </LeftDrawer>
-      {/*      <div className={classes.buttonContent}>
-        <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
-          <FilterListIcon/>
-        </SquareButtonIcon>
-      </div>*/}
       <main className={classes.content}>
         <Map
           mapStyle={selectedStyleUrl}
