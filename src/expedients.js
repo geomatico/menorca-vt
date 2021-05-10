@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {debounce} from 'throttle-debounce';
 import ReactCardFlip from 'react-card-flip';
 
@@ -22,6 +22,8 @@ import SquareButtonIcon from './components/SquareButtonIcon';
 import LogoBlanco from '../static/img/LogoBlanco';
 
 import BaseMapList from './components/BaseMapList';
+import {getTotalExpedients} from './api';
+import NumericIndicator from './components/NumericIndicator';
 
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
@@ -121,8 +123,12 @@ const App = () => {
   const [dateRange, setDateRange] = useState([minDate, maxDate]);
   const [layers, setLayers] = useState(buildLayers(selectedCategories, dateRange));
   const [data, setData] = useState({
+    renderedExpedients: 0,
     typeCountByYear: [],
     resolutionStateCount: []
+  });
+  const [fetchedData, setFetchedData] = useState({
+    totalExpedientsByType: []
   });
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
@@ -132,13 +138,22 @@ const App = () => {
     setLayers(buildLayers(selectedCategories, dateRange));
   }, [selectedCategories, dateRange]);
 
-  const onViewportChange = ({latitude, longitude, zoom, bearing, pitch}) => setViewport({
-    latitude,
-    longitude,
-    zoom,
-    bearing,
-    pitch,
-  });
+  useEffect(() => {
+    getTotalExpedients(...dateRange)
+      .then((totalExpedients) => setFetchedData({
+        ...fetchedData,
+        totalExpedientsByType: totalExpedients
+      }));
+  }, [dateRange]);
+  
+  const mainExpedientsTipus = useMemo(() =>
+    config.categories
+      .filter(({id}) => id !== 'altres')
+      .map(({id}) => id), []
+  );
+  const altresExpedientsTipus = useMemo(() => 
+    config.categories
+      .find(({id}) => id === 'altres').values, []);
 
   const calcStats = debounce(10, (map) => {
     const featureProperties = map
@@ -184,6 +199,7 @@ const App = () => {
       }, []);
 
     setData({
+      renderedExpedients: featureProperties.length,
       typeCountByYear: arrTypeCountByYear,
       resolutionStateCount: arrResolutionStateCount
     });
@@ -197,20 +213,37 @@ const App = () => {
 
   const classes = useStyles({isRightDrawerOpen, leftDrawerWidth});
 
+  // Handlers
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
   const handleCardFlip = () => setFlipped(!isFlipped);
-  const handleDrawerWidthChange = (width) => {
-    setLeftDrawerWidth(width);
-  };
+  const handleDrawerWidthChange = (width) => setLeftDrawerWidth(width);
+  const onViewportChange = ({latitude, longitude, zoom, bearing, pitch}) => setViewport({
+    latitude,
+    longitude,
+    zoom,
+    bearing,
+    pitch,
+  });
+
+  // Selectors
+  const getTotalExpedientsFromTypes = (totalExpedientsByType) =>
+    totalExpedientsByType
+      .filter(({tipus}) => mainExpedientsTipus.includes(tipus) ? selectedCategories.includes(tipus) :
+        altresExpedientsTipus.includes(tipus) ? selectedCategories.includes('altres') : false)
+      .reduce((data, {totals}) => {
+        return data + parseInt(totals);
+      }, 0);
 
   return (<ThemeProvider theme={theme()}>
     <CssBaseline/>
     {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
-    <div className={classes.buttonContent}>
-      <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
-        <FilterListIcon/>
-      </SquareButtonIcon>
-    </div>
+    <Hidden xsDown implementation="css">
+      <div className={classes.buttonContent}>
+        <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
+          <FilterListIcon/>
+        </SquareButtonIcon>
+      </div>
+    </Hidden>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
       <SectionTitle title={'Tipus d\'expedients'}/>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
@@ -255,6 +288,8 @@ const App = () => {
           <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
           <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
           <ResolutionStateChart data={data.resolutionStateCount}/>
+          <SectionTitle title={'Total d\'expedients'}/>
+          <NumericIndicator title={''} main={data.renderedExpedients} total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
         </Box>
       </ReactCardFlip>
     </Hidden>
@@ -270,6 +305,8 @@ const App = () => {
         <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
         <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
         <ResolutionStateChart data={data.resolutionStateCount}/>
+        <SectionTitle title={'Total d\'expedients'}/>
+        <NumericIndicator title={''} main={data.renderedExpedients} total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
       </LeftDrawer>
       <main className={classes.content}>
         <Map
