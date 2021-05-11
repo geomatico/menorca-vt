@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import PropTypes from 'prop-types';
 
-import {Drawer} from '@material-ui/core';
+import {Drawer, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
@@ -10,8 +10,13 @@ import ResponsiveHeader from './ResponsiveHeader';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
+  drawerTitle: {
+    padding: theme.spacing(2.5, 0, 0, 2),
+  },
   drawerContent: {
-    padding: theme.spacing(2.5, 4, 2.5, 2),
+    padding: theme.spacing(0, 4, 2.5, 2),
+    display: 'flex',
+    flexWrap:'wrap',
   },
   dragger: {
     display: 'flex',
@@ -29,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
   const minDrawerWidth = defaultDrawerWidth*0.75;
-  const maxDrawerWidth = defaultDrawerWidth*1.50;
+  const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
   const classes = useStyles({defaultDrawerWidth, drawerWidth});
 
@@ -61,6 +66,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
       <div onMouseDown={e => handleMouseDown(e)} className={classes.dragger}>
         <ArrowForwardIosIcon/>
       </div>
+      <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
       <div className={classes.drawerContent}>
         {children}
       </div>

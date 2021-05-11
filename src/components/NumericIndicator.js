@@ -3,28 +3,17 @@ import PropTypes from 'prop-types';
 
 import {Box, CircularProgress, Typography} from '@material-ui/core';
 
-const NumericIndicator = ({title, main, total}) => {
+const NumericIndicator = ({main, total}) => {
   const percent = 100 * main / total;
-  return (<>
-    <Typography variant="h6" style={{margin: 8}}>{title}</Typography>
-    <Box position="relative" display="inline-flex">
-      <CircularProgress variant="determinate" value={percent} size={200} />
-      <Box
-        top={0}
-        left={0}
-        bottom={0}
-        right={0}
-        position="absolute"
-        flexDirection="column"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
+  return (
+    <Box display='flex' flexDirection='column' alignItems='center' style={{position: 'relative'}}>
+      <CircularProgress variant="determinate" value={percent} size={200}/>
+      <Box display='flex' flexDirection='column' alignItems='center' style={{position: 'absolute', top:65}}>
         <Typography variant="h3" component="div" color="textPrimary">{`${main}`}</Typography>
         <Typography variant="caption" component="div" color="textSecondary">{`de ${total}`}</Typography>
       </Box>
     </Box>
-  </>);
+  );
 };
 
 NumericIndicator.propTypes = {
