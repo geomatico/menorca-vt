@@ -4,7 +4,7 @@ import {debounce} from 'throttle-debounce';
 import ReactCardFlip from 'react-card-flip';
 
 import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import {CssBaseline, IconButton, Hidden, Box} from '@material-ui/core';
+import {CssBaseline, IconButton, Hidden, Box, Typography} from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -29,7 +29,7 @@ import NumericIndicator from './components/NumericIndicator';
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
 const RIGHT_DRAWER_WIDTH = 360;
-const LEFT_DEFAULT_DRAWER_WIDTH = 400;
+const LEFT_DEFAULT_DRAWER_WIDTH = 420;
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -57,6 +57,11 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 40,
     position: 'absolute',
     top: 100,
+  },
+  drawerTitle: {
+    padding: theme.spacing(2.5, 0, 0, 0),
+    fontWeight: 'bold',
+    marginBottom: 5
   },
 }));
 
@@ -284,7 +289,8 @@ const App = () => {
             onViewportChange={onViewportChange}
           />
         </main>
-        <Box px={2} style={{width: '100%', height: '100%'}}>
+        <Box px={2}>
+          <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
           <Chart title={'Nombre d\'expedients per any'}>
             <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
           </Chart>
@@ -292,7 +298,9 @@ const App = () => {
             <ResolutionStateChart data={data.resolutionStateCount}/>
           </Chart>
           <Chart title={'Total d\'expedients'}>
-            <NumericIndicator title={''} main={data.renderedExpedients} total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
+            <NumericIndicator
+              main={data.renderedExpedients}
+              total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
           </Chart>
         </Box>
       </ReactCardFlip>

@@ -12,23 +12,25 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerTitle: {
     padding: theme.spacing(2.5, 0, 0, 2),
+    fontWeight: 'bold',
+    marginBottom: 5
   },
   drawerContent: {
     padding: theme.spacing(0, 4, 2.5, 2),
     display: 'flex',
-    flexWrap:'wrap',
+    flexWrap: 'wrap',
   },
   dragger: {
     display: 'flex',
     alignItems: 'center',
-    width: '35px',
+    width: '30px',
     height: '100%',
     cursor: 'ew-resize',
-    padding: '4px 0 0',
+    padding: '40px 0 0',
     position: 'absolute',
-    right: -10,
+    right: 0,
     zIndex: 100,
-    color: theme.palette.grey[500]
+    color: theme.palette.grey[500],
   }
 }));
 
@@ -56,6 +58,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
     }
   }, []);
 
+
   return (
     <Drawer
       variant='permanent'
@@ -75,8 +78,8 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
 };
 
 LeftDrawer.propTypes = {
-  onDrawerWidthChange: PropTypes.func.isRequired,
   defaultDrawerWidth: PropTypes.number.isRequired,
+  onDrawerWidthChange: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

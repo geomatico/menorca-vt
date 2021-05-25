@@ -17,7 +17,6 @@ const NumericIndicator = ({main, total}) => {
 };
 
 NumericIndicator.propTypes = {
-  title: PropTypes.string.isRequired,
   main: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired
 };

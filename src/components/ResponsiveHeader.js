@@ -59,7 +59,7 @@ const ResponsiveHeader = ({startIcon, title, logo, anchor, children, width, onMe
 };
 
 ResponsiveHeader.propTypes = {
-  width: PropTypes.number,
+  width: PropTypes.string,
   title: PropTypes.string,
   anchor: PropTypes.oneOf(['left', 'right']),
   startIcon: PropTypes.node,

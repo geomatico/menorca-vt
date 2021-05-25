@@ -18,7 +18,6 @@ const Template = (args) => <NumericIndicator {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Indicador numérico',
   main: 1234,
   total: 2345
 };

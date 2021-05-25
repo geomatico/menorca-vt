@@ -21,7 +21,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 const ResolutionStateChart = ({data}) => {
   return (
-    <PieChart width={200} height={200} style={{border: '2px solid blue'}}>
+    <PieChart width={200} height={200}>
       <Pie
         data={data}
         cx='50%'
