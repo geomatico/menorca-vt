@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
-  const minDrawerWidth = defaultDrawerWidth*0.75;
+  const minDrawerWidth = defaultDrawerWidth;
   const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
   const classes = useStyles({defaultDrawerWidth, drawerWidth});
