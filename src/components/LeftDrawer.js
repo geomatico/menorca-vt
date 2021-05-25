@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import PropTypes from 'prop-types';
 
-import {Drawer} from '@material-ui/core';
+import {Drawer, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
@@ -10,26 +10,33 @@ import ResponsiveHeader from './ResponsiveHeader';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
+  drawerTitle: {
+    padding: theme.spacing(2.5, 0, 0, 2),
+    fontWeight: 'bold',
+    marginBottom: 5
+  },
   drawerContent: {
-    padding: theme.spacing(2.5, 4, 2.5, 2),
+    padding: theme.spacing(0, 4, 2.5, 2),
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   dragger: {
     display: 'flex',
     alignItems: 'center',
-    width: '35px',
+    width: '30px',
     height: '100%',
     cursor: 'ew-resize',
-    padding: '4px 0 0',
+    padding: '40px 0 0',
     position: 'absolute',
-    right: -10,
+    right: 0,
     zIndex: 100,
-    color: theme.palette.grey[500]
+    color: theme.palette.grey[500],
   }
 }));
 
 const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
-  const minDrawerWidth = defaultDrawerWidth*0.75;
-  const maxDrawerWidth = defaultDrawerWidth*1.50;
+  const minDrawerWidth = defaultDrawerWidth;
+  const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
   const classes = useStyles({defaultDrawerWidth, drawerWidth});
 
@@ -51,6 +58,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
     }
   }, []);
 
+
   return (
     <Drawer
       variant='permanent'
@@ -61,6 +69,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
       <div onMouseDown={e => handleMouseDown(e)} className={classes.dragger}>
         <ArrowForwardIosIcon/>
       </div>
+      <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
       <div className={classes.drawerContent}>
         {children}
       </div>
@@ -69,8 +78,8 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
 };
 
 LeftDrawer.propTypes = {
-  onDrawerWidthChange: PropTypes.func.isRequired,
   defaultDrawerWidth: PropTypes.number.isRequired,
+  onDrawerWidthChange: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

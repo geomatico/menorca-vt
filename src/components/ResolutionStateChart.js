@@ -24,12 +24,12 @@ const ResolutionStateChart = ({data}) => {
     <PieChart width={200} height={200}>
       <Pie
         data={data}
-        cx={100}
-        cy={100}
+        cx='50%'
+        cy='50%'
         labelLine={false}
         label={renderCustomizedLabel}
-        innerRadius={30}
-        outerRadius={90}
+        innerRadius='30%'
+        outerRadius='100%'
         fill="#8884d8"
         dataKey="value"
       >

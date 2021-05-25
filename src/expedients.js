@@ -4,7 +4,7 @@ import {debounce} from 'throttle-debounce';
 import ReactCardFlip from 'react-card-flip';
 
 import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import {CssBaseline, Typography, IconButton, Hidden, Box} from '@material-ui/core';
+import {CssBaseline, IconButton, Hidden, Box, Typography} from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -20,6 +20,7 @@ import TypeCountByYearChart from './components/TypeCountByYearChart';
 import ResolutionStateChart from './components/ResolutionStateChart';
 import SquareButtonIcon from './components/SquareButtonIcon';
 import LogoBlanco from '../static/img/LogoBlanco';
+import Chart from './components/Chart';
 
 import BaseMapList from './components/BaseMapList';
 import {getTotalExpedients} from './api';
@@ -28,7 +29,7 @@ import NumericIndicator from './components/NumericIndicator';
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
 const RIGHT_DRAWER_WIDTH = 360;
-const LEFT_DEFAULT_DRAWER_WIDTH = 400;
+const LEFT_DEFAULT_DRAWER_WIDTH = 420;
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -56,6 +57,11 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 40,
     position: 'absolute',
     top: 100,
+  },
+  drawerTitle: {
+    padding: theme.spacing(2.5, 0, 0, 0),
+    fontWeight: 'bold',
+    marginBottom: 5
   },
 }));
 
@@ -145,13 +151,13 @@ const App = () => {
         totalExpedientsByType: totalExpedients
       }));
   }, [dateRange]);
-  
+
   const mainExpedientsTipus = useMemo(() =>
     config.categories
       .filter(({id}) => id !== 'altres')
       .map(({id}) => id), []
   );
-  const altresExpedientsTipus = useMemo(() => 
+  const altresExpedientsTipus = useMemo(() =>
     config.categories
       .find(({id}) => id === 'altres').values, []);
 
@@ -283,13 +289,19 @@ const App = () => {
             onViewportChange={onViewportChange}
           />
         </main>
-        <Box px={2} style={{width: '100%', height: '100%'}}>
-          <SectionTitle title={'Nombre d\'expedients per any'}/>
-          <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
-          <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
-          <ResolutionStateChart data={data.resolutionStateCount}/>
-          <SectionTitle title={'Total d\'expedients'}/>
-          <NumericIndicator title={''} main={data.renderedExpedients} total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
+        <Box px={2}>
+          <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
+          <Chart title={'Nombre d\'expedients per any'}>
+            <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
+          </Chart>
+          <Chart title={'Percentatge de resolució d\'expedients'}>
+            <ResolutionStateChart data={data.resolutionStateCount}/>
+          </Chart>
+          <Chart title={'Total d\'expedients'}>
+            <NumericIndicator
+              main={data.renderedExpedients}
+              total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
+          </Chart>
         </Box>
       </ReactCardFlip>
     </Hidden>
@@ -300,13 +312,15 @@ const App = () => {
         defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
         onDrawerWidthChange={handleDrawerWidthChange}
       >
-        <Typography variant='h6'>Visor d&#039;expedients</Typography>
-        <SectionTitle title={'Nombre d\'expedients per any'}/>
-        <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
-        <SectionTitle title={'Percentatge de resolució d\'expedients'}/>
-        <ResolutionStateChart data={data.resolutionStateCount}/>
-        <SectionTitle title={'Total d\'expedients'}/>
-        <NumericIndicator title={''} main={data.renderedExpedients} total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
+        <Chart title={'Nombre d\'expedients per any'}>
+          <TypeCountByYearChart categories={categories} data={data.typeCountByYear}/>
+        </Chart>
+        <Chart title={'Percentatge de resolució d\'expedients'}>
+          <ResolutionStateChart data={data.resolutionStateCount}/>
+        </Chart>
+        <Chart title={'Total d\'expedients'}>
+          <NumericIndicator title={''} main={data.renderedExpedients} total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
+        </Chart>
       </LeftDrawer>
       <main className={classes.content}>
         <Map
