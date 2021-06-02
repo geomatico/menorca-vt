@@ -22,4 +22,4 @@ const GET = (url) => {
   });
 };
 
-export const getTotalExpedients = (anymin = '', anymax = '') => GET(ENDPOINTS.expedients(anymin, anymax));
+export const fetchTotalExpedients = (anymin = '', anymax = '') => GET(ENDPOINTS.expedients(anymin, anymax));

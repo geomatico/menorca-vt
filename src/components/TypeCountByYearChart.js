@@ -5,8 +5,8 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 
-const TypeCountByYearChart = ({data, categories}) => (
-  <ResponsiveContainer width={380} height={200}>
+const TypeCountByYearChart = ({data, categories, width, height}) => (
+  <ResponsiveContainer width={width} height={height}>
     <AreaChart
       minwidth={200}
       data={data}
@@ -27,6 +27,13 @@ const TypeCountByYearChart = ({data, categories}) => (
 TypeCountByYearChart.propTypes = {
   data: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
+  width: PropTypes.number || PropTypes.string,
+  height: PropTypes.number || PropTypes.string
+};
+
+TypeCountByYearChart.defaultProps = {
+  width: '95%',
+  height: 200
 };
 
 export default TypeCountByYearChart;
