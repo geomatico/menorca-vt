@@ -27,8 +27,14 @@ const TypeCountByYearChart = ({data, categories, width, height}) => (
 TypeCountByYearChart.propTypes = {
   data: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
-  width: PropTypes.number || PropTypes.string,
-  height: PropTypes.number || PropTypes.string
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  height: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
 };
 
 TypeCountByYearChart.defaultProps = {

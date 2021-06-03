@@ -21,7 +21,7 @@ import SquareButtonIcon from '../components/SquareButtonIcon';
 import LogoBlanco from '../../static/img/LogoBlanco';
 import Chart from '../components/Chart';
 import BaseMapList from '../components/BaseMapList';
-import {fetchTotalExpedients} from '../api';
+import {fetchTotalExpedients, fetchTotalViviendes} from '../api';
 import NumericIndicator from '../components/NumericIndicator';
 import {
   getData,
@@ -212,6 +212,9 @@ const Expedients = () => {
   const onMapSet = (map) => {
     map.on('idle', () => {
       calcStats(map);
+      fetchTotalViviendes(map.getBounds().toArray().flatMap(a => a).join(','))
+        .then((totalViviendas) =>
+          dispatch(setDataContext(...totalViviendas)));
     });
   };
 
@@ -231,6 +234,25 @@ const Expedients = () => {
   const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleUrl(newStyle));
   const handleSelectedCategoriesChange = (newCategories) => dispatch(setSelectedCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
+  
+  
+  const ChartsComponent = () =>
+    <>
+      <Chart title={'Nombre d\'expedients per any'}>
+        <TypeCountByYearChart categories={categories} data={context.typeCountByYear}/>
+      </Chart>
+      <Chart title={'Percentatge de resolució d\'expedients'}>
+        <ResolutionStateChart data={context.resolutionStateCount}/>
+      </Chart>
+      <Chart title={'Total d\'expedients'}>
+        <NumericIndicator
+          main={context.expedients}
+          total={totalExpedients}/>
+      </Chart>
+      <Chart title={'Viviendes vs total locales'}>
+        <NumericIndicator title={''} main={parseInt(context.numberofdwellings)} total={parseInt(context.numberofbuildingunits)}/>
+      </Chart>
+    </>;
 
   return (
     <div>
@@ -283,17 +305,7 @@ const Expedients = () => {
           </main>
           <Box px={2}>
             <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
-            <Chart title={'Nombre d\'expedients per any'}>
-              <TypeCountByYearChart categories={categories} data={context.typeCountByYear}/>
-            </Chart>
-            <Chart title={'Percentatge de resolució d\'expedients'}>
-              <ResolutionStateChart data={context.resolutionStateCount}/>
-            </Chart>
-            <Chart title={'Total d\'expedients'}>
-              <NumericIndicator
-                main={context.expedients}
-                total={totalExpedients}/>
-            </Chart>
+            <ChartsComponent />
           </Box>
         </ReactCardFlip>
       </Hidden>
@@ -304,15 +316,7 @@ const Expedients = () => {
           defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
           onDrawerWidthChange={handleDrawerWidthChange}
         >
-          <Chart title={'Nombre d\'expedients per any'}>
-            <TypeCountByYearChart categories={categories} data={context.typeCountByYear}/>
-          </Chart>
-          <Chart title={'Percentatge de resolució d\'expedients'}>
-            <ResolutionStateChart data={context.resolutionStateCount}/>
-          </Chart>
-          <Chart title={'Total d\'expedients'}>
-            <NumericIndicator title={''} main={context.expedients} total={totalExpedients}/>
-          </Chart>
+          <ChartsComponent />
         </LeftDrawer>
         <main className={classes.content}>
           <Map

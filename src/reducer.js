@@ -16,7 +16,9 @@ export const initialState = {
     context: {
       expedients: 0,
       typeCountByYear: [],
-      resolutionStateCount: []
+      resolutionStateCount: [],
+      numberofdwellings: 0,
+      numberofbuildingunits: 0
     },
     total: {
       expedientsByType: []
@@ -51,7 +53,10 @@ const updateDataContext = (state, action) => ({
   ...state,
   data: {
     ...state.data,
-    context: action.payload
+    context: {
+      ...state.data.context,
+      ...action.payload
+    }
   }
 });
 

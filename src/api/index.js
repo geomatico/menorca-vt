@@ -2,9 +2,10 @@
 const BASE_URL = 'https://ide.cime.es/ide_tools/search.aspx';
 
 const ENDPOINTS = {
-  expedients: (anymin , anymax ) =>
+  expedients: (anymin , anymax) =>
     `${BASE_URL}?accio=totalsExpedientsAnys&layer=or007exp_expedients&anymin=${anymin}&anymax=${anymax}`,
-  //viviendas:
+  viviendes: (bbox) =>
+    `${BASE_URL}?accio=totalsVivendesLocalsBBOX&bbox=${bbox}`,
 };
 
 const GET = (url) => {
@@ -23,3 +24,4 @@ const GET = (url) => {
 };
 
 export const fetchTotalExpedients = (anymin = '', anymax = '') => GET(ENDPOINTS.expedients(anymin, anymax));
+export const fetchTotalViviendes = (bbox) => GET(ENDPOINTS.viviendes(bbox));
