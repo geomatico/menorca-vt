@@ -4,7 +4,13 @@ import {debounce} from 'throttle-debounce';
 import ReactCardFlip from 'react-card-flip';
 
 import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import {CssBaseline, IconButton, Hidden, Box, Typography} from '@material-ui/core';
+import {
+  CssBaseline,
+  IconButton,
+  Hidden,
+  Box,
+  Typography,
+} from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -12,7 +18,7 @@ import {CategoricFilter, Map, RangeSlider} from 'geocomponents';
 
 import theme from './theme';
 import config from './config.json';
-import SectionTitle from './components/SectionTitle';
+import ExpandContent from './components/ExpandContent';
 import ResponsiveHeader from './components/ResponsiveHeader';
 import RightDrawer from './components/RightDrawer';
 import LeftDrawer from './components/LeftDrawer';
@@ -61,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   drawerTitle: {
     padding: theme.spacing(2.5, 0, 0, 0),
     fontWeight: 'bold',
-    marginBottom: 5
+    marginBottom: 10
   },
 }));
 
@@ -230,6 +236,7 @@ const App = () => {
     bearing,
     pitch,
   });
+  const handleSelectExpedients = () => console.log(selectedCategories);
 
   // Selectors
   const getTotalExpedientsFromTypes = (totalExpedientsByType) =>
@@ -251,19 +258,23 @@ const App = () => {
       </div>
     </Hidden>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
-      <SectionTitle title={'Tipus d\'expedients'}/>
-      <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
-      <SectionTitle title='Rang de dates'/>
-      <div style={{padding: '0 16px'}}>
-        <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
-      </div>
-      <SectionTitle title='Mapes base'/>
-      <BaseMapList
-        isSelected={selectedStyleUrl === mapStyles.url}
-        styles={mapStyles}
-        selectedStyleUrl={selectedStyleUrl}
-        onStyleChange={setSelectedStyleUrl}
-      />
+      <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
+      <ExpandContent title={'Tipus d\'expedients'} onClick={handleSelectExpedients}>
+        <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
+      </ExpandContent>
+      <ExpandContent title={'Rang de dates'}>
+        <div style={{padding: '0 16px', width: '100%'}}>
+          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={setDateRange}/>
+        </div>
+      </ExpandContent>
+      <ExpandContent title={'Mapes base'}>
+        <BaseMapList
+          isSelected={selectedStyleUrl === mapStyles.url}
+          styles={mapStyles}
+          selectedStyleUrl={selectedStyleUrl}
+          onStyleChange={setSelectedStyleUrl}
+        />
+      </ExpandContent>
     </RightDrawer>
 
     {/*LEFTDRAWER MOBILE*/}
@@ -319,7 +330,11 @@ const App = () => {
           <ResolutionStateChart data={data.resolutionStateCount}/>
         </Chart>
         <Chart title={'Total d\'expedients'}>
-          <NumericIndicator title={''} main={data.renderedExpedients} total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}/>
+          <NumericIndicator
+            title={''}
+            main={data.renderedExpedients}
+            total={getTotalExpedientsFromTypes(fetchedData.totalExpedientsByType)}
+          />
         </Chart>
       </LeftDrawer>
       <main className={classes.content}>

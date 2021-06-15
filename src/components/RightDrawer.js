@@ -8,7 +8,7 @@ const container = window !== undefined ? () => window.document.body : undefined;
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerContent: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     width: '95%'
   },
   drawerPaper: {
@@ -59,7 +59,7 @@ const RightDrawer = ({width, isOpen, onClose, children}) => {
 };
 
 RightDrawer.propTypes = {
-  width: PropTypes.number,
+  width: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
