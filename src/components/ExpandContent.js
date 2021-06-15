@@ -60,7 +60,10 @@ function ExpandContent({title, children}) {
 
 ExpandContent.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 
 export default ExpandContent;

@@ -78,7 +78,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
 };
 
 LeftDrawer.propTypes = {
-  defaultDrawerWidth: PropTypes.string.isRequired,
+  defaultDrawerWidth: PropTypes.number.isRequired,
   onDrawerWidthChange: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

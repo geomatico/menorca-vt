@@ -34,8 +34,8 @@ import NumericIndicator from './components/NumericIndicator';
 
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate, initialViewport} = config;
 
-const RIGHT_DRAWER_WIDTH = '360px';
-const LEFT_DEFAULT_DRAWER_WIDTH = '420px';
+const RIGHT_DRAWER_WIDTH = 360;
+const LEFT_DEFAULT_DRAWER_WIDTH = 420;
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     height: 'auto',
-    width: ({isRightDrawerOpen}) => isRightDrawerOpen ? `calc(100% - ${RIGHT_DRAWER_WIDTH})` : '100%',
+    width: ({isRightDrawerOpen}) => isRightDrawerOpen ? `calc(100% - ${RIGHT_DRAWER_WIDTH}px)` : '100%',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
