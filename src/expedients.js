@@ -236,7 +236,11 @@ const App = () => {
     bearing,
     pitch,
   });
-  const handleSelectExpedients = () => console.log(selectedCategories);
+  const handleChangeSelect = (isOn) => {
+    isOn ?
+      setSelectedCategories(categories.map(({id}) => id))
+      : setSelectedCategories([]);
+  };
 
   // Selectors
   const getTotalExpedientsFromTypes = (totalExpedientsByType) =>
@@ -259,7 +263,7 @@ const App = () => {
     </Hidden>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
       <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
-      <ExpandContent title={'Tipus d\'expedients'} onClick={handleSelectExpedients}>
+      <ExpandContent title={'Tipus d\'expedients'} onChange={handleChangeSelect}>
         <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
       </ExpandContent>
       <ExpandContent title={'Rang de dates'}>

@@ -16,4 +16,10 @@ const Template = (args) => <ExpandContent {...args} >
 export const Default = Template.bind({});
 Default.args = {
   title: 'Tipus d\'expedients',
+  onChange: undefined,
+};
+
+export const Controled = Template.bind({});
+Controled.args = {
+  title: 'Tipus d\'expedients',
 };
