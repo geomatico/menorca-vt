@@ -412,6 +412,78 @@
       }
     },
     {
+      "id":"re007rus_xarxaviaria_5_label_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "minZoom": 18,
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["!=", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 11,
+        "symbol-placement": "line",
+        "symbol-spacing": 400,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -10],
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5,
+        "text-color": "#734C00"
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_label_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "minZoom": 18,
+      "filter":
+        ["==", ["get", "visual"], 0],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 10,
+        "symbol-placement": "line",
+        "symbol-spacing": 400,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -10],
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5,
+        "text-color": "#a87000"
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_label_3",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "minZoom": 18,
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["==", ["get", "idtipus"], 1],
+        ["==", ["get", "codi"], "Me-1"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial"],
+        "text-size": 10,
+        "symbol-placement": "point",
+        "symbol-spacing": 400,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -10],
+        "text-color": "#FFFFFF"
+      }
+    },
+    {
       "id":"re007rus_xarxaviaria_25_outline",
       "type":"line",
       "source": "base_referencia",
@@ -901,6 +973,63 @@
         "text-halo-color": "#FFFFFF",
         "text-halo-width": 1,
         "text-color": "#686868"
+      }
+    },{
+      "id": "re007top_topo200_label_other",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_top200",
+      "filter": ["!=", ["get", "idtipus"], "1"],
+      "minzoom": 9,
+      "maxzoom": 11,
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 0], 12,
+          11],
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -12],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 0], "#343434",
+          ["==", ["get", "idtipus"], 2], "#686868",
+          ["==", ["get", "idtipus"], 3], "#4E4E4E",
+          ["==", ["get", "idtipus"], 4], "#4E4E4E",
+          ["==", ["get", "idtipus"], 5], "#4E4E4E",
+          ["==", ["get", "idtipus"], 6], "#343434",
+          ["==", ["get", "idtipus"], 7], "#FFFFFF",
+          "#343434"]
+      }
+    },{
+      "id": "re007top_topo200_label_cities",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_top200",
+      "filter":["==", ["get", "idtipus"], "1"],
+      "minzoom": 9,
+      "maxzoom": 11,
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro Bold"],
+        "text-size": ["case",
+          ["==", ["get", "nom"], "Ciutadella de Menorca"], 16,
+          ["==", ["get", "nom"], "Maó"], 16,
+          12],
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": "#343434",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 1
       }
     }
   ]
