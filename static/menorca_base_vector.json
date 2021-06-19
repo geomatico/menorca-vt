@@ -1203,6 +1203,49 @@
         "text-halo-color": "#FFFFFF",
         "text-halo-width": 1
       }
+    },{
+      "id": "re007top_topo25_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo25",
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro Bold"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 0], 13,
+          ["==", ["get", "idtipus"], 1], 14,
+          ["==", ["get", "idtipus"], 2], 13,
+          ["==", ["get", "idtipus"], 7], 12,
+          ["==", ["get", "idtipus"], 8], 13,
+          ["==", ["get", "idtipus"], 9], 11,
+          ["==", ["get", "idtipus"], 10], 13,
+          ["==", ["get", "idtipus"], 11], 14,
+          ["==", ["get", "idtipus"], 12], 13,
+          ["==", ["get", "idtipus"], "11b"], 11,
+          ["==", ["get", "idtipus"], "2b"], 11,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -12],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 0], "#734141",
+          ["==", ["get", "idtipus"], 1], "#4E4E4E",
+          ["==", ["get", "idtipus"], 2], "#686868",
+          ["==", ["get", "idtipus"], 7], "#9C9C9C",
+          ["==", ["get", "idtipus"], 8], "#732600",
+          ["==", ["get", "idtipus"], 9], "#4E4E4E",
+          ["==", ["get", "idtipus"], 10], "#4E4E4E",
+          ["==", ["get", "idtipus"], 11], "#A87000",
+          ["==", ["get", "idtipus"], 12], "#446589",
+          ["==", ["get", "idtipus"], "11b"], "#A87000",
+          ["==", ["get", "idtipus"], "2b"], "#828282",
+          "#734141"]
+      }
     }
   ]
 }
