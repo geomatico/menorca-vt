@@ -980,8 +980,6 @@
       "source": "base_referencia",
       "source-layer": "re007top_top200",
       "filter": ["!=", ["get", "idtipus"], "1"],
-      "minzoom": 9,
-      "maxzoom": 12,
       "layout": {
         "text-field": "{nom}",
         "text-font": ["Source Sans Pro"],
@@ -1011,8 +1009,6 @@
       "source": "base_referencia",
       "source-layer": "re007top_top200",
       "filter":["==", ["get", "idtipus"], "1"],
-      "minzoom": 9,
-      "maxzoom": 12,
       "layout": {
         "text-field": "{nom}",
         "text-font": ["Source Sans Pro Bold"],
@@ -1038,11 +1034,9 @@
       "source": "base_referencia",
       "source-layer": "re007top_top100",
       "filter":["==", ["get", "idtipus"], "1"],
-      "minzoom": 12,
-      "maxzoom": 14,
       "layout": {
         "text-field": "\u0033",
-        "text-font": ["ESRI Enviro Hazard Analysis"],
+        "text-font": ["ESRI Default Marker"],
         "text-size": ["case",
           ["==", ["get", "nom"], "Ciutadella de Menorca"], 16,
           ["==", ["get", "nom"], "Maó"], 16,
@@ -1068,8 +1062,6 @@
         ["!=", ["get", "idtipus"], 1],
         ["!=", ["get", "idtipus"], 6]
       ],
-      "minzoom": 12,
-      "maxzoom": 14,
       "layout": {
         "text-field": "{nom}",
         "text-font": ["Source Sans Pro"],
@@ -1114,8 +1106,6 @@
         ["==", ["get", "idtipus"], 1],
         ["==", ["get", "idtipus"], 6]
       ],
-      "minzoom": 12,
-      "maxzoom": 14,
       "layout": {
         "text-field": "{nom}",
         "text-font": ["case",
@@ -1136,6 +1126,81 @@
         "text-translate": [0, 5],
         "text-color": "#343434",
         "text-halo-color": "#FEFEFE",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "re007top_top50_label_other",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo50",
+      "filter":["all",
+        ["!=", ["get", "idtipus"], 0],
+        ["!=", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 8], 12,
+          ["==", ["get", "idtipus"], 5], 11,
+          ["==", ["get", "idtipus"], 3], 11,
+          ["==", ["get", "idtipus"], 2], 11,
+          ["==", ["get", "idtipus"], 4], 11,
+          ["==", ["get", "idtipus"], 6], 12,
+          ["==", ["get", "idtipus"], 7], 17,
+          ["==", ["get", "idtipus"], 9], 11,
+          ["==", ["get", "idtipus"], 10], 11,
+          ["==", ["get", "idtipus"], 11], 12,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 8], "#383535",
+          ["==", ["get", "idtipus"], 5], "#828282",
+          ["==", ["get", "idtipus"], 3], "#4E4E4E",
+          ["==", ["get", "idtipus"], 2], "#686868",
+          ["==", ["get", "idtipus"], 4], "#4E4E4E",
+          ["==", ["get", "idtipus"], 6], "#343434",
+          ["==", ["get", "idtipus"], 7], "#264700",
+          ["==", ["get", "idtipus"], 9], "#A87000",
+          ["==", ["get", "idtipus"], 10], "#0084A8",
+          ["==", ["get", "idtipus"], 11], "#727070",
+          "#343434"]
+      }
+    },
+    {
+      "id": "re007top_top50_label_cities",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo50",
+      "filter":["any",
+        ["==", ["get", "idtipus"], 0],
+        ["==", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro Bold"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 1], 16,
+          ["==", ["get", "idtipus"], 0], 12,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": "#4c4a4a",
+        "text-halo-color": "#FFFFFF",
         "text-halo-width": 1
       }
     }
