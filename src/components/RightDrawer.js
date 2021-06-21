@@ -59,7 +59,7 @@ const RightDrawer = ({width, isOpen, onClose, children}) => {
 };
 
 RightDrawer.propTypes = {
-  width: PropTypes.string,
+  width: PropTypes.number,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
-import {Accordion, AccordionDetails, AccordionSummary, Divider, Typography} from '@material-ui/core';
-import {withStyles} from '@material-ui/core/styles';
+import {Accordion, AccordionDetails, AccordionSummary, Divider, Typography, FormControlLabel} from '@material-ui/core';
+import {withStyles, makeStyles} from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {ColorSwitch} from 'geocomponents';
 
 const AccordionLayer = withStyles({
   root: {
@@ -14,7 +15,6 @@ const AccordionLayer = withStyles({
       opacity: 0,
     },
   },
-
   expanded: {
     padding: 0,
     margin: 0,
@@ -32,10 +32,8 @@ const AccordionContent = withStyles({
   content: {
     '&$expanded': {
       margin: 0,
-    }
-    ,
-  }
-  ,
+    },
+  },
   expanded: {}
 })(AccordionSummary);
 
@@ -46,10 +44,44 @@ const AccordionValues = withStyles({
   },
 })(AccordionDetails);
 
-function ExpandContent({title, children}) {
+const useStyles = makeStyles({
+  control: {
+    marginLeft: 0
+  },
+});
+
+function ExpandContent({title, children, onChange}) {
+  const classes = useStyles ();
+  const [isChecked, setChecked] = useState(true);
+  const handleChange = () => {
+    setChecked(!isChecked);
+    onChange(!isChecked);
+  };
+
   return (
     <AccordionLayer elevation={0}>
-      <AccordionContent expandIcon={<ExpandMoreIcon/>}>
+      <AccordionContent
+        aria-label='Expand'
+        expandIcon={<ExpandMoreIcon/>}
+      >
+        {
+          onChange ?
+            <FormControlLabel
+              className={classes.control}
+              aria-label='On/Off layers'
+              onClick={(event) => event.stopPropagation()}
+              onFocus={(event) => event.stopPropagation()}
+              control={
+                <ColorSwitch
+                  checked={isChecked}
+                  onChange={handleChange}
+                  name='checkedLayer'
+                  color='#000'
+                />
+              }
+            />
+            : undefined
+        }
         <Typography variant='body1' style={{marginLeft: 5, fontWeight: 'bold'}}>{title}</Typography>
         <Divider/>
       </AccordionContent>
@@ -63,7 +95,10 @@ ExpandContent.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
 };
+
 
 export default ExpandContent;
