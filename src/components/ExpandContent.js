@@ -53,10 +53,11 @@ const useStyles = makeStyles({
 function ExpandContent({title, children, onChange}) {
   const classes = useStyles ();
   const [isChecked, setChecked] = useState(true);
-  const handleChange = (e) => {
-    setChecked(e.target.checked);
-    onChange(e.target.checked);
+  const handleChange = () => {
+    setChecked(!isChecked);
+    onChange(!isChecked);
   };
+
   return (
     <AccordionLayer elevation={0}>
       <AccordionContent
@@ -95,6 +96,7 @@ ExpandContent.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
+  checked: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
