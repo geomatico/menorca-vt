@@ -1365,6 +1365,73 @@
           ["==", ["get", "idtipus"], 12], "#343434",
           "#734141"]
       }
+    },{
+      "id": "re007rus_xarxaviaria100000_major_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "minzoom": 11,
+      "filter": ["any",
+          ["==", ["get", "codi"], "Me-1"],
+          ["==", ["get", "codi"], "Me-24"],
+          ["==", ["get", "codi"], "RC-2"],
+          ["==", ["get", "codi"], "Me-15"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#FFFFFF",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 40
+      }
+    },{
+      "id": "re007rus_xarxaviaria100000_minor_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "minzoom": 11,
+      "filter": ["all",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["==", ["get", "visual"], 1]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 100,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#D7C29E",
+        "text-halo-width": 20
+      }
     }
   ]
 }
