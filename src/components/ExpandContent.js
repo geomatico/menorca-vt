@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Accordion, AccordionDetails, AccordionSummary, Divider, Typography, FormControlLabel} from '@material-ui/core';
 import {withStyles, makeStyles} from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {ColorSwitch} from 'geocomponents';
+import {ColorSwitch} from '@geomatico/geocomponents';
 
 const AccordionLayer = withStyles({
   root: {

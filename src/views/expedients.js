@@ -11,7 +11,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {CategoricFilter, Map, RangeSlider} from '@geomatico/geocomponents';
 
 import config from '../config.json';
-import SectionTitle from '../components/SectionTitle';
 import ResponsiveHeader from '../components/ResponsiveHeader';
 import RightDrawer from '../components/RightDrawer';
 import LeftDrawer from '../components/LeftDrawer';
@@ -20,6 +19,7 @@ import LogoBlanco from '../../static/img/LogoBlanco';
 import BaseMapList from '../components/BaseMapList';
 import {fetchTotalExpedients, fetchTotalViviendes} from '../api';
 import ChartsComponent from './map/ChartsComponents';
+import ExpandContent from '../components/ExpandContent';
 import {
   getDateRangeFilter,
   getSelectedBaseMapStyleUrl,
@@ -189,6 +189,12 @@ const Expedients = () => {
     bearing,
     pitch,
   }));
+  const handleChangeSelect = (isOn) => 
+    dispatch(
+      isOn ?
+        setSelectedCategories(categories.map(({id}) => id))
+        : setSelectedCategories([])
+    );
   const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleUrl(newStyle));
   const handleSelectedCategoriesChange = (newCategories) => dispatch(setSelectedCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
@@ -204,19 +210,23 @@ const Expedients = () => {
         </div>
       </Hidden>
       <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
-        <SectionTitle title={'Tipus d\'expedients'}/>
-        <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={handleSelectedCategoriesChange}/>
-        <SectionTitle title='Rang de dates'/>
-        <div style={{padding: '0 16px'}}>
-          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange}/>
-        </div>
-        <SectionTitle title='Mapes base'/>
-        <BaseMapList
-          isSelected={selectedStyleUrl === mapStyles.url}
-          styles={mapStyles}
-          selectedStyleUrl={selectedStyleUrl}
-          onStyleChange={handleStyleChange}
-        />
+        <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
+        <ExpandContent title={'Tipus d\'expedients'} onChange={handleChangeSelect}>
+          <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={handleSelectedCategoriesChange}/>
+        </ExpandContent>
+        <ExpandContent title={'Rang de dates'}>
+          <div style={{padding: '0 16px', width: '100%'}}>
+            <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange}/>
+          </div>
+        </ExpandContent>
+        <ExpandContent title={'Mapes base'}>
+          <BaseMapList
+            isSelected={selectedStyleUrl === mapStyles.url}
+            styles={mapStyles}
+            selectedStyleUrl={selectedStyleUrl}
+            onStyleChange={handleStyleChange}
+          />
+        </ExpandContent>
       </RightDrawer>
 
       {/*LEFTDRAWER MOBILE*/}
