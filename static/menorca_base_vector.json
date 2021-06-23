@@ -2072,6 +2072,70 @@
         "text-color": "#737300",
         "text-opacity": 0.75
       }
+    },{
+      "id": "re007urb_equipamentsp_residus_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_inner_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0032",
+        "text-font": ["ESRI Enviro Hazard Sites"],
+        "text-size": 9,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A87000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_inner_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0031",
+        "text-font": ["ESRI Enviro Hazard Sites"],
+        "text-size": 9,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
     }
   ]
 }
