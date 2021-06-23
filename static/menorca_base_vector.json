@@ -412,78 +412,6 @@
       }
     },
     {
-      "id":"re007rus_xarxaviaria_5_label_1",
-      "type": "symbol",
-      "source": "base_referencia",
-      "source-layer": "re007rus_xarxaviaria",
-      "minZoom": 18,
-      "filter": ["all",
-        ["==", ["get", "visual"], 1],
-        ["!=", ["get", "idtipus"], 1]
-      ],
-      "layout": {
-        "text-field": "{nomcami}",
-        "text-font": ["Arial"],
-        "text-size": 11,
-        "symbol-placement": "line",
-        "symbol-spacing": 400,
-        "text-allow-overlap": true
-      },
-      "paint": {
-        "text-translate": [0, -10],
-        "text-halo-color": "#FEFEFE",
-        "text-halo-width": 0.5,
-        "text-color": "#734C00"
-      }
-    },
-    {
-      "id":"re007rus_xarxaviaria_5_label_2",
-      "type": "symbol",
-      "source": "base_referencia",
-      "source-layer": "re007rus_xarxaviaria",
-      "minZoom": 18,
-      "filter":
-        ["==", ["get", "visual"], 0],
-      "layout": {
-        "text-field": "{nomcami}",
-        "text-font": ["Arial"],
-        "text-size": 10,
-        "symbol-placement": "line",
-        "symbol-spacing": 400,
-        "text-allow-overlap": true
-      },
-      "paint": {
-        "text-translate": [0, -10],
-        "text-halo-color": "#FEFEFE",
-        "text-halo-width": 0.5,
-        "text-color": "#a87000"
-      }
-    },
-    {
-      "id":"re007rus_xarxaviaria_5_label_3",
-      "type": "symbol",
-      "source": "base_referencia",
-      "source-layer": "re007rus_xarxaviaria",
-      "minZoom": 18,
-      "filter": ["all",
-        ["==", ["get", "visual"], 1],
-        ["==", ["get", "idtipus"], 1],
-        ["==", ["get", "codi"], "Me-1"]
-      ],
-      "layout": {
-        "text-field": "{codi}",
-        "text-font": ["Arial"],
-        "text-size": 10,
-        "symbol-placement": "point",
-        "symbol-spacing": 400,
-        "text-allow-overlap": true
-      },
-      "paint": {
-        "text-translate": [0, -10],
-        "text-color": "#FFFFFF"
-      }
-    },
-    {
       "id":"re007rus_xarxaviaria_25_outline",
       "type":"line",
       "source": "base_referencia",
@@ -916,7 +844,7 @@
         "line-width": 0.1
       }
     },{
-      "id": "re007rus_llocs",
+      "id": "re007rus_llocs_label",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007rus_llocs",
@@ -926,7 +854,7 @@
         "text-size": 12,
         "text-anchor": "bottom-left",
         "symbol-placement": "point",
-        "text-allow-overlap": true
+        "text-allow-overlap": false
       },
       "paint": {
         "text-translate": [0, -6],
@@ -966,7 +894,7 @@
         "text-anchor": "center",
         "text-justify": "center",
         "symbol-placement": "point",
-        "text-allow-overlap": true
+        "text-allow-overlap": false
       },
       "paint": {
         "text-translate": [0, -12],
@@ -1364,6 +1292,369 @@
           ["==", ["get", "idtipus"], 18], "#002673",
           ["==", ["get", "idtipus"], 12], "#343434",
           "#734141"]
+      }
+    },{
+      "id": "re007rus_xarxaviaria100000_major_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "minzoom": 11,
+      "filter": ["any",
+          ["==", ["get", "codi"], "Me-1"],
+          ["==", ["get", "codi"], "Me-24"],
+          ["==", ["get", "codi"], "RC-2"],
+          ["==", ["get", "codi"], "Me-15"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#FFFFFF",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 40
+      }
+    },{
+      "id": "re007rus_xarxaviaria100000_minor_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "minzoom": 11,
+      "filter": ["all",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["==", ["get", "visual"], 1]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 100,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#D7C29E",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria50000_major_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria50000",
+      "minzoom": 11,
+      "filter": ["any",
+          ["==", ["get", "codi"], "Me-1"],
+          ["==", ["get", "codi"], "Me-24"],
+          ["==", ["get", "codi"], "RC-2"],
+          ["==", ["get", "codi"], "Me-15"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria50000_minor_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria50000",
+      "minzoom": 11,
+      "filter": ["all",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["==", ["get", "visual"], 1]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 300,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#ad9c80",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["!=", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 11,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["==", ["get", "visual"], 0],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 10,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-color": "#a87000",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_3",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["==", ["get", "idtipus"], 1],
+        ["==", ["get", "codi"], "Me-1"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_4",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["any",
+          ["==", ["get", "idtipus"], 1],
+          ["==", ["get", "idtipus"], 2]
+        ],
+        ["any",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"]
+        ]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#baa884",
+        "text-halo-width": 20
+      }
+    },{
+      "id":"re007rus_xarxaviaria_5_label_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["!=", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 11,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5,
+        "text-color": "#734C00"
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_label_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter":
+        ["==", ["get", "visual"], 0],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 10,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5,
+        "text-color": "#a87000"
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_label_3",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["==", ["get", "idtipus"], 1],
+        ["==", ["get", "codi"], "Me-1"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria_5_label_4",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["any",
+          ["==", ["get", "idtipus"], 1],
+          ["==", ["get", "idtipus"], 2]
+        ],
+        ["any",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"]
+        ]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#baa884",
+        "text-halo-width": 20
       }
     }
   ]
