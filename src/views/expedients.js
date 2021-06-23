@@ -15,21 +15,16 @@ import SectionTitle from '../components/SectionTitle';
 import ResponsiveHeader from '../components/ResponsiveHeader';
 import RightDrawer from '../components/RightDrawer';
 import LeftDrawer from '../components/LeftDrawer';
-import TypeCountByYearChart from '../components/TypeCountByYearChart';
-import ResolutionStateChart from '../components/ResolutionStateChart';
 import SquareButtonIcon from '../components/SquareButtonIcon';
 import LogoBlanco from '../../static/img/LogoBlanco';
-import Chart from '../components/Chart';
 import BaseMapList from '../components/BaseMapList';
 import {fetchTotalExpedients, fetchTotalViviendes} from '../api';
-import NumericIndicator from '../components/NumericIndicator';
+import ChartsComponent from './map/ChartsComponents';
 import {
-  getData,
   getDateRangeFilter,
   getSelectedBaseMapStyleUrl,
   getSelectedCategories,
-  getViewport,
-  getTotalExpedients
+  getViewport
 } from '../selectors';
 import {
   setBaseMapStyleUrl,
@@ -39,6 +34,7 @@ import {
   setSelectedCategories,
   setViewport
 } from '../actions';
+import {calcStats} from '../services/calcStats';
 
 const {mapStyles, sourceLayers, categories, fallbackColor, minDate} = config;
 
@@ -142,8 +138,6 @@ const Expedients = () => {
   const selectedStyleUrl = useSelector(getSelectedBaseMapStyleUrl);
   const selectedCategories = useSelector(getSelectedCategories);
   const dateRange = useSelector(getDateRangeFilter);
-  const {context} = useSelector(getData);
-  const totalExpedients = useSelector(getTotalExpedients);
 
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
@@ -159,59 +153,23 @@ const Expedients = () => {
       })));
   }, [dateRange]);
 
-  const calcStats = debounce(10, (map) => {
-    const featureProperties = map
-      .queryRenderedFeatures({
-        layers: sourceLayers
-      })
-      .map(feature => feature.properties)
+  const handleCalcStats = debounce(10, (featureProperties) => {
+    const featurePropertiesFiltered = featureProperties
       .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
 
-    const objTypeCountByYear = featureProperties
-      .reduce((stats, properties) => {
-        const year = properties.any;
-        const type = properties.tipus;
+    const stats = calcStats(featurePropertiesFiltered);
 
-        stats[year] = stats[year] || {};
-        stats[year][type] = stats[year][type] ? stats[year][type] + 1 : 1;
-        return stats;
-      }, {});
-
-    const arrTypeCountByYear = Object.keys(objTypeCountByYear)
-      .reduce((data, year) => {
-        data.push({
-          year: year,
-          ...objTypeCountByYear[year]
-        });
-        return data;
-      }, []);
-
-    const objResolutionStateCount = featureProperties
-      .map(properties => properties.resolucio)
-      .reduce((stats, resolucio) => {
-        stats[resolucio] = stats[resolucio] ? stats[resolucio] + 1 : 1;
-        return stats;
-      }, {});
-
-    const arrResolutionStateCount = Object.entries(objResolutionStateCount)
-      .reduce((data, [resolucio, count]) => {
-        data.push({
-          name: resolucio,
-          value: count
-        });
-        return data;
-      }, []);
-
-    dispatch(setDataContext({
-      expedients: featureProperties.length,
-      typeCountByYear: arrTypeCountByYear,
-      resolutionStateCount: arrResolutionStateCount
-    }));
+    dispatch(setDataContext(stats));
   });
 
   const onMapSet = (map) => {
     map.on('idle', () => {
-      calcStats(map);
+      const featureProperties = map
+        .queryRenderedFeatures({
+          layers: sourceLayers
+        })
+        .map(feature => feature.properties);
+      handleCalcStats(featureProperties);
       fetchTotalViviendes(map.getBounds().toArray().flatMap(a => a).join(','))
         .then((totalViviendas) =>
           dispatch(setDataContext(...totalViviendas)));
@@ -234,25 +192,6 @@ const Expedients = () => {
   const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleUrl(newStyle));
   const handleSelectedCategoriesChange = (newCategories) => dispatch(setSelectedCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
-  
-  
-  const ChartsComponent = () =>
-    <>
-      <Chart title={'Nombre d\'expedients per any'}>
-        <TypeCountByYearChart categories={categories} data={context.typeCountByYear}/>
-      </Chart>
-      <Chart title={'Percentatge de resolució d\'expedients'}>
-        <ResolutionStateChart data={context.resolutionStateCount}/>
-      </Chart>
-      <Chart title={'Total d\'expedients'}>
-        <NumericIndicator
-          main={context.expedients}
-          total={totalExpedients}/>
-      </Chart>
-      <Chart title={'Viviendes vs total locales'}>
-        <NumericIndicator title={''} main={parseInt(context.numberofdwellings)} total={parseInt(context.numberofbuildingunits)}/>
-      </Chart>
-    </>;
 
   return (
     <div>
