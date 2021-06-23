@@ -2293,6 +2293,66 @@
         "text-color": "#004DA8",
         "text-opacity": 0.75
       }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 15,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_inner_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u00D8",
+        "text-font": ["ESRI Public1"],
+        "text-size": 11,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_inner_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u00C4",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 8,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 15,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#4C7300"
+      }
     }
   ]
 }
