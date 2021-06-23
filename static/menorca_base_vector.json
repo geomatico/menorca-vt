@@ -1762,6 +1762,7 @@
         "text-field": "\u0029",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
+        "text-offset": [0, -0.1],
         "text-allow-overlap": true
       },
       "paint": {
@@ -2137,7 +2138,7 @@
         "text-opacity": 0.75
       }
     },{
-      "id": "re007urb_equipamentsp_depuradora_in",
+      "id": "re007urb_equipamentsp_depuradora_out",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007urb_equipamentsp",
@@ -2154,7 +2155,7 @@
         "text-opacity": 0.75
       }
     },{
-      "id": "re007urb_equipamentsp_depuradora_out",
+      "id": "re007urb_equipamentsp_depuradora_in",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007urb_equipamentsp",
@@ -2171,7 +2172,7 @@
         "text-opacity": 0.75
       }
     },{
-      "id": "re007urb_equipamentsp_aeroportuari_in",
+      "id": "re007urb_equipamentsp_aeroportuari_out",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007urb_equipamentsp",
@@ -2187,7 +2188,7 @@
         "text-opacity": 0.75
       }
     },{
-      "id": "re007urb_equipamentsp_aeroportuari_out",
+      "id": "re007urb_equipamentsp_aeroportuari_in",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007urb_equipamentsp",
@@ -2203,7 +2204,7 @@
         "text-opacity": 0.75
       }
     },{
-      "id": "re007urb_equipamentsp_religios_in",
+      "id": "re007urb_equipamentsp_religios_out",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007urb_equipamentsp",
@@ -2219,7 +2220,7 @@
         "text-opacity": 0.75
       }
     },{
-      "id": "re007urb_equipamentsp_religios_out",
+      "id": "re007urb_equipamentsp_religios_in",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007urb_equipamentsp",
@@ -2232,6 +2233,64 @@
       },
       "paint": {
         "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u00ED",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-offset": [0.1, 0.1],
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 12.44,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
         "text-opacity": 0.75
       }
     }
