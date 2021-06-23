@@ -761,20 +761,10 @@
       }
     },
     {
-      "id": "re007urb_portalsprod_circle",
-      "type": "circle",
-      "source": "base_referencia",
-      "source-layer": "re007urb_portals",
-      "paint": {
-        "circle-radius": 5,
-        "circle-color": "#FF0000"
-      }
-    },
-    {
       "id": "re007urb_portalsprod",
       "type": "symbol",
       "source": "base_referencia",
-      "source-layer": "re007urb_portals",
+      "source-layer": "re007urb_portals_cache",
       "layout": {
         "text-field": "{nomportal}",
         "text-font": ["Arial Unicode MS Regular"],
@@ -785,7 +775,7 @@
         "text-allow-overlap": true
       },
       "paint": {
-        "text-color": "#FF0000"
+        "text-color": "#4E4E4E"
       }
     },
     {
