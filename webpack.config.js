@@ -11,7 +11,7 @@ module.exports = (env) => ({
   },
   entry: env.test ? '' : {
     twinmaps: './src/twinmaps.js',
-    expedients: './src/main.js',
+    expedients: './src/expedients.js',
   },
   resolve: {
     alias: {
