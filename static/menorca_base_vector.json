@@ -1976,6 +1976,54 @@
         "text-color": "#FEFEFE",
         "text-opacity": 0.75
       }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0047",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 10.5,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A80000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A80000",
+        "text-opacity": 0.75
+      }
     }
   ]
 }
