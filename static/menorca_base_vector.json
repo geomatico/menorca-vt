@@ -2202,6 +2202,38 @@
         "text-color": "#FEFEFE",
         "text-opacity": 0.75
       }
+    },{
+      "id": "re007urb_equipamentsp_religios_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 16],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_religios_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 16],
+      "layout": {
+        "text-field": "\u00EE",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 12,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
     }
   ]
 }
