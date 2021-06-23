@@ -1666,9 +1666,6 @@
         "text-field": "\u0022",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1685,9 +1682,6 @@
         "text-field": "\u00F9",
         "text-font": ["ESRI Cartography"],
         "text-size": 12.6,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1704,9 +1698,6 @@
         "text-field": "\u0022",
         "text-font": ["ESRI Default Marker"],
         "text-size": 16,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1723,9 +1714,6 @@
         "text-field": "\u00EF",
         "text-font": ["ESRI Cartography"],
         "text-size": 16,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1742,9 +1730,6 @@
         "text-field": "\u00C6",
         "text-font": ["ESRI Transportation & Civic"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1761,9 +1746,6 @@
         "text-field": "\u0063",
         "text-font": ["ESRI Transportation & Civic"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1780,9 +1762,6 @@
         "text-field": "\u0029",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1799,9 +1778,6 @@
         "text-field": "\u0022",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1818,9 +1794,6 @@
         "text-field": "\u00F9",
         "text-font": ["ESRI Environmental & Icons"],
         "text-size": 11.45,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1837,9 +1810,6 @@
         "text-field": "\u0029",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1856,9 +1826,6 @@
         "text-field": "\u0022",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1875,9 +1842,6 @@
         "text-field": "\u00ED",
         "text-font": ["ESRI Environmental & Icons"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1894,9 +1858,6 @@
         "text-field": "\u0022",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1913,9 +1874,6 @@
         "text-field": "\u00F1",
         "text-font": ["ESRI Cartography"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
@@ -1932,13 +1890,42 @@
         "text-field": "\u0029",
         "text-font": ["ESRI Default Marker"],
         "text-size": 14,
-        "text-anchor": "center",
-        "text-justify": "center",
-        "symbol-placement": "point",
         "text-allow-overlap": true
       },
       "paint": {
         "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_fires_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 8],
+      "layout": {
+        "text-field": "\u00B2",
+        "text-font": ["ESRI Hazardous Materials"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_fires_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 8],
+      "layout": {
+        "text-field": "\u00B7",
+        "text-font": ["ESRI Hazardous Materials"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
         "text-opacity": 0.75
       }
     }
