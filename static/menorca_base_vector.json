@@ -2170,6 +2170,38 @@
         "text-color": "#004DA8",
         "text-opacity": 0.75
       }
+    },{
+      "id": "re007urb_equipamentsp_aeroportuari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 15],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_aeroportuari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 15],
+      "layout": {
+        "text-field": "\u006F",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 11.45,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
     }
   ]
 }
