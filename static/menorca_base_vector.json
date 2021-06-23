@@ -2136,6 +2136,40 @@
         "text-color": "#734C00",
         "text-opacity": 0.75
       }
+    },{
+      "id": "re007urb_equipamentsp_depuradora_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 13],
+      "layout": {
+        "text-field": "\u0044",
+        "text-font": ["Arial Black"],
+        "text-size": 9,
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_depuradora_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 13],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
     }
   ]
 }
