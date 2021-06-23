@@ -761,20 +761,10 @@
       }
     },
     {
-      "id": "re007urb_portalsprod_circle",
-      "type": "circle",
-      "source": "base_referencia",
-      "source-layer": "re007urb_portals",
-      "paint": {
-        "circle-radius": 5,
-        "circle-color": "#FF0000"
-      }
-    },
-    {
       "id": "re007urb_portalsprod",
       "type": "symbol",
       "source": "base_referencia",
-      "source-layer": "re007urb_portals",
+      "source-layer": "re007urb_portals_cache",
       "layout": {
         "text-field": "{nomportal}",
         "text-font": ["Arial Unicode MS Regular"],
@@ -785,7 +775,7 @@
         "text-allow-overlap": true
       },
       "paint": {
-        "text-color": "#FF0000"
+        "text-color": "#4E4E4E"
       }
     },
     {
@@ -1655,6 +1645,792 @@
         "text-color": "#ffffff",
         "text-halo-color": "#baa884",
         "text-halo-width": 20
+      }
+    },{
+      "id": "re007urb_equipamentsp_asistencial_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 1],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_asistencial_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 1],
+      "layout": {
+        "text-field": "\u00F9",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 12.6,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cementiri_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 2],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 16,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#343434",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cementiri_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 2],
+      "layout": {
+        "text-field": "\u00EF",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 16,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cultural_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 3],
+      "layout": {
+        "text-field": "\u00C6",
+        "text-font": ["ESRI Transportation & Civic"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cultural_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 3],
+      "layout": {
+        "text-field": "\u0063",
+        "text-font": ["ESRI Transportation & Civic"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cultural_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 3],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-offset": [0, -0.1],
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_esportiu_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_esportiu_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "text-field": "\u00F9",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 11.45,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A87000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_esportiu_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A87000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_seguretat_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 5],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_seguretat_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 5],
+      "layout": {
+        "text-field": "\u00ED",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FBFBFB",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_escolar_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_escolar_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "text-field": "\u00F1",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_escolar_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_fires_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 8],
+      "layout": {
+        "text-field": "\u00B2",
+        "text-font": ["ESRI Hazardous Materials"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_fires_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 8],
+      "layout": {
+        "text-field": "\u00B7",
+        "text-font": ["ESRI Hazardous Materials"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_equipament_municipal_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 9],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 16,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_equipament_municipal_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 9],
+      "layout": {
+        "text-field": "\u00F1",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FFFFFF",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_equipament_municipal_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 9],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0047",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 10.5,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A80000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A80000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_energia_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 11],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_energia_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 11],
+      "layout": {
+        "text-field": "\u00F0",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 11.45,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#737300",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_energia_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 11],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#737300",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_inner_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0032",
+        "text-font": ["ESRI Enviro Hazard Sites"],
+        "text-size": 9,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A87000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_inner_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0031",
+        "text-font": ["ESRI Enviro Hazard Sites"],
+        "text-size": 9,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_depuradora_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 13],
+      "layout": {
+        "text-field": "\u0044",
+        "text-font": ["Arial Black"],
+        "text-size": 9,
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_depuradora_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 13],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_aeroportuari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 15],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_aeroportuari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 15],
+      "layout": {
+        "text-field": "\u006F",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 11.45,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_religios_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 16],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_religios_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 16],
+      "layout": {
+        "text-field": "\u00EE",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 12,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u00ED",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-offset": [0.1, 0.1],
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 12.44,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 15,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_inner_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u00D8",
+        "text-font": ["ESRI Public1"],
+        "text-size": 11,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_inner_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u00C4",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 8,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 15,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#4C7300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_jardins_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 23],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 13,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE"
+      }
+    },{
+      "id": "re007urb_equipamentsp_jardins_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 23],
+      "layout": {
+        "text-field": "\u00C4",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 10,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_jardins_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 23],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["in",
+        ["get", "idtipus"],
+        ["literal", [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15, 16, 22]]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Arial"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 5], 11,
+          ["==", ["get", "idtipus"], 10], 11,
+          ["==", ["get", "idtipus"], 12], 11,
+          ["==", ["get", "idtipus"], 13], 11,
+          10],
+        "text-anchor": "left",
+        "text-offset": [0, -1.3],
+        "text-max-width": 100,
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-halo-color": "#FFFFFF",
+        "text-halo-width": 1,
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 1], "#005CE6",
+          ["==", ["get", "idtipus"], 2], "#000000",
+          ["==", ["get", "idtipus"], 3], "#002673",
+          ["==", ["get", "idtipus"], 4], "#734C00",
+          ["==", ["get", "idtipus"], 5], "#000000",
+          ["==", ["get", "idtipus"], 6], "#005CE6",
+          ["==", ["get", "idtipus"], 8], "#4C0073",
+          ["==", ["get", "idtipus"], 9], "#005CE6",
+          ["==", ["get", "idtipus"], 10], "#732600",
+          ["==", ["get", "idtipus"], 11], "#343434",
+          ["==", ["get", "idtipus"], 12], "#000000",
+          ["==", ["get", "idtipus"], 13], "#4C7300",
+          ["==", ["get", "idtipus"], 15], "#734C00",
+          ["==", ["get", "idtipus"], 16], "#4C7300",
+          ["==", ["get", "idtipus"], 22], "#267300",
+          "#005CE6"]
       }
     }
   ]
