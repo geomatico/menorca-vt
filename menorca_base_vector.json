@@ -4,7 +4,7 @@
   "id": "9ngs66k9b",
   "center": [4.097, 39.952],
   "zoom": 9,
-  "sprite": "https://raw.githubusercontent.com/openmaptiles/dark-matter-gl-style/gh-pages/sprite",
+  "sprite": "https://labs.geomatico.es/menorca-vt/sprites/sprites",
   "glyphs": "https://tileserver.geomatico.es/fonts/{fontstack}/{range}.pbf",
   "sources": {
     "base_referencia": {
@@ -652,7 +652,7 @@
       "source-layer": "re007urb_escala",
       "paint": {
         "fill-color": "#B0A080",
-        "fill-pattern": "wood-pattern"
+        "fill-pattern": "escala"
       }
     },
     {
@@ -1296,6 +1296,8 @@
           ["==", ["get", "codi"], "Me-15"]
       ],
       "layout": {
+        "icon-image": ["concat","major_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1312,9 +1314,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#FFFFFF",
-        "text-halo-color": "#73B273",
-        "text-halo-width": 40
+        "text-color": "#FFFFFF"
       }
     },{
       "id": "re007rus_xarxaviaria100000_minor_label",
@@ -1330,6 +1330,8 @@
           ["==", ["get", "visual"], 1]
       ],
       "layout": {
+        "icon-image": ["concat","minor_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1346,9 +1348,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#ffffff",
-        "text-halo-color": "#D7C29E",
-        "text-halo-width": 20
+        "text-color": "#ffffff"
       }
     },{
       "id": "re007rus_xarxaviaria50000_major_label",
@@ -1363,6 +1363,8 @@
           ["==", ["get", "codi"], "Me-15"]
       ],
       "layout": {
+        "icon-image": ["concat","major_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1379,9 +1381,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#ffffff",
-        "text-halo-color": "#73B273",
-        "text-halo-width": 20
+        "text-color": "#ffffff"
       }
     },{
       "id": "re007rus_xarxaviaria50000_minor_label",
@@ -1397,6 +1397,8 @@
           ["==", ["get", "visual"], 1]
       ],
       "layout": {
+        "icon-image": ["concat","minor_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1413,9 +1415,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#ffffff",
-        "text-halo-color": "#ad9c80",
-        "text-halo-width": 20
+        "text-color": "#ffffff"
       }
     },{
       "id": "re007rus_xarxaviaria_s2_label_1",
@@ -1471,6 +1471,8 @@
         ["==", ["get", "codi"], "Me-1"]
       ],
       "layout": {
+        "icon-image": ["concat","major_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1487,9 +1489,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#ffffff",
-        "text-halo-color": "#73B273",
-        "text-halo-width": 20
+        "text-color": "#ffffff"
       }
     },{
       "id": "re007rus_xarxaviaria_s2_label_4",
@@ -1510,6 +1510,8 @@
         ]
       ],
       "layout": {
+        "icon-image": ["concat","minor_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1526,9 +1528,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#ffffff",
-        "text-halo-color": "#baa884",
-        "text-halo-width": 20
+        "text-color": "#ffffff"
       }
     },{
       "id":"re007rus_xarxaviaria_5_label_1",
@@ -1587,6 +1587,8 @@
         ["==", ["get", "codi"], "Me-1"]
       ],
       "layout": {
+        "icon-image": ["concat","major_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1603,9 +1605,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#ffffff",
-        "text-halo-color": "#73B273",
-        "text-halo-width": 20
+        "text-color": "#ffffff"
       }
     },{
       "id": "re007rus_xarxaviaria_5_label_4",
@@ -1626,6 +1626,8 @@
         ]
       ],
       "layout": {
+        "icon-image": ["concat","minor_", ["length", ["get", "codi"]]],
+        "icon-rotation-alignment": "viewport",
         "text-field": "{codi}",
         "text-font": ["Arial Bold"],
         "text-size": 10,
@@ -1642,9 +1644,7 @@
       },
       "paint": {
         "text-translate": [0, 1],
-        "text-color": "#ffffff",
-        "text-halo-color": "#baa884",
-        "text-halo-width": 20
+        "text-color": "#ffffff"
       }
     },{
       "id": "re007urb_equipamentsp_asistencial_out",

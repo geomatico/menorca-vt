@@ -1,0 +1,79 @@
+{
+  "escala": {
+    "height": 20,
+    "pixelRatio": 1,
+    "width": 20,
+    "x": 0,
+    "y": 0
+  },
+  "major_2": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 25,
+    "x": 0,
+    "y": 20
+  },
+  "major_3": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 27,
+    "x": 25,
+    "y": 20
+  },
+  "major_4": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 37,
+    "x": 20,
+    "y": 0
+  },
+  "major_5": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 45,
+    "x": 0,
+    "y": 35
+  },
+  "major_6": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 54,
+    "x": 0,
+    "y": 50
+  },
+  "minor_2": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 25,
+    "x": 52,
+    "y": 20
+  },
+  "minor_3": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 27,
+    "x": 45,
+    "y": 35
+  },
+  "minor_4": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 37,
+    "x": 0,
+    "y": 65
+  },
+  "minor_5": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 45,
+    "x": 77,
+    "y": 20
+  },
+  "minor_6": {
+    "height": 15,
+    "pixelRatio": 1,
+    "width": 54,
+    "x": 72,
+    "y": 35
+  }
+}
