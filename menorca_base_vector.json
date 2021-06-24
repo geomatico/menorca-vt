@@ -761,20 +761,10 @@
       }
     },
     {
-      "id": "re007urb_portalsprod_circle",
-      "type": "circle",
-      "source": "base_referencia",
-      "source-layer": "re007urb_portals",
-      "paint": {
-        "circle-radius": 5,
-        "circle-color": "#FF0000"
-      }
-    },
-    {
       "id": "re007urb_portalsprod",
       "type": "symbol",
       "source": "base_referencia",
-      "source-layer": "re007urb_portals",
+      "source-layer": "re007urb_portals_cache",
       "layout": {
         "text-field": "{nomportal}",
         "text-font": ["Arial Unicode MS Regular"],
@@ -785,7 +775,7 @@
         "text-allow-overlap": true
       },
       "paint": {
-        "text-color": "#FF0000"
+        "text-color": "#4E4E4E"
       }
     },
     {
@@ -844,7 +834,7 @@
         "line-width": 0.1
       }
     },{
-      "id": "re007rus_llocs",
+      "id": "re007rus_llocs_label",
       "type": "symbol",
       "source": "base_referencia",
       "source-layer": "re007rus_llocs",
@@ -854,7 +844,7 @@
         "text-size": 12,
         "text-anchor": "bottom-left",
         "symbol-placement": "point",
-        "text-allow-overlap": true
+        "text-allow-overlap": false
       },
       "paint": {
         "text-translate": [0, -6],
@@ -894,13 +884,1553 @@
         "text-anchor": "center",
         "text-justify": "center",
         "symbol-placement": "point",
-        "text-allow-overlap": true
+        "text-allow-overlap": false
       },
       "paint": {
         "text-translate": [0, -12],
         "text-halo-color": "#FFFFFF",
         "text-halo-width": 1,
         "text-color": "#686868"
+      }
+    },{
+      "id": "re007top_topo200_label_other",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_top200",
+      "filter": ["!=", ["get", "idtipus"], "1"],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["case",
+          ["==", ["get", "idtipus"], "6"], ["literal", ["Source Sans Pro Bold"]],
+          ["literal", ["Source Sans Pro"]]],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 0], 12,
+          11],
+        "text-anchor": "left",
+        "text-justify": "left",
+        "symbol-placement": "point",
+        "text-rotation-alignment": "map",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], "0"], "#343434",
+          ["==", ["get", "idtipus"], "2"], "#686868",
+          ["==", ["get", "idtipus"], "3"], "#4E4E4E",
+          ["==", ["get", "idtipus"], "4"], "#4E4E4E",
+          ["==", ["get", "idtipus"], "5"], "#4E4E4E",
+          ["==", ["get", "idtipus"], "6"], "#343434",
+          ["==", ["get", "idtipus"], "7"], "#FFFFFF",
+          "#343434"]
+      }
+    },{
+      "id": "re007top_topo200_label_cities",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_top200",
+      "filter":["==", ["get", "idtipus"], "1"],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro Bold"],
+        "text-size": ["case",
+          ["==", ["get", "nom"], "Ciutadella de Menorca"], 16,
+          ["==", ["get", "nom"], "Maó"], 16,
+          12],
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": "#343434",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "re007top_top100_label_icon",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_top100",
+      "filter":["==", ["get", "idtipus"], "1"],
+      "layout": {
+        "text-field": "\u0021",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": ["case",
+          ["==", ["get", "nom"], "Ciutadella de Menorca"], 16,
+          ["==", ["get", "nom"], "Maó"], 16,
+          12],
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": "#000000",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "re007top_top100_label_other",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_top100",
+      "filter":["all",
+        ["!=", ["get", "idtipus"], 1],
+        ["!=", ["get", "idtipus"], 6]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 0], 13,
+          ["==", ["get", "idtipus"], 8], 11,
+          ["==", ["get", "idtipus"], 2], 12,
+          ["==", ["get", "idtipus"], 9], 12,
+          ["==", ["get", "idtipus"], 3], 12,
+          ["==", ["get", "idtipus"], 4], 12,
+          ["==", ["get", "idtipus"], 5], 11,
+          ["==", ["get", "idtipus"], 7], 14,
+          ["==", ["get", "idtipus"], 10], 12,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-rotation-alignment": "map",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 5],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 0], "#4E4E4E",
+          ["==", ["get", "idtipus"], 8], "#828282",
+          ["==", ["get", "idtipus"], 2], "#4E4E4E",
+          ["==", ["get", "idtipus"], 9], "#A87000",
+          ["==", ["get", "idtipus"], 3], "#343434",
+          ["==", ["get", "idtipus"], 4], "#732600",
+          ["==", ["get", "idtipus"], 5], "#686868",
+          ["==", ["get", "idtipus"], 7], "#365200",
+          ["==", ["get", "idtipus"], 10], "#446589",
+          "#343434"]
+      }
+    },
+    {
+      "id": "re007top_top100_label_cities",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_top100",
+      "filter":["any",
+        ["==", ["get", "idtipus"], 1],
+        ["==", ["get", "idtipus"], 6]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["case",
+          ["==", ["get", "idtipus"], 1], ["literal", ["Source Sans Pro Bold"]],
+          ["==", ["get", "idtipus"], 6], ["literal", ["Source Sans Pro"]],
+          ["literal", ["Source Sans Pro"]]],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 1], 14,
+          ["==", ["get", "idtipus"], 6], 12,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 5],
+        "text-color": "#343434",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "re007top_top50_label_other",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo50",
+      "filter":["all",
+        ["!=", ["get", "idtipus"], 0],
+        ["!=", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 8], 12,
+          ["==", ["get", "idtipus"], 5], 11,
+          ["==", ["get", "idtipus"], 3], 11,
+          ["==", ["get", "idtipus"], 2], 11,
+          ["==", ["get", "idtipus"], 4], 11,
+          ["==", ["get", "idtipus"], 6], 12,
+          ["==", ["get", "idtipus"], 7], 17,
+          ["==", ["get", "idtipus"], 9], 11,
+          ["==", ["get", "idtipus"], 10], 11,
+          ["==", ["get", "idtipus"], 11], 12,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-rotation-alignment": "map",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 8], "#383535",
+          ["==", ["get", "idtipus"], 5], "#828282",
+          ["==", ["get", "idtipus"], 3], "#4E4E4E",
+          ["==", ["get", "idtipus"], 2], "#686868",
+          ["==", ["get", "idtipus"], 4], "#4E4E4E",
+          ["==", ["get", "idtipus"], 6], "#343434",
+          ["==", ["get", "idtipus"], 7], "#264700",
+          ["==", ["get", "idtipus"], 9], "#A87000",
+          ["==", ["get", "idtipus"], 10], "#0084A8",
+          ["==", ["get", "idtipus"], 11], "#727070",
+          "#343434"]
+      }
+    },
+    {
+      "id": "re007top_top50_label_cities",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo50",
+      "filter":["any",
+        ["==", ["get", "idtipus"], 0],
+        ["==", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro Bold"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 1], 16,
+          ["==", ["get", "idtipus"], 0], 12,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": "#4c4a4a",
+        "text-halo-color": "#FFFFFF",
+        "text-halo-width": 1
+      }
+    },{
+      "id": "re007top_topo25_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo25",
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Source Sans Pro"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], "0"], 13,
+          ["==", ["get", "idtipus"], "1"], 14,
+          ["==", ["get", "idtipus"], "2"], 13,
+          ["==", ["get", "idtipus"], "7"], 12,
+          ["==", ["get", "idtipus"], "8"], 13,
+          ["==", ["get", "idtipus"], "9"], 11,
+          ["==", ["get", "idtipus"], "10"], 13,
+          ["==", ["get", "idtipus"], "11"], 14,
+          ["==", ["get", "idtipus"], "12"], 13,
+          ["==", ["get", "idtipus"], "11b"], 11,
+          ["==", ["get", "idtipus"], "2b"], 11,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-rotation-alignment": "map",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -12],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], "0"], "#734141",
+          ["==", ["get", "idtipus"], "1"], "#4E4E4E",
+          ["==", ["get", "idtipus"], "2"], "#686868",
+          ["==", ["get", "idtipus"], "7"], "#9C9C9C",
+          ["==", ["get", "idtipus"], "8"], "#732600",
+          ["==", ["get", "idtipus"], "9"], "#4E4E4E",
+          ["==", ["get", "idtipus"], "10"], "#4E4E4E",
+          ["==", ["get", "idtipus"], "11"], "#A87000",
+          ["==", ["get", "idtipus"], "12"], "#446589",
+          ["==", ["get", "idtipus"], "11b"], "#A87000",
+          ["==", ["get", "idtipus"], "2b"], "#828282",
+          "#734141"]
+      }
+    },{
+      "id": "re007top_topo10_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo10",
+      "filter": ["any",
+          ["==", ["get", "idtipus"], 0],
+          ["==", ["get", "idtipus"], 1],
+          ["==", ["get", "idtipus"], 2],
+          ["==", ["get", "idtipus"], 7],
+          ["==", ["get", "idtipus"], 8],
+          ["==", ["get", "idtipus"], 9],
+          ["==", ["get", "idtipus"], 10],
+          ["==", ["get", "idtipus"], 11],
+          ["==", ["get", "idtipus"], 12],
+          ["==", ["get", "idtipus"], 6]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["case",
+          ["==", ["get", "idtipus"], 19], ["literal",["Source Sans Pro Bold"]],
+          ["literal",["Source Sans Pro"]]],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 0], 13,
+          ["==", ["get", "idtipus"], 1], 13,
+          ["==", ["get", "idtipus"], 2], 12,
+          ["==", ["get", "idtipus"], 7], 12,
+          ["==", ["get", "idtipus"], 8], 11,
+          ["==", ["get", "idtipus"], 9], 13,
+          ["==", ["get", "idtipus"], 10], 12,
+          ["==", ["get", "idtipus"], 11], 13,
+          ["==", ["get", "idtipus"], 12], 13,
+          ["==", ["get", "idtipus"], 6], 13,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "symbol-placement": "line",
+        "text-keep-upright": false,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 0],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 0], "#732600",
+          ["==", ["get", "idtipus"], 1], "#4E4E4E",
+          ["==", ["get", "idtipus"], 2], "#828282",
+          ["==", ["get", "idtipus"], 7], "#686868",
+          ["==", ["get", "idtipus"], 8], "#732600",
+          ["==", ["get", "idtipus"], 9], "#4E4E4E",
+          ["==", ["get", "idtipus"], 10], "#343434",
+          ["==", ["get", "idtipus"], 11], "#A87000",
+          ["==", ["get", "idtipus"], 12], "#1F4287",
+          ["==", ["get", "idtipus"], 6], "#732600",
+          "#734141"]
+      }
+    },{
+      "id": "re007top_topo05_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007top_topo05",
+      "filter": ["any",
+          ["==", ["get", "idtipus"], 9],
+          ["==", ["get", "idtipus"], 8],
+          ["==", ["get", "idtipus"], 11],
+          ["==", ["get", "idtipus"], 7],
+          ["==", ["get", "idtipus"], 6],
+          ["==", ["get", "idtipus"], 2],
+          ["==", ["get", "idtipus"], 19],
+          ["==", ["get", "idtipus"], 4],
+          ["==", ["get", "idtipus"], 20],
+          ["==", ["get", "idtipus"], 18],
+          ["==", ["get", "idtipus"], 12]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["case",
+          ["==", ["get", "idtipus"], 19], ["literal",["Source Sans Pro Bold"]],
+          ["literal",["Source Sans Pro"]]],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 9], 13,
+          ["==", ["get", "idtipus"], 8], 12,
+          ["==", ["get", "idtipus"], 11], 12,
+          ["==", ["get", "idtipus"], 7], 11,
+          ["==", ["get", "idtipus"], 6], 11,
+          ["==", ["get", "idtipus"], 2], 12,
+          ["==", ["get", "idtipus"], 19], 14,
+          ["==", ["get", "idtipus"], 4], 12,
+          ["==", ["get", "idtipus"], 20], 15,
+          ["==", ["get", "idtipus"], 18], 14,
+          ["==", ["get", "idtipus"], 12], 15,
+          11],
+        "text-rotate": ["*", ["get", "txtangle"], -1],
+        "text-anchor": "left",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-rotation-alignment": "map",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, -12],
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 9], "#730000",
+          ["==", ["get", "idtipus"], 8], "#A87000",
+          ["==", ["get", "idtipus"], 11], "#343434",
+          ["==", ["get", "idtipus"], 7], "#737300",
+          ["==", ["get", "idtipus"], 6], "#343434",
+          ["==", ["get", "idtipus"], 2], "#343434",
+          ["==", ["get", "idtipus"], 19], "#343434",
+          ["==", ["get", "idtipus"], 4], "#0084A8",
+          ["==", ["get", "idtipus"], 20], "#002673",
+          ["==", ["get", "idtipus"], 18], "#002673",
+          ["==", ["get", "idtipus"], 12], "#343434",
+          "#734141"]
+      }
+    },{
+      "id": "re007rus_xarxaviaria100000_major_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "minzoom": 11,
+      "filter": ["any",
+          ["==", ["get", "codi"], "Me-1"],
+          ["==", ["get", "codi"], "Me-24"],
+          ["==", ["get", "codi"], "RC-2"],
+          ["==", ["get", "codi"], "Me-15"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#FFFFFF",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 40
+      }
+    },{
+      "id": "re007rus_xarxaviaria100000_minor_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria100000",
+      "minzoom": 11,
+      "filter": ["all",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["==", ["get", "visual"], 1]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 100,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#D7C29E",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria50000_major_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria50000",
+      "minzoom": 11,
+      "filter": ["any",
+          ["==", ["get", "codi"], "Me-1"],
+          ["==", ["get", "codi"], "Me-24"],
+          ["==", ["get", "codi"], "RC-2"],
+          ["==", ["get", "codi"], "Me-15"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria50000_minor_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria50000",
+      "minzoom": 11,
+      "filter": ["all",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["==", ["get", "visual"], 1]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 300,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#ad9c80",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["!=", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 11,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["==", ["get", "visual"], 0],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 10,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-color": "#a87000",
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_3",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["==", ["get", "idtipus"], 1],
+        ["==", ["get", "codi"], "Me-1"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria_s2_label_4",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria_s2",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["any",
+          ["==", ["get", "idtipus"], 1],
+          ["==", ["get", "idtipus"], 2]
+        ],
+        ["any",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"]
+        ]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#baa884",
+        "text-halo-width": 20
+      }
+    },{
+      "id":"re007rus_xarxaviaria_5_label_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["!=", ["get", "idtipus"], 1]
+      ],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 11,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5,
+        "text-color": "#734C00"
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_label_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter":
+        ["==", ["get", "visual"], 0],
+      "layout": {
+        "text-field": "{nomcami}",
+        "text-font": ["Arial"],
+        "text-size": 10,
+        "symbol-placement": "line",
+        "symbol-spacing": 350,
+        "text-allow-overlap": false,
+        "text-offset": [0, 0.9]
+      },
+      "paint": {
+        "text-halo-color": "#FEFEFE",
+        "text-halo-width": 0.5,
+        "text-color": "#a87000"
+      }
+    },
+    {
+      "id":"re007rus_xarxaviaria_5_label_3",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["==", ["get", "idtipus"], 1],
+        ["==", ["get", "codi"], "Me-1"]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#73B273",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007rus_xarxaviaria_5_label_4",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007rus_xarxaviaria",
+      "filter": ["all",
+        ["==", ["get", "visual"], 1],
+        ["any",
+          ["==", ["get", "idtipus"], 1],
+          ["==", ["get", "idtipus"], 2]
+        ],
+        ["any",
+          ["!=", ["get", "codi"], "Me-1"],
+          ["!=", ["get", "codi"], "Me-15"],
+          ["!=", ["get", "codi"], "Me-24"],
+          ["!=", ["get", "codi"], "RC-2"]
+        ]
+      ],
+      "layout": {
+        "text-field": "{codi}",
+        "text-font": ["Arial Bold"],
+        "text-size": 10,
+        "symbol-placement": {
+          "base": 1,
+          "stops": [
+            [10, "point"],
+            [11, "line"]
+          ]
+        },
+        "symbol-spacing": 500,
+        "text-rotation-alignment": "viewport",
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-translate": [0, 1],
+        "text-color": "#ffffff",
+        "text-halo-color": "#baa884",
+        "text-halo-width": 20
+      }
+    },{
+      "id": "re007urb_equipamentsp_asistencial_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 1],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_asistencial_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 1],
+      "layout": {
+        "text-field": "\u00F9",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 12.6,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cementiri_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 2],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 16,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#343434",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cementiri_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 2],
+      "layout": {
+        "text-field": "\u00EF",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 16,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cultural_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 3],
+      "layout": {
+        "text-field": "\u00C6",
+        "text-font": ["ESRI Transportation & Civic"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cultural_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 3],
+      "layout": {
+        "text-field": "\u0063",
+        "text-font": ["ESRI Transportation & Civic"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_cultural_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 3],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-offset": [0, -0.1],
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_esportiu_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_esportiu_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "text-field": "\u00F9",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 11.45,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A87000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_esportiu_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 4],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A87000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_seguretat_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 5],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_seguretat_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 5],
+      "layout": {
+        "text-field": "\u00ED",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FBFBFB",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_escolar_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_escolar_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "text-field": "\u00F1",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_escolar_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 6],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_fires_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 8],
+      "layout": {
+        "text-field": "\u00B2",
+        "text-font": ["ESRI Hazardous Materials"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_fires_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 8],
+      "layout": {
+        "text-field": "\u00B7",
+        "text-font": ["ESRI Hazardous Materials"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_equipament_municipal_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 9],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 16,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_equipament_municipal_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 9],
+      "layout": {
+        "text-field": "\u00F1",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FFFFFF",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_equipament_municipal_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 9],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0047",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 10.5,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A80000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_sanitari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 10],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A80000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_energia_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 11],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_energia_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 11],
+      "layout": {
+        "text-field": "\u00F0",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 11.45,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#737300",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_energia_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 11],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#737300",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_inner_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0032",
+        "text-font": ["ESRI Enviro Hazard Sites"],
+        "text-size": 9,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#A87000",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_inner_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0031",
+        "text-font": ["ESRI Enviro Hazard Sites"],
+        "text-size": 9,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_residus_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 12],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_depuradora_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 13],
+      "layout": {
+        "text-field": "\u0044",
+        "text-font": ["Arial Black"],
+        "text-size": 9,
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_depuradora_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 13],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-anchor": "top",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_aeroportuari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 15],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_aeroportuari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 15],
+      "layout": {
+        "text-field": "\u006F",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 11.45,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_religios_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 16],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_religios_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 16],
+      "layout": {
+        "text-field": "\u00EE",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 12,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u00ED",
+        "text-font": ["ESRI Cartography"],
+        "text-size": 14,
+        "text-anchor": "center",
+        "text-offset": [0.1, 0.1],
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_portuari_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 18],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 12.44,
+        "text-anchor": "center",
+        "text-justify": "center",
+        "symbol-placement": "point",
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#004DA8",
+        "text-opacity": 0.75
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 15,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_inner_1",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u00D8",
+        "text-font": ["ESRI Public1"],
+        "text-size": 11,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#734C00"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_inner_2",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u00C4",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 8,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_recreativa_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 22],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 15,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#4C7300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_jardins_out",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 23],
+      "layout": {
+        "text-field": "\u0022",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 13,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#FEFEFE"
+      }
+    },{
+      "id": "re007urb_equipamentsp_jardins_inner",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 23],
+      "layout": {
+        "text-field": "\u00C4",
+        "text-font": ["ESRI Environmental & Icons"],
+        "text-size": 10,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_jardins_in",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["==", ["get", "idtipus"], 23],
+      "layout": {
+        "text-field": "\u0029",
+        "text-font": ["ESRI Default Marker"],
+        "text-size": 14,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#267300"
+      }
+    },{
+      "id": "re007urb_equipamentsp_label",
+      "type": "symbol",
+      "source": "base_referencia",
+      "source-layer": "re007urb_equipamentsp",
+      "filter": ["in",
+        ["get", "idtipus"],
+        ["literal", [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15, 16, 22]]
+      ],
+      "layout": {
+        "text-field": "{nom}",
+        "text-font": ["Arial"],
+        "text-size": ["case",
+          ["==", ["get", "idtipus"], 5], 11,
+          ["==", ["get", "idtipus"], 10], 11,
+          ["==", ["get", "idtipus"], 12], 11,
+          ["==", ["get", "idtipus"], 13], 11,
+          10],
+        "text-anchor": "left",
+        "text-offset": [0, -1.3],
+        "text-max-width": 100,
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-halo-color": "#FFFFFF",
+        "text-halo-width": 1,
+        "text-color": ["case",
+          ["==", ["get", "idtipus"], 1], "#005CE6",
+          ["==", ["get", "idtipus"], 2], "#000000",
+          ["==", ["get", "idtipus"], 3], "#002673",
+          ["==", ["get", "idtipus"], 4], "#734C00",
+          ["==", ["get", "idtipus"], 5], "#000000",
+          ["==", ["get", "idtipus"], 6], "#005CE6",
+          ["==", ["get", "idtipus"], 8], "#4C0073",
+          ["==", ["get", "idtipus"], 9], "#005CE6",
+          ["==", ["get", "idtipus"], 10], "#732600",
+          ["==", ["get", "idtipus"], 11], "#343434",
+          ["==", ["get", "idtipus"], 12], "#000000",
+          ["==", ["get", "idtipus"], 13], "#4C7300",
+          ["==", ["get", "idtipus"], 15], "#734C00",
+          ["==", ["get", "idtipus"], 16], "#4C7300",
+          ["==", ["get", "idtipus"], 22], "#267300",
+          "#005CE6"]
       }
     }
   ]
