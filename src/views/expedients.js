@@ -32,7 +32,8 @@ import {
   setDataTotal,
   setDateRangeFilter,
   setSelectedCategories,
-  setViewport
+  setViewport,
+  setControlCategories
 } from '../actions';
 import {calcStats} from '../services/calcStats';
 
@@ -189,12 +190,7 @@ const Expedients = () => {
     bearing,
     pitch,
   }));
-  const handleChangeSelect = (isOn) => 
-    dispatch(
-      isOn ?
-        setSelectedCategories(categories.map(({id}) => id))
-        : setSelectedCategories([])
-    );
+  const handleChangeSelect = (isOn) => dispatch(setControlCategories(isOn));
   const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleUrl(newStyle));
   const handleSelectedCategoriesChange = (newCategories) => dispatch(setSelectedCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));

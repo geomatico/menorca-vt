@@ -11,6 +11,7 @@ export const initialState = {
   },
   baseMapStyleUrl: config.mapStyles[5].url,
   selectedCategories: config.categories.map(({id}) => id),
+  previousSelectedCategories: [],
   dateRange: [config.minDate, new Date().getFullYear()],
   data: {
     context: {
@@ -71,6 +72,12 @@ const updateDataTotal = (state, action) => ({
   }
 });
 
+const updateControlCategories = (state, action) => ({
+  ...state,
+  selectedCategories: action.payload ? state.previousSelectedCategories : [],
+  previousSelectedCategories: !action.payload && state.selectedCategories
+});
+
 const reducer = handleActions({
   [ActionTypes.SET_VIEWPORT]: updateViewport,
   [ActionTypes.SET_BASEMAP_STYLE_URL]: updateBaseMapStyleUrl,
@@ -78,6 +85,7 @@ const reducer = handleActions({
   [ActionTypes.SET_DATE_RANGE_FILTER]: updateDateRange,
   [ActionTypes.SET_DATA_CONTEXT]: updateDataContext,
   [ActionTypes.SET_DATA_TOTAL]: updateDataTotal,
+  [ActionTypes.SET_CONTROL_CATEGORIES]: updateControlCategories,
 }, initialState);
 
 export default reducer;
