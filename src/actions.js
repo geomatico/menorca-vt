@@ -8,7 +8,7 @@ const ActionTypes = keyMirror({
   SET_DATE_RANGE_FILTER: null,
   SET_DATA_CONTEXT: null,
   SET_DATA_TOTAL: null,
-  SET_CONTROL_CATEGORIES: null,
+  SET_EXPEDIENTS_VISIBLE: null,
 });
 
 export default ActionTypes;
@@ -19,4 +19,4 @@ export const setSelectedCategories = createAction(ActionTypes.SET_SELECTED_CATEG
 export const setDateRangeFilter = createAction(ActionTypes.SET_DATE_RANGE_FILTER);
 export const setDataContext = createAction(ActionTypes.SET_DATA_CONTEXT);
 export const setDataTotal = createAction(ActionTypes.SET_DATA_TOTAL);
-export const setControlCategories = createAction(ActionTypes.SET_CONTROL_CATEGORIES);
+export const setExpedientsVisible = createAction(ActionTypes.SET_EXPEDIENTS_VISIBLE);

@@ -72,7 +72,7 @@ const updateDataTotal = (state, action) => ({
   }
 });
 
-const updateControlCategories = (state, action) => ({
+const updateExpedientsVisible = (state, action) => ({
   ...state,
   selectedCategories: action.payload ? state.previousSelectedCategories : [],
   previousSelectedCategories: !action.payload && state.selectedCategories
@@ -85,7 +85,7 @@ const reducer = handleActions({
   [ActionTypes.SET_DATE_RANGE_FILTER]: updateDateRange,
   [ActionTypes.SET_DATA_CONTEXT]: updateDataContext,
   [ActionTypes.SET_DATA_TOTAL]: updateDataTotal,
-  [ActionTypes.SET_CONTROL_CATEGORIES]: updateControlCategories,
+  [ActionTypes.SET_EXPEDIENTS_VISIBLE]: updateExpedientsVisible,
 }, initialState);
 
 export default reducer;

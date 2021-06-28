@@ -33,7 +33,7 @@ import {
   setDateRangeFilter,
   setSelectedCategories,
   setViewport,
-  setControlCategories
+  setExpedientsVisible
 } from '../actions';
 import {calcStats} from '../services/calcStats';
 
@@ -190,7 +190,7 @@ const Expedients = () => {
     bearing,
     pitch,
   }));
-  const handleChangeSelect = (isOn) => dispatch(setControlCategories(isOn));
+  const handleChangeSelect = (isOn) => dispatch(setExpedientsVisible(isOn));
   const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleUrl(newStyle));
   const handleSelectedCategoriesChange = (newCategories) => dispatch(setSelectedCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
