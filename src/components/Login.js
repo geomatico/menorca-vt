@@ -21,7 +21,7 @@ const Login = ({children}) => {
   }, []);
 
   const handleLogin = (user, pass, onMount) => {
-    // Test a GetFeatureInfo on the protected layer with basic auth
+    // Test a GetMap request on the protected layer, with basic auth
     const url = `https://${process.env.TILE_HOST}/geoserver/ordenacio_restringit/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image%2Fpng&STYLES&LAYERS=${process.env.EXPEDIENTS_LAYER}&exceptions=application%2Fvnd.ogc.se_inimage&WIDTH=256&HEIGHT=256&SRS=EPSG%3A25831&BBOX=597373.8302330114%2C4424719.863198288%2C597679.2360766889%2C4425025.269041965`;
     setErrorMessage('Comprovant credencials...');
     fetch(url, {
@@ -36,7 +36,7 @@ const Login = ({children}) => {
           localStorage.setItem('menorca.expedients.password', pass);
           setErrorMessage(undefined);
           dispatch(setLoggedIn(true));
-        } else {
+        } else { // Unauthorized
           setErrorMessage(onMount ? '' : 'Login incorrecte');
           dispatch(setLoggedIn(false));
         }
