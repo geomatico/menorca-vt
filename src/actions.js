@@ -9,6 +9,7 @@ const ActionTypes = keyMirror({
   SET_DATA_CONTEXT: null,
   SET_DATA_TOTAL: null,
   SET_EXPEDIENTS_VISIBLE: null,
+  SET_LOGGED_IN: null,
 });
 
 export default ActionTypes;
@@ -20,3 +21,4 @@ export const setDateRangeFilter = createAction(ActionTypes.SET_DATE_RANGE_FILTER
 export const setDataContext = createAction(ActionTypes.SET_DATA_CONTEXT);
 export const setDataTotal = createAction(ActionTypes.SET_DATA_TOTAL);
 export const setExpedientsVisible = createAction(ActionTypes.SET_EXPEDIENTS_VISIBLE);
+export const setLoggedIn = createAction(ActionTypes.SET_LOGGED_IN);

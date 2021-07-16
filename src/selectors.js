@@ -25,3 +25,4 @@ export const getTotalExpedients = createSelector(
       return data + parseInt(totals);
     }, 0)
 );
+export const getLoggedIn = (state) => state.app.isLoggedIn;

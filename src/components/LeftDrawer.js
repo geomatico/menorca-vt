@@ -1,12 +1,15 @@
 import React, {useState, useCallback} from 'react';
 import PropTypes from 'prop-types';
 
-import {Drawer, Typography} from '@material-ui/core';
+import {Drawer, IconButton, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 import LogoBlanco from '../../static/img/LogoBlanco';
 import ResponsiveHeader from './ResponsiveHeader';
+import {ExitToApp} from '@material-ui/icons';
+import {setLoggedIn} from '../actions';
+import {useDispatch} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
@@ -35,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
+  const dispatch = useDispatch();
+
   const minDrawerWidth = defaultDrawerWidth;
   const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
@@ -58,6 +63,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
     }
   }, []);
 
+  const handleLogout = () => dispatch(setLoggedIn(false));
 
   return (
     <Drawer
@@ -65,7 +71,11 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
       PaperProps={{style: {width: drawerWidth}}}
     >
       <div className={classes.toolbar}/>
-      <ResponsiveHeader logo={<LogoBlanco/>} width={drawerWidth}/>
+      <ResponsiveHeader logo={<LogoBlanco/>} width={drawerWidth}>
+        <IconButton onClick={handleLogout}>
+          <ExitToApp/>
+        </IconButton>
+      </ResponsiveHeader>
       <div onMouseDown={e => handleMouseDown(e)} className={classes.dragger}>
         <ArrowForwardIosIcon/>
       </div>

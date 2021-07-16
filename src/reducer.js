@@ -24,7 +24,8 @@ export const initialState = {
     total: {
       expedientsByType: []
     }
-  }
+  },
+  isLoggedIn: false
 };
 
 const updateViewport = (state, action) => ({
@@ -78,6 +79,11 @@ const updateExpedientsVisible = (state, action) => ({
   previousSelectedCategories: !action.payload && state.selectedCategories
 });
 
+const updateLoggedIn = (state, action) => ({
+  ...state,
+  isLoggedIn: action.payload
+});
+
 const reducer = handleActions({
   [ActionTypes.SET_VIEWPORT]: updateViewport,
   [ActionTypes.SET_BASEMAP_STYLE_URL]: updateBaseMapStyleUrl,
@@ -86,6 +92,7 @@ const reducer = handleActions({
   [ActionTypes.SET_DATA_CONTEXT]: updateDataContext,
   [ActionTypes.SET_DATA_TOTAL]: updateDataTotal,
   [ActionTypes.SET_EXPEDIENTS_VISIBLE]: updateExpedientsVisible,
+  [ActionTypes.SET_LOGGED_IN]: updateLoggedIn,
 }, initialState);
 
 export default reducer;

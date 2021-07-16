@@ -78,8 +78,8 @@ const useStyles = makeStyles((theme) => ({
 
 const auth = [{
   urlMatch: process.env.EXPEDIENTS_LAYER,
-  user: process.env.EXPEDIENTS_USER,
-  password: process.env.EXPEDIENTS_PASSWORD
+  user: localStorage.getItem('menorca.expedients.user'),
+  password: localStorage.getItem('menorca.expedients.password')
 }];
 
 const maxDate = new Date().getFullYear();
