@@ -12,6 +12,7 @@ module.exports = (env) => ({
   entry: env.test ? '' : {
     twinmaps: './src/twinmaps.js',
     expedients: './src/expedients.js',
+    llicencies: './src/llicenciesApp.js',
   },
   resolve: {
     alias: {
@@ -60,6 +61,11 @@ module.exports = (env) => ({
       template: './src/template.html',
       filename: './expedients.html',
       chunks: ['expedients'],
+    }),
+    new HtmlWebPackPlugin({
+      template: './src/template.html',
+      filename: './llicencies.html',
+      chunks: ['llicencies'],
     }),
     new CopyWebpackPlugin({
       patterns: [
