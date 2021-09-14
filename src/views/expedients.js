@@ -23,21 +23,26 @@ import ExpandContent from '../components/ExpandContent';
 import {
   getDateRangeFilter,
   getSelectedBaseMapStyleUrl,
-  getSelectedCategories,
-  getViewport
+  getSelectedConsellCategories,
+  getSelectedCiutadellaCategories,
+  getViewport,
+  getExpedientsConsellVisible,
+  getExpedientsCiutadellaVisible
 } from '../selectors';
 import {
   setBaseMapStyleUrl,
   setDataContext,
   setDataTotal,
   setDateRangeFilter,
-  setSelectedCategories,
   setViewport,
-  setExpedientsVisible
+  setExpedientsConsellVisible,
+  setExpedientsCiutadellaVisible,
+  setSelectedConsellCategories,
+  setSelectedCiutadellaCategories
 } from '../actions';
 import {calcStats} from '../services/calcStats';
 
-const {mapStyles, sourceLayers, categories, fallbackColor, minDate} = config;
+const {mapStyles, consellSourceLayers, consellCategories, ciutadellaCategories, fallbackColor, minDate} = config;
 
 const RIGHT_DRAWER_WIDTH = 360;
 const LEFT_DEFAULT_DRAWER_WIDTH = 420;
@@ -77,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const auth = [{
-  urlMatch: process.env.EXPEDIENTS_LAYER,
+  urlMatch: 'ordenacio_restringit',
   user: localStorage.getItem('menorca.expedients.user'),
   password: localStorage.getItem('menorca.expedients.password')
 }];
@@ -85,67 +90,130 @@ const auth = [{
 const maxDate = new Date().getFullYear();
 
 const sources = {
-  'expedients': {
+  'expedientsConsell': {
     'type': 'vector',
     'tiles': [
-      `https://${process.env.TILE_HOST}/geoserver/ordenacio_restringit/wms?service=WMS&version=1.1.0&request=GetMap&layers=${process.env.EXPEDIENTS_LAYER}&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&styles=&format=application/vnd.mapbox-vector-tile`
+      `https://${process.env.TILE_HOST}/geoserver/ordenacio_restringit/wms?service=WMS&version=1.1.0&request=GetMap&layers=${process.env.EXPEDIENTS_CONSELL_LAYER}&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&styles=&format=application/vnd.mapbox-vector-tile`
     ],
     'minzoom': 9,
     'maxzoom': 15
+  },
+  'expedientsCiutadella': {
+    'type': 'vector',
+    'tiles': [
+      `https://${process.env.TILE_HOST}/geoserver/ordenacio_restringit/wms?service=WMS&version=1.1.0&request=GetMap&layers=${process.env.EXPEDIENTS_CIUTADELLA_LAYER}&bbox={bbox-epsg-3857}&width=512&height=512&srs=EPSG:3857&styles=&format=application/vnd.mapbox-vector-tile`
+    ],
+    'minZoom': 9,
+    'maxZoom': 15
   }
 };
 
-const buildLayers = (selectedCategories, dateRange) => sourceLayers.map(sourceLayer => ({
-  'id': sourceLayer,
-  'type': 'circle',
-  'source': 'expedients',
-  'source-layer': sourceLayer,
-  'filter': ['all',
-    ['in',
-      ['get', 'tipus'],
-      ['literal', categories.filter(({id}) => selectedCategories.includes(id)).flatMap(({values}) => values)]
-    ],
-    ['>=',
-      ['get', 'any'],
-      dateRange[0]
-    ],
-    ['<=',
-      ['get', 'any'],
-      dateRange[1]
-    ]
-  ],
-  'paint': {
-    'circle-color': ['match', ['get', 'tipus'],
-      ...categories.flatMap(({values, color}) =>
-        values.flatMap(value => [value, color])
-      ),
-      fallbackColor
-    ],
-    'circle-radius': ['interpolate', ['linear'], ['zoom'],
-      10, 1.5,
-      13, 2,
-      19, 8
-    ],
-    'circle-opacity': ['interpolate', ['linear'], ['zoom'],
-      9, 0.33,
-      17, 0.9
-    ],
-  }
-}));
+const buildConsellLayers = (isExpedientsConsellVisible, selectedConsellCategories, dateRange) => (
+  isExpedientsConsellVisible ?
+    consellSourceLayers.map(sourceLayer => ({
+      'id': sourceLayer,
+      'type': 'circle',
+      'source': 'expedientsConsell',
+      'source-layer': sourceLayer,
+      'filter': ['all',
+        ['in',
+          ['get', 'tipus'],
+          ['literal', consellCategories.filter(({id}) => selectedConsellCategories.includes(id)).flatMap(({values}) => values)]
+        ],
+        ['>=',
+          ['get', 'any'],
+          dateRange[0]
+        ],
+        ['<=',
+          ['get', 'any'],
+          dateRange[1]
+        ]
+      ],
+      'paint': {
+        'circle-color': ['match', ['get', 'tipus'],
+          ...consellCategories.flatMap(({values, color}) =>
+            values.flatMap(value => [value, color])
+          ),
+          fallbackColor
+        ],
+        'circle-radius': ['interpolate', ['linear'], ['zoom'],
+          10, 1.5,
+          13, 2,
+          19, 8
+        ],
+        'circle-opacity': ['interpolate', ['linear'], ['zoom'],
+          9, 0.33,
+          17, 0.9
+        ],
+      }
+    })) :
+    []
+);
+
+const buildCiutadellaLayers = (isExpedientsCiutadellaVisible, selectedCiutadellaCategories, dateRange) => (
+  isExpedientsCiutadellaVisible ?
+    [{
+      'id': 'or015urb_llicencies',
+      'type': 'circle',
+      'source': 'expedientsCiutadella',
+      'source-layer': 'or015urb_llicencies',
+      'filter':  ['all',
+        ['in',
+          ['get', 'tipus'],
+          ['literal', ciutadellaCategories.filter(({id}) => selectedCiutadellaCategories.includes(id)).flatMap(({values}) => values)]
+        ],
+        ['>=',
+          ['get', 'any'],
+          dateRange[0]
+        ],
+        ['<=',
+          ['get', 'any'],
+          dateRange[1]
+        ]
+      ],
+      'paint': {
+        'circle-color': ['match', ['get', 'tipus'],
+          ...ciutadellaCategories.flatMap(({values, color}) =>
+            values.flatMap(value => [value, color])
+          ),
+          fallbackColor
+        ],
+        'circle-radius': ['interpolate', ['linear'], ['zoom'],
+          10, 1.5,
+          13, 2,
+          19, 8
+        ],
+        'circle-opacity': ['interpolate', ['linear'], ['zoom'],
+          9, 0.33,
+          17, 0.9
+        ],
+      }
+    }] : []
+);
 
 const Expedients = () => {
   const dispatch = useDispatch();
   const viewport = useSelector(getViewport);
   const selectedStyleUrl = useSelector(getSelectedBaseMapStyleUrl);
-  const selectedCategories = useSelector(getSelectedCategories);
+  const isExpedientsConsellVisible = useSelector(getExpedientsConsellVisible);
+  const selectedConsellCategories = useSelector(getSelectedConsellCategories);
+  const isExpedientsCiutadellaVisible = useSelector(getExpedientsCiutadellaVisible);
+  const selectedCiutadellaCategories = useSelector(getSelectedCiutadellaCategories);
   const dateRange = useSelector(getDateRangeFilter);
 
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
   const [leftDrawerWidth, setLeftDrawerWidth] = useState(LEFT_DEFAULT_DRAWER_WIDTH);
 
-  const layers = useMemo(() =>
-    buildLayers(selectedCategories, dateRange), [selectedCategories, dateRange]);
+  const layers = useMemo(() => ([
+    ...buildConsellLayers(isExpedientsConsellVisible, selectedConsellCategories, dateRange),
+    ...buildCiutadellaLayers(isExpedientsCiutadellaVisible, selectedCiutadellaCategories, dateRange)
+  ]),
+  [
+    isExpedientsConsellVisible, selectedConsellCategories,
+    isExpedientsCiutadellaVisible, selectedCiutadellaCategories,
+    dateRange
+  ]);
 
   useEffect(() => {
     fetchTotalExpedients(...dateRange)
@@ -167,7 +235,7 @@ const Expedients = () => {
     map.on('idle', () => {
       const featureProperties = map
         .queryRenderedFeatures({
-          layers: sourceLayers
+          layers: consellSourceLayers
         })
         .map(feature => feature.properties);
       handleCalcStats(featureProperties);
@@ -190,9 +258,11 @@ const Expedients = () => {
     bearing,
     pitch,
   }));
-  const handleChangeSelect = (isOn) => dispatch(setExpedientsVisible(isOn));
+  const toggleExpedientsConsellLayer = (isOn) => dispatch(setExpedientsConsellVisible(isOn));
+  const toggleExpedientsCiutadellaLayer = (isOn) => dispatch(setExpedientsCiutadellaVisible(isOn));
   const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleUrl(newStyle));
-  const handleSelectedCategoriesChange = (newCategories) => dispatch(setSelectedCategories(newCategories));
+  const handleSelectedConsellCategories = (newCategories) => dispatch(setSelectedConsellCategories(newCategories));
+  const handleSelectedCiutadellaCategories = (newCategories) => dispatch(setSelectedCiutadellaCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
 
   return (
@@ -207,8 +277,11 @@ const Expedients = () => {
       </Hidden>
       <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
         <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
-        <ExpandContent title={'Tipus d\'expedients'} onChange={handleChangeSelect}>
-          <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={handleSelectedCategoriesChange}/>
+        <ExpandContent title={'Expedients consell insular'} onChange={toggleExpedientsConsellLayer}>
+          <CategoricFilter categories={consellCategories} selected={selectedConsellCategories} onSelectionChange={handleSelectedConsellCategories}/>
+        </ExpandContent>
+        <ExpandContent title={'Expedients Aj. Ciutadella'} onChange={toggleExpedientsCiutadellaLayer}>
+          <CategoricFilter categories={ciutadellaCategories} selected={selectedCiutadellaCategories} onSelectionChange={handleSelectedCiutadellaCategories}/>
         </ExpandContent>
         <ExpandContent title={'Rang de dates'}>
           <div style={{padding: '0 16px', width: '100%'}}>

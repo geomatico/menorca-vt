@@ -31,12 +31,12 @@
       "url": "https://geoserveis.icgc.cat/contextmaps/fulldark.json"
     }
   ],
-  "sourceLayers": [
+  "consellSourceLayers": [
     "or007exp_negociat45",
     "or007exp_negociat41",
     "or007exp_negociat37"
   ],
-  "categories": [
+  "consellCategories": [
     {
       "id": "CED",
       "values": [
@@ -121,6 +121,64 @@
       ],
       "color": "#E9FFBE",
       "label": "Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)"
+    }
+  ],
+  "ciutadellaCategories": [
+    {
+      "id": "EX067",
+      "values": [
+        "EX067"
+      ],
+      "color": "#A80000",
+      "label": "EX067. Llicència d'obra amb projecte tècnic"
+    },
+    {
+      "id": "EX068",
+      "values": [
+        "EX068"
+      ],
+      "color": "#00A9E6",
+      "label": "EX068. Llicència d'obra sense projecte tècnic"
+    },
+    {
+      "id": "EX073",
+      "values": [
+        "EX073"
+      ],
+      "color": "#38A800",
+      "label": "EX073. Primera ocupació"
+    },
+    {
+      "id": "EX567",
+      "values": [
+        "EX567"
+      ],
+      "color": "#ff8533",
+      "label": "EX567. Llicència obra amb projecte tècnic i activitat"
+    },
+    {
+      "id": "EX568",
+      "values": [
+        "EX568"
+      ],
+      "color": "#0000e6",
+      "label": "EX568. Llicència obra sense projecte tècnic i activitat"
+    },
+    {
+      "id": "EX569",
+      "values": [
+        "EX569"
+      ],
+      "color": "#bf80ff",
+      "label": "EX569. Comunicació Previa Inici Obres"
+    },
+    {
+      "id": "EX076",
+      "values": [
+        "EX076"
+      ],
+      "color": "#f003fc",
+      "label": "EX076. Llicència modificació de plànols"
     }
   ],
   "fallbackColor": "#FF00FF",

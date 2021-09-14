@@ -10,8 +10,10 @@ export const initialState = {
     ...config.initialViewport
   },
   baseMapStyleUrl: config.mapStyles[5].url,
-  selectedCategories: config.categories.map(({id}) => id),
-  previousSelectedCategories: [],
+  isExpedientsConsellVisible: true,
+  isExpedientsCiutadellaVisible: true,
+  selectedConsellCategories: config.consellCategories.map(({id}) => id),
+  selectedCiutadellaCategories: config.ciutadellaCategories.map(({id}) => id),
   dateRange: [config.minDate, new Date().getFullYear()],
   data: {
     context: {
@@ -41,10 +43,16 @@ const updateBaseMapStyleUrl = (state, action) => ({
   baseMapStyleUrl: action.payload
 });
 
-const updateSelectedCategories = (state, action) => ({
+const updateSelectedConsellCategories = (state, action) => ({
   ...state,
-  selectedCategories: action.payload
+  selectedConsellCategories: action.payload
 });
+
+const updateSelectedCiutadellaCategories = (state, action) => ({
+  ...state,
+  selectedCiutadellaCategories: action.payload
+});
+
 
 const updateDateRange = (state, action) => ({
   ...state,
@@ -73,10 +81,14 @@ const updateDataTotal = (state, action) => ({
   }
 });
 
-const updateExpedientsVisible = (state, action) => ({
+const setExpedientsConsellVisible = (state, action) => ({
   ...state,
-  selectedCategories: action.payload ? state.previousSelectedCategories : [],
-  previousSelectedCategories: !action.payload && state.selectedCategories
+  isExpedientsConsellVisible: action.payload
+});
+
+const setExpedientsCiutadellaVisible = (state, action) => ({
+  ...state,
+  isExpedientsCiutadellaVisible: action.payload
 });
 
 const updateLoggedIn = (state, action) => ({
@@ -87,11 +99,13 @@ const updateLoggedIn = (state, action) => ({
 const reducer = handleActions({
   [ActionTypes.SET_VIEWPORT]: updateViewport,
   [ActionTypes.SET_BASEMAP_STYLE_URL]: updateBaseMapStyleUrl,
-  [ActionTypes.SET_SELECTED_CATEGORIES]: updateSelectedCategories,
+  [ActionTypes.SET_SELECTED_CONSELL_CATEGORIES]: updateSelectedConsellCategories,
+  [ActionTypes.SET_SELECTED_CIUTADELLA_CATEGORIES]: updateSelectedCiutadellaCategories,
   [ActionTypes.SET_DATE_RANGE_FILTER]: updateDateRange,
   [ActionTypes.SET_DATA_CONTEXT]: updateDataContext,
   [ActionTypes.SET_DATA_TOTAL]: updateDataTotal,
-  [ActionTypes.SET_EXPEDIENTS_VISIBLE]: updateExpedientsVisible,
+  [ActionTypes.SET_EXPEDIENTS_CONSELL_VISIBLE]: setExpedientsConsellVisible,
+  [ActionTypes.SET_EXPEDIENTS_CIUTADELLA_VISIBLE]: setExpedientsCiutadellaVisible,
   [ActionTypes.SET_LOGGED_IN]: updateLoggedIn,
 }, initialState);
 
