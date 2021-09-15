@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {Accordion, AccordionDetails, AccordionSummary, Divider, Typography, FormControlLabel} from '@material-ui/core';
@@ -50,13 +50,9 @@ const useStyles = makeStyles({
   },
 });
 
-function ExpandContent({title, children, onChange}) {
+function ExpandContent({title, children, onChange, isChecked}) {
   const classes = useStyles ();
-  const [isChecked, setChecked] = useState(true);
-  const handleChange = () => {
-    setChecked(!isChecked);
-    onChange(!isChecked);
-  };
+  const toggle = () => onChange(!isChecked);
 
   return (
     <AccordionLayer elevation={0}>
@@ -74,7 +70,7 @@ function ExpandContent({title, children, onChange}) {
               control={
                 <ColorSwitch
                   checked={isChecked}
-                  onChange={handleChange}
+                  onChange={toggle}
                   name='checkedLayer'
                   color='#000'
                 />
@@ -96,9 +92,12 @@ ExpandContent.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  checked: PropTypes.bool,
-  onChange: PropTypes.func,
+  isChecked: PropTypes.bool,
+  onChange: PropTypes.func
 };
 
+ExpandContent.defaultProps = {
+  isChecked: true
+};
 
 export default ExpandContent;

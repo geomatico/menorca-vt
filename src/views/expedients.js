@@ -8,7 +8,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Box, Hidden, IconButton, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import {CategoricFilter, Map, RangeSlider} from '@geomatico/geocomponents';
+import {SwitchPad, Map, RangeSlider} from '@geomatico/geocomponents';
 
 import config from '../config.json';
 import ResponsiveHeader from '../components/ResponsiveHeader';
@@ -277,15 +277,15 @@ const Expedients = () => {
       </Hidden>
       <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
         <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
-        <ExpandContent title={'Expedients consell insular'} onChange={toggleExpedientsConsellLayer}>
-          <CategoricFilter categories={consellCategories} selected={selectedConsellCategories} onSelectionChange={handleSelectedConsellCategories}/>
+        <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={toggleExpedientsConsellLayer}>
+          <SwitchPad categories={consellCategories} selected={selectedConsellCategories} onSelectionChange={handleSelectedConsellCategories}/>
         </ExpandContent>
-        <ExpandContent title={'Expedients Aj. Ciutadella'} onChange={toggleExpedientsCiutadellaLayer}>
-          <CategoricFilter categories={ciutadellaCategories} selected={selectedCiutadellaCategories} onSelectionChange={handleSelectedCiutadellaCategories}/>
+        <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={toggleExpedientsCiutadellaLayer}>
+          <SwitchPad categories={ciutadellaCategories} selected={selectedCiutadellaCategories} onSelectionChange={handleSelectedCiutadellaCategories}/>
         </ExpandContent>
         <ExpandContent title={'Rang de dates'}>
           <div style={{padding: '0 16px', width: '100%'}}>
-            <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange}/>
+            <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange} animationInterval={1000}/>
           </div>
         </ExpandContent>
         <ExpandContent title={'Mapes base'}>
