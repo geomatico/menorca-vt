@@ -2,27 +2,22 @@ import { createSelector } from 'reselect';
 
 import config from './config.json';
 
-const mainExpedientsTipus = config
-  .categories
-  .filter(({id}) => id !== 'altres')
-  .map(({id}) => id);
-const altresExpedientsTipus = config
-  .categories
-  .find(({id}) => id === 'altres').values;
-
 export const getViewport = (state) => state.app.viewport;
 export const getSelectedBaseMapStyleUrl = (state) => state.app.baseMapStyleUrl;
-export const getSelectedCategories = (state) => state.app.selectedCategories;
+export const getExpedientsConsellVisible = (state) => state.app.isExpedientsConsellVisible;
+export const getExpedientsCiutadellaVisible = (state) => state.app.isExpedientsCiutadellaVisible;
+export const getSelectedConsellCategories = (state) => state.app.selectedConsellCategories;
+export const getSelectedCiutadellaCategories = (state) => state.app.selectedCiutadellaCategories;
 export const getDateRangeFilter = (state) => state.app.dateRange;
 export const getData = (state) => state.app.data;
-export const getExpedientsByType = (state) => getData(state).total.expedientsByType;
+export const getExpedientsConsellByType = (state) => getData(state).total.expedientsByType;
 export const getTotalExpedients = createSelector(
-  [getExpedientsByType, getSelectedCategories],
-  (expedientsByType, selectedCategories) => expedientsByType
-    .filter(({tipus}) => mainExpedientsTipus.includes(tipus) ? selectedCategories.includes(tipus) :
-      altresExpedientsTipus.includes(tipus) ? selectedCategories.includes('altres') : false)
-    .reduce((data, {totals}) => {
-      return data + parseInt(totals);
-    }, 0)
+  [getExpedientsConsellByType, getSelectedConsellCategories],
+  (numExpedientsConsellByType, selectedConsellCategories) =>
+    numExpedientsConsellByType
+      .filter(({tipus}) => config.consellCategories.find(category => selectedConsellCategories.includes(category.id) && category.values.includes(tipus)))
+      .reduce((data, {totals}) => {
+        return data + parseInt(totals);
+      }, 0)
 );
 export const getLoggedIn = (state) => state.app.isLoggedIn;

@@ -11,23 +11,23 @@ import config from '../../config.json';
 
 
 const ChartsComponent = () => {
-  const {categories} = config;
+  const {consellCategories} = config;
   const {context} = useSelector(getData);
   const totalExpedients = useSelector(getTotalExpedients);
-  
+
   return <>
-    <Chart title={'Nombre d\'expedients per any'}>
-      <TypeCountByYearChart categories={categories} data={context.typeCountByYear}/>
+    <Chart title={'Nombre d\'expedients per any (consell)'}>
+      <TypeCountByYearChart categories={consellCategories} data={context.typeCountByYear}/>
     </Chart>
-    <Chart title={'Percentatge de resolució d\'expedients'}>
+    <Chart title={'Percentatge de resolució d\'expedients (consell)'}>
       <ResolutionStateChart data={context.resolutionStateCount}/>
     </Chart>
-    <Chart title={'Total d\'expedients'}>
+    <Chart title={'Total d\'expedients (consell)'}>
       <NumericIndicator
         main={context.expedients}
         total={totalExpedients}/>
     </Chart>
-    <Chart title={'Viviendes vs total locales'}>
+    <Chart title={'Vivendes vs total locals (consell)'}>
       <NumericIndicator title={''} main={parseInt(context.numberofdwellings)} total={parseInt(context.numberofbuildingunits)}/>
     </Chart>
   </>;
