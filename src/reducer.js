@@ -11,7 +11,7 @@ export const initialState = {
   },
   baseMapStyleUrl: config.mapStyles[5].url,
   isExpedientsConsellVisible: true,
-  isExpedientsCiutadellaVisible: true,
+  isExpedientsCiutadellaVisible: false,
   selectedConsellCategories: config.consellCategories.map(({id}) => id),
   selectedCiutadellaCategories: config.ciutadellaCategories.map(({id}) => id),
   dateRange: [config.minDate, new Date().getFullYear()],

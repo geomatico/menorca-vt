@@ -8,7 +8,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Box, Hidden, IconButton, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import {CategoricFilter, Map, RangeSlider} from '@geomatico/geocomponents';
+import {SwitchPad, Map, RangeSlider} from '@geomatico/geocomponents';
 
 import config from '../config.json';
 import ResponsiveHeader from '../components/ResponsiveHeader';
@@ -17,7 +17,7 @@ import LeftDrawer from '../components/LeftDrawer';
 import SquareButtonIcon from '../components/SquareButtonIcon';
 import LogoBlanco from '../../static/img/LogoBlanco';
 import BaseMapList from '../components/BaseMapList';
-import {fetchTotalExpedients, fetchTotalViviendes} from '../api';
+import {fetchTotalExpedients, fetchTotalVivendes} from '../api';
 import ChartsComponent from './map/ChartsComponents';
 import ExpandContent from '../components/ExpandContent';
 import {
@@ -201,6 +201,7 @@ const Expedients = () => {
   const selectedCiutadellaCategories = useSelector(getSelectedCiutadellaCategories);
   const dateRange = useSelector(getDateRangeFilter);
 
+  const [map, setMap] = useState();
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
   const [leftDrawerWidth, setLeftDrawerWidth] = useState(LEFT_DEFAULT_DRAWER_WIDTH);
@@ -222,28 +223,29 @@ const Expedients = () => {
       })));
   }, [dateRange]);
 
-  const handleCalcStats = debounce(10, (featureProperties) => {
-    const featurePropertiesFiltered = featureProperties
-      .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
-
-    const stats = calcStats(featurePropertiesFiltered);
-
-    dispatch(setDataContext(stats));
-  });
-
-  const onMapSet = (map) => {
-    map.on('idle', () => {
+  const updateStats = debounce(10, () => {
+    if (map) {
       const featureProperties = map
         .queryRenderedFeatures({
-          layers: consellSourceLayers
+          layers: [
+            ...(isExpedientsConsellVisible ? consellSourceLayers : []),
+            ...(isExpedientsCiutadellaVisible ? ['or015urb_llicencies'] : [])
+          ]
         })
-        .map(feature => feature.properties);
-      handleCalcStats(featureProperties);
-      fetchTotalViviendes(map.getBounds().toArray().flatMap(a => a).join(','))
+        .map(feature => feature.properties)
+        .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
+
+      dispatch(setDataContext(calcStats(featureProperties)));
+
+      fetchTotalVivendes(map.getBounds().toArray().flatMap(a => a).join(','))
         .then((totalViviendas) =>
           dispatch(setDataContext(...totalViviendas)));
-    });
-  };
+    }
+  });
+
+  useEffect(() => {
+    map && map.once('idle', () => updateStats(map));
+  }, [viewport, layers]);
 
   const classes = useStyles({isRightDrawerOpen, leftDrawerWidth});
 
@@ -265,6 +267,16 @@ const Expedients = () => {
   const handleSelectedCiutadellaCategories = (newCategories) => dispatch(setSelectedCiutadellaCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
 
+  const mapComponent = <Map
+    mapStyle={selectedStyleUrl}
+    auth={auth}
+    sources={sources}
+    layers={layers}
+    viewport={viewport}
+    onMapSet={setMap}
+    onViewportChange={handleViewportChange}
+  />;
+
   return (
     <div>
       {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
@@ -277,15 +289,15 @@ const Expedients = () => {
       </Hidden>
       <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
         <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
-        <ExpandContent title={'Expedients consell insular'} onChange={toggleExpedientsConsellLayer}>
-          <CategoricFilter categories={consellCategories} selected={selectedConsellCategories} onSelectionChange={handleSelectedConsellCategories}/>
+        <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={toggleExpedientsConsellLayer}>
+          <SwitchPad categories={consellCategories} selected={selectedConsellCategories} onSelectionChange={handleSelectedConsellCategories}/>
         </ExpandContent>
-        <ExpandContent title={'Expedients Aj. Ciutadella'} onChange={toggleExpedientsCiutadellaLayer}>
-          <CategoricFilter categories={ciutadellaCategories} selected={selectedCiutadellaCategories} onSelectionChange={handleSelectedCiutadellaCategories}/>
+        <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={toggleExpedientsCiutadellaLayer}>
+          <SwitchPad categories={ciutadellaCategories} selected={selectedCiutadellaCategories} onSelectionChange={handleSelectedCiutadellaCategories}/>
         </ExpandContent>
         <ExpandContent title={'Rang de dates'}>
           <div style={{padding: '0 16px', width: '100%'}}>
-            <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange}/>
+            <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange} animationInterval={1000}/>
           </div>
         </ExpandContent>
         <ExpandContent title={'Mapes base'}>
@@ -311,15 +323,7 @@ const Expedients = () => {
         </ResponsiveHeader>
         <ReactCardFlip isFlipped={isFlipped}>
           <main style={{width: '100vw', height: '100vh'}}>
-            <Map
-              mapStyle={selectedStyleUrl}
-              auth={auth}
-              sources={sources}
-              layers={layers}
-              viewport={viewport}
-              onMapSet={onMapSet}
-              onViewportChange={handleViewportChange}
-            />
+            {mapComponent}
           </main>
           <Box px={2}>
             <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
@@ -337,15 +341,7 @@ const Expedients = () => {
           <ChartsComponent />
         </LeftDrawer>
         <main className={classes.content}>
-          <Map
-            mapStyle={selectedStyleUrl}
-            auth={auth}
-            sources={sources}
-            layers={layers}
-            viewport={viewport}
-            onMapSet={onMapSet}
-            onViewportChange={handleViewportChange}
-          />
+          {mapComponent}
         </main>
       </Hidden>
     </div>);
