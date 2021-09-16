@@ -182,6 +182,21 @@
     }
   ],
   "fallbackColor": "#FF00FF",
+  "resolucioColors": {
+    "Sense resolució": "#7D7D7D",
+    "Desistit": "#BDBDBD",
+    "Concedit": "#00CC00",
+    "": "#696969",
+    "Denegat": "#CC0000",
+    "Denegat parcialment": "#CC0000",
+    "Arxivat": "#D3D3D3",
+    "Concedir":  "#00CC00",
+    "Pendent": "#9E9E9E",
+    "Denegar": "#CC0000",
+    "Arxivar": "#D3D3D3",
+    "Desestiment": "#BDBDBD",
+    "Caducitat": "#7D7D7D"
+  },
   "minDate": 1977,
   "initialViewport": {
     "latitude": 39.945,

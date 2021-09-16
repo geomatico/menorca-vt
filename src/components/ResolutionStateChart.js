@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import {
   PieChart, Pie, Cell, Tooltip,
 } from 'recharts';
+import config from '../config.json';
 
-const COLORS = ['#BBB', '#999', '#777', '#555'];
+const {resolucioColors, fallbackColor} = config;
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.3;
@@ -34,7 +35,7 @@ const ResolutionStateChart = ({data}) => {
         dataKey="value"
       >
         {
-          data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+          data.map((entry, index) => <Cell key={`cell-${index}`} fill={resolucioColors[entry.name] ? resolucioColors[entry.name] : fallbackColor} />)
         }
       </Pie>
       <Tooltip />
