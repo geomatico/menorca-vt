@@ -70,15 +70,3 @@ RightDrawer.propTypes = {
 };
 
 export default RightDrawer;
-
-//MUI
-
-//MUI-ICONS
-
-//GEOCOMPONENTS
-
-//MENORCA-VT
-
-//UTILS
-
-//STYLES

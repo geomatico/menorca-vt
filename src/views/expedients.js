@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import MenuIcon from '@mui/icons-material/Menu';
 //GEOCOMPONENTS
+import BaseMapList from '@geomatico/geocomponents/BaseMapList';
 import Map from '@geomatico/geocomponents/Map';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
 import SwitchPad from '@geomatico/geocomponents/SwitchPad';
@@ -19,7 +20,7 @@ import RightDrawer from '../components/RightDrawer';
 import LeftDrawer from '../components/LeftDrawer';
 import SquareButtonIcon from '../components/SquareButtonIcon';
 import LogoBlanco from '../../static/img/LogoBlanco';
-import BaseMapList from '../components/BaseMapList';
+/*import BaseMapList from '../components/BaseMapList';*/
 import {fetchTotalExpedients, fetchTotalVivendes} from '../api';
 import ChartsComponent from './map/ChartsComponents';
 import ExpandContent from '../components/ExpandContent';
@@ -32,7 +33,7 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import {
   getDateRangeFilter,
-  getSelectedBaseMapStyleUrl,
+  getSelectedBaseMapStyleId,
   getSelectedConsellCategories,
   getSelectedCiutadellaCategories,
   getViewport,
@@ -40,7 +41,7 @@ import {
   getExpedientsCiutadellaVisible
 } from '../selectors';
 import {
-  setBaseMapStyleUrl,
+  setBaseMapStyleId,
   setDataContext,
   setDataTotal,
   setDateRangeFilter,
@@ -206,7 +207,7 @@ const buildCiutadellaLayers = (isExpedientsCiutadellaVisible, selectedCiutadella
 const Expedients = () => {
   const dispatch = useDispatch();
   const viewport = useSelector(getViewport);
-  const selectedStyleUrl = useSelector(getSelectedBaseMapStyleUrl);
+  const selectedStyleId = useSelector(getSelectedBaseMapStyleId);
   const isExpedientsConsellVisible = useSelector(getExpedientsConsellVisible);
   const selectedConsellCategories = useSelector(getSelectedConsellCategories);
   const isExpedientsCiutadellaVisible = useSelector(getExpedientsCiutadellaVisible);
@@ -274,13 +275,13 @@ const Expedients = () => {
   }));
   const toggleExpedientsConsellLayer = (isOn) => dispatch(setExpedientsConsellVisible(isOn));
   const toggleExpedientsCiutadellaLayer = (isOn) => dispatch(setExpedientsCiutadellaVisible(isOn));
-  const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleUrl(newStyle));
+  const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleId(newStyle));
   const handleSelectedConsellCategories = (newCategories) => dispatch(setSelectedConsellCategories(newCategories));
   const handleSelectedCiutadellaCategories = (newCategories) => dispatch(setSelectedCiutadellaCategories(newCategories));
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
 
   const mapComponent = <Map
-    mapStyle={selectedStyleUrl}
+    mapStyle={selectedStyleId}
     auth={auth}
     sources={sources}
     layers={layers}
@@ -314,10 +315,12 @@ const Expedients = () => {
         </ExpandContent>
         <ExpandContent title={'Mapes base'}>
           <BaseMapList
-            isSelected={selectedStyleUrl === mapStyles.url}
             styles={mapStyles}
-            selectedStyleUrl={selectedStyleUrl}
+            selectedStyleId={selectedStyleId}
             onStyleChange={handleStyleChange}
+            thumbnailWidth={60}
+            thumbnailHeight={40}
+            variant='list'
           />
         </ExpandContent>
       </RightDrawer>

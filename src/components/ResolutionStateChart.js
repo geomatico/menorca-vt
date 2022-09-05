@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //OTHERS
-import Cell from 'recharts/Cell';
-import Pie from 'recharts/Pie';
-import PieChart from 'recharts/PieChart';
-import Tooltip from 'recharts/Tooltip';
+import { Cell, Pie, PieChart, Tooltip } from 'recharts';
 //UTILS
 import config from '../config.json';
 

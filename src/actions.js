@@ -3,7 +3,7 @@ import {createAction} from 'redux-actions';
 
 const ActionTypes = keyMirror({
   SET_VIEWPORT: null,
-  SET_BASEMAP_STYLE_URL: null,
+  SET_BASEMAP_STYLE_ID: null,
   SET_SELECTED_CONSELL_CATEGORIES: null,
   SET_SELECTED_CIUTADELLA_CATEGORIES: null,
   SET_DATE_RANGE_FILTER: null,
@@ -17,7 +17,7 @@ const ActionTypes = keyMirror({
 export default ActionTypes;
 
 export const setViewport = createAction(ActionTypes.SET_VIEWPORT);
-export const setBaseMapStyleUrl = createAction(ActionTypes.SET_BASEMAP_STYLE_URL);
+export const setBaseMapStyleId = createAction(ActionTypes.SET_BASEMAP_STYLE_ID);
 export const setSelectedConsellCategories = createAction(ActionTypes.SET_SELECTED_CONSELL_CATEGORIES);
 export const setSelectedCiutadellaCategories = createAction(ActionTypes.SET_SELECTED_CIUTADELLA_CATEGORIES);
 export const setDateRangeFilter = createAction(ActionTypes.SET_DATE_RANGE_FILTER);

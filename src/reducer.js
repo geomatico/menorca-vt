@@ -9,7 +9,7 @@ export const initialState = {
     height: window.innerHeight,
     ...config.initialViewport
   },
-  baseMapStyleUrl: config.mapStyles[5].url,
+  baseMapStyleId: config.mapStyles[5].id,
   isExpedientsConsellVisible: true,
   isExpedientsCiutadellaVisible: false,
   selectedConsellCategories: config.consellCategories.map(({id}) => id),
@@ -38,9 +38,9 @@ const updateViewport = (state, action) => ({
   }
 });
 
-const updateBaseMapStyleUrl = (state, action) => ({
+const updateBaseMapStyleId = (state, action) => ({
   ...state,
-  baseMapStyleUrl: action.payload
+  baseMapStyleId: action.payload
 });
 
 const updateSelectedConsellCategories = (state, action) => ({
@@ -98,7 +98,7 @@ const updateLoggedIn = (state, action) => ({
 
 const reducer = handleActions({
   [ActionTypes.SET_VIEWPORT]: updateViewport,
-  [ActionTypes.SET_BASEMAP_STYLE_URL]: updateBaseMapStyleUrl,
+  [ActionTypes.SET_BASEMAP_STYLE_ID]: updateBaseMapStyleId,
   [ActionTypes.SET_SELECTED_CONSELL_CATEGORIES]: updateSelectedConsellCategories,
   [ActionTypes.SET_SELECTED_CIUTADELLA_CATEGORIES]: updateSelectedCiutadellaCategories,
   [ActionTypes.SET_DATE_RANGE_FILTER]: updateDateRange,
