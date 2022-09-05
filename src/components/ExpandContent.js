@@ -12,88 +12,73 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //GEOCOMPONENTS
 import ColorSwitch from '@geomatico/geocomponents/ColorSwitch';
 //STYLES
-import withStyles from '@mui/styles/withStyles';
-import makeStyles from '@mui/styles/makeStyles';
-
-const AccordionLayer = withStyles({
-  root: {
-    padding: 0,
-    margin: 0,
-    borderBottom: '1px solid lightgray',
-    '&:before': {
-      opacity: 0,
+const accordion = {
+  p: 0,
+  m: '8px 0',
+  '&.Mui-expanded': {
+    m: '8px 0',
+  },
+  '&::before': {
+    bgcolor: 'transparent',
+  },
+  '& .MuiButtonBase-root': {
+    minHeight: '28px',
+  }
+};
+const summary = {
+  p: 0,
+  m: 0,
+  borderBottom: '1px solid lightgray',
+  '& .MuiAccordionSummary-content': {
+    m: 0,
+  },
+  '&.Mui-expanded': {
+    '& .MuiAccordionSummary-content': {
+      m: 0,
     },
+    minHeight: '28px',
   },
-  expanded: {
-    padding: 0,
-    margin: 0,
-  },
-})(Accordion);
+};
+const details = {
+  p: 0,
+  mb: 2,
+  '& .MuiListItem-root': {
+    m: 0,
+    p: 0
+  }
+};
 
-const AccordionContent = withStyles({
-  root: {
-    padding: 0,
-    borderBottom: 'none',
-    '&$expanded': {
-      minHeight: 48,
-    },
-  },
-  content: {
-    '&$expanded': {
-      margin: 0,
-    },
-  },
-  expanded: {}
-})(AccordionSummary);
-
-const AccordionValues = withStyles({
-  root: {
-    padding: 0,
-    marginBottom: 10,
-  },
-})(AccordionDetails);
-
-const useStyles = makeStyles({
-  control: {
-    marginLeft: 0
-  },
-});
-
-function ExpandContent({title, children, onChange, isChecked}) {
-  const classes = useStyles ();
+const ExpandContent = ({title, children, onChange, isChecked}) => {
   const toggle = () => onChange(!isChecked);
 
-  return (
-    <AccordionLayer elevation={0}>
-      <AccordionContent
-        aria-label='Expand'
-        expandIcon={<ExpandMoreIcon/>}
-      >
-        {
-          onChange ?
-            <FormControlLabel
-              className={classes.control}
-              aria-label='On/Off layers'
-              onClick={(event) => event.stopPropagation()}
-              onFocus={(event) => event.stopPropagation()}
-              control={
-                <ColorSwitch
-                  checked={isChecked}
-                  onChange={toggle}
-                  name='checkedLayer'
-                  color='#000'
-                />
-              }
+  return <Accordion elevation={0} sx={accordion}>
+    <AccordionSummary
+      aria-label='Expand'
+      expandIcon={<ExpandMoreIcon/>}
+      sx={summary}
+    >
+      {
+        onChange && <FormControlLabel
+          sx={{ml: 0}}
+          aria-label='On/Off layers'
+          onClick={(event) => event.stopPropagation()}
+          onFocus={(event) => event.stopPropagation()}
+          control={
+            <ColorSwitch
+              checked={isChecked}
+              onChange={toggle}
+              name='checkedLayer'
+              color='#000'
             />
-            : undefined
-        }
-        <Typography variant='body1' style={{marginLeft: 5, fontWeight: 'bold'}}>{title}</Typography>
-        <Divider/>
-      </AccordionContent>
-      <AccordionValues>{children}</AccordionValues>
-    </AccordionLayer>
-  );
-}
+          }
+        />
+      }
+      <Typography variant='body1' style={{marginLeft: 5, fontWeight: 'bold'}}>{title}</Typography>
+      <Divider/>
+    </AccordionSummary>
+    <AccordionDetails sx={details}>{children}</AccordionDetails>
+  </Accordion>;
+};
 
 ExpandContent.propTypes = {
   title: PropTypes.string.isRequired,

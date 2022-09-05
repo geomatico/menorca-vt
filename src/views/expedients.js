@@ -58,6 +58,12 @@ const {mapStyles, consellSourceLayers, consellCategories, ciutadellaCategories, 
 const RIGHT_DRAWER_WIDTH = 360;
 const LEFT_DEFAULT_DRAWER_WIDTH = 420;
 
+const switchPadStyle = {
+  '& .SwitchPad-text': {
+    fontSize: '0.75rem'
+  }
+};
+
 const useStyles = makeStyles((theme) => ({
   content: {
     width: ({leftDrawerWidth}) => `calc(100% - ${leftDrawerWidth}px)`,
@@ -204,6 +210,12 @@ const buildCiutadellaLayers = (isExpedientsCiutadellaVisible, selectedCiutadella
     }] : []
 );
 
+const baseMapListStyle = {
+  '& .LayerSwitcher-text': {
+    fontSize: '0.75rem'
+  }
+};
+
 const Expedients = () => {
   const dispatch = useDispatch();
   const viewport = useSelector(getViewport);
@@ -303,10 +315,20 @@ const Expedients = () => {
       <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
         <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
         <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={toggleExpedientsConsellLayer}>
-          <SwitchPad categories={consellCategories} selected={selectedConsellCategories} onSelectionChange={handleSelectedConsellCategories}/>
+          <SwitchPad
+            categories={consellCategories}
+            selected={selectedConsellCategories}
+            onSelectionChange={handleSelectedConsellCategories}
+            sx={switchPadStyle}
+          />
         </ExpandContent>
         <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={toggleExpedientsCiutadellaLayer}>
-          <SwitchPad categories={ciutadellaCategories} selected={selectedCiutadellaCategories} onSelectionChange={handleSelectedCiutadellaCategories}/>
+          <SwitchPad
+            categories={ciutadellaCategories}
+            selected={selectedCiutadellaCategories}
+            onSelectionChange={handleSelectedCiutadellaCategories}
+            sx={switchPadStyle}
+          />
         </ExpandContent>
         <ExpandContent title={'Rang de dates'}>
           <div style={{padding: '0 16px', width: '100%'}}>
@@ -321,6 +343,7 @@ const Expedients = () => {
             thumbnailWidth={60}
             thumbnailHeight={40}
             variant='list'
+            sx={baseMapListStyle}
           />
         </ExpandContent>
       </RightDrawer>
