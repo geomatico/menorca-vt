@@ -1,6 +1,9 @@
-import {Drawer, Hidden} from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
+//MUI
+import Drawer from '@mui/material/Drawer';
+import Hidden from '@mui/material/Hidden';
+//STYLES
 import makeStyles from '@mui/styles/makeStyles';
 
 const container = window !== undefined ? () => window.document.body : undefined;
@@ -67,3 +70,15 @@ RightDrawer.propTypes = {
 };
 
 export default RightDrawer;
+
+//MUI
+
+//MUI-ICONS
+
+//GEOCOMPONENTS
+
+//MENORCA-VT
+
+//UTILS
+
+//STYLES

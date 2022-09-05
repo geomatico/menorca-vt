@@ -1,6 +1,6 @@
 import React from 'react';
 import ExpandContent from './ExpandContent';
-import {Typography} from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 export default {
   title: 'Common/ExpandContent',

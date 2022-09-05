@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {List, ListItem, ListItemText, Checkbox, ListItemAvatar, Avatar, Typography} from '@mui/material';
+//MUI
+import Avatar from '@mui/material/Avatar';
+import Checkbox from '@mui/material/Checkbox';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+//STYLES
 import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({

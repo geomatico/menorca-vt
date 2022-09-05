@@ -1,19 +1,19 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {debounce} from 'throttle-debounce';
 import {useDispatch, useSelector} from 'react-redux';
-
-import ReactCardFlip from 'react-card-flip';
+//MUI
+import Box from '@mui/material/Box';
+import Hidden from '@mui/material/Hidden';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+//MUI-ICONS
 import FilterListIcon from '@mui/icons-material/FilterList';
-import makeStyles from '@mui/styles/makeStyles';
-import {Box, Hidden, IconButton, Typography} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-
-
-import SwitchPad from '@geomatico/geocomponents/SwitchPad';
+//GEOCOMPONENTS
 import Map from '@geomatico/geocomponents/Map';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
-
-import config from '../config.json';
+import SwitchPad from '@geomatico/geocomponents/SwitchPad';
+//MENORCA-VT
 import ResponsiveHeader from '../components/ResponsiveHeader';
 import RightDrawer from '../components/RightDrawer';
 import LeftDrawer from '../components/LeftDrawer';
@@ -23,6 +23,13 @@ import BaseMapList from '../components/BaseMapList';
 import {fetchTotalExpedients, fetchTotalVivendes} from '../api';
 import ChartsComponent from './map/ChartsComponents';
 import ExpandContent from '../components/ExpandContent';
+//OTHERS
+import ReactCardFlip from 'react-card-flip';
+//UTILS
+import config from '../config.json';
+//STYLES
+import makeStyles from '@mui/styles/makeStyles';
+
 import {
   getDateRangeFilter,
   getSelectedBaseMapStyleUrl,

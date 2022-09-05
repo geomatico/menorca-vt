@@ -1,13 +1,18 @@
 import React, {useState, useCallback} from 'react';
 import PropTypes from 'prop-types';
-
-import {Drawer, IconButton, Typography} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+//MUI
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+//MUI-ICONS
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-import LogoBlanco from '../../static/img/LogoBlanco';
+import ExitToApp from '@mui/icons-material/ExitToApp';
+//MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
-import {ExitToApp} from '@mui/icons-material';
+import LogoBlanco from '../../static/img/LogoBlanco';
+//STYLES
+import makeStyles from '@mui/styles/makeStyles';
+
 import {setLoggedIn} from '../actions';
 import {useDispatch} from 'react-redux';
 

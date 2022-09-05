@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+//MUI
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+//STYLES
 import makeStyles from '@mui/styles/makeStyles';
-import {IconButton} from '@mui/material';
-
-import {
-  AppBar,
-  Toolbar,
-  Typography
-} from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

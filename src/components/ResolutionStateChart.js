@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  PieChart, Pie, Cell, Tooltip,
-} from 'recharts';
+//OTHERS
+import Cell from 'recharts/Cell';
+import Pie from 'recharts/Pie';
+import PieChart from 'recharts/PieChart';
+import Tooltip from 'recharts/Tooltip';
+//UTILS
 import config from '../config.json';
 
 const {resolucioColors, fallbackColor} = config;

@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+//MUI
+import Box from '@mui/material/Box';
+//MENORCA-VT
 import SectionTitle from './SectionTitle';
+//STYLES
 import makeStyles from '@mui/styles/makeStyles';
-import {Box} from '@mui/material';
 
 const useStyles = makeStyles({
   chartContainer: {

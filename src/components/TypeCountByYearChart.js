@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
-} from 'recharts';
+//OTHERS
+import AreaChart from 'recharts/AreaChart';
+import Area from 'recharts/Area';
+import XAxis from 'recharts/XAxis';
+import YAxis from 'recharts/YAxis';
+import CartesianGrid from 'recharts/CartesianGrid';
+import Tooltip from 'recharts/Tooltip';
+import ResponsiveContainer from 'recharts/ResponsiveContainer';
 
 const TypeCountByYearChart = ({data, categories, width, height}) => (
   <ResponsiveContainer width={width} height={height}>

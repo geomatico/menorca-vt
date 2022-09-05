@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {Box, CircularProgress, Typography} from '@mui/material';
+//MUI
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 
 const NumericIndicator = ({main, total}) => {
   const percent = 100 * main / total;

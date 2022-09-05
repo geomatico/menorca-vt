@@ -1,5 +1,7 @@
 import React from 'react';
+//MENORCA-VT
 import TypeCountByYearChart from './TypeCountByYearChart';
+//UTILS
 import config from '../config.json';
 import fixture from './TypeCountByYearChart.fixture.json';
 

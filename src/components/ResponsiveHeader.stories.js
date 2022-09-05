@@ -1,7 +1,8 @@
 import React from 'react';
-import ResponsiveHeader from './ResponsiveHeader';
-
+//MUI
 import MenuIcon from '@mui/icons-material/Menu';
+//MENORCA-VT
+import ResponsiveHeader from './ResponsiveHeader';
 import LogoBlanco from '../../static/img/LogoBlanco';
 
 export default {

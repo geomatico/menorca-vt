@@ -1,6 +1,8 @@
 import React from 'react';
-import SquareButtonIcon from './SquareButtonIcon';
+//MUI-ICONS
 import FilterListIcon from '@mui/icons-material/FilterList';
+//MENORCA-VT
+import SquareButtonIcon from './SquareButtonIcon';
 
 export default {
   title: 'Common/SquareButtonIcon',
