@@ -3,12 +3,15 @@ import {debounce} from 'throttle-debounce';
 import {useDispatch, useSelector} from 'react-redux';
 
 import ReactCardFlip from 'react-card-flip';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import {makeStyles} from '@material-ui/core/styles';
-import {Box, Hidden, IconButton, Typography} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import makeStyles from '@mui/styles/makeStyles';
+import {Box, Hidden, IconButton, Typography} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
-import {SwitchPad, Map, RangeSlider} from '@geomatico/geocomponents';
+
+import SwitchPad from '@geomatico/geocomponents/SwitchPad';
+import Map from '@geomatico/geocomponents/Map';
+import RangeSlider from '@geomatico/geocomponents/RangeSlider';
 
 import config from '../config.json';
 import ResponsiveHeader from '../components/ResponsiveHeader';
@@ -282,7 +285,7 @@ const Expedients = () => {
   return (
     <div>
       {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
-      <Hidden xsDown implementation="css">
+      <Hidden smDown implementation="css">
         <div className={classes.buttonContent}>
           <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
             <FilterListIcon/>
@@ -319,7 +322,7 @@ const Expedients = () => {
           onMenuClick={handleCardFlip}
           logo={<LogoBlanco/>}
         >
-          <IconButton onClick={handleDrawerToggle}>
+          <IconButton onClick={handleDrawerToggle} size="large">
             <FilterListIcon style={{color: 'white'}}/>
           </IconButton>
         </ResponsiveHeader>
@@ -335,7 +338,7 @@ const Expedients = () => {
       </Hidden>
 
       {/*LEFTDRAWER DESKTOP*/}
-      <Hidden xsDown implementation="css">
+      <Hidden smDown implementation="css">
         <LeftDrawer
           defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
           onDrawerWidthChange={handleDrawerWidthChange}
@@ -346,7 +349,8 @@ const Expedients = () => {
           {mapComponent}
         </main>
       </Hidden>
-    </div>);
+    </div>
+  );
 };
 
 export default Expedients;

@@ -4,8 +4,8 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import store from './store';
 
-import {ThemeProvider} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import Login from './components/Login';
 import Expedients from './views/expedients';
@@ -13,12 +13,14 @@ import Expedients from './views/expedients';
 const App = () => {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme()}>
-        <CssBaseline/>
-        <Login>
-          <Expedients />
-        </Login>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme()}>
+          <CssBaseline/>
+          <Login>
+            <Expedients />
+          </Login>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </Provider>
   );
 };

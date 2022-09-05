@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {IconButton} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import {IconButton} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -25,13 +25,11 @@ const useStyles = makeStyles((theme) => ({
 function SquareButtonIcon({children, onClick}) {
   const classes = useStyles();
   const handleClick = () => onClick && onClick ();
-  return (
-    <>
-      <IconButton className={classes.button} onClick={handleClick}>
-        {children}
-      </IconButton>
-    </>
-  );
+  return <>
+    <IconButton className={classes.button} onClick={handleClick} size="large">
+      {children}
+    </IconButton>
+  </>;
 }
 
 SquareButtonIcon.propTypes = {

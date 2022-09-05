@@ -1,13 +1,13 @@
 import React, {useState, useCallback} from 'react';
 import PropTypes from 'prop-types';
 
-import {Drawer, IconButton, Typography} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import {Drawer, IconButton, Typography} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import LogoBlanco from '../../static/img/LogoBlanco';
 import ResponsiveHeader from './ResponsiveHeader';
-import {ExitToApp} from '@material-ui/icons';
+import {ExitToApp} from '@mui/icons-material';
 import {setLoggedIn} from '../actions';
 import {useDispatch} from 'react-redux';
 
@@ -72,7 +72,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
     >
       <div className={classes.toolbar}/>
       <ResponsiveHeader logo={<LogoBlanco/>} width={drawerWidth}>
-        <IconButton onClick={handleLogout}>
+        <IconButton onClick={handleLogout} size="large">
           <ExitToApp/>
         </IconButton>
       </ResponsiveHeader>

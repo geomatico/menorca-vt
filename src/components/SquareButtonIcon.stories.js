@@ -1,6 +1,6 @@
 import React from 'react';
 import SquareButtonIcon from './SquareButtonIcon';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 export default {
   title: 'Common/SquareButtonIcon',

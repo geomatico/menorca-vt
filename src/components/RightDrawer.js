@@ -1,7 +1,7 @@
-import {Drawer, Hidden} from '@material-ui/core';
+import {Drawer, Hidden} from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {makeStyles} from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 const container = window !== undefined ? () => window.document.body : undefined;
 
@@ -24,38 +24,36 @@ const RightDrawer = ({width, isOpen, onClose, children}) => {
 
   const handleDrawerClose = () => onClose && onClose();
 
-  return (
-    <>
-      <Hidden smUp implementation="js">{/*MOBILE*/}
-        <Drawer
-          classes={{paper: classes.drawerPaper}}
-          ModalProps={{keepMounted: true}}// Better open performance on mobile.
-          container={container}
-          variant="temporary"
-          anchor="right"
-          open={isOpen}
-          onClose={handleDrawerClose}
-        >
-          <div className={classes.toolbar}/>
-          <div className={classes.drawerContent}>
-            {children}
-          </div>
-        </Drawer>
-      </Hidden>
-      <Hidden xsDown implementation="css">{/*DESKTOP*/}
-        <Drawer
-          classes={{paper: classes.drawerPaper}}
-          variant="persistent"
-          anchor="right"
-          open={isOpen}
-        >
-          <div className={classes.drawerContent}>
-            {children}
-          </div>
-        </Drawer>
-      </Hidden>
-    </>
-  );
+  return <>
+    <Hidden smUp implementation="js">{/*MOBILE*/}
+      <Drawer
+        classes={{paper: classes.drawerPaper}}
+        ModalProps={{keepMounted: true}}// Better open performance on mobile.
+        container={container}
+        variant="temporary"
+        anchor="right"
+        open={isOpen}
+        onClose={handleDrawerClose}
+      >
+        <div className={classes.toolbar}/>
+        <div className={classes.drawerContent}>
+          {children}
+        </div>
+      </Drawer>
+    </Hidden>
+    <Hidden smDown implementation="css">{/*DESKTOP*/}
+      <Drawer
+        classes={{paper: classes.drawerPaper}}
+        variant="persistent"
+        anchor="right"
+        open={isOpen}
+      >
+        <div className={classes.drawerContent}>
+          {children}
+        </div>
+      </Drawer>
+    </Hidden>
+  </>;
 };
 
 RightDrawer.propTypes = {

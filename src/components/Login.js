@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getLoggedIn} from '../selectors';
-import {LoginModal} from '@geomatico/geocomponents';
+import LoginModal from '@geomatico/geocomponents/LoginModal';
 import {setLoggedIn} from '../actions';
 
 const Login = ({children}) => {

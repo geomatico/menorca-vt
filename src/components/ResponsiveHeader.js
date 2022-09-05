@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {makeStyles} from '@material-ui/core/styles';
-import {IconButton} from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import {IconButton} from '@mui/material';
 
 import {
   AppBar,
   Toolbar,
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -43,7 +43,7 @@ const ResponsiveHeader = ({startIcon, title, logo, anchor, children, width, onMe
       <Toolbar className={classes.toolBar}>
         {
           onMenuClick !== undefined ?
-            <IconButton onClick={handleMenuClick} color='inherit'>
+            <IconButton onClick={handleMenuClick} color='inherit' size="large">
               {startIcon}
             </IconButton>
             : undefined

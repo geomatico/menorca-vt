@@ -1,7 +1,7 @@
 import React from 'react';
 import ResponsiveHeader from './ResponsiveHeader';
 
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import LogoBlanco from '../../static/img/LogoBlanco';
 
 export default {
