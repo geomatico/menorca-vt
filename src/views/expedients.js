@@ -20,7 +20,6 @@ import RightDrawer from '../components/RightDrawer';
 import LeftDrawer from '../components/LeftDrawer';
 import SquareButtonIcon from '../components/SquareButtonIcon';
 import LogoBlanco from '../../static/img/LogoBlanco';
-/*import BaseMapList from '../components/BaseMapList';*/
 import {fetchTotalExpedients, fetchTotalVivendes} from '../api';
 import ChartsComponent from './map/ChartsComponents';
 import ExpandContent from '../components/ExpandContent';
@@ -28,9 +27,6 @@ import ExpandContent from '../components/ExpandContent';
 import ReactCardFlip from 'react-card-flip';
 //UTILS
 import config from '../config.json';
-//STYLES
-import makeStyles from '@mui/styles/makeStyles';
-
 import {
   getDateRangeFilter,
   getSelectedBaseMapStyleId,
@@ -55,6 +51,7 @@ import {calcStats} from '../services/calcStats';
 
 const {mapStyles, consellSourceLayers, consellCategories, ciutadellaCategories, fallbackColor, minDate} = config;
 
+//STYLES
 const RIGHT_DRAWER_WIDTH = 360;
 const LEFT_DEFAULT_DRAWER_WIDTH = 420;
 
@@ -63,40 +60,18 @@ const switchPadStyle = {
     fontSize: '0.75rem'
   }
 };
-
-const useStyles = makeStyles((theme) => ({
-  content: {
-    width: ({leftDrawerWidth}) => `calc(100% - ${leftDrawerWidth}px)`,
-    height: '100vh',
-    flexGrow: 1,
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: ({leftDrawerWidth}) => leftDrawerWidth,
-  },
-  buttonContent: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    height: 'auto',
-    width: ({isRightDrawerOpen}) => isRightDrawerOpen ? `calc(100% - ${RIGHT_DRAWER_WIDTH}px)` : '100%',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  filterIconContainer: {
-    zIndex: 40,
-    position: 'absolute',
-    top: 100,
-  },
-  drawerTitle: {
-    padding: theme.spacing(2.5, 0, 0, 0),
-    fontWeight: 'bold',
-    marginBottom: 5
-  },
-}));
+const drawerTitleStyle = {
+  pt: { xs: 0, md: 2 },
+  pl: 1,
+  fontWeight: 'bold',
+  mb: 0,
+  textTransform: 'upperCase',
+};
+const baseMapListStyle = {
+  '& .LayerSwitcher-text': {
+    fontSize: '0.75rem'
+  }
+};
 
 const auth = [{
   urlMatch: 'ordenacio_restringit',
@@ -210,12 +185,6 @@ const buildCiutadellaLayers = (isExpedientsCiutadellaVisible, selectedCiutadella
     }] : []
 );
 
-const baseMapListStyle = {
-  '& .LayerSwitcher-text': {
-    fontSize: '0.75rem'
-  }
-};
-
 const Expedients = () => {
   const dispatch = useDispatch();
   const viewport = useSelector(getViewport);
@@ -272,8 +241,6 @@ const Expedients = () => {
     map && map.once('idle', () => updateStats(map));
   }, [viewport, layers]);
 
-  const classes = useStyles({isRightDrawerOpen, leftDrawerWidth});
-
   // Handlers
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
   const handleCardFlip = () => setFlipped(!isFlipped);
@@ -302,88 +269,108 @@ const Expedients = () => {
     onViewportChange={handleViewportChange}
   />;
 
-  return (
-    <div>
-      {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
-      <Hidden smDown implementation="css">
-        <div className={classes.buttonContent}>
-          <SquareButtonIcon className={classes.filterIconContainer} onClick={handleDrawerToggle}>
-            <FilterListIcon/>
-          </SquareButtonIcon>
+  const buttonContentStyle = {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    height: 'auto',
+    width: isRightDrawerOpen ? `calc(100% - ${RIGHT_DRAWER_WIDTH}px)` : '100%',
+    transition: theme => theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  };
+  const mainContentStyle = {
+    width: `calc(100% - ${leftDrawerWidth}px)`,
+    height: '100vh',
+    flexGrow: 1,
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: leftDrawerWidth,
+  };
+  
+  return <>
+    {/*RIGHTDRAWER IN DESKTOP & MOBILE*/}
+    <Hidden smDown implementation="css">
+      <Box sx={buttonContentStyle}>
+        <SquareButtonIcon onClick={handleDrawerToggle}>
+          <FilterListIcon/>
+        </SquareButtonIcon>
+      </Box>
+    </Hidden>
+    <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
+      <Typography sx={drawerTitleStyle} variant='body1'>Control de capes</Typography>
+      <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={toggleExpedientsConsellLayer}>
+        <SwitchPad
+          categories={consellCategories}
+          selected={selectedConsellCategories}
+          onSelectionChange={handleSelectedConsellCategories}
+          sx={switchPadStyle}
+        />
+      </ExpandContent>
+      <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={toggleExpedientsCiutadellaLayer}>
+        <SwitchPad
+          categories={ciutadellaCategories}
+          selected={selectedCiutadellaCategories}
+          onSelectionChange={handleSelectedCiutadellaCategories}
+          sx={switchPadStyle}
+        />
+      </ExpandContent>
+      <ExpandContent title={'Rang de dates'}>
+        <div style={{padding: '0 16px', width: '100%'}}>
+          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange} animationInterval={1000}/>
         </div>
-      </Hidden>
-      <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
-        <Typography className={classes.drawerTitle} variant='h6'>Control de capes</Typography>
-        <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={toggleExpedientsConsellLayer}>
-          <SwitchPad
-            categories={consellCategories}
-            selected={selectedConsellCategories}
-            onSelectionChange={handleSelectedConsellCategories}
-            sx={switchPadStyle}
-          />
-        </ExpandContent>
-        <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={toggleExpedientsCiutadellaLayer}>
-          <SwitchPad
-            categories={ciutadellaCategories}
-            selected={selectedCiutadellaCategories}
-            onSelectionChange={handleSelectedCiutadellaCategories}
-            sx={switchPadStyle}
-          />
-        </ExpandContent>
-        <ExpandContent title={'Rang de dates'}>
-          <div style={{padding: '0 16px', width: '100%'}}>
-            <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange} animationInterval={1000}/>
-          </div>
-        </ExpandContent>
-        <ExpandContent title={'Mapes base'}>
-          <BaseMapList
-            styles={mapStyles}
-            selectedStyleId={selectedStyleId}
-            onStyleChange={handleStyleChange}
-            thumbnailWidth={60}
-            thumbnailHeight={40}
-            variant='list'
-            sx={baseMapListStyle}
-          />
-        </ExpandContent>
-      </RightDrawer>
+      </ExpandContent>
+      <ExpandContent title={'Mapes base'}>
+        <BaseMapList
+          styles={mapStyles}
+          selectedStyleId={selectedStyleId}
+          onStyleChange={handleStyleChange}
+          thumbnailWidth={60}
+          thumbnailHeight={40}
+          variant='list'
+          sx={baseMapListStyle}
+        />
+      </ExpandContent>
+    </RightDrawer>
 
-      {/*LEFTDRAWER MOBILE*/}
-      <Hidden smUp implementation="js">
-        <ResponsiveHeader
-          startIcon={<MenuIcon/>}
-          onMenuClick={handleCardFlip}
-          logo={<LogoBlanco/>}
-        >
-          <IconButton onClick={handleDrawerToggle} size="large">
-            <FilterListIcon style={{color: 'white'}}/>
-          </IconButton>
-        </ResponsiveHeader>
-        <ReactCardFlip isFlipped={isFlipped}>
-          <main style={{width: '100vw', height: '100vh'}}>
-            {mapComponent}
-          </main>
-          <Box px={2}>
-            <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
-            <ChartsComponent />
-          </Box>
-        </ReactCardFlip>
-      </Hidden>
-
-      {/*LEFTDRAWER DESKTOP*/}
-      <Hidden smDown implementation="css">
-        <LeftDrawer
-          defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
-          onDrawerWidthChange={handleDrawerWidthChange}
-        >
-          <ChartsComponent />
-        </LeftDrawer>
-        <main className={classes.content}>
+    {/*LEFTDRAWER MOBILE*/}
+    <Hidden smUp implementation="js">
+      <ResponsiveHeader
+        startIcon={<MenuIcon/>}
+        onMenuClick={handleCardFlip}
+        logo={<LogoBlanco/>}
+      >
+        <IconButton onClick={handleDrawerToggle} size="large">
+          <FilterListIcon style={{color: 'white'}}/>
+        </IconButton>
+      </ResponsiveHeader>
+      <ReactCardFlip isFlipped={isFlipped}>
+        <main style={{width: '100vw', height: '100vh'}}>
           {mapComponent}
         </main>
-      </Hidden>
-    </div>
-  );
+        <Box sx={{px: 2, pt: 9.5}}>
+          <Typography sx={drawerTitleStyle} variant='body1'>Visor d&#039;expedients</Typography>
+          <ChartsComponent />
+        </Box>
+      </ReactCardFlip>
+    </Hidden>
+
+    {/*LEFTDRAWER DESKTOP*/}
+    <Hidden smDown implementation="css">
+      <LeftDrawer
+        defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
+        onDrawerWidthChange={handleDrawerWidthChange}
+      >
+        <ChartsComponent />
+      </LeftDrawer>
+      <Box sx={mainContentStyle}>
+        {mapComponent}
+      </Box>
+    </Hidden>
+  </>;
 };
 
 export default Expedients;

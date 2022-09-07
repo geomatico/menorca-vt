@@ -23,10 +23,12 @@ const accordion = {
   },
   '& .MuiButtonBase-root': {
     minHeight: '28px',
+  },
+  '&.MuiPaper-root': {
+    width: '100%',
   }
 };
 const summary = {
-  p: 0,
   m: 0,
   borderBottom: '1px solid lightgray',
   '& .MuiAccordionSummary-content': {
@@ -37,7 +39,7 @@ const summary = {
       m: 0,
     },
     minHeight: '28px',
-  },
+  }
 };
 const details = {
   p: 0,

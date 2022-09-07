@@ -1,59 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //MUI
+import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Hidden from '@mui/material/Hidden';
 //STYLES
-import makeStyles from '@mui/styles/makeStyles';
+const drawerContentStyle = {
+  py: 0,
+  px: 1,
+  width: '95%',
+};
 
 const container = window !== undefined ? () => window.document.body : undefined;
 
-const useStyles = makeStyles((theme) => ({
-  toolbar: theme.mixins.toolbar,
-  drawerContent: {
-    padding: theme.spacing(0, 1),
-    width: '95%'
-  },
-  drawerPaper: {
-    top: 20,
-    bottom: 20,
-    height: '95vh',
-    width: ({width}) => width,
-  },
-}));
-
 const RightDrawer = ({width, isOpen, onClose, children}) => {
-  const classes = useStyles({width});
-
   const handleDrawerClose = () => onClose && onClose();
 
+  //STYLES
+  const drawerStyle = {
+    '& .MuiPaper-root': {
+      top: 20,
+      bottom: 20,
+      width: width,
+    }
+  };
+  
   return <>
     <Hidden smUp implementation="js">{/*MOBILE*/}
       <Drawer
-        classes={{paper: classes.drawerPaper}}
+        sx={drawerStyle}
         ModalProps={{keepMounted: true}}// Better open performance on mobile.
-        container={container}
         variant="temporary"
+        container={container}
         anchor="right"
         open={isOpen}
         onClose={handleDrawerClose}
       >
-        <div className={classes.toolbar}/>
-        <div className={classes.drawerContent}>
+        <Box sx={theme => theme.mixins.toolbar}/>
+        <Box sx={drawerContentStyle}>
           {children}
-        </div>
+        </Box>
       </Drawer>
     </Hidden>
     <Hidden smDown implementation="css">{/*DESKTOP*/}
       <Drawer
-        classes={{paper: classes.drawerPaper}}
+        sx={drawerStyle}
         variant="persistent"
         anchor="right"
         open={isOpen}
       >
-        <div className={classes.drawerContent}>
+        <Box sx={drawerContentStyle}>
           {children}
-        </div>
+        </Box>
       </Drawer>
     </Hidden>
   </>;

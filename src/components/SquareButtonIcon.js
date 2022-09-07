@@ -3,36 +3,29 @@ import PropTypes from 'prop-types';
 //MUI
 import IconButton from '@mui/material/IconButton';
 //STYLES
-import makeStyles from '@mui/styles/makeStyles';
+const buttonStyle = {
+  position: 'relative',
+  mr: 1.25,
+  top: 20,
+  left: 0,
+  zIndex: 1000,
+  width: 40,
+  height: 40,
+  borderRadius: 0,
+  bgcolor: 'primary.main',
+  color: 'primary.contrastText',
+  '&:hover': {
+    bgcolor: 'secondary.main'
+  }
+};
+const SquareButtonIcon = ({children, onClick}) => {
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    position: 'relative',
-    marginRight: 10,
-    top: 20,
-    left: 0,
-    zIndex: 1000,
-    width: 40,
-    height: 40,
-    borderRadius: 0,
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    '&:hover':{
-      backgroundColor: theme.palette.secondary.main
-    }
-  },
-
-}));
-
-function SquareButtonIcon({children, onClick}) {
-  const classes = useStyles();
   const handleClick = () => onClick && onClick ();
-  return <>
-    <IconButton className={classes.button} onClick={handleClick} size="large">
-      {children}
-    </IconButton>
-  </>;
-}
+
+  return <IconButton sx={buttonStyle} onClick={handleClick} size="large">
+    {children}
+  </IconButton>;
+};
 
 SquareButtonIcon.propTypes = {
   children: PropTypes.element,
