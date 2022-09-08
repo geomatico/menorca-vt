@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {debounce} from 'throttle-debounce';
 import {useDispatch, useSelector} from 'react-redux';
 //MUI
@@ -236,6 +236,16 @@ const Expedients = () => {
     }
   });
 
+  // On mount, wait for map render and call updateStats
+  // Set mapRef for future renders
+  const mapRefCb = useCallback(map => {
+    if (map) {
+      map.once('idle', () => updateStats());
+    }
+    mapRef.current = map;
+  }, []);
+
+  // On map changes, call updateStats
   useEffect(() => {
     mapRef && mapRef.current?.once('idle', () => updateStats(mapRef));
   }, [viewport, layers]);
@@ -259,7 +269,7 @@ const Expedients = () => {
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
 
   const mapComponent = <Map
-    ref={mapRef}
+    ref={mapRefCb}
     mapStyle={selectedStyleId}
     auth={auth}
     sources={sources}

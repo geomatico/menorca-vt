@@ -57,6 +57,7 @@ module.exports = (env) => ({
       chunks: ['twinmaps'],
     }),
     new HtmlWebPackPlugin({
+      favicon: './static/img/logo.png',
       template: './src/template.html',
       filename: './expedients.html',
       chunks: ['expedients'],
