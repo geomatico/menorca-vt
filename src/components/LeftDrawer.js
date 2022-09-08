@@ -10,7 +10,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 //MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
-import LogoBlanco from '../../static/img/LogoBlanco';
+import LogoBlanco from './LogoBlanco';
 //UTILS
 import {setLoggedIn} from '../actions';
 import {useDispatch} from 'react-redux';

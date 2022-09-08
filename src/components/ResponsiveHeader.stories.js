@@ -3,7 +3,7 @@ import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 //MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
-import LogoBlanco from '../../static/img/LogoBlanco';
+import LogoBlanco from './LogoBlanco';
 
 export default {
   title: 'Common/ResponsiveHeader',

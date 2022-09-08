@@ -19,7 +19,7 @@ import ResponsiveHeader from '../components/ResponsiveHeader';
 import RightDrawer from '../components/RightDrawer';
 import LeftDrawer from '../components/LeftDrawer';
 import SquareButtonIcon from '../components/SquareButtonIcon';
-import LogoBlanco from '../../static/img/LogoBlanco';
+import LogoBlanco from '../components/LogoBlanco';
 import {fetchTotalExpedients, fetchTotalVivendes} from '../api';
 import ChartsComponent from './map/ChartsComponents';
 import ExpandContent from '../components/ExpandContent';
