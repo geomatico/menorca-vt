@@ -12,18 +12,18 @@ const chartContainerStyle = {
   margin: '0 10px 10px 10px'
 };
 
-function Chart({title, children}) {
+const Chart = ({title, children}) => {
   return <Box sx={chartContainerStyle}>
     <SectionTitle title={title}/>
     <Box display='flex' flexDirection='column' alignItems='flex-start'>
       {children}
     </Box>
   </Box>;
-}
+};
 
 Chart.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 export default Chart;

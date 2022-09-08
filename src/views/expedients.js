@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {debounce} from 'throttle-debounce';
 import {useDispatch, useSelector} from 'react-redux';
 //MUI
@@ -186,6 +186,7 @@ const buildCiutadellaLayers = (isExpedientsCiutadellaVisible, selectedCiutadella
 );
 
 const Expedients = () => {
+  const mapRef = useRef();
   const dispatch = useDispatch();
   const viewport = useSelector(getViewport);
   const selectedStyleId = useSelector(getSelectedBaseMapStyleId);
@@ -195,7 +196,6 @@ const Expedients = () => {
   const selectedCiutadellaCategories = useSelector(getSelectedCiutadellaCategories);
   const dateRange = useSelector(getDateRangeFilter);
 
-  const [map, setMap] = useState();
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
   const [leftDrawerWidth, setLeftDrawerWidth] = useState(LEFT_DEFAULT_DRAWER_WIDTH);
@@ -218,27 +218,26 @@ const Expedients = () => {
   }, [dateRange]);
 
   const updateStats = debounce(10, () => {
-    if (map) {
-      const featureProperties = map
-        .queryRenderedFeatures({
-          layers: [
-            ...(isExpedientsConsellVisible ? consellSourceLayers : []),
-            ...(isExpedientsCiutadellaVisible ? ['or015urb_llicencies'] : [])
-          ]
-        })
+    if (mapRef) {
+      const featureProperties = mapRef.current?.queryRenderedFeatures({
+        layers: [
+          ...(isExpedientsConsellVisible ? consellSourceLayers : []),
+          ...(isExpedientsCiutadellaVisible ? ['or015urb_llicencies'] : [])
+        ]
+      })
         .map(feature => feature.properties)
         .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
 
       dispatch(setDataContext(calcStats(featureProperties)));
 
-      fetchTotalVivendes(map.getBounds().toArray().flatMap(a => a).join(','))
+      fetchTotalVivendes(mapRef.current?.getBounds().toArray().flatMap(a => a).join(','))
         .then((totalViviendas) =>
           dispatch(setDataContext(...totalViviendas)));
     }
   });
 
   useEffect(() => {
-    map && map.once('idle', () => updateStats(map));
+    mapRef && mapRef.current?.once('idle', () => updateStats(mapRef));
   }, [viewport, layers]);
 
   // Handlers
@@ -260,12 +259,12 @@ const Expedients = () => {
   const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
 
   const mapComponent = <Map
+    ref={mapRef}
     mapStyle={selectedStyleId}
     auth={auth}
     sources={sources}
     layers={layers}
     viewport={viewport}
-    onMapSet={setMap}
     onViewportChange={handleViewportChange}
   />;
 

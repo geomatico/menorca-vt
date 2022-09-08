@@ -69,7 +69,6 @@ const ExpandContent = ({title, children, onChange, isChecked}) => {
             <ColorSwitch
               checked={isChecked}
               onChange={toggle}
-              name='checkedLayer'
               color='#000'
             />
           }

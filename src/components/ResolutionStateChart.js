@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //OTHERS
-import { Cell, Pie, PieChart, Tooltip } from 'recharts';
+import { Cell, Pie, PieChart } from 'recharts';
 //UTILS
 import config from '../config.json';
 
@@ -37,7 +37,6 @@ const ResolutionStateChart = ({data}) => {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={resolucioColors[entry.name] ? resolucioColors[entry.name] : fallbackColor} />)
         }
       </Pie>
-      <Tooltip />
     </PieChart>
   );
 };

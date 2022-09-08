@@ -26,6 +26,7 @@
     "@babel/preset-react": "^7.12.1",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@geomatico/geocomponents": "^2.0.6",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.3",
     "@mui/styles": "^5.10.3",
@@ -75,7 +76,6 @@
     "webpack-dev-server": "^4.8.0"
   },
   "dependencies": {
-    "@geomatico/geocomponents": "^2.0.6",
     "mapbox-gl": "^1.12.0",
     "prop-types": "^15.7.2",
     "react-card-flip": "^1.0.11",
