@@ -1,33 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+//MUI
+import Box from '@mui/material/Box';
+//MENORCA-VT
 import SectionTitle from './SectionTitle';
-import {makeStyles} from '@material-ui/core/styles';
-import {Box} from '@material-ui/core';
+//STYLES
+const chartContainerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow:1,
+  margin: '0 10px 10px 10px'
+};
 
-const useStyles = makeStyles({
-  chartContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow:1,
-    margin: '0 10px 10px 10px',
-  },
-});
-
-function Chart({title, children}) {
-  const classes = useStyles();
-  return (
-    <div className={classes.chartContainer}>
-      <SectionTitle title={title}/>
-      <Box display='flex' flexDirection='column' alignItems='flex-start'>
-        {children}
-      </Box>
-    </div>
-  );
-}
+const Chart = ({title, children}) => {
+  return <Box sx={chartContainerStyle}>
+    <SectionTitle title={title}/>
+    <Box display='flex' flexDirection='column' alignItems='flex-start'>
+      {children}
+    </Box>
+  </Box>;
+};
 
 Chart.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 export default Chart;

@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React, {useMemo} from 'react';
-import {TwinMaps} from '@geomatico/geocomponents';
+import TwinMaps from '@geomatico/geocomponents/TwinMaps';
 
 import config from './config.json';
 

@@ -16,9 +16,9 @@ module.exports = (env) => ({
   resolve: {
     alias: {
       react: path.resolve('./node_modules/react'),
-      '@material-ui/core': path.resolve('./node_modules/@material-ui/core'),
-      '@material-ui/icons': path.resolve('./node_modules/@material-ui/icons'),
-      '@material-ui/lab': path.resolve('./node_modules/@material-ui/lab'),
+      '@mui/material': path.resolve('./node_modules/@mui/material'),
+      '@mui/icons-material': path.resolve('./node_modules/@mui/icons-material'),
+      '@mui/styles': path.resolve('./node_modules/@mui/styles')
     }
   },
   module: {
@@ -57,6 +57,7 @@ module.exports = (env) => ({
       chunks: ['twinmaps'],
     }),
     new HtmlWebPackPlugin({
+      favicon: './static/img/logo.png',
       template: './src/template.html',
       filename: './expedients.html',
       chunks: ['expedients'],

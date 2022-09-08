@@ -1,41 +1,49 @@
 import React, {useState, useCallback} from 'react';
 import PropTypes from 'prop-types';
-
-import {Drawer, IconButton, Typography} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-
-import LogoBlanco from '../../static/img/LogoBlanco';
+//MUI
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+//MUI-ICONS
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ExitToApp from '@mui/icons-material/ExitToApp';
+//MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
-import {ExitToApp} from '@material-ui/icons';
+import LogoBlanco from '../../static/img/LogoBlanco';
+//UTILS
 import {setLoggedIn} from '../actions';
 import {useDispatch} from 'react-redux';
-
-const useStyles = makeStyles((theme) => ({
-  toolbar: theme.mixins.toolbar,
-  drawerTitle: {
-    padding: theme.spacing(2.5, 0, 0, 2),
-    fontWeight: 'bold',
-    marginBottom: 5
-  },
-  drawerContent: {
-    padding: theme.spacing(0, 4, 2.5, 2),
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  dragger: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '30px',
-    height: '100%',
-    cursor: 'ew-resize',
-    padding: '40px 0 0',
-    position: 'absolute',
-    right: 0,
-    zIndex: 100,
-    color: theme.palette.grey[500],
-  }
-}));
+//STYLES
+const dragger = {
+  display: 'flex',
+  alignItems: 'center',
+  width: '30px',
+  height: '100%',
+  cursor: 'ew-resize',
+  padding: '40px 0 0',
+  position: 'absolute',
+  right: 0,
+  zIndex: 100,
+  color: 'grey.500',
+};
+const drawerTitleStyle = {
+  pt: 2,
+  pr: 0,
+  pb: 0,
+  pl: 2,
+  fontWeight: 'bold',
+  mt: 8,
+  textTransform: 'upperCase',
+};
+const drawerContent = {
+  pt: 0,
+  pr: 4,
+  pb: 2.5,
+  pl: 2,
+  display: 'flex',
+  flexWrap: 'wrap',
+};
 
 const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
   const dispatch = useDispatch();
@@ -43,7 +51,6 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
   const minDrawerWidth = defaultDrawerWidth;
   const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
-  const classes = useStyles({defaultDrawerWidth, drawerWidth});
 
   const handleMouseDown = () => {
     document.addEventListener('mouseup', handleMouseUp, true);
@@ -65,26 +72,23 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
 
   const handleLogout = () => dispatch(setLoggedIn(false));
 
-  return (
-    <Drawer
-      variant='permanent'
-      PaperProps={{style: {width: drawerWidth}}}
-    >
-      <div className={classes.toolbar}/>
-      <ResponsiveHeader logo={<LogoBlanco/>} width={drawerWidth}>
-        <IconButton onClick={handleLogout}>
-          <ExitToApp/>
-        </IconButton>
-      </ResponsiveHeader>
-      <div onMouseDown={e => handleMouseDown(e)} className={classes.dragger}>
-        <ArrowForwardIosIcon/>
-      </div>
-      <Typography className={classes.drawerTitle} variant='h6'>Visor d&#039;expedients</Typography>
-      <div className={classes.drawerContent}>
-        {children}
-      </div>
-    </Drawer>
-  );
+  return <Drawer
+    variant='permanent'
+    PaperProps={{style: {width: drawerWidth}}}
+  >
+    <ResponsiveHeader logo={<LogoBlanco/>} width={drawerWidth}>
+      <IconButton onClick={handleLogout} size="large">
+        <ExitToApp/>
+      </IconButton>
+    </ResponsiveHeader>
+    <Box onMouseDown={e => handleMouseDown(e)} sx={dragger}>
+      <ArrowForwardIosIcon/>
+    </Box>
+    <Typography sx={drawerTitleStyle} variant='body1'>Visor d&#039;expedients</Typography>
+    <Box sx={drawerContent}>
+      {children}
+    </Box>
+  </Drawer>;
 };
 
 LeftDrawer.propTypes = {

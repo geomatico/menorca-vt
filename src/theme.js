@@ -1,8 +1,8 @@
-import {createMuiTheme} from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
-const theme = (type) => createMuiTheme({
+const theme = (mode) => createTheme({
   palette: {
-    type: type ? type : 'light',
+    mode: mode || 'light',
     primary: {
       main: '#AEBD04',
       contrastText: '#fff',

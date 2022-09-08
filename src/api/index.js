@@ -1,4 +1,3 @@
-
 const BASE_URL = 'https://ide.cime.es/ide_tools/search.aspx';
 
 const ENDPOINTS = {

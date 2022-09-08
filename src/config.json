@@ -3,32 +3,32 @@
     {
       "label": "IDE Menorca",
       "thumbnail": "./img/ide-menorca-vector.png",
-      "url": "menorca_base_vector.json"
+      "id": "menorca_base_vector.json"
     },
     {
       "label": "Base IGO",
       "thumbnail": "./img/mapa-base-igo.png",
-      "url": "https://vts.larioja.org/style/mapa-base-igo-v1.json"
+      "id": "https://vts.larioja.org/style/mapa-base-igo-v1.json"
     },
     {
       "label": "OSM Bright",
       "thumbnail": "https://openicgc.github.io/img/osm-bright.png",
-      "url": "https://geoserveis.icgc.cat/contextmaps/osm-bright.json"
+      "id": "https://geoserveis.icgc.cat/contextmaps/osm-bright.json"
     },
     {
       "label": "Positron",
       "thumbnail": "https://openicgc.github.io/img/positron.png",
-      "url": "https://geoserveis.icgc.cat/contextmaps/positron.json"
+      "id": "https://geoserveis.icgc.cat/contextmaps/positron.json"
     },
     {
       "label": "Hibrid",
       "thumbnail": "https://openicgc.github.io/img/orto.png",
-      "url": "https://geoserveis.icgc.cat/contextmaps/hibrid.json"
+      "id": "https://geoserveis.icgc.cat/contextmaps/hibrid.json"
     },
     {
       "label": "Full Dark",
       "thumbnail": "https://openicgc.github.io/img/fulldark.png",
-      "url": "https://geoserveis.icgc.cat/contextmaps/fulldark.json"
+      "id": "https://geoserveis.icgc.cat/contextmaps/fulldark.json"
     }
   ],
   "consellSourceLayers": [

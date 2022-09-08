@@ -1,61 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {makeStyles} from '@material-ui/core/styles';
-import {IconButton} from '@material-ui/core';
-
-import {
-  AppBar,
-  Toolbar,
-  Typography
-} from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    width: ({width}) => width,
-    zIndex: theme.zIndex.modal + 1,
-    left: ({anchor}) => anchor === 'left' ? 0 : 'auto',
-  },
-  toolBar: {
-    padding: theme.spacing(0, 2, 0, 2),
-  },
-  menuButton: {
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  title: {
-    flexGrow: 1,
-  },
-  logoContainer: {
-    height: '40px',
-    width: '200px',
-    marginRight: theme.spacing(2)
-  },
-}));
+//MUI
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+//STYLES
+const toolBarStyle = {
+  px: 2
+};
+const logoContainerStyle = {
+  height: '40px',
+  width: '200px',
+  marginRight: 2
+};
+const titleStyle = {
+  flexGrow: 1,
+};
 
 const ResponsiveHeader = ({startIcon, title, logo, anchor, children, width, onMenuClick}) => {
-  const classes = useStyles({width, anchor});
   const handleMenuClick = () => onMenuClick && onMenuClick();
 
-  return (
-    <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar className={classes.toolBar}>
-        {
-          onMenuClick !== undefined ?
-            <IconButton onClick={handleMenuClick} color='inherit'>
-              {startIcon}
-            </IconButton>
-            : undefined
-        }
-        <div className={classes.logoContainer}>
-          {logo}
-        </div>
-        <Typography variant="h5" className={classes.title} noWrap>{title}</Typography>
-        {children}
-      </Toolbar>
-    </AppBar>
-  );
+  //STYLES
+  const appBarStyle = {
+    width: width,
+    zIndex: theme => theme.zIndex.modal + 1,
+    left: anchor === 'left' ? 0 : 'auto',
+  };
+
+  return <AppBar position="fixed" sx={appBarStyle}>
+    <Toolbar sx={toolBarStyle}>
+      {
+        onMenuClick !== undefined && <IconButton onClick={handleMenuClick} color='inherit' size="large">
+          {startIcon}
+        </IconButton>
+      }
+      <Box sx={logoContainerStyle}>
+        {logo}
+      </Box>
+      <Typography variant="h5" sx={titleStyle} noWrap>{title}</Typography>
+      {children}
+    </Toolbar>
+  </AppBar>;
 };
 
 ResponsiveHeader.propTypes = {

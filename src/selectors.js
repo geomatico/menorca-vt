@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import config from './config.json';
 
 export const getViewport = (state) => state.app.viewport;
-export const getSelectedBaseMapStyleUrl = (state) => state.app.baseMapStyleUrl;
+export const getSelectedBaseMapStyleId = (state) => state.app.baseMapStyleId;
 export const getExpedientsConsellVisible = (state) => state.app.isExpedientsConsellVisible;
 export const getExpedientsCiutadellaVisible = (state) => state.app.isExpedientsCiutadellaVisible;
 export const getSelectedConsellCategories = (state) => state.app.selectedConsellCategories;

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Divider, Typography} from '@material-ui/core';
+//MUI
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 
 function SectionTitle({title}) {
   return (
