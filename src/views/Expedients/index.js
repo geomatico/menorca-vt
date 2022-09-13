@@ -13,13 +13,14 @@ import BaseMapList from '@geomatico/geocomponents/BaseMapList';
 import Map from '@geomatico/geocomponents/Map';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
 import SwitchPad from '@geomatico/geocomponents/SwitchPad';
+import useFetch from '@geomatico/geocomponents/hooks/useFetch';
 //MENORCA-VT
 import ResponsiveHeader from '../../components/ResponsiveHeader';
 import RightDrawer from '../../components/RightDrawer';
 import LeftDrawer from '../../components/LeftDrawer';
 import SquareButtonIcon from '../../components/SquareButtonIcon';
 import LogoBlanco from '../../components/LogoBlanco';
-import {fetchTotalExpedients, fetchTotalVivendes} from '../../api';
+import API from '../../services/api';
 import AllCharts from '../../components/AllCharts';
 import ExpandContent from '../../components/ExpandContent';
 //OTHERS
@@ -181,15 +182,26 @@ const Expedients = ({onLogout}) => {
     typeCountByYear: [],
     resolutionStateCount: []
   });
-  const [totalViviendas, setTotalViviendas] = useState({
-    numberofdwellings: '0',
-    numberofbuildingunits: '0'
-  });
-  const [expedientsByType, setExpedientsByType] = useState([]);
 
-  const totalExpedients = expedientsByType
-    .filter(({tipus}) => config.consellCategories.find(category => selectedConsellCategories.includes(category.id) && category.values.includes(tipus)))
-    .reduce((data, {totals}) => data + parseInt(totals), 0);
+  const {data: expedientsResponse} = useFetch(API.expedients(...dateRange));
+  const [totalExpedients, setTotalExpedients] = useState(0);
+  useEffect(() => {
+    if (expedientsResponse) {
+      setTotalExpedients(
+        expedientsResponse
+          ?.filter(({tipus}) => config.consellCategories.find(category => selectedConsellCategories.includes(category.id) && category.values.includes(tipus)))
+          .reduce((data, {totals}) => data + parseInt(totals), 0)
+      );
+    }
+  },[expedientsResponse]);
+
+  const {data: vivendesResponse} = useFetch(API.vivendes(mapRef.current?.getBounds().toArray().flatMap(a => a).join(',')));
+  const [totalVivendes, setTotalVivendes] = useState({numberofdwellings: '0', numberofbuildingunits: '0'});
+  useEffect(() => {
+    if (vivendesResponse) {
+      setTotalVivendes(vivendesResponse[0]);
+    }
+  }, [vivendesResponse]);
 
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
@@ -205,10 +217,6 @@ const Expedients = ({onLogout}) => {
     dateRange
   ]);
 
-  useEffect(() => {
-    fetchTotalExpedients(...dateRange).then(setExpedientsByType);
-  }, [dateRange]);
-
   const updateStats = debounce(10, () => {
     if (mapRef) {
       const featureProperties = mapRef.current?.queryRenderedFeatures({
@@ -221,9 +229,6 @@ const Expedients = ({onLogout}) => {
         .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
 
       setStats(calcStats(featureProperties));
-
-      fetchTotalVivendes(mapRef.current?.getBounds().toArray().flatMap(a => a).join(','))
-        .then((totalViviendas) => setTotalViviendas(totalViviendas[0]));
     }
   });
 
@@ -258,7 +263,7 @@ const Expedients = ({onLogout}) => {
 
   const chartsComponent = <AllCharts
     stats={stats}
-    totalViviendas={totalViviendas}
+    totalViviendas={totalVivendes}
     totalExpedients={totalExpedients}
     isExpedientsConsellVisible={isExpedientsConsellVisible}
     selectedConsellCategories={selectedConsellCategories}
