@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {debounce} from 'throttle-debounce';
-import {useDispatch, useSelector} from 'react-redux';
 //MUI
 import Box from '@mui/material/Box';
 import Hidden from '@mui/material/Hidden';
@@ -15,41 +14,23 @@ import Map from '@geomatico/geocomponents/Map';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
 import SwitchPad from '@geomatico/geocomponents/SwitchPad';
 //MENORCA-VT
-import ResponsiveHeader from '../components/ResponsiveHeader';
-import RightDrawer from '../components/RightDrawer';
-import LeftDrawer from '../components/LeftDrawer';
-import SquareButtonIcon from '../components/SquareButtonIcon';
-import LogoBlanco from '../components/LogoBlanco';
-import {fetchTotalExpedients, fetchTotalVivendes} from '../api';
-import ChartsComponent from './map/ChartsComponents';
-import ExpandContent from '../components/ExpandContent';
+import ResponsiveHeader from '../../components/ResponsiveHeader';
+import RightDrawer from '../../components/RightDrawer';
+import LeftDrawer from '../../components/LeftDrawer';
+import SquareButtonIcon from '../../components/SquareButtonIcon';
+import LogoBlanco from '../../components/LogoBlanco';
+import {fetchTotalExpedients, fetchTotalVivendes} from '../../api';
+import AllCharts from '../../components/AllCharts';
+import ExpandContent from '../../components/ExpandContent';
 //OTHERS
 import ReactCardFlip from 'react-card-flip';
 //UTILS
-import config from '../config.json';
-import {
-  getDateRangeFilter,
-  getSelectedBaseMapStyleId,
-  getSelectedConsellCategories,
-  getSelectedCiutadellaCategories,
-  getViewport,
-  getExpedientsConsellVisible,
-  getExpedientsCiutadellaVisible
-} from '../selectors';
-import {
-  setBaseMapStyleId,
-  setDataContext,
-  setDataTotal,
-  setDateRangeFilter,
-  setViewport,
-  setExpedientsConsellVisible,
-  setExpedientsCiutadellaVisible,
-  setSelectedConsellCategories,
-  setSelectedCiutadellaCategories
-} from '../actions';
-import {calcStats} from '../services/calcStats';
+import config from '../../config.json';
 
-const {mapStyles, consellSourceLayers, consellCategories, ciutadellaCategories, fallbackColor, minDate} = config;
+import {calcStats} from '../../services/calcStats';
+import PropTypes from 'prop-types';
+
+const {consellSourceLayers, consellCategories, ciutadellaCategories, fallbackColor} = config;
 
 //STYLES
 const RIGHT_DRAWER_WIDTH = 360;
@@ -185,16 +166,30 @@ const buildCiutadellaLayers = (isExpedientsCiutadellaVisible, selectedCiutadella
     }] : []
 );
 
-const Expedients = () => {
+const Expedients = ({onLogout}) => {
   const mapRef = useRef();
-  const dispatch = useDispatch();
-  const viewport = useSelector(getViewport);
-  const selectedStyleId = useSelector(getSelectedBaseMapStyleId);
-  const isExpedientsConsellVisible = useSelector(getExpedientsConsellVisible);
-  const selectedConsellCategories = useSelector(getSelectedConsellCategories);
-  const isExpedientsCiutadellaVisible = useSelector(getExpedientsCiutadellaVisible);
-  const selectedCiutadellaCategories = useSelector(getSelectedCiutadellaCategories);
-  const dateRange = useSelector(getDateRangeFilter);
+
+  const [viewport, setViewport] = useState(config.initialViewport);
+  const [mapStyle, setMapStyle] = useState(config.mapStyles[5].id);
+  const [isExpedientsConsellVisible, setExpedientsConsellVisible] = useState(true);
+  const [isExpedientsCiutadellaVisible, setExpedientsCiutadellaVisible] = useState(true);
+  const [selectedConsellCategories, setSelectedConsellCategories] = useState(config.consellCategories.map(({id}) => id));
+  const [selectedCiutadellaCategories, setSelectedCiutadellaCategories] = useState(config.ciutadellaCategories.map(({id}) => id));
+  const [dateRange, setDateRange] = useState([config.minDate, maxDate]);
+  const [stats, setStats] = useState({
+    expedients: 0,
+    typeCountByYear: [],
+    resolutionStateCount: []
+  });
+  const [totalViviendas, setTotalViviendas] = useState({
+    numberofdwellings: '0',
+    numberofbuildingunits: '0'
+  });
+  const [expedientsByType, setExpedientsByType] = useState([]);
+
+  const totalExpedients = expedientsByType
+    .filter(({tipus}) => config.consellCategories.find(category => selectedConsellCategories.includes(category.id) && category.values.includes(tipus)))
+    .reduce((data, {totals}) => data + parseInt(totals), 0);
 
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [isFlipped, setFlipped] = useState(false);
@@ -211,10 +206,7 @@ const Expedients = () => {
   ]);
 
   useEffect(() => {
-    fetchTotalExpedients(...dateRange)
-      .then((totalExpedients) => dispatch(setDataTotal({
-        expedientsByType: totalExpedients
-      })));
+    fetchTotalExpedients(...dateRange).then(setExpedientsByType);
   }, [dateRange]);
 
   const updateStats = debounce(10, () => {
@@ -228,11 +220,10 @@ const Expedients = () => {
         .map(feature => feature.properties)
         .filter(({any}) => any >= dateRange[0] && any <= dateRange[1]);
 
-      dispatch(setDataContext(calcStats(featureProperties)));
+      setStats(calcStats(featureProperties));
 
       fetchTotalVivendes(mapRef.current?.getBounds().toArray().flatMap(a => a).join(','))
-        .then((totalViviendas) =>
-          dispatch(setDataContext(...totalViviendas)));
+        .then((totalViviendas) => setTotalViviendas(totalViviendas[0]));
     }
   });
 
@@ -254,28 +245,25 @@ const Expedients = () => {
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
   const handleCardFlip = () => setFlipped(!isFlipped);
   const handleDrawerWidthChange = (width) => setLeftDrawerWidth(width);
-  const handleViewportChange = ({latitude, longitude, zoom, bearing, pitch}) => dispatch(setViewport({
-    latitude,
-    longitude,
-    zoom,
-    bearing,
-    pitch,
-  }));
-  const toggleExpedientsConsellLayer = (isOn) => dispatch(setExpedientsConsellVisible(isOn));
-  const toggleExpedientsCiutadellaLayer = (isOn) => dispatch(setExpedientsCiutadellaVisible(isOn));
-  const handleStyleChange = (newStyle) => dispatch(setBaseMapStyleId(newStyle));
-  const handleSelectedConsellCategories = (newCategories) => dispatch(setSelectedConsellCategories(newCategories));
-  const handleSelectedCiutadellaCategories = (newCategories) => dispatch(setSelectedCiutadellaCategories(newCategories));
-  const handleDateRangeChange = (newRange) => dispatch(setDateRangeFilter(newRange));
 
   const mapComponent = <Map
     ref={mapRefCb}
-    mapStyle={selectedStyleId}
+    mapStyle={mapStyle}
     auth={auth}
     sources={sources}
     layers={layers}
     viewport={viewport}
-    onViewportChange={handleViewportChange}
+    onViewportChange={setViewport}
+  />;
+
+  const chartsComponent = <AllCharts
+    stats={stats}
+    totalViviendas={totalViviendas}
+    totalExpedients={totalExpedients}
+    isExpedientsConsellVisible={isExpedientsConsellVisible}
+    selectedConsellCategories={selectedConsellCategories}
+    isExpedientsCiutadellaVisible={isExpedientsCiutadellaVisible}
+    selectedCiutadellaCategories={selectedCiutadellaCategories}
   />;
 
   const buttonContentStyle = {
@@ -311,32 +299,32 @@ const Expedients = () => {
     </Hidden>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
       <Typography sx={drawerTitleStyle} variant='body1'>Control de capes</Typography>
-      <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={toggleExpedientsConsellLayer}>
+      <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={setExpedientsConsellVisible}>
         <SwitchPad
           categories={consellCategories}
           selected={selectedConsellCategories}
-          onSelectionChange={handleSelectedConsellCategories}
+          onSelectionChange={setSelectedConsellCategories}
           sx={switchPadStyle}
         />
       </ExpandContent>
-      <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={toggleExpedientsCiutadellaLayer}>
+      <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={setExpedientsCiutadellaVisible}>
         <SwitchPad
           categories={ciutadellaCategories}
           selected={selectedCiutadellaCategories}
-          onSelectionChange={handleSelectedCiutadellaCategories}
+          onSelectionChange={setSelectedCiutadellaCategories}
           sx={switchPadStyle}
         />
       </ExpandContent>
       <ExpandContent title={'Rang de dates'}>
         <div style={{padding: '0 16px', width: '100%'}}>
-          <RangeSlider min={minDate} max={maxDate} value={dateRange} onValueChange={handleDateRangeChange} animationInterval={1000}/>
+          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={setDateRange} animationInterval={1000}/>
         </div>
       </ExpandContent>
       <ExpandContent title={'Mapes base'}>
         <BaseMapList
-          styles={mapStyles}
-          selectedStyleId={selectedStyleId}
-          onStyleChange={handleStyleChange}
+          styles={config.mapStyles}
+          selectedStyleId={mapStyle}
+          onStyleChange={setMapStyle}
           thumbnailWidth={60}
           thumbnailHeight={40}
           variant='list'
@@ -362,7 +350,7 @@ const Expedients = () => {
         </main>
         <Box sx={{px: 2, pt: 9.5}}>
           <Typography sx={drawerTitleStyle} variant='body1'>Visor d&#039;expedients</Typography>
-          <ChartsComponent />
+          {chartsComponent}
         </Box>
       </ReactCardFlip>
     </Hidden>
@@ -372,14 +360,19 @@ const Expedients = () => {
       <LeftDrawer
         defaultDrawerWidth={LEFT_DEFAULT_DRAWER_WIDTH}
         onDrawerWidthChange={handleDrawerWidthChange}
+        onLogout={onLogout}
       >
-        <ChartsComponent />
+        {chartsComponent}
       </LeftDrawer>
       <Box sx={mainContentStyle}>
         {mapComponent}
       </Box>
     </Hidden>
   </>;
+};
+
+Expedients.propTypes = {
+  onLogout: PropTypes.func.isRequired
 };
 
 export default Expedients;

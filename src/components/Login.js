@@ -1,14 +1,9 @@
 import React, {useEffect, useState} from 'react';
 //GEOCOMPONENTS
 import LoginModal from '@geomatico/geocomponents/LoginModal';
+import PropTypes from 'prop-types';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {getLoggedIn} from '../selectors';
-import {setLoggedIn} from '../actions';
-
-const Login = ({children}) => {
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getLoggedIn);
+const Login = ({isLoggedIn, setLoggedIn, children}) => {
 
   const [username, setUsername] = useState(localStorage.getItem('menorca.expedients.user') || '');
   const [password, setPassword] = useState('');
@@ -37,16 +32,16 @@ const Login = ({children}) => {
           localStorage.setItem('menorca.expedients.user', user);
           localStorage.setItem('menorca.expedients.password', pass);
           setErrorMessage(undefined);
-          dispatch(setLoggedIn(true));
+          setLoggedIn(true);
         } else { // Unauthorized
           setErrorMessage(onMount ? '' : 'Login incorrecte');
-          dispatch(setLoggedIn(false));
+          setLoggedIn(false);
         }
       })
       .catch(() => {
         setPassword('');
         setErrorMessage(onMount ? '' : 'Error de xarxa');
-        dispatch(setLoggedIn(false));
+        setLoggedIn(false);
       });
   };
 
@@ -62,6 +57,11 @@ const Login = ({children}) => {
       loginErrorMessage={errorMessage}
     />;
   }
+};
+
+Login.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  setLoggedIn: PropTypes.func.isRequired
 };
 
 export default Login;

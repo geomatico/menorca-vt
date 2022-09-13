@@ -10,8 +10,7 @@ module.exports = (env) => ({
     open: true,
   },
   entry: env.test ? '' : {
-    twinmaps: './src/twinmaps.js',
-    expedients: './src/expedients.js',
+    main: './src/index.js'
   },
   resolve: {
     alias: {
@@ -52,15 +51,10 @@ module.exports = (env) => ({
   },
   plugins: env.test ? [] : [
     new HtmlWebPackPlugin({
-      template: './src/template.html',
-      filename: './twinmaps.html',
-      chunks: ['twinmaps'],
-    }),
-    new HtmlWebPackPlugin({
       favicon: './static/img/logo.png',
       template: './src/template.html',
-      filename: './expedients.html',
-      chunks: ['expedients'],
+      filename: './index.html',
+      chunks: ['main'],
     }),
     new CopyWebpackPlugin({
       patterns: [
