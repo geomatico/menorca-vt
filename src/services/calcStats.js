@@ -11,13 +11,10 @@ export const calcStats = (featureProperties) => {
     }, {});
 
   const arrTypeCountByYear = Object.keys(objTypeCountByYear)
-    .reduce((data, year) => {
-      data.push({
-        year: year,
-        ...objTypeCountByYear[year]
-      });
-      return data;
-    }, []);
+    .map(year => ({
+      year: year,
+      ...objTypeCountByYear[year]
+    }));
 
   const objResolutionStateCount = featureProperties
     .map(properties => properties.resolucio)
@@ -27,15 +24,12 @@ export const calcStats = (featureProperties) => {
     }, {});
 
   const arrResolutionStateCount = Object.entries(objResolutionStateCount)
-    .reduce((data, [resolucio, count]) => {
-      data.push({
-        name: resolucio,
-        value: count
-      });
-      return data;
-    }, []);
+    .map(([resolucio, count]) => ({
+      name: resolucio,
+      value: count
+    }));
   
-  return({
+  return ({
     expedients: featureProperties.length,
     typeCountByYear: arrTypeCountByYear,
     resolutionStateCount: arrResolutionStateCount
