@@ -56,29 +56,22 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.8",
     "karma-webpack": "^4.0.2",
-    "keymirror": "^0.1.1",
     "mocha": "^8.2.0",
     "pre-commit": "^1.2.2",
+    "prop-types": "^15.7.2",
     "raw-loader": "^4.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.4",
-    "redux": "^4.1.0",
-    "redux-actions": "^2.6.5",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0",
     "sinon": "^9.2.0",
     "style-loader": "^2.0.0",
+    "throttle-debounce": "^3.0.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.8.0"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
     "react-card-flip": "^1.0.11",
-    "recharts": "^1.8.5",
-    "throttle-debounce": "^3.0.1"
+    "recharts": "^1.8.5"
   }
 }

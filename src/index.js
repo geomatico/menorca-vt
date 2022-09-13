@@ -1,27 +1,24 @@
 import ReactDOM from 'react-dom';
-import React from 'react';
-
-import {Provider} from 'react-redux';
-import store from './store';
+import React, {useState} from 'react';
 
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import Login from './components/Login';
-import Expedients from './views/expedients';
+import Expedients from './views/Expedients';
 
 const App = () => {
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const handleLogout = () => setLoggedIn(false);
   return (
-    <Provider store={store}>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme()}>
-          <CssBaseline/>
-          <Login>
-            <Expedients />
-          </Login>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </Provider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme()}>
+        <CssBaseline/>
+        <Login isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}>
+          <Expedients onLogout={handleLogout}/>
+        </Login>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 

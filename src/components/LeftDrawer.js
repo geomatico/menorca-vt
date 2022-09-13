@@ -11,9 +11,6 @@ import ExitToApp from '@mui/icons-material/ExitToApp';
 //MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
 import LogoBlanco from './LogoBlanco';
-//UTILS
-import {setLoggedIn} from '../actions';
-import {useDispatch} from 'react-redux';
 //STYLES
 const dragger = {
   display: 'flex',
@@ -45,9 +42,7 @@ const drawerContent = {
   flexWrap: 'wrap',
 };
 
-const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
-  const dispatch = useDispatch();
-
+const LeftDrawer = ({defaultDrawerWidth, onDrawerWidthChange, onLogout, children}) => {
   const minDrawerWidth = defaultDrawerWidth;
   const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
@@ -70,7 +65,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
     }
   }, []);
 
-  const handleLogout = () => dispatch(setLoggedIn(false));
+  const handleLogout = () => onLogout(false);
 
   return <Drawer
     variant='permanent'
@@ -94,6 +89,7 @@ const LeftDrawer = ({defaultDrawerWidth, children, onDrawerWidthChange}) => {
 LeftDrawer.propTypes = {
   defaultDrawerWidth: PropTypes.number.isRequired,
   onDrawerWidthChange: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
