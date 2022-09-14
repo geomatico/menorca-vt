@@ -9,17 +9,11 @@ import React, {useState} from 'react';
 
 import BaseMapList from '@geomatico/geocomponents/BaseMapList';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
-import SwitchPad from '@geomatico/geocomponents/SwitchPad';
 import DrawerTitle from '../../components/DrawerTitle';
 import PropTypes from 'prop-types';
+import DatasourceExpand from './DatasourceExpand';
 
 const RIGHT_DRAWER_WIDTH = 360;
-
-const switchPadStyle = {
-  '& .SwitchPad-text': {
-    fontSize: '0.75rem'
-  }
-};
 
 const baseMapListStyle = {
   '& .LayerSwitcher-text': {
@@ -27,8 +21,9 @@ const baseMapListStyle = {
   }
 };
 
-const ExpedientsRight = ({mapStyle, maxDate, dateRange, isExpedientsConsellVisible, isExpedientsCiutadellaVisible, selectedConsellCategories, selectedCiutadellaCategories, setMapStyle, setExpedientsConsellVisible, setExpedientsCiutadellaVisible, setSelectedConsellCategories, setSelectedCiutadellaCategories, setDateRange}) => {
+const maxDate = new Date().getFullYear();
 
+const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeChanged, visibleCategories, onVisibleCategoriesChanged}) => {
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
 
@@ -43,6 +38,13 @@ const ExpedientsRight = ({mapStyle, maxDate, dateRange, isExpedientsConsellVisib
     }),
   };
 
+  const datasources = Object.keys(config.datasources);
+
+  const handleCategoriesVisibility = datasource => datasourceVisibleCategories => onVisibleCategoriesChanged({
+    ...visibleCategories,
+    [datasource]: datasourceVisibleCategories
+  });
+
   return <>
     <Hidden smDown implementation="css">
       <Box sx={buttonContentStyle}>
@@ -53,32 +55,21 @@ const ExpedientsRight = ({mapStyle, maxDate, dateRange, isExpedientsConsellVisib
     </Hidden>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
       <DrawerTitle>Control de capes</DrawerTitle>
-      <ExpandContent title={'Expedients consell insular'} isChecked={isExpedientsConsellVisible} onChange={setExpedientsConsellVisible}>
-        <SwitchPad
-          categories={config.consellCategories}
-          selected={selectedConsellCategories}
-          onSelectionChange={setSelectedConsellCategories}
-          sx={switchPadStyle}
-        />
-      </ExpandContent>
-      <ExpandContent title={'Expedients Aj. Ciutadella'} isChecked={isExpedientsCiutadellaVisible} onChange={setExpedientsCiutadellaVisible}>
-        <SwitchPad
-          categories={config.ciutadellaCategories}
-          selected={selectedCiutadellaCategories}
-          onSelectionChange={setSelectedCiutadellaCategories}
-          sx={switchPadStyle}
-        />
-      </ExpandContent>
+      {datasources.map(datasource => <DatasourceExpand
+        key={datasource}
+        id={datasource}
+        onVisibilityChanged={handleCategoriesVisibility(datasource)}
+      />)}
       <ExpandContent title={'Rang de dates'}>
         <div style={{padding: '0 16px', width: '100%'}}>
-          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={setDateRange} animationInterval={1000}/>
+          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged} animationInterval={1000}/>
         </div>
       </ExpandContent>
       <ExpandContent title={'Mapes base'}>
         <BaseMapList
           styles={config.mapStyles}
           selectedStyleId={mapStyle}
-          onStyleChange={setMapStyle}
+          onStyleChange={onMapStyleChanged}
           thumbnailWidth={60}
           thumbnailHeight={40}
           variant='list'
@@ -91,18 +82,11 @@ const ExpedientsRight = ({mapStyle, maxDate, dateRange, isExpedientsConsellVisib
 
 ExpedientsRight.propTypes = {
   mapStyle: PropTypes.string.isRequired,
-  maxDate: PropTypes.number.isRequired,
+  onMapStyleChanged: PropTypes.func.isRequired,
   dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
-  isExpedientsConsellVisible: PropTypes.bool.isRequired,
-  isExpedientsCiutadellaVisible: PropTypes.bool.isRequired,
-  selectedConsellCategories: PropTypes.array.isRequired,
-  selectedCiutadellaCategories: PropTypes.array.isRequired,
-  setMapStyle: PropTypes.func.isRequired,
-  setExpedientsConsellVisible: PropTypes.func.isRequired,
-  setExpedientsCiutadellaVisible: PropTypes.func.isRequired,
-  setSelectedConsellCategories: PropTypes.func.isRequired,
-  setSelectedCiutadellaCategories: PropTypes.func.isRequired,
-  setDateRange: PropTypes.func.isRequired
+  onDateRangeChanged: PropTypes.func.isRequired,
+  visibleCategories: PropTypes.object.isRequired,
+  onVisibleCategoriesChanged: PropTypes.func.isRequired
 };
 
 export default ExpedientsRight;

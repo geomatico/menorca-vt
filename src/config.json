@@ -31,99 +31,106 @@
       "id": "https://geoserveis.icgc.cat/contextmaps/fulldark.json"
     }
   ],
-  "consellSourceLayers": [
-    "or007exp_negociat45",
-    "or007exp_negociat41",
-    "or007exp_negociat37"
-  ],
-  "consellCategories": [
-    {
-      "id": "CED",
-      "values": [
-        "CED"
+  "datasources": {
+    "consell": {
+      "title": "Expedients consell insular",
+      "layers": [
+        "or007exp_negociat45",
+        "or007exp_negociat41",
+        "or007exp_negociat37"
       ],
-      "color": "#C9C900",
-      "label": "CED. Cèdules urbanístiques"
+      "categories": [
+        {
+          "id": "CED",
+          "values": [
+            "CED"
+          ],
+          "color": "#C9C900",
+          "label": "CED. Cèdules urbanístiques"
+        },
+        {
+          "id": "DUP",
+          "values": [
+            "DUP"
+          ],
+          "color": "#FFFF73",
+          "label": "DUP. Expedients de duplicat de cèdules"
+        },
+        {
+          "id": "AUT",
+          "values": [
+            "AUT"
+          ],
+          "color": "#00C5FF",
+          "label": "AUT. Litoral"
+        },
+        {
+          "id": "DTQ",
+          "values": [
+            "DTQ"
+          ],
+          "color": "#0084A8",
+          "label": "DTQ. Declaracio responsable litoral"
+        },
+        {
+          "id": "NUI",
+          "values": [
+            "NUI"
+          ],
+          "color": "#E69800",
+          "label": "NUI. Declaració interés general"
+        },
+        {
+          "id": "ERE",
+          "values": [
+            "ERE"
+          ],
+          "color": "#FFEBAF",
+          "label": "ERE. Edificacions en sòl rúsic"
+        },
+        {
+          "id": "INF",
+          "values": [
+            "INF"
+          ],
+          "color": "#C29ED7",
+          "label": "INF. Informes urbanístics i d'ordenació. Inclou AIA"
+        },
+        {
+          "id": "ORD",
+          "values": [
+            "ORD"
+          ],
+          "color": "#E69800",
+          "label": "ORD. Expedients diversos ordenació"
+        },
+        {
+          "id": "PO",
+          "values": [
+            "PO"
+          ],
+          "color": "#E60000",
+          "label": "PO. Procediments judicials"
+        },
+        {
+          "id": "altres",
+          "values": [
+            "INU",
+            "LIA",
+            "LIC",
+            "NUH",
+            "PRCED",
+            "SAN"
+          ],
+          "color": "#E9FFBE",
+          "label": "Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)"
+        }
+      ]
     },
-    {
-      "id": "DUP",
-      "values": [
-        "DUP"
-      ],
-      "color": "#FFFF73",
-      "label": "DUP. Expedients de duplicat de cèdules"
-    },
-    {
-      "id": "AUT",
-      "values": [
-        "AUT"
-      ],
-      "color": "#00C5FF",
-      "label": "AUT. Litoral"
-    },
-    {
-      "id": "DTQ",
-      "values": [
-        "DTQ"
-      ],
-      "color": "#0084A8",
-      "label": "DTQ. Declaracio responsable litoral"
-    },
-    {
-      "id": "NUI",
-      "values": [
-        "NUI"
-      ],
-      "color": "#E69800",
-      "label": "NUI. Declaració interés general"
-    },
-    {
-      "id": "ERE",
-      "values": [
-        "ERE"
-      ],
-      "color": "#FFEBAF",
-      "label": "ERE. Edificacions en sòl rúsic"
-    },
-    {
-      "id": "INF",
-      "values": [
-        "INF"
-      ],
-      "color": "#C29ED7",
-      "label": "INF. Informes urbanístics i d'ordenació. Inclou AIA"
-    },
-    {
-      "id": "ORD",
-      "values": [
-        "ORD"
-      ],
-      "color": "#E69800",
-      "label": "ORD. Expedients diversos ordenació"
-    },
-    {
-      "id": "PO",
-      "values": [
-        "PO"
-      ],
-      "color": "#E60000",
-      "label": "PO. Procediments judicials"
-    },
-    {
-      "id": "altres",
-      "values": [
-        "INU",
-        "LIA",
-        "LIC",
-        "NUH",
-        "PRCED",
-        "SAN"
-      ],
-      "color": "#E9FFBE",
-      "label": "Altres. Inclou (INU; LIA; LIC; NUH; PRCED; SAN)"
-    }
-  ],
-  "ciutadellaCategories": [
+    "ciutadella": {
+      "title": "Expedients Aj. Ciutadella",
+      "layers": ["or015urb_llicencies"],
+      "categories": [
     {
       "id": "EX067",
       "values": [
@@ -180,7 +187,9 @@
       "color": "#f003fc",
       "label": "EX076. Llicència modificació de plànols"
     }
-  ],
+  ]
+    }
+  },
   "fallbackColor": "#FF00FF",
   "resolucioColors": {
     "Sense resolució": "#7D7D7D",

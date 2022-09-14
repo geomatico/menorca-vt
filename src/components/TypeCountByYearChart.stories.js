@@ -14,6 +14,6 @@ const Template = (args) => <TypeCountByYearChart {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  categories: config.consellCategories,
+  categories: config.datasources.consell.categories,
   data: fixture.data
 };

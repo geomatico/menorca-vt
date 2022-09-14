@@ -1,21 +1,54 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Chart from './Chart';
 import TypeCountByYearChart from './TypeCountByYearChart';
 import ResolutionStateChart from './ResolutionStateChart';
 import NumericIndicator from './NumericIndicator';
 
+import useFetch from '@geomatico/geocomponents/hooks/useFetch';
+
 import config from '../config.json';
 import PropTypes from 'prop-types';
+import API from '../services/api';
+import {calcStats} from '../services/calcStats';
 
+const AllCharts = ({dateRange, BBOX, visibleCategories, renderedFeatures}) => {
 
-const ChartsComponent = ({stats, totalViviendas, totalExpedients, isExpedientsConsellVisible, selectedConsellCategories, isExpedientsCiutadellaVisible, selectedCiutadellaCategories}) => {
-  const {consellCategories, ciutadellaCategories} = config;
+  const allVisibleCategories = Object.entries(config.datasources).flatMap(([datasource, {categories}]) =>
+    categories.filter(cat => visibleCategories[datasource].includes(cat.id))
+  );
 
-  const allVisibleCategories = [
-    ...(isExpedientsConsellVisible ? consellCategories.filter(cat => selectedConsellCategories.includes(cat.id)) : []),
-    ...(isExpedientsCiutadellaVisible ? ciutadellaCategories.filter(cat => selectedCiutadellaCategories.includes(cat.id)) : [])
-  ];
+  // Calc stats
+  const [stats, setStats] = useState({
+    expedients: 0,
+    typeCountByYear: [],
+    resolutionStateCount: []
+  });
+
+  useEffect(() => setStats(calcStats(renderedFeatures.map(f => f.properties))), [renderedFeatures]);
+
+  // Query total expedients
+  const {data: expedientsResponse} = useFetch(API.expedients(...dateRange));
+  const [totalExpedients, setTotalExpedients] = useState(0);
+  useEffect(() => {
+    if (expedientsResponse) {
+      setTotalExpedients(
+        expedientsResponse
+          ?.filter(({tipus}) => config.datasources.consell.categories.find(category => visibleCategories.consell.includes(category.id) && category.values.includes(tipus)))
+          .reduce((data, {totals}) => data + parseInt(totals), 0)
+      );
+    }
+  },[expedientsResponse]);
+
+  // Query total vivendes
+  const {data: vivendesResponse} = useFetch(BBOX && API.vivendes(BBOX));
+  const [totalVivendes, setTotalVivendes] = useState({numberofdwellings: '0', numberofbuildingunits: '0'});
+  useEffect(() => {
+    if (vivendesResponse) {
+      setTotalVivendes(vivendesResponse[0]);
+    }
+  }, [vivendesResponse]);
+
 
   return <>
     <Chart title={'Tipus d\'expedient per any'}>
@@ -31,26 +64,16 @@ const ChartsComponent = ({stats, totalViviendas, totalExpedients, isExpedientsCo
     </Chart>
 
     <Chart title={'Vivendes vs total locals'}>
-      <NumericIndicator title={''} main={parseInt(totalViviendas.numberofdwellings)} total={parseInt(totalViviendas.numberofbuildingunits)}/>
+      <NumericIndicator title={''} main={parseInt(totalVivendes.numberofdwellings)} total={parseInt(totalVivendes.numberofbuildingunits)}/>
     </Chart>
   </>;
 };
 
-ChartsComponent.propTypes = {
-  stats: PropTypes.shape({
-    expedients: PropTypes.number.isRequired,
-    typeCountByYear: PropTypes.array.isRequired,
-    resolutionStateCount: PropTypes.array.isRequired,
-  }).isRequired,
-  totalViviendas: PropTypes.shape({
-    numberofdwellings: PropTypes.string.isRequired,
-    numberofbuildingunits: PropTypes.string.isRequired
-  }).isRequired,
-  totalExpedients: PropTypes.number.isRequired,
-  isExpedientsConsellVisible: PropTypes.bool.isRequired,
-  selectedConsellCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  isExpedientsCiutadellaVisible: PropTypes.bool.isRequired,
-  selectedCiutadellaCategories: PropTypes.arrayOf(PropTypes.string).isRequired
+AllCharts.propTypes = {
+  dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
+  BBOX: PropTypes.string,
+  visibleCategories: PropTypes.object.isRequired,
+  renderedFeatures: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-export default ChartsComponent;
+export default AllCharts;
