@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import SwitchPad from '@geomatico/geocomponents/SwitchPad';
-import ExpandContent from '../../components/ExpandContent';
-import config from '../../config.json';
+
+import config from '../config.json';
+import ExpandContent from './ExpandContent';
 
 const switchPadStyle = {
   '& .SwitchPad-text': {
@@ -11,8 +12,8 @@ const switchPadStyle = {
   }
 };
 
-const DatasourceExpand = ({id, onVisibilityChanged}) => {
-  const {title, categories} = config.datasources[id];
+const DatasetExpand = ({id, onVisibilityChanged}) => {
+  const {title, categories} = config.datasets[id];
   const [isChecked, setChecked] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState(categories.map(c => c.id));
   useEffect(() =>
@@ -30,9 +31,9 @@ const DatasourceExpand = ({id, onVisibilityChanged}) => {
   </ExpandContent>;
 };
 
-DatasourceExpand.propTypes = {
+DatasetExpand.propTypes = {
   id: PropTypes.string.isRequired,
   onVisibilityChanged: PropTypes.func.isRequired
 };
 
-export default DatasourceExpand;
+export default DatasetExpand;

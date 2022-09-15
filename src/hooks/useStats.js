@@ -1,4 +1,6 @@
-export const calcStats = (featureProperties) => {
+import {useEffect, useState} from 'react';
+
+const _calcStats = (featureProperties) => {
 
   const objTypeCountByYear = featureProperties
     .reduce((stats, properties) => {
@@ -28,10 +30,24 @@ export const calcStats = (featureProperties) => {
       name: resolucio,
       value: count
     }));
-  
+
   return ({
     expedients: featureProperties.length,
     typeCountByYear: arrTypeCountByYear,
     resolutionStateCount: arrResolutionStateCount
   });
 };
+
+const useStats = (renderedFeatures) => {
+  const [stats, setStats] = useState({
+    expedients: 0,
+    typeCountByYear: [],
+    resolutionStateCount: []
+  });
+
+  useEffect(() => setStats(_calcStats(renderedFeatures.map(f => f.properties))), [renderedFeatures]);
+
+  return stats;
+};
+
+export default useStats;

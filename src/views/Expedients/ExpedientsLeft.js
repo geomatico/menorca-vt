@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
-import Hidden from '@mui/material/Hidden';
-import ResponsiveHeader from '../../components/ResponsiveHeader';
-import MenuIcon from '@mui/icons-material/Menu';
-import LogoBlanco from '../../components/LogoBlanco';
-import IconButton from '@mui/material/IconButton';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import ReactCardFlip from 'react-card-flip';
+import MenuIcon from '@mui/icons-material/Menu';
+
 import Box from '@mui/material/Box';
+import Hidden from '@mui/material/Hidden';
+import IconButton from '@mui/material/IconButton';
+import ReactCardFlip from 'react-card-flip';
+
 import DrawerTitle from '../../components/DrawerTitle';
 import LeftDrawer from '../../components/LeftDrawer';
-
+import LogoBlanco from '../../components/LogoBlanco';
+import ResponsiveHeader from '../../components/ResponsiveHeader';
 
 const LEFT_DEFAULT_DRAWER_WIDTH = 420;
 
-const ExpedientsLeft = ({mapComponent, chartsComponent, onLogout}) => {
+const ExpedientsLeft = ({mapComponent, indicatorsComponent, onLogout}) => {
   const [leftDrawerWidth, setLeftDrawerWidth] = useState(LEFT_DEFAULT_DRAWER_WIDTH);
   const [isFlipped, setFlipped] = useState(false);
 
@@ -52,7 +53,7 @@ const ExpedientsLeft = ({mapComponent, chartsComponent, onLogout}) => {
         </main>
         <Box sx={{px: 2, pt: 9.5}}>
           <DrawerTitle>Visor d&#039;expedients</DrawerTitle>
-          {chartsComponent}
+          {indicatorsComponent}
         </Box>
       </ReactCardFlip>
     </Hidden>
@@ -64,7 +65,7 @@ const ExpedientsLeft = ({mapComponent, chartsComponent, onLogout}) => {
         onDrawerWidthChange={handleDrawerWidthChange}
         onLogout={onLogout}
       >
-        {chartsComponent}
+        {indicatorsComponent}
       </LeftDrawer>
       <Box sx={mainContentStyle}>
         {mapComponent}
@@ -75,7 +76,7 @@ const ExpedientsLeft = ({mapComponent, chartsComponent, onLogout}) => {
 
 ExpedientsLeft.propTypes = {
   mapComponent: PropTypes.node.isRequired,
-  chartsComponent: PropTypes.node.isRequired,
+  indicatorsComponent: PropTypes.node.isRequired,
   onLogout: PropTypes.func.isRequired
 };
 

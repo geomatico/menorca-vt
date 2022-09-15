@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import config from '../../config.json';
 
-import AllCharts from '../../components/AllCharts';
+import Indicators from '../../components/Indicators';
 import ExpedientsMap from './ExpedientsMap';
 import ExpedientsRight from './ExpedientsRight';
 import ExpedientsLeft from './ExpedientsLeft';
@@ -13,12 +13,21 @@ const maxDate = new Date().getFullYear();
 const Expedients = ({onLogout}) => {
   const [mapStyle, setMapStyle] = useState(config.mapStyles[5].id);
   const [dateRange, setDateRange] = useState([config.minDate, maxDate]);
-  const [visibleCategories, setVisibleCategories] = useState({
-    ciutadella: [],
-    consell: []
-  }); // TODO initialize properly
+  const [visibleCategories, setVisibleCategories] = useState(
+    Object.entries(config.datasets).reduce((obj, [datasetId, {categories}]) => ({
+      ...obj,
+      [datasetId]: categories.map(category => category.id)
+    }), {})
+  );
   const [renderedFeatures, setRenderedFeatures] = useState([]);
   const [BBOX, setBBOX] = useState();
+
+  const indicatorsComponent = <Indicators
+    dateRange={dateRange}
+    BBOX={BBOX}
+    visibleCategories={visibleCategories}
+    renderedFeatures={renderedFeatures}
+  />;
 
   const mapComponent = <ExpedientsMap
     mapStyle={mapStyle}
@@ -26,13 +35,6 @@ const Expedients = ({onLogout}) => {
     visibleCategories={visibleCategories}
     onRenderedFeaturesChanged={setRenderedFeatures}
     onBBOXChanged={setBBOX}
-  />;
-
-  const chartsComponent = <AllCharts
-    dateRange={dateRange}
-    BBOX={BBOX}
-    visibleCategories={visibleCategories}
-    renderedFeatures={renderedFeatures}
   />;
 
   return <>
@@ -46,7 +48,7 @@ const Expedients = ({onLogout}) => {
     />
     <ExpedientsLeft
       mapComponent={mapComponent}
-      chartsComponent={chartsComponent}
+      indicatorsComponent={indicatorsComponent}
       onLogout={onLogout}
     />
   </>;

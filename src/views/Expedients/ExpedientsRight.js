@@ -1,17 +1,20 @@
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+
+import FilterListIcon from '@mui/icons-material/FilterList';
 import Hidden from '@mui/material/Hidden';
 import Box from '@mui/material/Box';
-import SquareButtonIcon from '../../components/SquareButtonIcon';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import RightDrawer from '../../components/RightDrawer';
-import ExpandContent from '../../components/ExpandContent';
-import config from '../../config.json';
-import React, {useState} from 'react';
 
 import BaseMapList from '@geomatico/geocomponents/BaseMapList';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
+
+import config from '../../config.json';
+
+import DatasetExpand from '../../components/DatasetExpand';
 import DrawerTitle from '../../components/DrawerTitle';
-import PropTypes from 'prop-types';
-import DatasourceExpand from './DatasourceExpand';
+import ExpandContent from '../../components/ExpandContent';
+import RightDrawer from '../../components/RightDrawer';
+import SquareButtonIcon from '../../components/SquareButtonIcon';
 
 const RIGHT_DRAWER_WIDTH = 360;
 
@@ -38,11 +41,11 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
     }),
   };
 
-  const datasources = Object.keys(config.datasources);
+  const datasetIds = Object.keys(config.datasets);
 
-  const handleCategoriesVisibility = datasource => datasourceVisibleCategories => onVisibleCategoriesChanged({
+  const handleCategoriesVisibility = datasetId => datasetVisibleCategories => onVisibleCategoriesChanged({
     ...visibleCategories,
-    [datasource]: datasourceVisibleCategories
+    [datasetId]: datasetVisibleCategories
   });
 
   return <>
@@ -55,10 +58,10 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
     </Hidden>
     <RightDrawer width={RIGHT_DRAWER_WIDTH} isOpen={isRightDrawerOpen} onClose={() => setRightDrawerOpen(false)}>
       <DrawerTitle>Control de capes</DrawerTitle>
-      {datasources.map(datasource => <DatasourceExpand
-        key={datasource}
-        id={datasource}
-        onVisibilityChanged={handleCategoriesVisibility(datasource)}
+      {datasetIds.map(datasetId => <DatasetExpand
+        key={datasetId}
+        id={datasetId}
+        onVisibilityChanged={handleCategoriesVisibility(datasetId)}
       />)}
       <ExpandContent title={'Rang de dates'}>
         <div style={{padding: '0 16px', width: '100%'}}>

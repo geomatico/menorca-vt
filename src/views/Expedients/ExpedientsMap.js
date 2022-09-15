@@ -1,80 +1,19 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {debounce} from 'throttle-debounce';
+
 import Map from '@geomatico/geocomponents/Map';
 
 import config from '../../config.json';
 
-// TODO build from config
-const sources = {
-  'expedients-consell': {
-    'type': 'vector',
-    'tiles': [
-      `https://${process.env.TILE_HOST}/geoserver/ordenacio_restringit/gwc/service/tms/1.0.0/${process.env.EXPEDIENTS_CONSELL_LAYER}@MVT@pbf/{z}/{x}/{y}.pbf`
-    ],
-    'scheme': 'tms',
-    'minzoom': 9,
-    'maxzoom': 15
-  },
-  'expedients-ciutadella': {
-    'type': 'vector',
-    'tiles': [
-      `https://${process.env.TILE_HOST}/geoserver/ordenacio_restringit/gwc/service/tms/1.0.0/${process.env.EXPEDIENTS_CIUTADELLA_LAYER}@MVT@pbf/{z}/{x}/{y}.pbf`
-    ],
-    'scheme': 'tms',
-    'minZoom': 9,
-    'maxZoom': 15
-  }
-};
-
-const buildLayers = (visibleCategories, dateRange) => (
-  Object.entries(config.datasources).flatMap(([key, datasource]) =>
-    datasource.layers.map(sourceLayer => ({
-      'id': sourceLayer,
-      'type': 'circle',
-      'source': `expedients-${key}`,
-      'source-layer': sourceLayer,
-      'filter': ['all',
-        ['in',
-          ['get', 'tipus'],
-          ['literal', datasource.categories.filter(({id}) => visibleCategories[key].includes(id)).flatMap(({values}) => values)]
-        ],
-        ['>=',
-          ['get', 'any'],
-          dateRange[0]
-        ],
-        ['<=',
-          ['get', 'any'],
-          dateRange[1]
-        ]
-      ],
-      'paint': {
-        'circle-color': ['match', ['get', 'tipus'],
-          ...datasource.categories.flatMap(({values, color}) =>
-            values.flatMap(value => [value, color])
-          ),
-          config.fallbackColor
-        ],
-        'circle-radius': ['interpolate', ['linear'], ['zoom'],
-          10, 1.5,
-          13, 2,
-          19, 8
-        ],
-        'circle-opacity': ['interpolate', ['linear'], ['zoom'],
-          9, 0.33,
-          17, 0.9
-        ],
-      }
-    }))
-  )
-);
+import useExpedientsMapStyle from '../../hooks/useExpedientsMapStyle';
 
 const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onRenderedFeaturesChanged, onBBOXChanged}) => {
   const mapRef = useRef();
   const [viewport, setViewport] = useState(config.initialViewport);
 
-  const layers = useMemo(() => buildLayers(visibleCategories, dateRange),[visibleCategories, dateRange]);
+  const {sources, layers} = useExpedientsMapStyle(visibleCategories, dateRange);
 
   const auth = [{
     urlMatch: 'ordenacio_restringit',
@@ -82,32 +21,35 @@ const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onRenderedFeatur
     password: localStorage.getItem('menorca.expedients.password')
   }];
 
-  // On mount, wait for map render and notify changes
-  const mapRefCb = useCallback(map => {
-    if (map) {
-      map.once('idle', () => queryRenderedFeatures());
-      onBBOXChanged(map.getBounds().toArray().flatMap(a => a).join(','));
-    }
+  const notifyChanges = useCallback(debounce(60, map => {
+    map.once('idle', () => {
+      if (map) {
+        onRenderedFeaturesChanged(map.queryRenderedFeatures({
+          layers: Object.values(config.datasets).flatMap(dataset => dataset.sourceLayers)
+        }));
+      }
+    });
+    onBBOXChanged(map.getBounds().toArray().flatMap(a => a).join(','));
+  }), []);
+
+  // On mount, notify changes
+  const mapRefCallback = useCallback(map => {
+    if (map) notifyChanges(map);
     mapRef.current = map;
   }, []);
 
-  // On viewport change, notify changes
+  // On layer change, notify changes
   useEffect(() => {
-    mapRef && mapRef.current?.once('idle', () => queryRenderedFeatures(mapRef));
-    mapRef && onBBOXChanged(mapRef.current?.getBounds().toArray().flatMap(a => a).join(','));
-  }, [viewport, layers]);
+    if (mapRef && mapRef.current) notifyChanges(mapRef.current);
+  }, [layers]);
 
-  const queryRenderedFeatures = debounce(10, () => {
-    if (mapRef) {
-      const renderedFeatures = mapRef.current?.queryRenderedFeatures({
-        layers: Object.values(config.datasources).flatMap(datasource => datasource.layers)
-      });
-      onRenderedFeaturesChanged(renderedFeatures);
-    }
-  });
+  // On viewport change, notify changes, debounced
+  useEffect(() => {
+    if (mapRef && mapRef.current) notifyChanges(mapRef.current);
+  }, [viewport]);
 
   return <Map
-    ref={mapRefCb}
+    ref={mapRefCallback}
     mapStyle={mapStyle}
     auth={auth}
     sources={sources}

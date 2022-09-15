@@ -1,7 +1,7 @@
 import React from 'react';
-//MENORCA-VT
+
 import TypeCountByYearChart from './TypeCountByYearChart';
-//UTILS
+
 import config from '../config.json';
 import fixture from './TypeCountByYearChart.fixture.json';
 
@@ -14,6 +14,6 @@ const Template = (args) => <TypeCountByYearChart {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  categories: config.datasources.consell.categories,
+  categories: config.datasets.consell.categories,
   data: fixture.data
 };

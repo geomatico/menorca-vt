@@ -1,6 +1,7 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+
+import Typography from '@mui/material/Typography';
 
 const drawerTitleStyle = {
   pt: { xs: 0, md: 2 },
