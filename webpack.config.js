@@ -1,6 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const DotenvWebpackPlugin = require('dotenv-webpack');
 const path = require('path');
 
 module.exports = (env) => ({
@@ -46,8 +45,8 @@ module.exports = (env) => ({
       {
         test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2)$/i,
         loader: 'url-loader',
-      },
-    ],
+      }
+    ]
   },
   plugins: env.test ? [] : [
     new HtmlWebPackPlugin({
@@ -60,11 +59,8 @@ module.exports = (env) => ({
       patterns: [
         {
           from: 'static',
-        },
-      ],
-    }),
-    new DotenvWebpackPlugin({
-      safe: true
+        }
+      ]
     })
-  ],
+  ]
 });
