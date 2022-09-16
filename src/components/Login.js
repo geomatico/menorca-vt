@@ -63,7 +63,11 @@ const Login = ({isLoggedIn, setLoggedIn, children}) => {
 
 Login.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  setLoggedIn: PropTypes.func.isRequired
+  setLoggedIn: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 
 export default Login;
