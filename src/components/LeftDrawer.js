@@ -7,7 +7,6 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 //MUI-ICONS
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 //MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
