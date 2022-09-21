@@ -1,25 +1,25 @@
 import config from '../config.json';
 import {useMemo} from 'react';
-
-const sources = Object.entries(config.datasets).reduce((obj, [datasetId, {layer}]) => ({
-  ...obj,
-  [`expedients-${datasetId}`]: {
-    'type': 'vector',
-    'tiles': [config.services.tms.replace('{layer}', layer)],
-    'scheme': 'tms',
-    'minzoom': 9,
-    'maxzoom': 15
-  }
-}), {});
+import useExpedients from './useExpedients';
 
 const useExpedientsMapStyle = (visibleCategories, dateRange) => {
+  const data = Object.keys(config.datasets).map(useExpedients);
+  const allDataReceived = data.every(value => !!value);
 
-  const layers = useMemo(() => Object.entries(config.datasets).flatMap(([datasetId, dataset]) =>
-    dataset.sourceLayers.map(sourceLayer => ({
-      'id': sourceLayer,
+  const sources = useMemo(() => allDataReceived ? Object.keys(config.datasets)
+    .reduce((obj, datasetId, i) => ({
+      ...obj,
+      [`expedients-${datasetId}`]: {
+        'type': 'geojson',
+        'data': data[i]
+      }
+    }), {}) : {}, [allDataReceived]);
+
+  const layers = useMemo(() => !!sources && Object.entries(config.datasets)
+    .map(([datasetId, dataset]) => ({
+      'id': datasetId,
       'type': 'circle',
       'source': `expedients-${datasetId}`,
-      'source-layer': sourceLayer,
       'filter': ['all',
         ['in',
           ['get', 'tipus'],
@@ -51,8 +51,7 @@ const useExpedientsMapStyle = (visibleCategories, dateRange) => {
           17, 0.9
         ],
       }
-    }))
-  ), [visibleCategories, dateRange]);
+    })), [sources, visibleCategories, dateRange]);
 
   return {sources, layers};
 };

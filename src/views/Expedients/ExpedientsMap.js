@@ -25,7 +25,7 @@ const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onRenderedFeatur
     map.once('idle', () => {
       if (map) {
         onRenderedFeaturesChanged(map.queryRenderedFeatures({
-          layers: Object.values(config.datasets).flatMap(dataset => dataset.sourceLayers)
+          layers: Object.keys(config.datasets)
         }));
       }
     });
