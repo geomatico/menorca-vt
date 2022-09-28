@@ -14,11 +14,12 @@ const TypeCountByYearChart = ({data, categories}) => {
     data: {
       values: data,
     },
-    transform: [
+    width: 340,
+    /*transform: [
       {
         filter: 'datum.year > 2010'
       }
-    ],
+    ],*/
     mark: 'area',
     encoding: {
       x: {
