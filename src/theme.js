@@ -10,6 +10,15 @@ const theme = (mode) => createTheme({
     secondary: {
       main: '#228042',
     }
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        .vega-embed {
+          width: 100%;
+        }
+      `
+    }
   }
 });
 

@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 //MUI
 import Box from '@mui/material/Box';
@@ -11,6 +11,7 @@ import ExitToApp from '@mui/icons-material/ExitToApp';
 //MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
 import LogoBlanco from './LogoBlanco';
+import {debounce} from 'throttle-debounce';
 //STYLES
 const dragger = {
   display: 'flex',
@@ -47,6 +48,14 @@ const LeftDrawer = ({defaultDrawerWidth, onDrawerWidthChange, onLogout, children
   const minDrawerWidth = defaultDrawerWidth;
   const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
+
+  const notifyResize = useCallback(debounce(50, () => {
+    window.dispatchEvent(new Event('resize'));
+  }), []);
+
+  useEffect(() => {
+    notifyResize();
+  }, [drawerWidth]);
 
   const handleMouseDown = () => {
     document.addEventListener('mouseup', handleMouseUp, true);
