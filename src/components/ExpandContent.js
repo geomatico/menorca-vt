@@ -12,38 +12,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //GEOCOMPONENTS
 import ColorSwitch from '@geomatico/geocomponents/ColorSwitch';
 //STYLES
-const accordion = {
-  p: 0,
-  m: '8px 0',
-  '&.Mui-expanded': {
-    m: '8px 0',
-  },
-  '&::before': {
-    bgcolor: 'transparent',
-  },
-  '& .MuiButtonBase-root': {
-    minHeight: '28px',
-  },
-  '&.MuiPaper-root': {
-    width: '100%',
-  }
-};
-const summary = {
-  m: 0,
-  borderBottom: '1px solid lightgray',
-  '& .MuiAccordionSummary-content': {
-    m: 0,
-  },
-  '&.Mui-expanded': {
-    '& .MuiAccordionSummary-content': {
-      m: 0,
-    },
-    minHeight: '28px',
-  }
-};
 const details = {
-  p: 0,
-  mb: 2,
+  mb: 1,
+  py: 0,
+  borderTop: '2px solid lightgrey',
   '& .MuiListItem-root': {
     m: 0,
     p: 0
@@ -53,11 +25,10 @@ const details = {
 const ExpandContent = ({title, children, onChange, isChecked}) => {
   const toggle = () => onChange(!isChecked);
 
-  return <Accordion elevation={0} sx={accordion}>
+  return <Accordion elevation={0} disableGutters={true}>
     <AccordionSummary
       aria-label='Expand'
       expandIcon={<ExpandMoreIcon/>}
-      sx={summary}
     >
       {
         onChange && <FormControlLabel

@@ -1,42 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//OTHERS
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
-const TypeCountByYearChart = ({data, categories, width, height}) => (
-  <ResponsiveContainer width={width} height={height}>
-    <AreaChart
-      minwidth={200}
-      data={data}
-      margin={{
-        top: 0, right: 0, left: -20, bottom: 0,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3"/>
-      <XAxis dataKey="year"/>
-      <YAxis/>
-      {categories.map(({id, color}) => (
-        <Area key={id} type="monotone" dataKey={id} stackId="1" stroke={color} fill={color}/>))}
-    </AreaChart>
-  </ResponsiveContainer>
-);
+//MUI
+import {VegaLite} from 'react-vega';
 
-TypeCountByYearChart.propTypes = {
-  data: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  height: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+const TypeCountByYearChart = ({data, categories}) => {
+  const labelCategories = categories?.map(cat => cat.id);
+  const colorCategories = categories?.map(cat => cat.color);
+
+  /*STACKED_AREA*/
+  const spec = {
+    $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+    data: {
+      values: data,
+    },
+    width: 'container',
+    /*transform: [
+      {
+        filter: 'datum.year > 2010'
+      }
+    ],*/
+    mark: 'area',
+    encoding: {
+      x: {
+        type: 'nominal',
+        field: 'year',
+        title: null
+      },
+      y: {
+        type: 'quantitative',
+        field: 'value',
+        title: null
+      },
+      color: {
+        field: 'type',
+        type: 'nominal',
+        legend: null,
+        scale: {
+          domain: labelCategories,
+          range: colorCategories
+        },
+      },
+      tooltip: [
+        {
+          field: 'type',
+          title: 'Tipo',
+          type: 'nominal'
+        },
+        {
+          field: 'year',
+          title: 'Año',
+          type: 'nominal',
+        },
+        {
+          field: 'value',
+          title: 'Número',
+          type: 'quantitative'
+        },
+      ]
+    }
+  };
+
+  return <VegaLite spec={spec} actions={false}/>;
 };
 
-TypeCountByYearChart.defaultProps = {
-  width: '95%',
-  height: 200
+TypeCountByYearChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    type: PropTypes.string,
+    year: PropTypes.number,
+    value: PropTypes.string
+  })),
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    color: PropTypes.string,
+    label: PropTypes.string,
+  }))
 };
 
 export default TypeCountByYearChart;

@@ -19,6 +19,7 @@ import SquareButtonIcon from '../../components/SquareButtonIcon';
 const RIGHT_DRAWER_WIDTH = 360;
 
 const baseMapListStyle = {
+  mt: 1,
   '& .LayerSwitcher-text': {
     fontSize: '0.75rem'
   }
@@ -64,7 +65,7 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
         onVisibilityChanged={handleCategoriesVisibility(datasetId)}
       />)}
       <ExpandContent title={'Rang de dates'}>
-        <div style={{padding: '0 16px', width: '100%'}}>
+        <div style={{padding: '0', width: '100%'}}>
           <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged} animationInterval={1000}/>
         </div>
       </ExpandContent>

@@ -8,7 +8,8 @@ import ExpandContent from './ExpandContent';
 
 const switchPadStyle = {
   '& .SwitchPad-text': {
-    fontSize: '0.75rem'
+    fontSize: '0.75rem',
+    ml: 1
   }
 };
 

@@ -1,48 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//OTHERS
-import { Cell, Pie, PieChart } from 'recharts';
-//UTILS
-import config from '../config.json';
-
-const {resolucioColors, fallbackColor} = config;
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.3;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
+import {VegaLite} from 'react-vega';
 
 const ResolutionStateChart = ({data}) => {
-  return (
-    <PieChart width={200} height={200}>
-      <Pie
-        data={data}
-        cx='50%'
-        cy='50%'
-        labelLine={false}
-        label={renderCustomizedLabel}
-        innerRadius='30%'
-        outerRadius='100%'
-        fill="#8884d8"
-        dataKey="value"
-      >
-        {
-          data.map((entry, index) => <Cell key={`cell-${index}`} fill={resolucioColors[entry.name] ? resolucioColors[entry.name] : fallbackColor} />)
+  const spec = {
+    $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+    description: 'A simple bar chart with embedded data.',
+    padding: 10,
+    data: {
+      values: data
+    },
+    actions: false,
+    config: {
+      view: {
+        stroke: null
+      }
+    },
+    mark: {type: 'bar', tooltip: true},
+    encoding: {
+      x: {
+        field: 'value',
+        type: 'quantitative',
+        title: null,
+        axis: {
+          formatType: 'number',
+          domain: false,
+          grid: true,
+          ticks: false,
         }
-      </Pie>
-    </PieChart>
-  );
+      },
+      y: {
+        field: 'name',
+        type: 'nominal',
+        title: null,
+        axis: {
+          labelPadding: 10,
+          labelAngle: 0,
+          domain: true,
+          grid: false,
+          ticks: false,
+        }},
+      color: {
+        value: '#a1a0a0'
+      }
+    }
+  };
+
+  return <VegaLite spec={spec} actions={false}/>;
 };
 
 ResolutionStateChart.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.arrayOf(PropTypes.shape({
+    category: PropTypes.string,
+    value: PropTypes.number
+  }))
 };
+
+ResolutionStateChart.defaultProps = {};
 
 export default ResolutionStateChart;

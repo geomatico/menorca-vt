@@ -1,28 +1,30 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 //MUI
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 //MUI-ICONS
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 //MENORCA-VT
 import ResponsiveHeader from './ResponsiveHeader';
 import LogoBlanco from './LogoBlanco';
+import {debounce} from 'throttle-debounce';
 //STYLES
 const dragger = {
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'flex-end',
   width: '30px',
   height: '100%',
   cursor: 'ew-resize',
-  padding: '40px 0 0',
+  padding: '10px 0 0',
   position: 'absolute',
   right: 0,
   zIndex: 100,
-  color: 'grey.500',
+  color: 'black',
 };
 const drawerTitleStyle = {
   pt: 2,
@@ -37,7 +39,7 @@ const drawerContent = {
   pt: 0,
   pr: 4,
   pb: 2.5,
-  pl: 2,
+  pl: 1,
   display: 'flex',
   flexWrap: 'wrap',
 };
@@ -46,6 +48,14 @@ const LeftDrawer = ({defaultDrawerWidth, onDrawerWidthChange, onLogout, children
   const minDrawerWidth = defaultDrawerWidth;
   const maxDrawerWidth = defaultDrawerWidth*4;
   const [drawerWidth, setDrawerWidth] = useState(defaultDrawerWidth);
+
+  const notifyResize = useCallback(debounce(50, () => {
+    window.dispatchEvent(new Event('resize'));
+  }), []);
+
+  useEffect(() => {
+    notifyResize();
+  }, [drawerWidth]);
 
   const handleMouseDown = () => {
     document.addEventListener('mouseup', handleMouseUp, true);
@@ -77,7 +87,7 @@ const LeftDrawer = ({defaultDrawerWidth, onDrawerWidthChange, onLogout, children
       </IconButton>
     </ResponsiveHeader>
     <Box onMouseDown={e => handleMouseDown(e)} sx={dragger}>
-      <ArrowForwardIosIcon/>
+      <ArrowRightIcon size='small'/>
     </Box>
     <Typography sx={drawerTitleStyle} variant='body1'>Visor d&#039;expedients</Typography>
     <Box sx={drawerContent}>

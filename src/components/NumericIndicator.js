@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 const NumericIndicator = ({main, total}) => {
   const percent = 100 * main / total;
   return <Box display='flex' flexDirection='column' alignItems='center' sx={{position: 'relative'}}>
-    <CircularProgress variant="determinate" value={percent} size={200}/>
-    <Box display='flex' flexDirection='column' alignItems='center' sx={{position: 'absolute', top: 65}}>
-      <Typography variant="h3" component="div" color="textPrimary">{`${main}`}</Typography>
-      <Typography variant="caption" component="div" color="textSecondary">{`de ${total}`}</Typography>
+    <CircularProgress variant="determinate" value={percent} size={150}/>
+    <Box display='flex' flexDirection='column' alignItems='center' sx={{position: 'absolute', top: 50}}>
+      <Typography variant="h4" component="div" color="textPrimary">{`${main}`}</Typography>
+      <Typography variant="subtitle2" component="div" color="textSecondary">{`de ${total}`}</Typography>
     </Box>
   </Box>;
 };

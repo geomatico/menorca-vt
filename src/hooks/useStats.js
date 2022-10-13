@@ -2,21 +2,26 @@ import {useEffect, useState} from 'react';
 
 const _calcStats = (featureProperties) => {
 
-  const objTypeCountByYear = featureProperties
+  const arrTypeCountByYear = featureProperties
     .reduce((stats, properties) => {
       const year = properties.any;
       const type = properties.tipus;
 
-      stats[year] = stats[year] || {};
-      stats[year][type] = stats[year][type] ? stats[year][type] + 1 : 1;
-      return stats;
-    }, {});
-
-  const arrTypeCountByYear = Object.keys(objTypeCountByYear)
-    .map(year => ({
-      year: year,
-      ...objTypeCountByYear[year]
-    }));
+      const existing = stats.find(el => el.year === properties.any && el.type === properties.tipus);
+      if (existing) {
+        existing.value += 1;
+      } else {
+        stats = [
+          ...stats,
+          {
+            year,
+            type,
+            value: 1
+          }
+        ];
+      }
+      return stats.sort((a,b) => a.year - b.year);
+    }, []);
 
   const objResolutionStateCount = featureProperties
     .map(properties => properties.resolucio)
