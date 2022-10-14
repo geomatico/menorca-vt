@@ -1,23 +1,42 @@
-import useFetch from '@geomatico/geocomponents/hooks/useFetch';
-
+import {useEffect, useState} from 'react';
+import {singletonHook} from 'react-singleton-hook';
 import config from '../config.json';
 
-const useExpedients = (datasetId) => {
-  const username = localStorage.getItem('menorca.expedients.user');
-  const password = localStorage.getItem('menorca.expedients.password');
-  const options = {
-    method:'GET',
-    headers: {
-      'Authorization': 'Basic ' + btoa(`${username}:${password}`)
-    }
-  };
-  const {sourceLayers} = config.datasets[datasetId];
-  const url = config.services.wfs
-    .replace('{typeName}', sourceLayers)
-    .concat('&propertyName=')
-    .concat('(tipus,resolucio,any,the_geom)'.repeat(sourceLayers.length));
-  const {data: expedients} = useFetch(url, options);
-  return expedients;
+const username = localStorage.getItem('menorca.expedients.user');
+const password = localStorage.getItem('menorca.expedients.password');
+const options = {
+  method:'GET',
+  headers: {
+    'Authorization': 'Basic ' + btoa(`${username}:${password}`)
+  }
 };
 
-export default useExpedients;
+const INITIAL_STATE = undefined;
+
+const datasetIds = Object.keys(config.datasets);
+
+const useExpedients = () => {
+  const [datasets, setDatasets] = useState(INITIAL_STATE);
+
+  useEffect(() => {
+    const promises = datasetIds.map(datasetId => {
+      const {sourceLayers} = config.datasets[datasetId];
+      const url = config.services.wfs
+        .replace('{typeName}', sourceLayers)
+        .concat('&propertyName=')
+        .concat('(tipus,resolucio,any,the_geom)'.repeat(sourceLayers.length));
+      return fetch(url, options).then(response => response.json());
+    });
+    Promise.all(promises).then(responses => {
+      const fullDatasets = responses.reduce((acc, response, i) => {
+        acc[datasetIds[i]] = response;
+        return acc;
+      }, {});
+      setDatasets(fullDatasets);
+    });
+  }, []);
+
+  return datasets;
+};
+
+export default singletonHook(INITIAL_STATE, useExpedients);

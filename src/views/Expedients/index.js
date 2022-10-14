@@ -19,21 +19,18 @@ const Expedients = ({onLogout}) => {
       [datasetId]: categories.map(category => category.id)
     }), {})
   );
-  const [renderedFeatures, setRenderedFeatures] = useState([]);
   const [BBOX, setBBOX] = useState();
 
   const indicatorsComponent = <Indicators
     dateRange={dateRange}
     BBOX={BBOX}
     visibleCategories={visibleCategories}
-    renderedFeatures={renderedFeatures}
   />;
 
   const mapComponent = <ExpedientsMap
     mapStyle={mapStyle}
     dateRange={dateRange}
     visibleCategories={visibleCategories}
-    onRenderedFeaturesChanged={setRenderedFeatures}
     onBBOXChanged={setBBOX}
   />;
 
