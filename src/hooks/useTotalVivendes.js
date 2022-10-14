@@ -10,7 +10,7 @@ const useTotalVivendes = (BBOX) => {
     numberofbuildingunits: 0
   });
 
-  const url = `${config.services.search}?accio=totalsVivendesLocalsBBOX&bbox=${BBOX}`;
+  const url = `${config.services.search}?accio=totalsVivendesLocalsBBOX&bbox=${BBOX?.join(',')}`;
   const {data: vivendesResponse} = useFetch(url);
 
   useEffect(() => {

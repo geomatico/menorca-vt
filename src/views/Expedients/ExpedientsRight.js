@@ -66,7 +66,7 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
       />)}
       <ExpandContent title={'Rang de dates'}>
         <div style={{padding: '0', width: '100%'}}>
-          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged} animationInterval={1000}/>
+          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged} animationInterval={300}/>
         </div>
       </ExpandContent>
       <ExpandContent title={'Mapes base'}>

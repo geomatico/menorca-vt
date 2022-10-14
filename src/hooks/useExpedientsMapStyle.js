@@ -3,19 +3,18 @@ import {useMemo} from 'react';
 import useExpedients from './useExpedients';
 
 const useExpedientsMapStyle = (visibleCategories, dateRange) => {
-  const data = Object.keys(config.datasets).map(useExpedients);
-  const allDataReceived = data.every(value => !!value);
+  const expedientsData = useExpedients();
 
-  const sources = useMemo(() => allDataReceived ? Object.keys(config.datasets)
-    .reduce((obj, datasetId, i) => ({
+  const sources = useMemo(() => expedientsData ? Object.entries(expedientsData)
+    .reduce((obj, [datasetId, dataset]) => ({
       ...obj,
       [`expedients-${datasetId}`]: {
         'type': 'geojson',
-        'data': data[i]
+        'data': dataset
       }
-    }), {}) : {}, [allDataReceived]);
+    }), {}) : {}, [expedientsData]);
 
-  const layers = useMemo(() => !!sources && Object.entries(config.datasets)
+  const layers = useMemo(() => expedientsData ? Object.entries(config.datasets)
     .map(([datasetId, dataset]) => ({
       'id': datasetId,
       'type': 'circle',
@@ -51,7 +50,7 @@ const useExpedientsMapStyle = (visibleCategories, dateRange) => {
           17, 0.9
         ],
       }
-    })), [sources, visibleCategories, dateRange]);
+    })) : [], [sources, visibleCategories, dateRange]);
 
   return {sources, layers};
 };

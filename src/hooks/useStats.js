@@ -1,9 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
+import useExpedients from './useExpedients';
+import config from '../config.json';
 
-const _calcStats = (featureProperties) => {
+const _calcStats = (features) => {
 
-  const arrTypeCountByYear = featureProperties
-    .reduce((stats, properties) => {
+  const arrTypeCountByYear = features
+    .reduce((stats, {properties}) => {
       const year = properties.any;
       const type = properties.tipus;
 
@@ -11,22 +13,18 @@ const _calcStats = (featureProperties) => {
       if (existing) {
         existing.value += 1;
       } else {
-        stats = [
-          ...stats,
-          {
-            year,
-            type,
-            value: 1
-          }
-        ];
+        stats.push({
+          year,
+          type,
+          value: 1
+        });
       }
-      return stats.sort((a,b) => a.year - b.year);
-    }, []);
+      return stats;
+    }, []).sort((a,b) => a.year - b.year);
 
-  const objResolutionStateCount = featureProperties
-    .map(properties => properties.resolucio)
-    .reduce((stats, resolucio) => {
-      stats[resolucio] = stats[resolucio] ? stats[resolucio] + 1 : 1;
+  const objResolutionStateCount = features
+    .reduce((stats, {properties}) => {
+      stats[properties.resolucio] = stats[properties.resolucio] ? stats[properties.resolucio] + 1 : 1;
       return stats;
     }, {});
 
@@ -37,20 +35,60 @@ const _calcStats = (featureProperties) => {
     }));
 
   return ({
-    expedients: featureProperties.length,
+    expedients: features.length,
     typeCountByYear: arrTypeCountByYear,
     resolutionStateCount: arrResolutionStateCount
   });
 };
 
-const useStats = (renderedFeatures) => {
+const useStats = (dateRange, BBOX, visibleCategories) => {
+  const expedients = useExpedients();
+
+  console.log('visibleCategories', visibleCategories);
+
+  const filteredByCategoryFeatures = useMemo(() => {
+    if (!expedients) return [];
+
+    const visibleTipus = Object.keys(expedients)
+      .reduce((visibleTipus, datasetId) => {
+        visibleTipus[datasetId] = config.datasets[datasetId].categories
+          .filter(({id}) => visibleCategories[datasetId].includes(id))
+          .flatMap(({values}) => values);
+        return visibleTipus;
+      }, {});
+
+    console.log('expedients', expedients);
+
+    return Object.entries(expedients)
+      .flatMap(([datasetId, {features}]) =>
+        features.filter(feature => {
+          return visibleTipus[datasetId].includes(feature.properties.tipus);
+        })
+      );
+  }, [expedients, visibleCategories]);
+
+  const filteredByTimeFeatures = useMemo(() => filteredByCategoryFeatures
+    .filter(({properties}) => properties.any >= dateRange[0] && properties.any <= dateRange[1]),
+  [dateRange, filteredByCategoryFeatures]);
+
   const [stats, setStats] = useState({
     expedients: 0,
     typeCountByYear: [],
     resolutionStateCount: []
   });
 
-  useEffect(() => setStats(_calcStats(renderedFeatures.map(f => f.properties))), [renderedFeatures]);
+  useEffect(() => {
+    if (filteredByTimeFeatures && BBOX) {
+      const [xMin, yMin, xMax, yMax] = BBOX;
+
+      const filteredFeatures = filteredByTimeFeatures.filter(feature => {
+        const [x, y] = feature.geometry.coordinates;
+        return x >= xMin && x <= xMax && y >= yMin && y <= yMax; // Feature within BBOX
+      });
+      setStats(_calcStats(filteredFeatures));
+    }
+
+  }, [filteredByTimeFeatures, BBOX]);
 
   return stats;
 };

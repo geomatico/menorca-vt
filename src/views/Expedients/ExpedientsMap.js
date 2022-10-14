@@ -9,28 +9,13 @@ import config from '../../config.json';
 
 import useExpedientsMapStyle from '../../hooks/useExpedientsMapStyle';
 
-const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onRenderedFeaturesChanged, onBBOXChanged}) => {
+const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onBBOXChanged}) => {
   const mapRef = useRef();
   const [viewport, setViewport] = useState(config.initialViewport);
 
   const {sources, layers} = useExpedientsMapStyle(visibleCategories, dateRange);
 
-  const auth = [{
-    urlMatch: 'ordenacio_restringit',
-    user: localStorage.getItem('menorca.expedients.user'),
-    password: localStorage.getItem('menorca.expedients.password')
-  }];
-
-  const notifyChanges = useCallback(debounce(60, map => {
-    map.once('idle', () => {
-      if (map) {
-        onRenderedFeaturesChanged(map.queryRenderedFeatures({
-          layers: Object.keys(config.datasets)
-        }));
-      }
-    });
-    onBBOXChanged(map.getBounds().toArray().flatMap(a => a).join(','));
-  }), []);
+  const notifyChanges = useCallback(debounce(30, map => onBBOXChanged(map.getBounds().toArray().flatMap(a => a))), []);
 
   // On mount, notify changes
   const mapRefCallback = useCallback(map => {
@@ -51,7 +36,6 @@ const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onRenderedFeatur
   return <Map
     ref={mapRefCallback}
     mapStyle={mapStyle}
-    auth={auth}
     sources={sources}
     layers={layers}
     viewport={viewport}
@@ -63,7 +47,6 @@ ExpedientsMap.propTypes = {
   mapStyle: PropTypes.string.isRequired,
   dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
   visibleCategories: PropTypes.object.isRequired,
-  onRenderedFeaturesChanged: PropTypes.func.isRequired,
   onBBOXChanged: PropTypes.func.isRequired
 };
 
