@@ -44,8 +44,6 @@ const _calcStats = (features) => {
 const useStats = (dateRange, BBOX, visibleCategories) => {
   const expedients = useExpedients();
 
-  console.log('visibleCategories', visibleCategories);
-
   const filteredByCategoryFeatures = useMemo(() => {
     if (!expedients) return [];
 
@@ -56,8 +54,6 @@ const useStats = (dateRange, BBOX, visibleCategories) => {
           .flatMap(({values}) => values);
         return visibleTipus;
       }, {});
-
-    console.log('expedients', expedients);
 
     return Object.entries(expedients)
       .flatMap(([datasetId, {features}]) =>

@@ -2,6 +2,7 @@ import config from '../config.json';
 import {useMemo} from 'react';
 import useExpedients from './useExpedients';
 
+// TODO unused, remove
 const useExpedientsMapStyle = (visibleCategories, dateRange) => {
   const expedientsData = useExpedients();
 
