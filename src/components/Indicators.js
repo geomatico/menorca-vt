@@ -12,11 +12,10 @@ import TypeCountByYearChart from './TypeCountByYearChart';
 import ResolutionStateChart from './ResolutionStateChart';
 import NumericIndicator from './NumericIndicator';
 
-const Indicators = ({dateRange, BBOX, visibleCategories}) => {
-
+const Indicators = ({visibleCategories, dateRange, BBOX}) => {
   const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
   const totalVivendes = useTotalVivendes(BBOX);
-  const stats = useStats(dateRange, BBOX, visibleCategories);
+  const stats = useStats(visibleCategories, dateRange, BBOX);
 
   const allVisibleCategories = Object.entries(config.datasets).flatMap(([datasetId, {categories}]) =>
     categories.filter(cat => visibleCategories[datasetId].includes(cat.id))
@@ -44,9 +43,9 @@ const Indicators = ({dateRange, BBOX, visibleCategories}) => {
 };
 
 Indicators.propTypes = {
+  visibleCategories: PropTypes.object.isRequired,
   dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
-  BBOX: PropTypes.arrayOf(PropTypes.number),
-  visibleCategories: PropTypes.object.isRequired
+  BBOX: PropTypes.arrayOf(PropTypes.number)
 };
 
 export default Indicators;

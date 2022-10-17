@@ -1,46 +1,71 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {debounce} from 'throttle-debounce';
 
-import Map from '@geomatico/geocomponents/Map';
+import {Map} from 'react-map-gl';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import DeckGL from '@deck.gl/react';
+import {GeoJsonLayer} from '@deck.gl/layers';
 
 import config from '../../config.json';
+import useColors from '../../hooks/useColors';
+import useFilteredExpedients from '../../hooks/useFilteredExpedients';
 
-import useExpedientsMapStyle from '../../hooks/useExpedientsMapStyle';
+const cssStyle = {
+  width: '100%',
+  height: '100%',
+  overflow: 'hidden'
+};
 
-const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onBBOXChanged}) => {
+const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged}) => {
   const mapRef = useRef();
   const [viewport, setViewport] = useState(config.initialViewport);
+  const colors = Object.values(useColors()).reduce((acc, items) => ({
+    ...acc,
+    ...items
+  }), {});
 
-  const {sources, layers} = useExpedientsMapStyle(visibleCategories, dateRange);
+  const handleMapResize = () => window.setTimeout(() => mapRef?.current?.resize(), 0);
 
-  const notifyChanges = useCallback(debounce(30, map => onBBOXChanged(map.getBounds().toArray().flatMap(a => a))), []);
+  const expedientsData = useFilteredExpedients(visibleCategories, dateRange);
 
-  // On mount, notify changes
-  const mapRefCallback = useCallback(map => {
-    if (map) notifyChanges(map);
-    mapRef.current = map;
+  useEffect(() => {
+    document
+      .getElementById('deckgl-wrapper')
+      .addEventListener('contextmenu', evt => evt.preventDefault());
   }, []);
 
-  // On layer change, notify changes
+  const notifyChanges = useCallback(debounce(30, map => {
+    onBBOXChanged(map.getBounds().toArray().flatMap(a => a));
+  }), []);
+
+  // On data or viewport change, recalculate data
   useEffect(() => {
     if (mapRef && mapRef.current) notifyChanges(mapRef.current);
-  }, [layers]);
+  }, [expedientsData, viewport]);
 
-  // On viewport change, notify changes, debounced
-  useEffect(() => {
-    if (mapRef && mapRef.current) notifyChanges(mapRef.current);
-  }, [viewport]);
+  const deckLayers = useMemo(() =>
+    new GeoJsonLayer({
+      id: 'expedients',
+      data: expedientsData ? expedientsData : undefined,
+      pointRadiusScale: 6,
+      stroked: false,
+      getFillColor: d => colors[d.properties.tipus]
+    })
+  , [expedientsData]);
 
-  return <Map
-    ref={mapRefCallback}
-    mapStyle={mapStyle}
-    sources={sources}
-    layers={layers}
-    viewport={viewport}
-    onViewportChange={setViewport}
-  />;
+  return <DeckGL
+    layers={deckLayers}
+    viewState={viewport}
+    onViewStateChange={({viewState}) => setViewport(viewState)}
+    controller
+    style={cssStyle}
+    onResize={handleMapResize}
+  >
+    <Map reuseMaps mapStyle={mapStyle} styleDiffing={false} mapLib={maplibregl} ref={mapRef}/>
+  </DeckGL>;
 };
 
 ExpedientsMap.propTypes = {
