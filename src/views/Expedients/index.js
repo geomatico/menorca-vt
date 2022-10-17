@@ -22,15 +22,15 @@ const Expedients = ({onLogout}) => {
   const [BBOX, setBBOX] = useState();
 
   const indicatorsComponent = <Indicators
+    visibleCategories={visibleCategories}
     dateRange={dateRange}
     BBOX={BBOX}
-    visibleCategories={visibleCategories}
   />;
 
   const mapComponent = <ExpedientsMap
     mapStyle={mapStyle}
-    dateRange={dateRange}
     visibleCategories={visibleCategories}
+    dateRange={dateRange}
     onBBOXChanged={setBBOX}
   />;
 
@@ -38,10 +38,10 @@ const Expedients = ({onLogout}) => {
     <ExpedientsRight
       mapStyle={mapStyle}
       onMapStyleChanged={setMapStyle}
-      dateRange={dateRange}
-      onDateRangeChanged={setDateRange}
       visibleCategories={visibleCategories}
       onVisibleCategoriesChanged={setVisibleCategories}
+      dateRange={dateRange}
+      onDateRangeChanged={setDateRange}
     />
     <ExpedientsLeft
       mapComponent={mapComponent}

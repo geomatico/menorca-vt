@@ -10,8 +10,8 @@ import DeckGL from '@deck.gl/react';
 import {GeoJsonLayer} from '@deck.gl/layers';
 
 import config from '../../config.json';
-import useExpedients from '../../hooks/useExpedients';
 import useColors from '../../hooks/useColors';
+import useFilteredExpedients from '../../hooks/useFilteredExpedients';
 
 const cssStyle = {
   width: '100%',
@@ -19,16 +19,17 @@ const cssStyle = {
   overflow: 'hidden'
 };
 
-const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onBBOXChanged}) => {
+const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged}) => {
   const mapRef = useRef();
   const [viewport, setViewport] = useState(config.initialViewport);
-  const colors = useColors();
+  const colors = Object.values(useColors()).reduce((acc, items) => ({
+    ...acc,
+    ...items
+  }), {});
 
   const handleMapResize = () => window.setTimeout(() => mapRef?.current?.resize(), 0);
 
-  // TODO filtrar los datos por las categorías activas y el rango de años
-  console.log(dateRange, visibleCategories);
-  const expedientsData = useExpedients();
+  const expedientsData = useFilteredExpedients(visibleCategories, dateRange);
 
   useEffect(() => {
     document
@@ -46,17 +47,13 @@ const ExpedientsMap = ({mapStyle, dateRange, visibleCategories, onBBOXChanged}) 
   }, [expedientsData, viewport]);
 
   const deckLayers = useMemo(() =>
-    Object.keys(config.datasets).map(datasetId =>
-      new GeoJsonLayer({
-        id: datasetId,
-        data: expedientsData ? expedientsData[datasetId] : undefined,
-        getPointRadius: 4,
-        pointRadiusUnits: 'pixels',
-        getLineWidth: 0,
-        stroked: false,
-        getFillColor: d => colors[datasetId][d.properties.tipus]
-      })
-    )
+    new GeoJsonLayer({
+      id: 'expedients',
+      data: expedientsData ? expedientsData : undefined,
+      pointRadiusScale: 6,
+      stroked: false,
+      getFillColor: d => colors[d.properties.tipus]
+    })
   , [expedientsData]);
 
   return <DeckGL
