@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//MUI
-import Divider from '@mui/material/Divider';
+
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-function SectionTitle({title}) {
-  return (
-    <div style={{margin: '20px 0 15px 0'}}>
-      <Typography variant='body1' style={{fontWeight:'bold', marginBottom: 5}}>{title}</Typography>
-      <Divider/>
-    </div>
-  );
-}
+const SectionTitle = ({titleKey}) => {
+  return <Box mb={1} >
+    <Typography
+      variant='caption'
+      sx={{fontWeight: 'bold', textTransform: 'uppercase'}}
+    >
+      {titleKey}
+    </Typography>
+  </Box>;
+};
 
 SectionTitle.propTypes = {
-  title: PropTypes.string,
+  titleKey: PropTypes.string.isRequired,
 };
 
 export default SectionTitle;
