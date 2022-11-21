@@ -82,11 +82,10 @@ const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged, i
         elevationScale: 25,
         extruded: true,
         getPosition: d => [Number(d.geometry.coordinates[0]), Number(d.geometry.coordinates[1])],
-        opacity: 1,
+        opacity: 0.5,
         pickable: true,
         autoHighlight: true,
         onSetColorDomain: ([a,b]) => setDomain([a, b]),
-        onSetElevationDomain: ([a, b]) => console.log(555, a,b)
       });
     }
 
