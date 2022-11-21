@@ -7,10 +7,13 @@ import Indicators from '../../components/Indicators';
 import ExpedientsMap from './ExpedientsMap';
 import ExpedientsRight from './ExpedientsRight';
 import ExpedientsLeft from './ExpedientsLeft';
+import Box from '@mui/material/Box';
 
 const maxDate = new Date().getFullYear();
 
 const Expedients = ({onLogout}) => {
+  const [isAggregateData, setIsAggregateData] = useState(true);
+  const [radius, setRadius] = useState(100);
   const [mapStyle, setMapStyle] = useState(config.mapStyles[5].id);
   const [dateRange, setDateRange] = useState([config.minDate, maxDate]);
   const [visibleCategories, setVisibleCategories] = useState(
@@ -32,6 +35,8 @@ const Expedients = ({onLogout}) => {
     visibleCategories={visibleCategories}
     dateRange={dateRange}
     onBBOXChanged={setBBOX}
+    isAggregateData={isAggregateData}
+    radius={radius}
   />;
 
   return <>
@@ -42,6 +47,10 @@ const Expedients = ({onLogout}) => {
       onVisibleCategoriesChanged={setVisibleCategories}
       dateRange={dateRange}
       onDateRangeChanged={setDateRange}
+      onAggregateDataChange={setIsAggregateData}
+      isAggregateData={isAggregateData}
+      radius={radius}
+      onRadiusChange={setRadius}
     />
     <ExpedientsLeft
       mapComponent={mapComponent}

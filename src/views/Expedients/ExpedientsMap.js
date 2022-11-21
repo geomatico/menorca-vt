@@ -8,10 +8,15 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import DeckGL from '@deck.gl/react';
 import {GeoJsonLayer} from '@deck.gl/layers';
+import {HexagonLayer} from '@deck.gl/aggregation-layers';
+
+import useColorRamp from '@geomatico/geocomponents/hooks/useColorRamp';
+import ColorRampLegend from '@geomatico/geocomponents/ColorRampLegend';
 
 import config from '../../config.json';
 import useColors from '../../hooks/useColors';
 import useFilteredExpedients from '../../hooks/useFilteredExpedients';
+import Box from '@mui/material/Box';
 
 const cssStyle = {
   width: '100%',
@@ -19,7 +24,14 @@ const cssStyle = {
   overflow: 'hidden'
 };
 
-const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged}) => {
+const ExpedientsMap = ({
+                         mapStyle,
+                         visibleCategories,
+                         dateRange,
+                         onBBOXChanged,
+                         isAggregateData,
+                         radius
+                       }) => {
   const mapRef = useRef();
   const [viewport, setViewport] = useState(config.initialViewport);
   const colors = Object.values(useColors()).reduce((acc, items) => ({
@@ -46,15 +58,46 @@ const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged}) 
     if (mapRef && mapRef.current) notifyChanges(mapRef.current);
   }, [expedientsData, viewport]);
 
-  const deckLayers = useMemo(() =>
-    new GeoJsonLayer({
-      id: 'expedients',
-      data: expedientsData ? expedientsData : undefined,
-      pointRadiusScale: 6,
-      stroked: false,
-      getFillColor: d => colors[d.properties.tipus]
-    })
-  , [expedientsData]);
+
+  const COLOR_RANGE = useColorRamp('BrewerRdYlGn5').intColors;
+
+  const deckLayers = useMemo(() => {
+    if (!isAggregateData) {
+      return new GeoJsonLayer({
+        id: 'expedients',
+        data: expedientsData ? expedientsData : undefined,
+        pointRadiusScale: 6,
+        stroked: false,
+        getFillColor: d => colors[d.properties.tipus]
+      });
+    } else {
+      return new HexagonLayer({
+        type: HexagonLayer,
+        id: 'expedients-heatmap',
+        data: expedientsData ? expedientsData : undefined,
+        radius: radius,
+        coverage: 1,
+        upperPercentile: 100,
+        colorRange: COLOR_RANGE,
+        elevationRange: [0, 100],
+        elevationScale: 25,
+        extruded: true,
+        getPosition: d => [Number(d.geometry.coordinates[0]), Number(d.geometry.coordinates[1])],
+        opacity: 1,
+        pickable: true,
+        autoHighlight: true,
+      });
+    }
+
+  }, [expedientsData, isAggregateData, radius]);
+
+  const getTooltip = ({object}) => {
+    if (!object) {
+      return null;
+    }
+    const count = object.points.length;
+    return `${count} expedients`;
+  };
 
   return <DeckGL
     layers={deckLayers}
@@ -63,8 +106,12 @@ const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged}) 
     controller
     style={cssStyle}
     onResize={handleMapResize}
+    getTooltip={getTooltip}
   >
     <Map reuseMaps mapStyle={mapStyle} styleDiffing={false} mapLib={maplibregl} ref={mapRef}/>
+    <Box>
+      <ColorRampLegend colorScheme={'BrewerRdYlGn5'} domain={[0, 100]}></ColorRampLegend>
+    </Box>
   </DeckGL>;
 };
 
@@ -72,7 +119,8 @@ ExpedientsMap.propTypes = {
   mapStyle: PropTypes.string.isRequired,
   dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
   visibleCategories: PropTypes.object.isRequired,
-  onBBOXChanged: PropTypes.func.isRequired
+  onBBOXChanged: PropTypes.func.isRequired,
+  isAggregateData: PropTypes.bool.isRequired,
 };
 
 export default ExpedientsMap;

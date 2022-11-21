@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 
 import BaseMapList from '@geomatico/geocomponents/BaseMapList';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
+import ColorRampLegend from '@geomatico/geocomponents/ColorRampLegend';
 
 import config from '../../config.json';
 
@@ -15,6 +16,7 @@ import DrawerTitle from '../../components/DrawerTitle';
 import ExpandContent from '../../components/ExpandContent';
 import RightDrawer from '../../components/RightDrawer';
 import SquareButtonIcon from '../../components/SquareButtonIcon';
+import {Button, Slider} from '@mui/material';
 
 const RIGHT_DRAWER_WIDTH = 360;
 
@@ -25,9 +27,27 @@ const baseMapListStyle = {
   }
 };
 
+const legendSx = {
+  position: 'absolute',
+  bottom: '28px',
+  right: '10px',
+  width: 256
+};
+
 const maxDate = new Date().getFullYear();
 
-const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeChanged, visibleCategories, onVisibleCategoriesChanged}) => {
+const ExpedientsRight = ({
+                           mapStyle,
+                           onMapStyleChanged,
+                           dateRange,
+                           onDateRangeChanged,
+                           visibleCategories,
+                           onVisibleCategoriesChanged,
+                           onAggregateDataChange,
+                           isAggregateData,
+                           radius,
+                           onRadiusChange
+                         }) => {
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
 
@@ -49,6 +69,7 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
     [datasetId]: datasetVisibleCategories
   });
 
+
   return <>
     <Hidden smDown implementation="css">
       <Box sx={buttonContentStyle}>
@@ -65,8 +86,12 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
         onVisibilityChanged={handleCategoriesVisibility(datasetId)}
       />)}
       <ExpandContent title={'Rang de dates'}>
-        <div style={{padding: '0', width: '100%'}}>
-          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged} animationInterval={300}/>
+        <div style={{
+          padding: '0',
+          width: '100%'
+        }}>
+          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged}
+                       animationInterval={300}/>
         </div>
       </ExpandContent>
       <ExpandContent title={'Mapes base'}>
@@ -80,6 +105,23 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
           sx={baseMapListStyle}
         />
       </ExpandContent>
+      <Box display='flex' justifyContent='center' width={'100%'}>
+        <Button onClick={() => onAggregateDataChange(!isAggregateData)} variant="contained"
+                sx={{mt: '40px'}}>{isAggregateData ? 'Ver datos discretos' : 'Ver datos agregados'}</Button>
+      </Box>
+      {
+        isAggregateData &&
+        <Box mt={3}>
+          Radius:
+          <Slider defaultValue={radius} onChange={(e, value) => onRadiusChange(value)} aria-label="Default"
+                  valueLabelDisplay="auto"/>
+
+          <Box>
+            <ColorRampLegend sx={legendSx} colorScheme={'BrewerRdYlGn5'} domain={[0, 100]}></ColorRampLegend>
+          </Box>
+
+        </Box>
+      }
     </RightDrawer>
   </>;
 };
@@ -90,7 +132,11 @@ ExpedientsRight.propTypes = {
   dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
   onDateRangeChanged: PropTypes.func.isRequired,
   visibleCategories: PropTypes.object.isRequired,
-  onVisibleCategoriesChanged: PropTypes.func.isRequired
+  onVisibleCategoriesChanged: PropTypes.func.isRequired,
+  onAggregateDataChange: PropTypes.func.isRequired,
+  isAggregateData: PropTypes.bool.isRequired,
+  radius: PropTypes.number.isRequired,
+  onRadiusChange: PropTypes.func.isRequired,
 };
 
 export default ExpedientsRight;

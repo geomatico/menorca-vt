@@ -12,6 +12,8 @@ import ExitToApp from '@mui/icons-material/ExitToApp';
 import ResponsiveHeader from './ResponsiveHeader';
 import LogoBlanco from './LogoBlanco';
 import {debounce} from 'throttle-debounce';
+import ColorSwitch from '@geomatico/geocomponents/ColorSwitch';
+
 //STYLES
 const dragger = {
   display: 'flex',
@@ -90,6 +92,7 @@ const LeftDrawer = ({defaultDrawerWidth, onDrawerWidthChange, onLogout, children
       <ArrowRightIcon size='small'/>
     </Box>
     <Typography sx={drawerTitleStyle} variant='body1'>Visor d&#039;expedients</Typography>
+
     <Box sx={drawerContent}>
       {children}
     </Box>
@@ -103,7 +106,9 @@ LeftDrawer.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  isAggregateData: PropTypes.bool.isRequired,
+  onAggregateDataChange: PropTypes.func.isRequired,
 };
 
 export default LeftDrawer;

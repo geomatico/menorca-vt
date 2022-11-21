@@ -77,7 +77,7 @@ const ExpedientsLeft = ({mapComponent, indicatorsComponent, onLogout}) => {
 ExpedientsLeft.propTypes = {
   mapComponent: PropTypes.node.isRequired,
   indicatorsComponent: PropTypes.node.isRequired,
-  onLogout: PropTypes.func.isRequired
+  onLogout: PropTypes.func.isRequired,
 };
 
 export default ExpedientsLeft;
