@@ -12,7 +12,6 @@ import ExitToApp from '@mui/icons-material/ExitToApp';
 import ResponsiveHeader from './ResponsiveHeader';
 import LogoBlanco from './LogoBlanco';
 import {debounce} from 'throttle-debounce';
-import ColorSwitch from '@geomatico/geocomponents/ColorSwitch';
 
 //STYLES
 const dragger = {

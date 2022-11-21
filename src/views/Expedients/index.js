@@ -7,7 +7,6 @@ import Indicators from '../../components/Indicators';
 import ExpedientsMap from './ExpedientsMap';
 import ExpedientsRight from './ExpedientsRight';
 import ExpedientsLeft from './ExpedientsLeft';
-import Box from '@mui/material/Box';
 
 const maxDate = new Date().getFullYear();
 

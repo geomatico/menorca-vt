@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 
 import BaseMapList from '@geomatico/geocomponents/BaseMapList';
 import RangeSlider from '@geomatico/geocomponents/RangeSlider';
-import ColorRampLegend from '@geomatico/geocomponents/ColorRampLegend';
 
 import config from '../../config.json';
 
@@ -27,27 +26,9 @@ const baseMapListStyle = {
   }
 };
 
-const legendSx = {
-  position: 'absolute',
-  bottom: '28px',
-  right: '10px',
-  width: 256
-};
-
 const maxDate = new Date().getFullYear();
 
-const ExpedientsRight = ({
-                           mapStyle,
-                           onMapStyleChanged,
-                           dateRange,
-                           onDateRangeChanged,
-                           visibleCategories,
-                           onVisibleCategoriesChanged,
-                           onAggregateDataChange,
-                           isAggregateData,
-                           radius,
-                           onRadiusChange
-                         }) => {
+const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeChanged, visibleCategories, onVisibleCategoriesChanged, onAggregateDataChange, isAggregateData, radius, onRadiusChange}) => {
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
 
@@ -90,8 +71,13 @@ const ExpedientsRight = ({
           padding: '0',
           width: '100%'
         }}>
-          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged}
-                       animationInterval={300}/>
+          <RangeSlider
+            min={config.minDate}
+            max={maxDate}
+            value={dateRange}
+            onValueChange={onDateRangeChanged}
+            animationInterval={300}
+          />
         </div>
       </ExpandContent>
       <ExpandContent title={'Mapes base'}>
@@ -106,20 +92,16 @@ const ExpedientsRight = ({
         />
       </ExpandContent>
       <Box display='flex' justifyContent='center' width={'100%'}>
-        <Button onClick={() => onAggregateDataChange(!isAggregateData)} variant="contained"
-                sx={{mt: '40px'}}>{isAggregateData ? 'Ver datos discretos' : 'Ver datos agregados'}</Button>
+        <Button onClick={() => onAggregateDataChange(!isAggregateData)} variant="contained" sx={{mt: '40px'}}>{isAggregateData ? 'Ver datos discretos' : 'Ver datos agregados'}</Button>
       </Box>
       {
         isAggregateData &&
         <Box mt={3}>
           Radius:
-          <Slider defaultValue={radius} onChange={(e, value) => onRadiusChange(value)} aria-label="Default"
-                  valueLabelDisplay="auto"/>
-
-          <Box>
-            <ColorRampLegend sx={legendSx} colorScheme={'BrewerRdYlGn5'} domain={[0, 100]}></ColorRampLegend>
-          </Box>
-
+          <Slider
+            defaultValue={radius}
+            onChange={(e, value) => onRadiusChange(value)}
+          />
         </Box>
       }
     </RightDrawer>

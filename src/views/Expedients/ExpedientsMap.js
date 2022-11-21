@@ -16,24 +16,23 @@ import ColorRampLegend from '@geomatico/geocomponents/ColorRampLegend';
 import config from '../../config.json';
 import useColors from '../../hooks/useColors';
 import useFilteredExpedients from '../../hooks/useFilteredExpedients';
-import Box from '@mui/material/Box';
 
 const cssStyle = {
   width: '100%',
   height: '100%',
   overflow: 'hidden'
 };
+const legendSx = {
+  position: 'absolute',
+  bottom: '28px',
+  right: '10px',
+  width: 256
+};
 
-const ExpedientsMap = ({
-                         mapStyle,
-                         visibleCategories,
-                         dateRange,
-                         onBBOXChanged,
-                         isAggregateData,
-                         radius
-                       }) => {
+const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged, isAggregateData, radius}) => {
   const mapRef = useRef();
   const [viewport, setViewport] = useState(config.initialViewport);
+  const [domain, setDomain] = useState([0, 100]);
   const colors = Object.values(useColors()).reduce((acc, items) => ({
     ...acc,
     ...items
@@ -59,7 +58,7 @@ const ExpedientsMap = ({
   }, [expedientsData, viewport]);
 
 
-  const COLOR_RANGE = useColorRamp('BrewerRdYlGn5').intColors;
+  const COLOR_RANGE = useColorRamp('BrewerRdYlGn5').intColors.reverse();
 
   const deckLayers = useMemo(() => {
     if (!isAggregateData) {
@@ -86,6 +85,8 @@ const ExpedientsMap = ({
         opacity: 1,
         pickable: true,
         autoHighlight: true,
+        onSetColorDomain: ([a,b]) => setDomain([a, b]),
+        onSetElevationDomain: ([a, b]) => console.log(555, a,b)
       });
     }
 
@@ -109,9 +110,7 @@ const ExpedientsMap = ({
     getTooltip={getTooltip}
   >
     <Map reuseMaps mapStyle={mapStyle} styleDiffing={false} mapLib={maplibregl} ref={mapRef}/>
-    <Box>
-      <ColorRampLegend colorScheme={'BrewerRdYlGn5'} domain={[0, 100]}></ColorRampLegend>
-    </Box>
+    <ColorRampLegend sx={legendSx} colorScheme={'BrewerRdYlGn5'} domain={domain} reverse={true}/>
   </DeckGL>;
 };
 
@@ -121,6 +120,7 @@ ExpedientsMap.propTypes = {
   visibleCategories: PropTypes.object.isRequired,
   onBBOXChanged: PropTypes.func.isRequired,
   isAggregateData: PropTypes.bool.isRequired,
+  radius: PropTypes.number
 };
 
 export default ExpedientsMap;
