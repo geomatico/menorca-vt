@@ -16,7 +16,7 @@ const Indicators = ({visibleCategories, dateRange, BBOX}) => {
   const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
   const totalVivendes = useTotalVivendes(BBOX);
   const stats = useStats(visibleCategories, dateRange, BBOX);
-
+  console.log('stats', stats);
   const allVisibleCategories = Object.entries(config.datasets).flatMap(([datasetId, {categories}]) =>
     categories.filter(cat => visibleCategories[datasetId].includes(cat.id))
   );

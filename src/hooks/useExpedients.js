@@ -17,14 +17,14 @@ const datasetIds = Object.keys(config.datasets);
 
 const useExpedients = () => {
   const [datasets, setDatasets] = useState(INITIAL_STATE);
-
+  console.log('datasets', datasets);
   useEffect(() => {
     const promises = datasetIds.map(datasetId => {
       const {sourceLayers} = config.datasets[datasetId];
       const url = config.services.wfs
         .replace('{typeName}', sourceLayers)
         .concat('&propertyName=')
-        .concat('(tipus,resolucio,any,the_geom)'.repeat(sourceLayers.length));
+        .concat('(tipus,resolucio,any,the_geom,data_inici,data_fi)'.repeat(sourceLayers.length));
       return fetch(url, options).then(response => response.json());
     });
     Promise.all(promises).then(responses => {
