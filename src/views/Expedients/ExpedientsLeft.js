@@ -20,7 +20,6 @@ import LogoBlanco from '../../components/LogoBlanco';
 import SidePanelContent from '../../components/SidePanelContent';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import DatasetIcon from '@mui/icons-material/Dataset';
-import Typography from '@mui/material/Typography';
 import WorkIcon from '@mui/icons-material/Work';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 /*import BottomMenu from '../../components/BottomMenu';*/
@@ -28,16 +27,24 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import {darken} from '@mui/system/colorManipulator';
 
 const LEFT_DRAWER_WIDTH = '40vw';
-const MINI_SIDE_PANEL_WIDTH = '140px';
+const MINI_SIDE_PANEL_WIDTH = '48px';
 
 const MINISIDEPANEL_CONFIG = [
   {
     id: 'quality',
     label: 'Qualitat',
-    content: <><DatasetIcon/><Typography sx={{ml: 1, textTransform: 'none'}}>Qualitat</Typography></>
+    content: <DatasetIcon/>
   },
-  {id: 'management', label: 'Gestió', content: <><WorkIcon/><Typography sx={{ml: 1, textTransform: 'none'}}>Gestió</Typography></>},
-  {id: 'planning', label: 'Urbanisme', content: <><ApartmentIcon/><Typography sx={{ml: 1, textTransform: 'none'}}>Urbanisme</Typography></>},
+  {
+    id: 'management',
+    label: 'Gestió',
+    content: <WorkIcon/>
+  },
+  {
+    id: 'planning',
+    label: 'Urbanisme',
+    content: <ApartmentIcon/>
+  },
 ];
 
 const ExpedientsLeft = ({mapComponent, selectedActionId, sidePanelContent, onActionClick, onLogout}) => {
