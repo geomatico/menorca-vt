@@ -11,10 +11,7 @@ describe('Data indicators', () => {
         const resolucio = e.resolucio;
         if (resolucio) {
           if (!r[resolucio]) {
-            r[resolucio] = {
-              label: resolucio,
-              value: 1
-            };
+            r[resolucio] = {label: resolucio, value: 1};
           } else {
             r[resolucio].value += 1;
           }
