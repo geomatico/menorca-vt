@@ -11,6 +11,8 @@ import SidePanelContent from '../../components/SidePanelContent';
 const maxDate = new Date().getFullYear();
 
 const Expedients = ({onLogout}) => {
+  const [isAggregateData, setIsAggregateData] = useState(false);
+  const [radius, setRadius] = useState(100);
   const [mapStyle, setMapStyle] = useState(config.mapStyles[5].id);
   const [dateRange, setDateRange] = useState([config.minDate, maxDate]);
   const [visibleCategories, setVisibleCategories] = useState(
@@ -39,6 +41,8 @@ const Expedients = ({onLogout}) => {
     visibleCategories={visibleCategories}
     dateRange={dateRange}
     onBBOXChanged={setBBOX}
+    isAggregateData={isAggregateData}
+    radius={radius}
   />;
 
   return <>
@@ -49,6 +53,10 @@ const Expedients = ({onLogout}) => {
       onVisibleCategoriesChanged={setVisibleCategories}
       dateRange={dateRange}
       onDateRangeChanged={setDateRange}
+      onAggregateDataChange={setIsAggregateData}
+      isAggregateData={isAggregateData}
+      radius={radius}
+      onRadiusChange={setRadius}
     />
     <ExpedientsLeft
       mapComponent={mapComponent}

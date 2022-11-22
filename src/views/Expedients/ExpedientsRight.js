@@ -16,7 +16,31 @@ import ExpandContent from '../../components/ExpandContent';
 import RightDrawer from '../../components/RightDrawer';
 import SquareButtonIcon from '../../components/SquareButtonIcon';
 
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+
 const RIGHT_DRAWER_WIDTH = 360;
+const marks = [{
+  value: 0,
+  label: 0
+}, {
+  value: 20,
+  label: 20
+}, {
+  value: 40,
+  label: 40
+}, {
+  value: 60,
+  label: 60
+}, {
+  value: 80,
+  label: 80
+}, {
+  value: 100,
+  label: 100
+}];
 
 const baseMapListStyle = {
   mt: 1,
@@ -27,7 +51,7 @@ const baseMapListStyle = {
 
 const maxDate = new Date().getFullYear();
 
-const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeChanged, visibleCategories, onVisibleCategoriesChanged}) => {
+const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeChanged, visibleCategories, onVisibleCategoriesChanged, onAggregateDataChange, isAggregateData, radius, onRadiusChange}) => {
   const [isRightDrawerOpen, setRightDrawerOpen] = useState(false);
   const handleDrawerToggle = () => setRightDrawerOpen(!isRightDrawerOpen);
 
@@ -65,8 +89,17 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
         onVisibilityChanged={handleCategoriesVisibility(datasetId)}
       />)}
       <ExpandContent title={'Rang de dates'}>
-        <div style={{padding: '0', width: '100%'}}>
-          <RangeSlider min={config.minDate} max={maxDate} value={dateRange} onValueChange={onDateRangeChanged} animationInterval={300}/>
+        <div style={{
+          padding: '0',
+          width: '100%'
+        }}>
+          <RangeSlider
+            min={config.minDate}
+            max={maxDate}
+            value={dateRange}
+            onValueChange={onDateRangeChanged}
+            animationInterval={300}
+          />
         </div>
       </ExpandContent>
       <ExpandContent title={'Mapes base'}>
@@ -80,6 +113,43 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
           sx={baseMapListStyle}
         />
       </ExpandContent>
+      <Divider/>
+      {
+        isAggregateData && <>
+          <Divider/>
+          <Box sx={{pl: 1, mt: 4, ml: 1.5}}>
+            <Typography sx={{fontWeight: 'bold', mb: 1}}>Superfície agregada</Typography>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
+              <Slider
+                color='secondary'
+                size="small"
+                sx={{
+                  width: '98%',
+                  mt: 2,
+                  ml: 1
+                }}
+                min={0}
+                max={100}
+                marks={marks}
+                value={radius}
+                valueLabelDisplay="auto"
+                onChange={(e, value) => onRadiusChange(value)}
+              />
+            </Box>
+          </Box>
+        </>
+      }
+      <Box display='flex' justifyContent='center' width={'100%'}>
+        <Button
+          onClick={() => onAggregateDataChange(!isAggregateData)}
+          variant="contained"
+          sx={{mt: 5}}>
+          {isAggregateData ? 'Veure dades discretes' : 'Veure dades agregades'}
+        </Button>
+      </Box>
     </RightDrawer>
   </>;
 };
@@ -90,7 +160,11 @@ ExpedientsRight.propTypes = {
   dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
   onDateRangeChanged: PropTypes.func.isRequired,
   visibleCategories: PropTypes.object.isRequired,
-  onVisibleCategoriesChanged: PropTypes.func.isRequired
+  onVisibleCategoriesChanged: PropTypes.func.isRequired,
+  onAggregateDataChange: PropTypes.func.isRequired,
+  isAggregateData: PropTypes.bool.isRequired,
+  radius: PropTypes.number.isRequired,
+  onRadiusChange: PropTypes.func.isRequired,
 };
 
 export default ExpedientsRight;
