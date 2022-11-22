@@ -7,10 +7,10 @@ import useStats from '../hooks/useStats';
 /*import useTotalExpedients from '../hooks/useTotalExpedients';
 import useTotalVivendes from '../hooks/useTotalVivendes';*/
 
-import TypeCountByYearChart from './TypeCountByYearChart';
 /*import ResolutionStateChart from './ResolutionStateChart';
 import NumericIndicator from './NumericIndicator';*/
 import SectionTitle from './SectionTitle';
+import TypeCountByDate from './charts/TypeCountByDate';
 
 const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
   /*const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
@@ -23,10 +23,10 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
 
   return <>
     <SectionTitle titleKey="Evolució del nombre d'expedients totals per data d'inici"/>
-    <TypeCountByYearChart categories={allVisibleCategories} data={stats.typeCountByYear}/>
+    <TypeCountByDate categories={allVisibleCategories} data={stats.typeCountByYear}/>
     
     <SectionTitle titleKey="Evolució del nombre d'expedients totals per data de finalització"/>
-    <TypeCountByYearChart categories={allVisibleCategories} data={stats.typeCountByYear}/>
+    <TypeCountByDate categories={allVisibleCategories} data={stats.typeCountByYear}/>
 
     <SectionTitle titleKey="Temps de tramitació per tipus d'expedients"/>
     <SectionTitle titleKey="Sentit de resolució per tipus d'expedient i any"/>

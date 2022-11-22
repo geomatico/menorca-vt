@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 //MUI
 import {VegaLite} from 'react-vega';
 
-const TypeCountByYearChart = ({data, categories}) => {
+const TypeCountByDate = ({data, categories, dataLabel}) => {
   const labelCategories = categories?.map(cat => cat.id);
   const colorCategories = categories?.map(cat => cat.color);
 
@@ -17,14 +17,14 @@ const TypeCountByYearChart = ({data, categories}) => {
     width: 'container',
     /*transform: [
       {
-        filter: 'datum.year > 2010'
+        filter: 'datum.date > 2010'
       }
     ],*/
     mark: 'area',
     encoding: {
       x: {
         type: 'nominal',
-        field: 'year',
+        field: 'date',
         title: null
       },
       y: {
@@ -48,8 +48,8 @@ const TypeCountByYearChart = ({data, categories}) => {
           type: 'nominal'
         },
         {
-          field: 'year',
-          title: 'Año',
+          field: 'date',
+          title: dataLabel,
           type: 'nominal',
         },
         {
@@ -64,17 +64,23 @@ const TypeCountByYearChart = ({data, categories}) => {
   return <VegaLite spec={spec} actions={false}/>;
 };
 
-TypeCountByYearChart.propTypes = {
+TypeCountByDate.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string,
-    year: PropTypes.number,
-    value: PropTypes.number
+    date: PropTypes.number,
+    value: PropTypes.number,
+    dataLabel: PropTypes.string,
   })),
   categories: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     color: PropTypes.string,
     label: PropTypes.string,
-  }))
+  })),
+  dataLabel: PropTypes.string
 };
 
-export default TypeCountByYearChart;
+TypeCountByDate.defaultProps = {
+  dataLabel: 'Any'
+};
+
+export default TypeCountByDate;

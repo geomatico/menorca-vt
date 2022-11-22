@@ -1,68 +1,69 @@
 import React from 'react';
-import TypeCountByYearChart from './TypeCountByYearChart';
+import TypeCountByDate from './TypeCountByDate';
 
 export default {
-  title: 'Common/TypeCountByYearChart',
-  component: TypeCountByYearChart
+  title: 'Charts/TypeCountByDate',
+  component: TypeCountByDate
 };
 
-const Template = args => <TypeCountByYearChart {...args}/>;
+const Template = args => <TypeCountByDate {...args}/>;
 
 export const Default = Template.bind({});
 Default.args = {
+  dataLabel: 'Any de fi',
   data: [
     {
       type: 'DUP',
-      year: 1900,
+      date: 1900,
       value: 50
     },
     {
       type: 'DUP',
-      year: 1920,
+      date: 1920,
       value: 80
     },
     {
       type: 'DUP',
-      year: 1930,
+      date: 1930,
       value: 125
     },
     {
       type: 'CED',
-      year: 1900,
+      date: 1900,
       value: 150
     },
     {
       type: 'CED',
-      year: 1910,
+      date: 1910,
       value: 250
     },
     {
       type: 'CED',
-      year: 1920,
+      date: 1920,
       value: 180
     },
     {
       type: 'CED',
-      year: 1930,
+      date: 1930,
       value: 225
     },
     {
       type: 'NUI',
-      year: 1900,
+      date: 1900,
       value: 5
     },
     {
       type: 'NUI',
-      year: 1910,
+      date: 1910,
       value: 15
     },    {
       type: 'NUI',
-      year: 1920,
+      date: 1920,
       value: 50
     },
     {
       type: 'NUI',
-      year: 1930,
+      date: 1930,
       value: 75
     },
   ],
