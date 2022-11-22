@@ -16,13 +16,11 @@ import ResponsiveHeader from '@geomatico/geocomponents/ResponsiveHeader';
 
 import DrawerTitle from '../../components/DrawerTitle';
 import LogoBlanco from '../../components/LogoBlanco';
-/*import ResponsiveHeader from '../../components/ResponsiveHeader';*/
-import SidePanelContent from '../../components/SidePanelContent';
+
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import DatasetIcon from '@mui/icons-material/Dataset';
 import WorkIcon from '@mui/icons-material/Work';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-/*import BottomMenu from '../../components/BottomMenu';*/
 
 import {darken} from '@mui/system/colorManipulator';
 
@@ -87,7 +85,7 @@ const ExpedientsLeft = ({mapComponent, selectedActionId, sidePanelContent, onAct
         </main>
         <Box sx={{px: 2, pt: 9.5}}>
           <DrawerTitle>Visor d&#039;expedients</DrawerTitle>
-          <SidePanelContent manager='quality'/>
+          {sidePanelContent}
         </Box>
       </ReactCardFlip>
       {/*<BottomMenu actions={MINISIDEPANEL_CONFIG}/>*/}
