@@ -29,7 +29,7 @@
     "@deck.gl/layers": "^8.8.20",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@geomatico/geocomponents": "^2.0.9",
+    "@geomatico/geocomponents": "^2.0.10",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.3",
     "@mui/styles": "^5.10.3",

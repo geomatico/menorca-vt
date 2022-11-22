@@ -15,7 +15,11 @@ import DrawerTitle from '../../components/DrawerTitle';
 import ExpandContent from '../../components/ExpandContent';
 import RightDrawer from '../../components/RightDrawer';
 import SquareButtonIcon from '../../components/SquareButtonIcon';
-import {Button, Slider} from '@mui/material';
+
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 const RIGHT_DRAWER_WIDTH = 360;
 const marks = [{
@@ -109,29 +113,32 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
           sx={baseMapListStyle}
         />
       </ExpandContent>
-
+      <Divider/>
       {
-        isAggregateData &&
-        <ExpandContent title={'Superfície agregada'} expanded={true}>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}>
-            <Slider
-              size="small"
-              sx={{
-                width: '70%',
-                mt: 4,
-              }}
-              min={0}
-              max={100}
-              marks={marks}
-              value={radius}
-              valueLabelDisplay="auto"
-              onChange={(e, value) => onRadiusChange(value)}
-            />
+        isAggregateData && <>
+          <Divider/>
+          <Box sx={{pl: 1, mt: 4, ml: 1.5}}>
+            <Typography sx={{fontWeight: 'bold', mb: 1}}>Superfície agregada</Typography>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
+              <Slider
+                size="small"
+                sx={{
+                  width: '98%',
+                  mt: 2,
+                }}
+                min={0}
+                max={100}
+                marks={marks}
+                value={radius}
+                valueLabelDisplay="auto"
+                onChange={(e, value) => onRadiusChange(value)}
+              />
+            </Box>
           </Box>
-        </ExpandContent>
+        </>
       }
       <Box display='flex' justifyContent='center' width={'100%'}>
         <Button
