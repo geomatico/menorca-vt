@@ -4,34 +4,47 @@ import PropTypes from 'prop-types';
 //MUI
 import {VegaLite} from 'react-vega';
 
-const TypeCountByDate = ({data, categories, dataLabel}) => {
+const AverageProcessingTimeByType = ({data, categories}) => {
+
   const labelCategories = categories?.map(cat => cat.id);
   const colorCategories = categories?.map(cat => cat.color);
-
-  /*STACKED_AREA*/
   const spec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+    description: 'A simple bar chart with embedded data.',
+    padding: 10,
     data: {
-      values: data,
+      values: data
     },
-    width: 'container',
-    /*transform: [
-      {
-        filter: 'datum.date > 2010'
+    actions: false,
+    config: {
+      view: {
+        stroke: null
       }
-    ],*/
-    mark: 'area',
+    },
+    mark: {type: 'bar', tooltip: true},
     encoding: {
       x: {
-        type: 'nominal',
-        field: 'date',
-        title: null
+        field: 'value',
+        type: 'quantitative',
+        title: null,
+        axis: {
+          formatType: 'number',
+          domain: false,
+          grid: true,
+          ticks: false,
+        }
       },
       y: {
-        type: 'quantitative',
-        field: 'value',
-        title: null
-      },
+        field: 'type',
+        type: 'nominal',
+        title: null,
+        axis: {
+          labelPadding: 10,
+          labelAngle: 0,
+          domain: true,
+          grid: false,
+          ticks: false,
+        }},
       color: {
         field: 'type',
         type: 'nominal',
@@ -48,11 +61,6 @@ const TypeCountByDate = ({data, categories, dataLabel}) => {
           type: 'nominal'
         },
         {
-          field: 'date',
-          title: dataLabel,
-          type: 'nominal',
-        },
-        {
           field: 'value',
           title: 'Número',
           type: 'quantitative'
@@ -64,23 +72,18 @@ const TypeCountByDate = ({data, categories, dataLabel}) => {
   return <VegaLite spec={spec} actions={false}/>;
 };
 
-TypeCountByDate.propTypes = {
+AverageProcessingTimeByType.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string,
-    date: PropTypes.number,
-    value: PropTypes.number,
-    dataLabel: PropTypes.string,
+    value: PropTypes.number
   })),
   categories: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     color: PropTypes.string,
     label: PropTypes.string,
   })),
-  dataLabel: PropTypes.string
 };
 
-TypeCountByDate.defaultProps = {
-  dataLabel: 'Any'
-};
+AverageProcessingTimeByType.defaultProps = {};
 
-export default TypeCountByDate;
+export default AverageProcessingTimeByType;
