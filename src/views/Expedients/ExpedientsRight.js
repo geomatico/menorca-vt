@@ -124,10 +124,12 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
               justifyContent: 'center'
             }}>
               <Slider
+                color='secondary'
                 size="small"
                 sx={{
                   width: '98%',
                   mt: 2,
+                  ml: 1
                 }}
                 min={0}
                 max={100}
