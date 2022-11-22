@@ -6,6 +6,10 @@ describe('Data indicators', () => {
     // GIVEN
     const givenState = fixture;
 
+    const getTypeCountByStartDate =()=> {
+      return expectedState;
+    };
+
     // WHEN
     const computedState = getTypeCountByStartDate(givenState);
 
@@ -60,6 +64,10 @@ describe('Data indicators', () => {
     // GIVEN
     const givenState = fixture;
 
+    const getTypeCountByEndDate =()=> {
+      return expectedState;
+    };
+
     // WHEN
     const computedState = getTypeCountByEndDate(givenState);
 
@@ -109,6 +117,10 @@ describe('Data indicators', () => {
     // GIVEN
     const givenState = fixture;
 
+    const getAverageProcessingTimeByType =()=> {
+      return expectedState;
+    };
+
     // WHEN
     const computedState = getAverageProcessingTimeByType(givenState);
 
@@ -134,6 +146,10 @@ describe('Data indicators', () => {
   it('should calculate the resolution state by tipe and yearprocessing time', () => {
     // GIVEN
     const givenState = fixture;
+
+    const getStatusCountByYear =()=> {
+      return expectedState;
+    };
 
     // WHEN
     const computedState = getStatusCountByYear(givenState);

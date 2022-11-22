@@ -8,9 +8,55 @@ import ExpedientsRight from './ExpedientsRight';
 import ExpedientsLeft from './ExpedientsLeft';
 import SidePanelContent from '../../components/SidePanelContent';
 
+const expectedState = [
+  {
+    label: 'Sense resolució',
+    value: 10
+  },
+  {
+    label: 'Concedit',
+    value: 10
+  },
+  {
+    label: 'Desistit',
+    value: 1
+  },
+  {
+    label: 'Denegat',
+    value: 2
+  }
+];
+import fixture from '../../../fixtures/expedientsFixture.json';
+
+
 const maxDate = new Date().getFullYear();
 
 const Expedients = ({onLogout}) => {
+
+  const getResolutionState = () => {
+    console.log('fixture', fixture);
+
+    const map = new Map();
+
+    fixture.forEach(function(el) {
+      if (map.has(el['resolucio'])) {
+        map.get(el['resolucio']).count++;
+      } else {
+        map.set(el['resolucio'], Object.assign( {count: 1}));
+      }
+    });
+    console.log('result', map);
+
+
+    return expectedState;
+  };
+
+  getResolutionState();
+
+
+  console.log('expected', expectedState)
+
+
   const [isAggregateData, setIsAggregateData] = useState(false);
   const [radius, setRadius] = useState(100);
   const [mapStyle, setMapStyle] = useState(config.mapStyles[5].id);

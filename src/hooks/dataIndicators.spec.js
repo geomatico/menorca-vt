@@ -6,6 +6,10 @@ describe('Data indicators', () => {
     // GIVEN
     const givenState = fixture;
 
+    const getResolutionState =()=> {
+      return expectedState;
+    };
+
     // WHEN
     const computedState = getResolutionState(givenState);
 
@@ -35,6 +39,11 @@ describe('Data indicators', () => {
   it('should calculate the number of geolocated expedients', () => {
     // GIVEN
     const givenState = fixture;
+
+    const getGeolocatedExpedients =()=> {
+      return expectedState;
+    };
+
 
     // WHEN
     const computedState = getGeolocatedExpedients(givenState);
