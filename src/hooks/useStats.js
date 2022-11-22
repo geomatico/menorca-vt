@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import useFilteredExpedients from './useFilteredExpedients';
 
 const _calcStats = (features) => {
-  console.log('features', features);
+
   const arrTypeCountByYear = features
     .reduce((stats, {properties}) => {
       const year = properties.any;

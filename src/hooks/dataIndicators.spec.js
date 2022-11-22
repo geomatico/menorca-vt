@@ -42,13 +42,20 @@ describe('Data indicators', () => {
     // THEN
     const expectedState = [
       {
+        type: 'EX073',
         label: 'Geolocalizados',
-        value: 24
+        value: 1
       },
       {
-        label: 'No Geolocalizados',
-        value: 0
-      }
+        type: 'EX068',
+        label: 'Geolocalizados',
+        value: 1
+      },
+      {
+        type: 'CED',
+        label: 'Geolocalizados',
+        value: 22
+      },
     ];
 
     expect(computedState).to.deep.equal(expectedState);
