@@ -1,14 +1,25 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {VegaLite} from 'react-vega';
 
-const ResolutionStateChart = ({data}) => {
+const ResolutionState = ({data}) => {
+
+  const formatedData = useMemo(() => (
+    data.map(
+      dat => ({
+        ...dat,
+        color: dat.label === 'Sense resolució' ? '#f60000' : '#a1a0a0'
+      }))
+  ), [data]);
+
+  console.log('formatedData', formatedData);
+
   const spec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     description: 'A simple bar chart with embedded data.',
     padding: 10,
     data: {
-      values: data
+      values: formatedData
     },
     actions: false,
     config: {
@@ -30,7 +41,7 @@ const ResolutionStateChart = ({data}) => {
         }
       },
       y: {
-        field: 'name',
+        field: 'label',
         type: 'nominal',
         title: null,
         axis: {
@@ -41,7 +52,9 @@ const ResolutionStateChart = ({data}) => {
           ticks: false,
         }},
       color: {
-        value: '#a1a0a0'
+        field: 'color',
+        type: 'nominal',
+        scale: null
       }
     }
   };
@@ -49,13 +62,13 @@ const ResolutionStateChart = ({data}) => {
   return <VegaLite spec={spec} actions={false}/>;
 };
 
-ResolutionStateChart.propTypes = {
+ResolutionState.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     category: PropTypes.string,
     value: PropTypes.number
   }))
 };
 
-ResolutionStateChart.defaultProps = {};
+ResolutionState.defaultProps = {};
 
-export default ResolutionStateChart;
+export default ResolutionState;

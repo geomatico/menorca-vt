@@ -22,8 +22,6 @@ import DatasetIcon from '@mui/icons-material/Dataset';
 import WorkIcon from '@mui/icons-material/Work';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 
-import {darken} from '@mui/system/colorManipulator';
-
 const LEFT_DRAWER_WIDTH = '40vw';
 const MINI_SIDE_PANEL_WIDTH = '48px';
 
@@ -110,7 +108,7 @@ const ExpedientsLeft = ({mapComponent, selectedActionId, sidePanelContent, onAct
             '& .MuiButtonBase-root': {pr: 1, pl: 0.75},
             '& .MiniSidePanel-item': {
               '&:hover': {
-                bgcolor: theme => darken(theme.palette.primary.main, 0.25)
+                bgcolor: 'primary.dark'
               }
             },
           }}
