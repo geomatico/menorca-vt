@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 //MUI
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-function SectionTitle({title}) {
+const styles = {margin: '20px 0 15px 0'};
+function SectionTitle({title, sx}) {
   return (
-    <div style={{margin: '20px 0 15px 0'}}>
-      <Typography variant='body1' style={{fontWeight:'bold', marginBottom: 5}}>{title}</Typography>
+    <Box sx={{...styles, ...sx}}>
+      <Typography className='title' variant='body1' style={{fontWeight:'bold', marginBottom: 5}}>{title}</Typography>
       <Divider/>
-    </div>
+    </Box>
   );
 }
 
 SectionTitle.propTypes = {
   title: PropTypes.string,
+  sx: PropTypes.object,
 };
 
 export default SectionTitle;

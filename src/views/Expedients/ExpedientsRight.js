@@ -18,6 +18,25 @@ import SquareButtonIcon from '../../components/SquareButtonIcon';
 import {Button, Slider} from '@mui/material';
 
 const RIGHT_DRAWER_WIDTH = 360;
+const marks = [{
+  value: 0,
+  label: 0
+}, {
+  value: 20,
+  label: 20
+}, {
+  value: 40,
+  label: 40
+}, {
+  value: 60,
+  label: 60
+}, {
+  value: 80,
+  label: 80
+}, {
+  value: 100,
+  label: 100
+}];
 
 const baseMapListStyle = {
   mt: 1,
@@ -49,7 +68,6 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
     ...visibleCategories,
     [datasetId]: datasetVisibleCategories
   });
-
 
   return <>
     <Hidden smDown implementation="css">
@@ -91,19 +109,38 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
           sx={baseMapListStyle}
         />
       </ExpandContent>
-      <Box display='flex' justifyContent='center' width={'100%'}>
-        <Button onClick={() => onAggregateDataChange(!isAggregateData)} variant="contained" sx={{mt: '40px'}}>{isAggregateData ? 'Ver datos discretos' : 'Ver datos agregados'}</Button>
-      </Box>
+
       {
         isAggregateData &&
-        <Box mt={3}>
-          Radius:
-          <Slider
-            defaultValue={radius}
-            onChange={(e, value) => onRadiusChange(value)}
-          />
-        </Box>
+        <ExpandContent title={'Superfície agregada'} expanded={true}>
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <Slider
+              size="small"
+              sx={{
+                width: '70%',
+                mt: 4,
+              }}
+              min={0}
+              max={100}
+              marks={marks}
+              value={radius}
+              valueLabelDisplay="auto"
+              onChange={(e, value) => onRadiusChange(value)}
+            />
+          </Box>
+        </ExpandContent>
       }
+      <Box display='flex' justifyContent='center' width={'100%'}>
+        <Button
+          onClick={() => onAggregateDataChange(!isAggregateData)}
+          variant="contained"
+          sx={{mt: 5}}>
+          {isAggregateData ? 'Veure dades discretes' : 'Veure dades agregades'}
+        </Button>
+      </Box>
     </RightDrawer>
   </>;
 };

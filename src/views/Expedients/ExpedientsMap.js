@@ -24,8 +24,8 @@ const cssStyle = {
 };
 const legendSx = {
   position: 'absolute',
-  bottom: '28px',
-  right: '10px',
+  bottom: 4,
+  left: 4,
   width: 256
 };
 
@@ -109,7 +109,10 @@ const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged, i
     getTooltip={getTooltip}
   >
     <Map reuseMaps mapStyle={mapStyle} styleDiffing={false} mapLib={maplibregl} ref={mapRef}/>
-    <ColorRampLegend sx={legendSx} colorScheme={'BrewerRdYlGn5'} domain={domain} reverse={true}/>
+    {
+      isAggregateData &&
+      <ColorRampLegend sx={legendSx} colorScheme={'BrewerRdYlGn5'} domain={domain} reverse={true}/>
+    }
   </DeckGL>;
 };
 

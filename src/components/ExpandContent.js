@@ -22,10 +22,10 @@ const details = {
   }
 };
 
-const ExpandContent = ({title, children, onChange, isChecked}) => {
+const ExpandContent = ({title, children, onChange, isChecked, expanded}) => {
   const toggle = () => onChange(!isChecked);
 
-  return <Accordion elevation={0} disableGutters={true}>
+  return <Accordion elevation={0} disableGutters={true} expanded={expanded}>
     <AccordionSummary
       aria-label='Expand'
       expandIcon={<ExpandMoreIcon/>}
@@ -59,6 +59,7 @@ ExpandContent.propTypes = {
     PropTypes.node
   ]),
   isChecked: PropTypes.bool,
+  expanded: PropTypes.bool,
   onChange: PropTypes.func
 };
 
