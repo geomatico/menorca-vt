@@ -26,6 +26,7 @@ const expectedState = [
     value: 2
   }
 ];
+
 import fixture from '../../../fixtures/expedientsFixture.json';
 
 
@@ -34,21 +35,17 @@ const maxDate = new Date().getFullYear();
 const Expedients = ({onLogout}) => {
 
   const getResolutionState = () => {
-    console.log('fixture', fixture);
-
-    const map = new Map();
-
-    fixture.forEach(function(el) {
-      if (map.has(el['resolucio'])) {
-        map.get(el['resolucio']).count++;
-      } else {
-        map.set(el['resolucio'], Object.assign( {count: 1}));
+    return Object.values(fixture.reduce((r, e) => {
+      const resolucio = e.resolucio;
+      if (resolucio) {
+        if (!r[resolucio]) {
+          r[resolucio] = {label: resolucio, value: 1};
+        } else {
+          r[resolucio].value += 1;
+        }
       }
-    });
-    console.log('result', map);
-
-
-    return expectedState;
+      return r;
+    }, {}));
   };
 
   getResolutionState();
