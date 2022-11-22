@@ -68,7 +68,7 @@ TypeCountByYearChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string,
     year: PropTypes.number,
-    value: PropTypes.string
+    value: PropTypes.number
   })),
   categories: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,

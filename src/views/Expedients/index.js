@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import config from '../../config.json';
 
-import Indicators from '../../components/Indicators';
 import ExpedientsMap from './ExpedientsMap';
 import ExpedientsRight from './ExpedientsRight';
 import ExpedientsLeft from './ExpedientsLeft';
+import SidePanelContent from '../../components/SidePanelContent';
 
 const maxDate = new Date().getFullYear();
 
@@ -19,11 +19,18 @@ const Expedients = ({onLogout}) => {
       [datasetId]: categories.map(category => category.id)
     }), {})
   );
-  const [BBOX, setBBOX] = useState();
 
-  const indicatorsComponent = <Indicators
+  const [BBOX, setBBOX] = useState();
+  const [manager, setManager] = useState('quality');
+
+  const handleActionChange = (actionId) => setManager(actionId);
+
+  const sidePanelContent = <SidePanelContent
+    manager={manager}
+    mapStyle={mapStyle}
     visibleCategories={visibleCategories}
     dateRange={dateRange}
+    onBBOXChanged={setBBOX}
     BBOX={BBOX}
   />;
 
@@ -45,8 +52,10 @@ const Expedients = ({onLogout}) => {
     />
     <ExpedientsLeft
       mapComponent={mapComponent}
-      indicatorsComponent={indicatorsComponent}
       onLogout={onLogout}
+      sidePanelContent={sidePanelContent}
+      onActionClick={handleActionChange}
+      selectedActionId={manager}
     />
   </>;
 };
