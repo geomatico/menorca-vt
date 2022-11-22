@@ -1,10 +1,27 @@
 import {expect} from 'chai';
-import fixture from '../../fixtures/fixture.json';
+import fixture from '../../fixtures/expedientsFixture.json';
 
 describe('Data indicators', () => {
   it('should calculate resolution state', () => {
     // GIVEN
     const givenState = fixture;
+
+    const getResolutionState = () => {
+      return Object.values(fixture.reduce((r, e) => {
+        const resolucio = e.resolucio;
+        if (resolucio) {
+          if (!r[resolucio]) {
+            r[resolucio] = {
+              label: resolucio,
+              value: 1
+            };
+          } else {
+            r[resolucio].value += 1;
+          }
+        }
+        return r;
+      }, {}));
+    };
 
     // WHEN
     const computedState = getResolutionState(givenState);
@@ -20,12 +37,12 @@ describe('Data indicators', () => {
         value: 10
       },
       {
-        label: 'Desistit',
-        value: 1
-      },
-      {
         label: 'Denegat',
         value: 2
+      },
+      {
+        label: 'Desistit',
+        value: 1
       }
     ];
 
@@ -35,6 +52,20 @@ describe('Data indicators', () => {
   it('should calculate the number of geolocated expedients', () => {
     // GIVEN
     const givenState = fixture;
+
+    const getGeolocatedExpedients = () => {
+      return Object.values(fixture.reduce((r, e) => {
+        const tipus = e.tipus;
+        if (tipus) {
+          if (!r[tipus]) {
+            r[tipus] = {type: tipus, label: 'Geolocalizados', value: 1};
+          } else {
+            r[tipus].value += 1;
+          }
+        }
+        return r;
+      }, {}));
+    };
 
     // WHEN
     const computedState = getGeolocatedExpedients(givenState);
