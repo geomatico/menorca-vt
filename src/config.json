@@ -221,6 +221,7 @@
     "longitude": 4.060,
     "zoom": 10,
     "bearing": 0,
-    "pitch": 0
+    "pitch": 0,
+    "maxPitch": 85
   }
 }
