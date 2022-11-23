@@ -110,6 +110,9 @@ const ExpedientsLeft = ({mapComponent, selectedActionId, sidePanelContent, onAct
               '&:hover': {
                 bgcolor: 'primary.dark'
               }
+              /*'&:hover': {
+                bgcolor: theme => darken(theme.palette.primary.main, 0.25)
+              }*/
             },
           }}
           actions={MINISIDEPANEL_CONFIG}

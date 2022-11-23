@@ -8,9 +8,6 @@ module.exports = (env) => ({
   devServer: {
     open: true,
   },
-  entry: env.test ? '' : {
-    main: './src/index.js'
-  },
   resolve: {
     alias: {
       react: path.resolve('./node_modules/react'),
