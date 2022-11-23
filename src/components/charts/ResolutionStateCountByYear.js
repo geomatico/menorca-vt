@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 
 //MUI
 import {VegaLite} from 'react-vega';
+import {getStatusCountByYear} from '../../calculations/getStatusCountByYear';
 
 const ResolutionStateCountByYear = ({data, categories}) => {
+
   const labelCategories = categories?.map(cat => cat.id);
   const colorCategories = categories?.map(cat => cat.color);
+
+  let formattedData =  useMemo(()=> getStatusCountByYear(data), [data]);
 
   /*STACKED_AREA*/
   const spec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     data: {
-      values: data,
+      values: formattedData,
     },
     width: 'container',
     /*transform: [
@@ -33,7 +37,7 @@ const ResolutionStateCountByYear = ({data, categories}) => {
         title: null
       },
       color: {
-        field: 'type',
+        field: 'status',
         type: 'nominal',
         legend: null,
         scale: {
@@ -43,7 +47,7 @@ const ResolutionStateCountByYear = ({data, categories}) => {
       },
       tooltip: [
         {
-          field: 'type',
+          field: 'status',
           title: 'Tipo',
           type: 'nominal'
         },

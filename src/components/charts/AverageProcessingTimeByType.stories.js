@@ -1,6 +1,5 @@
 import React from 'react';
 import AverageProcessingTimeByType from './AverageProcessingTimeByType';
-
 import fixture from '../../../fixtures/expedientsFixture.json';
 
 export default {

@@ -1,5 +1,6 @@
 import React from 'react';
 import ResolutionStateCountByYear from './ResolutionStateCountByYear';
+import fixture from '../../../fixtures/expedientsFixture.json';
 
 export default {
   title: 'Charts/TypeCountByYearChart',
@@ -10,86 +11,7 @@ const Template = args => <ResolutionStateCountByYear {...args}/>;
 
 export const Default = Template.bind({});
 Default.args = {
-  data: [
-    {
-      type: 'Sense resolució',
-      year: 1900,
-      value: 50
-    },
-    {
-      type: 'Sense resolució',
-      year: 1920,
-      value: 80
-    },
-    {
-      type: 'Sense resolució',
-      year: 1930,
-      value: 125
-    },
-    {
-      type: 'Concedit',
-      year: 1900,
-      value: 150
-    },
-    {
-      type: 'Concedit',
-      year: 1910,
-      value: 250
-    },
-    {
-      type: 'Concedit',
-      year: 1920,
-      value: 180
-    },
-    {
-      type: 'Concedit',
-      year: 1930,
-      value: 225
-    },
-    {
-      type: 'Denegat',
-      year: 1900,
-      value: 5
-    },
-    {
-      type: 'Denegat',
-      year: 1910,
-      value: 15
-    },    {
-      type: 'Denegat',
-      year: 1920,
-      value: 50
-    },
-    {
-      type: 'Denegat',
-      year: 1930,
-      value: 75
-    },
-    {
-      type: 'Concedit',
-      year: 1930,
-      value: 205
-    },
-    {
-      type: 'Desistit',
-      year: 1900,
-      value: 15
-    },
-    {
-      type: 'Desistit',
-      year: 1910,
-      value: 150
-    },    {
-      type: 'Desistit',
-      year: 1920,
-      value: 15
-    },
-    {
-      type: 'Desistit',
-      year: 1930,
-      value: 175
-    },
-  ],
+  data: fixture,
   categories: [
     {
       id: 'Concedit',
