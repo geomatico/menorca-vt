@@ -108,7 +108,7 @@ const ExpedientsMap = ({mapStyle, visibleCategories, dateRange, onBBOXChanged, i
     onResize={handleMapResize}
     getTooltip={getTooltip}
   >
-    <Map reuseMaps mapStyle={mapStyle} styleDiffing={false} mapLib={maplibregl} ref={mapRef}/>
+    <Map reuseMaps mapStyle={mapStyle} styleDiffing={false} mapLib={maplibregl} ref={mapRef} maxPitch={config.initialViewport.maxPitch}/>
     {
       isAggregateData &&
       <ColorRampLegend sx={legendSx} colorScheme={'BrewerRdYlGn5'} domain={domain} reverse={true}/>
