@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import config from '../config.json';
@@ -7,44 +7,86 @@ import useStats from '../hooks/useStats';
 /*import useTotalExpedients from '../hooks/useTotalExpedients';
 import useTotalVivendes from '../hooks/useTotalVivendes';*/
 
-/*import ResolutionStateChart from './ResolutionStateChart';
-import NumericIndicator from './NumericIndicator';*/
 import SectionTitle from './SectionTitle';
 import TypeCountByDate from './charts/TypeCountByDate';
+/*import AverageProcessingTimeByType from './charts/AverageProcessingTimeByType';
+import ResolutionStateCountByYear from './charts/ResolutionStateCountByYear';*/
+
+import expedientsFixture from '../../fixtures/expedientsFixture.json';
+import SelectInput from '@geomatico/geocomponents/SelectInput';
+import Box from '@mui/material/Box';
+import AverageProcessingTimeByType from './charts/AverageProcessingTimeByType';
+import ResolutionStateCountByYear from './charts/ResolutionStateCountByYear';
+import ResolutionState from './charts/ResolutionState';
 
 const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
+  const [startPeriod, setStartPeriod] = useState (config.periodType[0].id);
+  const [endPeriod, setEndPeriod] = useState (config.periodType[0].id);
   /*const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
   const totalVivendes = useTotalVivendes(BBOX);*/
   const stats = useStats(visibleCategories, dateRange, BBOX);
-
+  console.log('stats', stats);
   const allVisibleCategories = Object.entries(config.datasets).flatMap(([datasetId, {categories}]) =>
     categories.filter(cat => visibleCategories[datasetId].includes(cat.id))
   );
 
+  const selectInputSx = {
+    ml: 1, 
+    mb: 1, 
+    mt: 0.5, 
+    '& .SelectInput-select': {
+      fontSize: theme => theme.typography.caption, 
+      fontWeight: 'bold', 
+      textTransform: 'uppercase'
+    },
+
+  };
+
+  const selectInputMenuSx = {
+    '& .SelectInput-menuItem': {
+      fontSize: theme => theme.typography.caption,
+      fontWeight: 'bold',
+      textTransform: 'uppercase'
+    }
+  };
+  
   return <>
-    <SectionTitle titleKey="Evolució del nombre d'expedients totals per data d'inici"/>
-    <TypeCountByDate categories={allVisibleCategories} data={stats.typeCountByYear}/>
+    <Box sx={{mr: 1}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <SectionTitle titleKey="Expedients iniciats per tipus i"/>
+        <SelectInput dense options={config.periodType} selectionOptionId={startPeriod} onOptionChange={setStartPeriod}
+          sx={selectInputSx} menuSx={selectInputMenuSx}/>
+      </Box>
+      <TypeCountByDate categories={allVisibleCategories} data={expedientsFixture} dataLabel='Any de inici'/>
+    </Box>
+
+    <Box sx={{mr: 1}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <SectionTitle titleKey="Expedients finalitzats per tipus i"/>
+        <SelectInput dense options={config.periodType} selectionOptionId={endPeriod} onOptionChange={setEndPeriod}
+          sx={selectInputSx} menuSx={selectInputMenuSx}/>
+      </Box>
+      <TypeCountByDate categories={allVisibleCategories} data={expedientsFixture} dataLabel='Any de fi'/>
+    </Box>
+      
+    <Box sx={{mr: 1}}>
+      <SectionTitle titleKey="Mitjana del temps de tramitació per any i tipus"/>
+      <AverageProcessingTimeByType data={expedientsFixture}/>
+    </Box>
     
-    <SectionTitle titleKey="Evolució del nombre d'expedients totals per data de finalització"/>
-    <TypeCountByDate categories={allVisibleCategories} data={stats.typeCountByYear}/>
-
-    <SectionTitle titleKey="Temps de tramitació per tipus d'expedients"/>
-    <SectionTitle titleKey="Sentit de resolució per tipus d'expedient i any"/>
-
-    {/*<Chart title={'Percentatge de resolució d\'expedients'}>
-      <ResolutionStateChart data={stats.resolutionStateCount}/>
-    </Chart>
-    <Chart title={'Expedients mostrats vs total del consell'}>
-      <NumericIndicator
-        main={stats.expedients}
-        total={totalExpedients}/>
-    </Chart>
-    <Chart title={'Vivendes vs total locals'}>
-      <NumericIndicator
-        main={totalVivendes.numberofdwellings}
-        total={totalVivendes.numberofbuildingunits}
-      />
-    </Chart>*/}
+    <Box sx={{display: 'flex', flexDirection: 'row', mr: 1}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 4}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', flexGrow: 2}}>
+          <SectionTitle titleKey="Evolució de estat de resolució per tipus i any"/>
+          <ResolutionStateCountByYear data={expedientsFixture}/>
+        </Box>
+      
+        <Box sx={{display: 'flex', flexDirection: 'column'}}>
+          <SectionTitle titleKey="Estat de resolució per tipus (total)"/>
+          <ResolutionState data={expedientsFixture}/>
+        </Box>
+      </Box>
+    </Box>
   </>;
 };
 

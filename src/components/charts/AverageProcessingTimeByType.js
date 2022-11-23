@@ -32,9 +32,19 @@ const AverageProcessingTimeByType = ({data, categories}) => {
     mark: {type: 'bar', tooltip: true},
     encoding: {
       x: {
+        field: 'type',
+        type: 'nominal',
+        title: null,
+        axis: {
+          labelPadding: 10,
+          domain: true,
+          grid: false,
+          ticks: false,
+        }},
+      y: {
         field: 'value',
         type: 'quantitative',
-        title: null,
+        title: 'Dies',
         axis: {
           formatType: 'number',
           domain: false,
@@ -42,17 +52,6 @@ const AverageProcessingTimeByType = ({data, categories}) => {
           ticks: false,
         }
       },
-      y: {
-        field: 'type',
-        type: 'nominal',
-        title: null,
-        axis: {
-          labelPadding: 10,
-          labelAngle: 0,
-          domain: true,
-          grid: false,
-          ticks: false,
-        }},
       color: {
         field: 'type',
         type: 'nominal',
@@ -70,7 +69,7 @@ const AverageProcessingTimeByType = ({data, categories}) => {
         },
         {
           field: 'value',
-          title: 'Número',
+          title: 'Dies',
           type: 'quantitative'
         },
       ]

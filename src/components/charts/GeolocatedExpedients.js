@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 //MUI
 import {VegaLite} from 'react-vega';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 
 const GeolocatedExpedients = ({data, categories}) => {
@@ -17,8 +19,6 @@ const GeolocatedExpedients = ({data, categories}) => {
         stroke: dat.label === 'No' ? categories?.find(cat => cat.id === dat.type).color : undefined
       }))
   ), [data]);
-
-  console.log('formatedData', formatedData);
   
   const spec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
@@ -29,7 +29,7 @@ const GeolocatedExpedients = ({data, categories}) => {
     encoding: {
       x: {
         field: 'type',
-        title: 'Tipus d\'expedients',
+        title: null,
         axis: {
           labelPadding: 10,
           labelAngle: 0,
@@ -41,7 +41,7 @@ const GeolocatedExpedients = ({data, categories}) => {
       y: {
         field: 'value',
         type: 'quantitative',
-        title: '',
+        title: null,
         axis: {
           formatType: 'number',
           domain: false,
@@ -145,7 +145,20 @@ const GeolocatedExpedients = ({data, categories}) => {
     ]*/
   };
 
-  return <VegaLite spec={spec} actions={false}/>;
+  return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+    <VegaLite spec={spec} actions={false}/>
+    <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', mt: 1, ml: 2, gap: 2}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
+        <Box sx={{width: '20px', height: '20px', border: '1.5px dashed black'}}></Box>
+        <Typography variant='caption'>No localizados</Typography>
+      </Box>
+      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
+        <Box sx={{width: '16px', height: '16px', bgcolor: 'black'}}></Box>
+        <Typography variant='caption'>Localizados</Typography>
+      </Box>
+    </Box>
+  </Box>;
+
 };
 
 GeolocatedExpedients.propTypes = {

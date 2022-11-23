@@ -68,7 +68,7 @@ const TypeCountByDate = ({data, categories, dataLabel}) => {
         },
         {
           field: 'value',
-          title: 'Número',
+          title: 'Nombre',
           type: 'quantitative'
         },
       ]

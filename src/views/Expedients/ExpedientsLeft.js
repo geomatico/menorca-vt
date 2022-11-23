@@ -20,7 +20,7 @@ import LogoBlanco from '../../components/LogoBlanco';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import DatasetIcon from '@mui/icons-material/Dataset';
 import WorkIcon from '@mui/icons-material/Work';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+/*import ApartmentIcon from '@mui/icons-material/Apartment';*/
 
 const LEFT_DRAWER_WIDTH = '40vw';
 const MINI_SIDE_PANEL_WIDTH = '48px';
@@ -36,11 +36,11 @@ const MINISIDEPANEL_CONFIG = [
     label: 'Gestió',
     content: <WorkIcon/>
   },
-  {
+  /*{
     id: 'planning',
     label: 'Urbanisme',
     content: <ApartmentIcon/>
-  },
+  },*/
 ];
 
 const ExpedientsLeft = ({mapComponent, selectedActionId, sidePanelContent, onActionClick, onLogout}) => {

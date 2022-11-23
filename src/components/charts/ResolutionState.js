@@ -13,7 +13,7 @@ const ResolutionState = ({data}) => {
       }));
   }, [data]);
 
-  const spec = {
+  /*const specBar = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     description: 'A simple bar chart with embedded data.',
     padding: 10,
@@ -56,9 +56,59 @@ const ResolutionState = ({data}) => {
         scale: null
       }
     }
+  };*/
+
+  const specArc = {
+    $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+    description: 'A simple bar chart with embedded data.',
+    padding: 10,
+    params: [
+      {
+        name: 'radius2',
+        value: 150
+      }
+    ],
+    data: {
+      values: formattedData
+    },
+    actions: false,
+    config: {
+      view: {
+        stroke: null
+      }
+    },
+    mark: {
+      type: 'arc',
+      outerRadius: 85,
+      tooltip: true
+    },
+    encoding: {
+      theta: {
+        field: 'value',
+        type: 'quantitative',
+        stack: 'normalize'
+      },
+      color: {
+        field: 'label',
+        type: 'nominal',
+        legend: null,
+      },
+      tooltip: [
+        {
+          field: 'label',
+          title: 'Tipus',
+          type: 'nominal'
+        },
+        {
+          field: 'value',
+          title: 'Nombre',
+          type: 'quantitative',
+        }
+      ]
+    }
   };
 
-  return <VegaLite spec={spec} actions={false}/>;
+  return <VegaLite spec={specArc} actions={false}/>;
 };
 
 ResolutionState.propTypes = {

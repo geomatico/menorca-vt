@@ -3,7 +3,7 @@ import ResolutionStateCountByYear from './ResolutionStateCountByYear';
 import fixture from '../../../fixtures/expedientsFixture.json';
 
 export default {
-  title: 'Charts/TypeCountByYearChart',
+  title: 'Charts/ResolutionStateCountByYear',
   component: ResolutionStateCountByYear
 };
 

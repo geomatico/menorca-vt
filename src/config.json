@@ -223,5 +223,15 @@
     "bearing": 0,
     "pitch": 0,
     "maxPitch": 85
-  }
+  },
+  "periodType": [
+    {
+      "id": "year",
+      "label": "Any"
+    },
+    {
+      "id": "month",
+      "label": "Mes"
+    }
+  ]
 }

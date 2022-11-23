@@ -39,7 +39,11 @@ const ResolutionStateCountByYear = ({data, categories}) => {
       color: {
         field: 'status',
         type: 'nominal',
-        legend: null,
+        legend: {
+          title: '',
+          direction: 'horizontal',
+          orient: 'bottom'
+        },
         scale: {
           domain: labelCategories,
           range: colorCategories
@@ -48,17 +52,17 @@ const ResolutionStateCountByYear = ({data, categories}) => {
       tooltip: [
         {
           field: 'status',
-          title: 'Tipo',
+          title: 'Tipus',
           type: 'nominal'
         },
         {
           field: 'year',
-          title: 'Año',
+          title: 'Any',
           type: 'nominal',
         },
         {
           field: 'value',
-          title: 'Número',
+          title: 'Nombre',
           type: 'quantitative'
         },
       ]

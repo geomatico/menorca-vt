@@ -25,7 +25,11 @@ const SidePanelContent = ({manager, visibleCategories, dateRange, BBOX}) =>
     <ScrollableContent>
       {manager === 'quality' &&
         <>
-          <QualityIndicators/>
+          <QualityIndicators
+            visibleCategories={visibleCategories}
+            dateRange={dateRange}
+            BBOX={BBOX}
+          />
         </>
       }
       {manager === 'management' &&
