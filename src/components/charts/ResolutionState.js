@@ -1,23 +1,24 @@
 import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {VegaLite} from 'react-vega';
+import {getResolutionState} from '../../calculations/getResolutionState';
 
 const ResolutionState = ({data}) => {
 
-  const formatedData = useMemo(() => (
-    data.map(
+  const formattedData =  useMemo(()=> {
+    return getResolutionState(data).map(
       dat => ({
         ...dat,
         color: dat.label === 'Sense resolució' ? '#f60000' : '#a1a0a0'
-      }))
-  ), [data]);
+      }));
+  }, [data]);
 
   const spec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     description: 'A simple bar chart with embedded data.',
     padding: 10,
     data: {
-      values: formatedData
+      values: formattedData
     },
     actions: false,
     config: {

@@ -1,6 +1,8 @@
 import React from 'react';
 import AverageProcessingTimeByType from './AverageProcessingTimeByType';
 
+import fixture from '../../../fixtures/expedientsFixture.json';
+
 export default {
   title: 'Charts/AverageProcessingTimeByType',
   component: AverageProcessingTimeByType
@@ -10,20 +12,7 @@ const Template = args => <AverageProcessingTimeByType {...args}/>;
 
 export const Default = Template.bind({});
 Default.args = {
-  data: [
-    {
-      type: 'DUP',
-      value: 330
-    },
-    {
-      type: 'NUI',
-      value: 61
-    },
-    {
-      type: 'CED',
-      value: 182
-    },
-  ],
+  data: fixture,
   categories: [
     {
       id: 'CED',
