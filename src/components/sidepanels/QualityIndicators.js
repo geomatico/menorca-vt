@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import SectionTitle from '../SectionTitle';
 
-import NumericIndicator from '../NumericIndicator';
+import NumericIndicator from '../charts/NumericIndicator';
 import GeolocatedExpedients from '../charts/GeolocatedExpedients';
 import DataCompleteness from '../charts/DataCompleteness';
 
@@ -217,16 +217,16 @@ const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
   //console.log('stats', stats);
 
   return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
-    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
       <SectionTitle titleKey="Nombre d'expedients total"/>
       <NumericIndicator total={stats.expedients} /*total={totalExpedients}*/  main={20541}/>
     </Box>
 
-    <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
+    <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
       <SectionTitle titleKey='Completitud dels expedientes'/>
       <DataCompleteness data={completenessdata}/>
     </Box>
-    <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
+    <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
       <SectionTitle titleKey='Expedientes no localizados/localizados' />
       <GeolocatedExpedients data={dataGeolocated} categories={categoriesGeolocated}/>
     </Box>

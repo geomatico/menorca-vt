@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 //MUI
 import {VegaLite} from 'react-vega';
 
-const ResolutionStateCountByYear = ({data, categories}) => {
-
-  const labelCategories = categories?.map(cat => cat.id);
-  const colorCategories = categories?.map(cat => cat.color);
+const ResolutionStateCountByYear = ({data}) => {
 
   /*STACKED_AREA*/
   const spec = {
@@ -16,11 +13,6 @@ const ResolutionStateCountByYear = ({data, categories}) => {
       values: data,
     },
     width: 'container',
-    /*transform: [
-      {
-        filter: 'datum.year > 2010'
-      }
-    ],*/
     mark: 'area',
     encoding: {
       x: {
@@ -38,18 +30,14 @@ const ResolutionStateCountByYear = ({data, categories}) => {
         type: 'nominal',
         legend: {
           title: '',
-          direction: 'horizontal',
-          orient: 'bottom'
-        },
-        scale: {
-          domain: labelCategories,
-          range: colorCategories
-        },
+          direction: 'vertical',
+          orient: 'right'
+        }
       },
       tooltip: [
         {
           field: 'status',
-          title: 'Tipus',
+          title: 'Estat',
           type: 'nominal'
         },
         {
