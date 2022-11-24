@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useStats from '../../hooks/useStats';
 import useTotalExpedients from '../../hooks/useTotalExpedients';
 
 import SectionTitle from '../SectionTitle';
@@ -11,6 +10,7 @@ import GeolocatedExpedients from '../charts/GeolocatedExpedients';
 import DataCompleteness from '../charts/DataCompleteness';
 
 import Box from '@mui/material/Box';
+import useStats from '../../hooks/useStats';
 
 const dataGeolocated = [
   {
@@ -217,16 +217,15 @@ const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
   const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
   const stats = useStats(visibleCategories, dateRange, BBOX);
   console.log('stats', stats);
+
   return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
-    
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <SectionTitle titleKey="Nombre d'expedients total"/>
       <NumericIndicator /*main={stats.expedients}*/ total={totalExpedients} main={20541}/>
     </Box>
-      
+
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <SectionTitle titleKey='Completitud dels expedientes'/>
-      ++++
       <DataCompleteness data={completenessdata}/>
     </Box>
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>

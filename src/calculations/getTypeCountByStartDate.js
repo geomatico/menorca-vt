@@ -1,6 +1,13 @@
-export const getTypeCountByStartDate = (data) => {
+export const getTypeCountByStartDate = (data, filterBy) => {
+  if(!data) return;
+
   const filteredData = data
-    .map(dat => ({tipus: dat.tipus, data_inici: new Date(dat.data_inici).getFullYear()}))
+    .map(dat => (
+      {tipus: dat.tipus,
+        data_inici: filterBy === 'year'
+          ? new Date(dat.data_inici).getFullYear()
+          : new Date(dat.data_inici).getMonth()
+      }))
     .filter(el => el.data_inici);
 
   return Object.values(filteredData.reduce((r, e) => {
@@ -10,5 +17,5 @@ export const getTypeCountByStartDate = (data) => {
       else r[k].value += 1;
     }
     return r;
-  }, {}));
+  }, {})).sort((a,b) => a.date - b.date);
 };

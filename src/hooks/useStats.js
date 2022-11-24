@@ -8,37 +8,6 @@ import {getTypeCountByStartDate} from '../calculations/getTypeCountByStartDate';
 import {getGeolocatedExpedients} from '../calculations/getGeolocatedExpedients';
 
 const _calcStats = (features) => {
-/*  const arrTypeCountByYear = features
-    .reduce((stats, {properties}) => {
-      const year = properties.any;
-      const type = properties.tipus;
-
-      const existing = stats.find(el => el.year === properties.any && el.type === properties.tipus);
-      if (existing) {
-        existing.value += 1;
-      } else {
-        stats.push({
-          year,
-          type,
-          value: 1
-        });
-      }
-      return stats;
-    }, []).sort((a,b) => a.year - b.year);*/
-
-  /*
-    const objResolutionStateCount = features
-      .reduce((stats, {properties}) => {
-        stats[properties.resolucio] = stats[properties.resolucio] ? stats[properties.resolucio] + 1 : 1;
-        return stats;
-      }, {});
-  */
-
-  /*  const arrResolutionStateCount = Object.entries(objResolutionStateCount)
-      .map(([resolucio, count]) => ({
-        name: resolucio,
-        value: count
-      }));*/
 
   const d = features.map(el => el.properties);
 
@@ -64,9 +33,10 @@ const _calcStats = (features) => {
     resolutionStateCount: arrResolutionStateCount,
     typeCountByEndDate: arrTypeCountByEndDate,
     typeCountByStartDate: arrTypeCountByStartDate,
-
-    // no funciona
     resolutionStateCountByYear: arrStatusCountByYear,
+
+    // all data
+    data: d
 
   });
 };
