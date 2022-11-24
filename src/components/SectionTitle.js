@@ -8,7 +8,7 @@ const SectionTitle = ({titleKey}) => {
   return <Box mb={1} >
     <Typography
       variant='caption'
-      sx={{mt: 3, fontWeight: 'bold', textTransform: 'uppercase'}}
+      sx={{pt: 3, fontWeight: 'bold', textTransform: 'uppercase'}}
     >
       {titleKey}
     </Typography>

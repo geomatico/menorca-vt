@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 const NumericIndicator = ({main, total}) => {
   const percent = 100 * main / total;
-  return <Box display='flex' flexDirection='column' alignItems='center' sx={{position: 'relative'}}>
+  return <Box display='flex' flexDirection='column' alignItems='center' sx={{position: 'relative', mb: 2}}>
     <CircularProgress variant="determinate" value={percent} size={150}/>
     <Box display='flex' flexDirection='column' alignItems='center' sx={{position: 'absolute', top: 50}}>
       <Typography variant="h4" component="div" color="textPrimary">{`${main}`}</Typography>
