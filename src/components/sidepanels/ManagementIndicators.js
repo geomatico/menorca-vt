@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
-import config from '../config.json';
+import config from '../../config.json';
 
-import useStats from '../hooks/useStats';
+import useStats from '../../hooks/useStats';
 /*import useTotalExpedients from '../hooks/useTotalExpedients';
 import useTotalVivendes from '../hooks/useTotalVivendes';*/
 
-import SectionTitle from './SectionTitle';
-import TypeCountByDate from './charts/TypeCountByDate';
+import SectionTitle from '../SectionTitle';
+import TypeCountByDate from '../charts/TypeCountByDate';
 /*import AverageProcessingTimeByType from './charts/AverageProcessingTimeByType';
 import ResolutionStateCountByYear from './charts/ResolutionStateCountByYear';*/
 
-import expedientsFixture from '../../fixtures/expedientsFixture.json';
+import expedientsFixture from '../../../fixtures/expedientsFixture.json';
 import SelectInput from '@geomatico/geocomponents/SelectInput';
 import Box from '@mui/material/Box';
-import AverageProcessingTimeByType from './charts/AverageProcessingTimeByType';
-import ResolutionStateCountByYear from './charts/ResolutionStateCountByYear';
-import ResolutionState from './charts/ResolutionState';
+import AverageProcessingTimeByType from '../charts/AverageProcessingTimeByType';
+import ResolutionStateCountByYear from '../charts/ResolutionStateCountByYear';
+import ResolutionState from '../charts/ResolutionState';
 
 const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
   const [startPeriod, setStartPeriod] = useState (config.periodType[0].id);

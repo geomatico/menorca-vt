@@ -7,7 +7,7 @@ import {getStatusCountByYear} from '../calculations/getStatusCountByYear';
 
 
 describe('Data indicators', () => {
-  it('should calculate the evolution of expedients by start date and type', () => {
+  it('should calculate the evolution of expedients by start year and type', () => {
     // GIVEN
     const givenState = fixture;
 
@@ -60,7 +60,7 @@ describe('Data indicators', () => {
 
     expect(computedState).to.deep.equal(expectedState);
   });
-  it('should calculate the evolution of expedients by end date and type', () => {
+  it('should calculate the evolution of expedients by end year and type', () => {
     // GIVEN
     const givenState = fixture;
 

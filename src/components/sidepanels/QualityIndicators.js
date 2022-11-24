@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import useStats from '../hooks/useStats';
-import useTotalExpedients from '../hooks/useTotalExpedients';
+import useStats from '../../hooks/useStats';
+import useTotalExpedients from '../../hooks/useTotalExpedients';
 
-import SectionTitle from './SectionTitle';
+import SectionTitle from '../SectionTitle';
 
-import NumericIndicator from './NumericIndicator';
-import GeolocatedExpedients from './charts/GeolocatedExpedients';
-import DataCompleteness from './charts/DataCompleteness';
+import NumericIndicator from '../NumericIndicator';
+import GeolocatedExpedients from '../charts/GeolocatedExpedients';
+import DataCompleteness from '../charts/DataCompleteness';
 
 import Box from '@mui/material/Box';
 
