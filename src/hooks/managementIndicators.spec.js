@@ -164,7 +164,6 @@ describe('Data indicators', () => {
     ];
     expect(computedState).to.deep.equal(expectedState);
   });
-
   it('should calculate the evolution of expedients by end month and type', () => {
     // GIVEN
     const givenState = fixture;
@@ -228,7 +227,6 @@ describe('Data indicators', () => {
 
     expect(computedState).to.deep.equal(expectedState);
   });
-
   it('should calculate the processing time', () => {
     // GIVEN
     const givenState = fixture;

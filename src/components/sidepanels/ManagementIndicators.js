@@ -2,29 +2,24 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import config from '../../config.json';
-
-/*import useTotalExpedients from '../hooks/useTotalExpedients';
-import useTotalVivendes from '../hooks/useTotalVivendes';*/
-
 import SectionTitle from '../SectionTitle';
 import TypeCountByDate from '../charts/TypeCountByDate';
-/*import AverageProcessingTimeByType from './charts/AverageProcessingTimeByType';
-import ResolutionStateCountByYear from './charts/ResolutionStateCountByYear';*/
 
 import SelectInput from '@geomatico/geocomponents/SelectInput';
 import Box from '@mui/material/Box';
+
 import AverageProcessingTimeByType from '../charts/AverageProcessingTimeByType';
 import ResolutionStateCountByYear from '../charts/ResolutionStateCountByYear';
 import ResolutionState from '../charts/ResolutionState';
 import useStats from '../../hooks/useStats';
 
 const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
-  const [startPeriod, setStartPeriod] = useState(config.periodType[0].id);
+  const [startPeriod, setStartPeriod] = useState('year');
   const [endPeriod, setEndPeriod] = useState(config.periodType[0].id);
+
   /*const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
   const totalVivendes = useTotalVivendes(BBOX);*/
   const stats = useStats(visibleCategories, dateRange, BBOX);
-  console.log('aqui', startPeriod, endPeriod);
   const allVisibleCategories = Object.entries(config.datasets).flatMap(([datasetId, {categories}]) =>
     categories.filter(cat => visibleCategories[datasetId].includes(cat.id))
   );
@@ -52,16 +47,14 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <SectionTitle titleKey="Expedients iniciats per tipus i"/>
-        <SelectInput dense options={config.periodType} selectionOptionId={startPeriod} onOptionChange={setStartPeriod}
-          sx={selectInputSx} menuSx={selectInputMenuSx}/>
+        <SelectInput dense options={config.periodType} selectedOptionId={startPeriod} onOptionChange={setStartPeriod} sx={selectInputSx} menuSx={selectInputMenuSx}/>
       </Box>
       <TypeCountByDate categories={allVisibleCategories} data={stats?.data} filterBy={startPeriod} dataLabel='Any de inici'/>
     </Box>
-
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <SectionTitle titleKey="Expedients finalitzats per tipus i"/>
-        <SelectInput dense options={config.periodType} selectionOptionId={endPeriod} onOptionChange={setEndPeriod}
+        <SelectInput dense options={config.periodType} selectedOptionId={endPeriod} onOptionChange={setEndPeriod}
           sx={selectInputSx} menuSx={selectInputMenuSx}/>
       </Box>
       <TypeCountByDate categories={allVisibleCategories} data={stats?.data} filterBy={endPeriod}  dataLabel='Any de fi'/>
