@@ -39,7 +39,6 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
       fontWeight: 'bold', 
       textTransform: 'uppercase'
     },
-
   };
 
   const selectInputMenuSx = {
@@ -50,8 +49,8 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
     }
   };
   
-  return <>
-    <Box sx={{mr: 1}}>
+  return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <SectionTitle titleKey="Expedients iniciats per tipus i"/>
         <SelectInput dense options={config.periodType} selectionOptionId={startPeriod} onOptionChange={setStartPeriod}
@@ -60,7 +59,7 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
       <TypeCountByDate categories={allVisibleCategories} data={expedientsFixture} dataLabel='Any de inici'/>
     </Box>
 
-    <Box sx={{mr: 1}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <SectionTitle titleKey="Expedients finalitzats per tipus i"/>
         <SelectInput dense options={config.periodType} selectionOptionId={endPeriod} onOptionChange={setEndPeriod}
@@ -69,25 +68,25 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
       <TypeCountByDate categories={allVisibleCategories} data={expedientsFixture} dataLabel='Any de fi'/>
     </Box>
       
-    <Box sx={{mr: 1}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <SectionTitle titleKey="Mitjana del temps de tramitació per any i tipus"/>
       <AverageProcessingTimeByType data={expedientsFixture}/>
     </Box>
     
-    <Box sx={{display: 'flex', flexDirection: 'row', mr: 1}}>
-      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 4}}>
-        <Box sx={{display: 'flex', flexDirection: 'column', flexGrow: 2}}>
+    <Box sx={{display: 'flex', flexDirection: 'row'}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'space-between', gap: 2}}>
+        <Box sx={{display: 'flex', flexGrow: 2, flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
           <SectionTitle titleKey="Evolució de estat de resolució per tipus i any"/>
           <ResolutionStateCountByYear data={expedientsFixture}/>
         </Box>
       
-        <Box sx={{display: 'flex', flexDirection: 'column'}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
           <SectionTitle titleKey="Estat de resolució per tipus (total)"/>
           <ResolutionState data={expedientsFixture}/>
         </Box>
       </Box>
     </Box>
-  </>;
+  </Box>;
 };
 
 ManagementIndicators.propTypes = {

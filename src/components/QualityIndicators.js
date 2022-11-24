@@ -8,6 +8,7 @@ import SectionTitle from './SectionTitle';
 
 import NumericIndicator from './NumericIndicator';
 import GeolocatedExpedients from './charts/GeolocatedExpedients';
+import DataCompleteness from './charts/DataCompleteness';
 
 import Box from '@mui/material/Box';
 
@@ -149,26 +150,89 @@ const categoriesGeolocated = [
     label: 'PO. Procediments judicials'
   },
 ];
+const completenessdata = [
+  {
+    type:'Resolució',
+    label: 'Sí',
+    value: 100
+  },
+  {
+    type:'Data inici',
+    label: 'Sí',
+    value: 33
+  },
+  {
+    type:'Data fi',
+    label: 'Sí',
+    value: 45
+  },
+  {
+    type:'Ref. Cadastral',
+    label: 'Sí',
+    value: 74
+  },
+  {
+    type:'Pressupost',
+    label: 'Sí',
+    value: 33
+  },
+  {
+    type:'Superfície',
+    label: 'Sí',
+    value: 50
+  },
+  {
+    type:'Resolució',
+    label: 'No',
+    value: 10
+  },
+  {
+    type:'Data inici',
+    label: 'No',
+    value: 25
+  },
+  {
+    type:'Data fi',
+    label: 'No',
+    value: 15
+  },
+  {
+    type:'Ref. Cadastral',
+    label: 'No',
+    value: 10
+  },
+  {
+    type:'Pressupost',
+    label: 'No',
+    value: 10
+  },
+  {
+    type:'Superfície',
+    label: 'No',
+    value: 12
+  },
+];
 
 const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
   const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
   const stats = useStats(visibleCategories, dateRange, BBOX);
   console.log('stats', stats);
-  return <>
+  return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
     
-    <SectionTitle titleKey="Nombre d'expedients total"/>
-    <NumericIndicator
-      /*main={stats.expedients}*/
-      total={totalExpedients}
-      main={20541}
-    />
-    <SectionTitle titleKey='Complitud de los expedientes'/>
-    -
-    <Box sx={{mr: 1}}>
-      <SectionTitle titleKey='Expedientes no localizados/localizados'/>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
+      <SectionTitle titleKey="Nombre d'expedients total"/>
+      <NumericIndicator /*main={stats.expedients}*/ total={totalExpedients} main={20541}/>
+    </Box>
+      
+    <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
+      <SectionTitle titleKey='Completitud dels expedientes'/>
+      <DataCompleteness data={completenessdata}/>
+    </Box>
+    <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
+      <SectionTitle titleKey='Expedientes no localizados/localizados' />
       <GeolocatedExpedients data={dataGeolocated} categories={categoriesGeolocated}/>
     </Box>
-  </>;
+  </Box>;
 };
 
 QualityIndicators.propTypes = {
