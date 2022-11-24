@@ -103,6 +103,137 @@ describe('Data indicators', () => {
 
     expect(computedState).to.deep.equal(expectedState);
   });
+  it('should calculate the evolution of expedients by start month and type', () => {
+    // GIVEN
+    const givenState = fixture;
+
+    // WHEN
+    const computedState = getTypeCountByStartMonth(givenState);
+
+    // THEN
+    const expectedState = [
+      {
+        type: 'EX073',
+        date: 6,
+        value: 1
+      },
+      {
+        type: 'EX068',
+        date: 3,
+        value: 1
+      },
+      {
+        type: 'CED',
+        date: 1,
+        value: 2
+      },
+      {
+        type: 'CED',
+        date: 2,
+        value: 3
+      },
+      {
+        type: 'CED',
+        date: 3,
+        value: 2
+      },
+      {
+        type: 'CED',
+        date: 4,
+        value: 2
+      },
+      {
+        type: 'CED',
+        date: 5,
+        value: 4
+      },
+      {
+        type: 'CED',
+        date: 6,
+        value: 4
+      },
+      {
+        type: 'CED',
+        date: 7,
+        value: 1
+      },
+      {
+        type: 'CED',
+        date: 9,
+        value: 1
+      },
+      {
+        type: 'CED',
+        date: 10,
+        value: 2
+      }
+    ];
+
+    expect(computedState).to.deep.equal(expectedState);
+  });
+  it('should calculate the evolution of expedients by end month and type', () => {
+    // GIVEN
+    const givenState = fixture;
+
+    // WHEN
+    const computedState = getTypeCountByEndMonth(givenState);
+
+    // THEN
+    const expectedState = [
+      {
+        type: 'EX073',
+        date: 5,
+        value: 1
+      },
+      {
+        type: 'EX068',
+        date: 5,
+        value: 1
+      },
+      {
+        type: 'CED',
+        date: 2,
+        value: 1
+      },
+      {
+        type: 'CED',
+        date: 4,
+        value: 1
+      },
+      {
+        type: 'CED',
+        date: 5,
+        value: 5
+      },
+      {
+        type: 'CED',
+        date: 6,
+        value: 4
+      },
+      {
+        type: 'CED',
+        date: 8,
+        value: 3
+      },
+      {
+        type: 'CED',
+        date: 9,
+        value: 1
+      },
+      {
+        type: 'CED',
+        date: 10,
+        value: 2
+      },
+      {
+        type: 'CED',
+        date: 12,
+        value: 3
+      }
+    ];
+
+    expect(computedState).to.deep.equal(expectedState);
+  });
   it('should calculate the processing time', () => {
     // GIVEN
     const givenState = fixture;
