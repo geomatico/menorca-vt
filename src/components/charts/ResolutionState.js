@@ -1,12 +1,11 @@
 import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {VegaLite} from 'react-vega';
-import {getResolutionState} from '../../calculations/getResolutionState';
 
 const ResolutionState = ({data}) => {
 
   const formattedData =  useMemo(()=> {
-    return getResolutionState(data).map(
+    return data.map(
       dat => ({
         ...dat,
         color: dat.label === 'Sense resolució' ? '#f60000' : '#a1a0a0'

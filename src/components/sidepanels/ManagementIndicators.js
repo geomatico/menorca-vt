@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import config from '../../config.json';
 
-import useStats from '../../hooks/useStats';
 /*import useTotalExpedients from '../hooks/useTotalExpedients';
 import useTotalVivendes from '../hooks/useTotalVivendes';*/
 
@@ -12,12 +11,12 @@ import TypeCountByDate from '../charts/TypeCountByDate';
 /*import AverageProcessingTimeByType from './charts/AverageProcessingTimeByType';
 import ResolutionStateCountByYear from './charts/ResolutionStateCountByYear';*/
 
-import expedientsFixture from '../../../fixtures/expedientsFixture.json';
 import SelectInput from '@geomatico/geocomponents/SelectInput';
 import Box from '@mui/material/Box';
 import AverageProcessingTimeByType from '../charts/AverageProcessingTimeByType';
 import ResolutionStateCountByYear from '../charts/ResolutionStateCountByYear';
 import ResolutionState from '../charts/ResolutionState';
+import useStats from '../../hooks/useStats';
 
 const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
   const [startPeriod, setStartPeriod] = useState (config.periodType[0].id);
@@ -56,7 +55,7 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
         <SelectInput dense options={config.periodType} selectionOptionId={startPeriod} onOptionChange={setStartPeriod}
           sx={selectInputSx} menuSx={selectInputMenuSx}/>
       </Box>
-      <TypeCountByDate categories={allVisibleCategories} data={expedientsFixture} dataLabel='Any de inici'/>
+      <TypeCountByDate categories={allVisibleCategories} data={stats?.typeCountByStartDate} dataLabel='Any de inici'/>
     </Box>
 
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
@@ -65,24 +64,25 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
         <SelectInput dense options={config.periodType} selectionOptionId={endPeriod} onOptionChange={setEndPeriod}
           sx={selectInputSx} menuSx={selectInputMenuSx}/>
       </Box>
-      <TypeCountByDate categories={allVisibleCategories} data={expedientsFixture} dataLabel='Any de fi'/>
+      <TypeCountByDate categories={allVisibleCategories} data={stats?.typeCountByEndDate} dataLabel='Any de fi'/>
     </Box>
       
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <SectionTitle titleKey="Mitjana del temps de tramitació per any i tipus"/>
-      <AverageProcessingTimeByType data={expedientsFixture}/>
+      <AverageProcessingTimeByType data={stats.averageProcessingTimeByType} categories={allVisibleCategories}/>
     </Box>
     
     <Box sx={{display: 'flex', flexDirection: 'row'}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'space-between', gap: 2}}>
         <Box sx={{display: 'flex', flexGrow: 2, flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
           <SectionTitle titleKey="Evolució de estat de resolució per tipus i any"/>
-          <ResolutionStateCountByYear data={expedientsFixture}/>
+           +++FAIL
+          <ResolutionStateCountByYear data={stats?.resolutionStateCountByYear}/>
         </Box>
       
         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
           <SectionTitle titleKey="Estat de resolució per tipus (total)"/>
-          <ResolutionState data={expedientsFixture}/>
+          <ResolutionState data={stats?.resolutionStateCount}/>
         </Box>
       </Box>
     </Box>

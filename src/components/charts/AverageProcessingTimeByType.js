@@ -1,18 +1,10 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 //MUI
 import {VegaLite} from 'react-vega';
-import {getAverageProcessingTimeByType} from '../../calculations/getAverageProcessingTimeByType';
-import config from '../../config.json';
 
 const AverageProcessingTimeByType = ({data, categories}) => {
-
-  // FIXME ver estas categories de donde vienen
-  const datasetIds = Object.keys(config.datasets);
-  categories = (config.datasets[datasetIds[1]].categories).concat(config.datasets[datasetIds[0]].categories);
-
-  const formattedData =  useMemo(()=> getAverageProcessingTimeByType(data), [data]);
 
   const labelCategories = categories?.map(cat => cat.id);
   const colorCategories = categories?.map(cat => cat.color);
@@ -21,7 +13,7 @@ const AverageProcessingTimeByType = ({data, categories}) => {
     description: 'A simple bar chart with embedded data.',
     padding: 10,
     data: {
-      values: formattedData
+      values: data
     },
     actions: false,
     config: {

@@ -226,6 +226,7 @@ const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
       
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
       <SectionTitle titleKey='Completitud dels expedientes'/>
+      ++++
       <DataCompleteness data={completenessdata}/>
     </Box>
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 1}}>
