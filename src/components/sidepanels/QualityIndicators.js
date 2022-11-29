@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 
 import SectionTitle from '../SectionTitle';
@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import useStats from '../../hooks/useStats';
 import useTotalExpedients from '../../hooks/useTotalExpedients';
 
-const dataGeolocated = [
+const dataGeolocatedTest = [
   {
     type:'DUP',
     label: 'Sí',
@@ -213,12 +213,15 @@ const categoriesGeolocated = [
 
 const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
   const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
-  const stats = useStats(visibleCategories, dateRange, BBOX);
+
+  // Esto es para el indicador de expedientes totales, que usa SOLO los del consell
+  const visibleCategoriesConsellOnly = useMemo(()=> ({consell: visibleCategories.consell, ciutadella: []}), [visibleCategories]);
+  const statsConsellOnly = useStats(visibleCategoriesConsellOnly, dateRange, BBOX);
 
   return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
-      <SectionTitle titleKey="Nombre d'expedients total"/>
-      <NumericIndicator main={stats.expedients} total={totalExpedients}/>
+      <SectionTitle titleKey="Nombre d'expedients total (Consell)"/>
+      <NumericIndicator main={statsConsellOnly.expedients} total={totalExpedients}/>
     </Box>
     {/*  <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
       <SectionTitle titleKey='Completitud dels expedientes'/>
@@ -226,7 +229,7 @@ const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
     </Box>*/}
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
       <SectionTitle titleKey='Expedientes no localizados/localizados' />
-      <GeolocatedExpedients data={dataGeolocated} categories={categoriesGeolocated}/>
+      <GeolocatedExpedients data={dataGeolocatedTest} categories={categoriesGeolocated}/>
     </Box>
   </Box>;
 };
