@@ -1,7 +1,7 @@
 import {useMemo} from 'react';
-import useFetch from '@geomatico/geocomponents/hooks/useFetch';
+//import useFetch from '@geomatico/geocomponents/hooks/useFetch';
 import testData from './../calculations/testData.json';
-import config from '../config.json';
+//import config from '../config.json';
 
 const useGeolocatedExpedients = (visibleCategories, dateRange) => {
 
@@ -13,7 +13,7 @@ const useGeolocatedExpedients = (visibleCategories, dateRange) => {
   //Object.values(config.datasets).map(el => el.categories)[0].find(el => el.id === 'altres').values;
   const altresTipusExpdients = ['INU', 'LIA', 'LIC', 'NUH', 'PRCED', 'SAN'];
 
- /* const pepe = allExpedients?.valor.filter(el => altresTipusExpdients.includes(el.tipus)).map(el => ({...el, tipus: 'altres'}) );
+  /* const pepe = allExpedients?.valor.filter(el => altresTipusExpdients.includes(el.tipus)).map(el => ({...el, tipus: 'altres'}) );
   console.log('pepe', pepe)*/
 
 
@@ -42,10 +42,10 @@ const useGeolocatedExpedients = (visibleCategories, dateRange) => {
       return el.exercici >= dateRange[0] && el.exercici <= dateRange[1];
     });
 
-    const altres = result.filter(el => altresTipusExpdients.includes(el.tipus))
+    const altres = result.filter(el => altresTipusExpdients.includes(el.tipus));
 
     console.log(1111, altres);
-    console.log('result', result)
+    console.log('result', result);
     return result;
   },
   [dateRange, filteredExpedients]);
