@@ -5,14 +5,14 @@ import {getResolutionState} from '../calculations/getResolutionState';
 import {getStatusCountByYear} from '../calculations/getStatusCountByYear';
 import {getTypeCountByEndDate} from '../calculations/getTypeCountByEndDate';
 import {getTypeCountByStartDate} from '../calculations/getTypeCountByStartDate';
-import {getGeolocatedExpedients} from '../calculations/getGeolocatedExpedients';
 
 const _calcStats = (features) => {
 
   const d = features.map(el => el.properties);
 
   // quality
-  const arrCompletenessdata=getGeolocatedExpedients(d);
+  //const arrCompletenessdata=getGeolocatedExpedients(d);
+
   //management
   const arrTypeCountByStartDate = getTypeCountByStartDate(d);
   const arrTypeCountByEndDate = getTypeCountByEndDate(d);
@@ -26,7 +26,7 @@ const _calcStats = (features) => {
     //resolutionStateCount: arrResolutionStateCount,
 
     // nuevos cualculos quality
-    completenessData : arrCompletenessdata,
+    // completenessData : arrCompletenessdata,
 
     // nuevos calculos management
     averageProcessingTimeByType: arrAverageProcessingTimeByType,

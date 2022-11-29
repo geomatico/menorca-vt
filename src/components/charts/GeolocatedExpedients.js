@@ -23,6 +23,7 @@ const GeolocatedExpedients = ({data, categories}) => {
   const spec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     padding: 10,
+    width: 'container',
     data: {
       values: formatedData
     },

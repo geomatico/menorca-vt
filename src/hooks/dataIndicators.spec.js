@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import fixture from '../../fixtures/expedientsFixture.json';
 import {getResolutionState} from '../calculations/getResolutionState';
-import {getGeolocatedExpedients} from '../calculations/getGeolocatedExpedients';
 
 describe('Data indicators', () => {
   it('should calculate resolution state', () => {
@@ -34,7 +33,7 @@ describe('Data indicators', () => {
     expect(computedState).to.deep.equal(expectedState);
   });
 
-  it('should calculate the number of geolocated expedients', () => {
+  /*it('should calculate the number of geolocated expedients', () => {
     // GIVEN
     const givenState = fixture;
 
@@ -61,5 +60,5 @@ describe('Data indicators', () => {
     ];
 
     expect(computedState).to.deep.equal(expectedState);
-  });
+  });*/
 });
