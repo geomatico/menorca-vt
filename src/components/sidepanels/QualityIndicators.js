@@ -9,7 +9,7 @@ import GeolocatedExpedients from '../charts/GeolocatedExpedients';
 import Box from '@mui/material/Box';
 import useStats from '../../hooks/useStats';
 import useTotalExpedients from '../../hooks/useTotalExpedients';
-import {getGeolocatedExpedients} from '../../calculations/getGeolocatedExpedients';
+import {getGeolocatedExpedientsByType} from '../../calculations/getGeolocatedExpedientsByType';
 import config from '../../config.json';
 import useGeolocatedExpedients from '../../hooks/useGeolocatedExpedients';
 
@@ -25,7 +25,7 @@ const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
   );
 
   // a traves de un endpoint aparte, calcula expdientes geolocalizados, por tipo y fecha.
-  const dataGeolocated = getGeolocatedExpedients(useGeolocatedExpedients(visibleCategories, dateRange));
+  const dataGeolocated = getGeolocatedExpedientsByType(useGeolocatedExpedients(visibleCategories, dateRange));
 
   return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>

@@ -11,7 +11,7 @@ const _calcStats = (features) => {
   const d = features.map(el => el.properties);
 
   // quality
-  //const arrCompletenessdata=getGeolocatedExpedients(d);
+  //const arrCompletenessdata=getGeolocatedExpedientsByType(d);
 
   //management
   const arrTypeCountByStartDate = getTypeCountByStartDate(d);

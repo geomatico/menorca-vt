@@ -12,7 +12,7 @@ const GeolocatedExpedients = ({data, categories}) => {
   const colorCategories = categories?.map(cat => cat.color);
 
   const formatedData = useMemo(() => (
-    data.map(
+    data?.map(
       dat => ({
         ...dat,
         color: dat.label === 'No' ? undefined : categories?.find(cat => cat.id === dat.type).color,
