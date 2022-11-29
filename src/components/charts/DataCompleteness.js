@@ -122,7 +122,7 @@ const DataCompleteness = ({data}) => {
     ]
   };
 
-  return <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', mb: 4, width: '95%'}}>
+  return <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', width: '95%'}}>
     <VegaLite spec={spec} actions={false}/>
     <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', ml: 2, gap: 2}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>

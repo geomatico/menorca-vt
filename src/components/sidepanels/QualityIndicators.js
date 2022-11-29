@@ -9,6 +9,7 @@ import DataCompleteness from '../charts/DataCompleteness';
 
 import Box from '@mui/material/Box';
 import useStats from '../../hooks/useStats';
+import useTotalExpedients from '../../hooks/useTotalExpedients';
 
 const dataGeolocated = [
   {
@@ -212,14 +213,14 @@ const completenessdata = [
 ];
 
 const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
-  //const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
+  const totalExpedients = useTotalExpedients(dateRange, visibleCategories);
   const stats = useStats(visibleCategories, dateRange, BBOX);
   //console.log('stats', stats);
 
   return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
       <SectionTitle titleKey="Nombre d'expedients total"/>
-      <NumericIndicator total={stats.expedients} /*total={totalExpedients}*/  main={20541}/>
+      <NumericIndicator main={stats.expedients} total={totalExpedients}/>
     </Box>
 
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>

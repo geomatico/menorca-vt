@@ -25,6 +25,7 @@ const TypeCountByDate = ({data, categories, filterBy, dataLabel}) => {
       values: formattedData,
     },
     width: 'container',
+    height: 250,
     mark: 'area',
     encoding: {
       x: {

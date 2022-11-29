@@ -154,7 +154,7 @@ const GeolocatedExpedients = ({data, categories}) => {
         <Typography variant='caption'>No localizados</Typography>
       </Box>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
-        <Box sx={{width: '16px', height: '16px', bgcolor: 'black'}}></Box>
+        <Box sx={{width: '16px', height: '16px', bgcolor: 'grey'}}></Box>
         <Typography variant='caption'>Localizados</Typography>
       </Box>
     </Box>
