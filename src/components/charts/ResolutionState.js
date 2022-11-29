@@ -4,7 +4,7 @@ import {VegaLite} from 'react-vega';
 
 const ResolutionState = ({data}) => {
 
-  const formattedData =  useMemo(()=> {
+  const formattedData = useMemo(() => {
     return data.map(
       dat => ({
         ...dat,
@@ -90,7 +90,11 @@ const ResolutionState = ({data}) => {
       color: {
         field: 'label',
         type: 'nominal',
-        legend: null,
+        legend: {
+          title: '',
+          direction: 'vertical',
+          orient: 'right'
+        }
       },
       tooltip: [
         {

@@ -6,7 +6,6 @@ import {VegaLite} from 'react-vega';
 import {getTypeCountByEndDate} from '../../calculations/getTypeCountByEndDate';
 import {getTypeCountByStartDate} from '../../calculations/getTypeCountByStartDate';
 
-
 const TypeCountByDate = ({data, categories, filterBy, dataLabel}) => {
 
   const labelCategories = categories?.map(cat => cat.id);
@@ -16,7 +15,7 @@ const TypeCountByDate = ({data, categories, filterBy, dataLabel}) => {
     return dataLabel === 'Any de fi'
       ? getTypeCountByEndDate(data, filterBy)
       : getTypeCountByStartDate(data, filterBy);
-  }, [data, filterBy]);
+  }, [data, filterBy, dataLabel]);
 
   /*STACKED_AREA*/
   const spec = {
