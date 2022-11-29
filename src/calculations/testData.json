@@ -1,0 +1,2583 @@
+{
+  "codi": "",
+  "nom": "Nombre d'expedients d'ordenació del territori totals vs ubicats segons any i tipus",
+  "data_valor": "28/11/2022 19:51:16",
+  "valor": [
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "PES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 29,
+      "nombre_expedients": "28"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "DIS",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "PEM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 15,
+      "nombre_expedients": "15"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1982,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 30,
+      "nombre_expedients": "1197"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "PTI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 24,
+      "nombre_expedients": "32"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "5"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 442,
+      "nombre_expedients": "459"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 36,
+      "nombre_expedients": "121"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 55,
+      "nombre_expedients": "55"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "RES",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "NUA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "PPO",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "INU",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2004,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 63,
+      "nombre_expedients": "73"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1998,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 104,
+      "nombre_expedients": "1079"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 71,
+      "nombre_expedients": "79"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 15,
+      "nombre_expedients": "13"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 18,
+      "nombre_expedients": "16"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 83,
+      "nombre_expedients": "81"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1999,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 124,
+      "nombre_expedients": "1079"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 352,
+      "nombre_expedients": "344"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "EXT",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 375,
+      "nombre_expedients": "375"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 1367,
+      "nombre_expedients": "1367"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 71,
+      "nombre_expedients": "70"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "LIA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 1639,
+      "nombre_expedients": "1557"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 92,
+      "nombre_expedients": "91"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 768,
+      "nombre_expedients": "746"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 10,
+      "nombre_expedients": "10"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "LIA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1992,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 357,
+      "nombre_expedients": "1122"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1996,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 54,
+      "nombre_expedients": "1087"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1900,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1997,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 57,
+      "nombre_expedients": "1068"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 436,
+      "nombre_expedients": "428"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "PES",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "AACC",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 633,
+      "nombre_expedients": "632"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "DEP",
+      "nombre_expedients_ubicats": 9,
+      "nombre_expedients": "9"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 302,
+      "nombre_expedients": "301"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "RES",
+      "nombre_expedients_ubicats": 8,
+      "nombre_expedients": "8"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 29,
+      "nombre_expedients": "19"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "NTC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 43,
+      "nombre_expedients": "29"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 11,
+      "nombre_expedients": "11"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 354,
+      "nombre_expedients": "344"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1987,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 196,
+      "nombre_expedients": "1543"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2004,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 331,
+      "nombre_expedients": "1534"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "49"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1994,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 750,
+      "nombre_expedients": "1324"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "PPO",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 33,
+      "nombre_expedients": "72"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2003,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "NTT",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1997,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 125,
+      "nombre_expedients": "122"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 36,
+      "nombre_expedients": "41"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 39,
+      "nombre_expedients": "39"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 37,
+      "nombre_expedients": "118"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 42,
+      "nombre_expedients": "97"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "PGR",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 2281,
+      "nombre_expedients": "2252"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 120,
+      "nombre_expedients": "117"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "AUTPR",
+      "nombre_expedients_ubicats": 17,
+      "nombre_expedients": "17"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "LIA",
+      "nombre_expedients_ubicats": 11,
+      "nombre_expedients": "11"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 28,
+      "nombre_expedients": "29"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "PDS",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1993,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 235,
+      "nombre_expedients": "880"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 95,
+      "nombre_expedients": "104"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "EME",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "NUA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 45,
+      "nombre_expedients": "37"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1979,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 18,
+      "nombre_expedients": "878"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "DIS",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "PES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 8,
+      "nombre_expedients": "8"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "17"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 38,
+      "nombre_expedients": "26"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 12,
+      "nombre_expedients": "12"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 20,
+      "nombre_expedients": "20"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "DIS",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2003,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 53,
+      "nombre_expedients": "58"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 5,
+      "nombre_expedients": "5"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "PIA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "NUH",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 27,
+      "nombre_expedients": "24"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 15,
+      "nombre_expedients": "14"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1985,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 101,
+      "nombre_expedients": "1229"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 22,
+      "nombre_expedients": "19"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 1101,
+      "nombre_expedients": "1041"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "CON",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 27,
+      "nombre_expedients": "20"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "RES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 11,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 92,
+      "nombre_expedients": "85"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 99,
+      "nombre_expedients": "106"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2002,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 65,
+      "nombre_expedients": "70"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 1299,
+      "nombre_expedients": "1339"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 5,
+      "nombre_expedients": "5"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "16"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1977,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 58,
+      "nombre_expedients": "1244"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "PIA",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 18,
+      "nombre_expedients": "18"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "RES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "DIS",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 35,
+      "nombre_expedients": "18"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1987,
+      "tipus": "PRCED",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 38,
+      "nombre_expedients": "38"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 80,
+      "nombre_expedients": "73"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1990,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 631,
+      "nombre_expedients": "2111"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "55"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 7,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "DEP",
+      "nombre_expedients_ubicats": 13,
+      "nombre_expedients": "13"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "PES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "INU",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 12,
+      "nombre_expedients": "12"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 7,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "INU",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2004,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2000,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 8,
+      "nombre_expedients": "8"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 5,
+      "nombre_expedients": "5"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "NUH",
+      "nombre_expedients_ubicats": 8,
+      "nombre_expedients": "8"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 30,
+      "nombre_expedients": "27"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1991,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 1439,
+      "nombre_expedients": "2095"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "PGR",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2006,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 5,
+      "nombre_expedients": "5"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2005,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 75,
+      "nombre_expedients": "76"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 196,
+      "nombre_expedients": "193"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "NUH",
+      "nombre_expedients_ubicats": 7,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1999,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2001,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 110,
+      "nombre_expedients": "1479"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 2145,
+      "nombre_expedients": "2134"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2005,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 2155,
+      "nombre_expedients": "2141"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "EPO",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 15,
+      "nombre_expedients": "16"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 108,
+      "nombre_expedients": "120"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2001,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "NUA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2001,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 54,
+      "nombre_expedients": "53"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "INU",
+      "nombre_expedients_ubicats": 8,
+      "nombre_expedients": "8"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "NTT",
+      "nombre_expedients_ubicats": 8,
+      "nombre_expedients": "8"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2000,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 237,
+      "nombre_expedients": "1425"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1986,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 193,
+      "nombre_expedients": "1276"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 19,
+      "nombre_expedients": "12"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 8,
+      "nombre_expedients": "20"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 19,
+      "nombre_expedients": "21"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "PTI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1984,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 264,
+      "nombre_expedients": "1627"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "EXT",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 26,
+      "nombre_expedients": "96"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2002,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 5,
+      "nombre_expedients": "5"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "CEDW",
+      "nombre_expedients_ubicats": 13,
+      "nombre_expedients": "17"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "PPM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1990,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "PPO",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 58,
+      "nombre_expedients": "67"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "EXC",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 76,
+      "nombre_expedients": "74"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 21,
+      "nombre_expedients": "21"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 1584,
+      "nombre_expedients": "1584"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 40,
+      "nombre_expedients": "27"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 77,
+      "nombre_expedients": "83"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "PPM",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 19,
+      "nombre_expedients": "23"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "PPM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 89,
+      "nombre_expedients": "89"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 495,
+      "nombre_expedients": "489"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 80,
+      "nombre_expedients": "118"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "NUA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 430,
+      "nombre_expedients": "430"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 9,
+      "nombre_expedients": "10"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "PEM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 104,
+      "nombre_expedients": "102"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 13,
+      "nombre_expedients": "13"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "PPM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "CON",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "AACC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 872,
+      "nombre_expedients": "871"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "PES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1983,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 77,
+      "nombre_expedients": "1120"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 141,
+      "nombre_expedients": "139"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1995,
+      "tipus": "DUP",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 169,
+      "nombre_expedients": "156"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2007,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 38,
+      "nombre_expedients": "24"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2006,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 2459,
+      "nombre_expedients": "2420"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 42,
+      "nombre_expedients": "42"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "AACC",
+      "nombre_expedients_ubicats": 15,
+      "nombre_expedients": "15"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 28,
+      "nombre_expedients": "28"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "DIS",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "EXT",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "EDO",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2001,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "PDS",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "PEM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 15,
+      "nombre_expedients": "14"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "RES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "EDO",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 99,
+      "nombre_expedients": "96"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "DIS",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 12,
+      "nombre_expedients": "12"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 653,
+      "nombre_expedients": "641"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 866,
+      "nombre_expedients": "865"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1980,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 74,
+      "nombre_expedients": "1007"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 30,
+      "nombre_expedients": "30"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 30,
+      "nombre_expedients": "29"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 2215,
+      "nombre_expedients": "2213"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "PTI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1998,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1976,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 21,
+      "nombre_expedients": "1265"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "RES",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "DEM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 35,
+      "nombre_expedients": "34"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2002,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "INF",
+      "nombre_expedients_ubicats": 38,
+      "nombre_expedients": "38"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "PPM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 7,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "DEM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1981,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 37,
+      "nombre_expedients": "1072"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 11,
+      "nombre_expedients": "9"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "PTI",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "PDS",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 14,
+      "nombre_expedients": "11"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 16,
+      "nombre_expedients": "11"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "PDS",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2020,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 1444,
+      "nombre_expedients": "1434"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "7"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1989,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 910,
+      "nombre_expedients": "3599"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2006,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 73,
+      "nombre_expedients": "58"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 5,
+      "nombre_expedients": "5"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2003,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 27,
+      "nombre_expedients": "27"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2009,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 24,
+      "nombre_expedients": "27"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "AUT",
+      "nombre_expedients_ubicats": 70,
+      "nombre_expedients": "70"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2016,
+      "tipus": "ISA",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "PTI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2022,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 17,
+      "nombre_expedients": "14"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2003,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2019,
+      "tipus": "SAN",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "LIA",
+      "nombre_expedients_ubicats": 12,
+      "nombre_expedients": "14"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2001,
+      "tipus": "EPO",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1988,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 606,
+      "nombre_expedients": "3178"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2012,
+      "tipus": "PGR",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2021,
+      "tipus": "AIA",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "NUH",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 862,
+      "nombre_expedients": "829"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1978,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 40,
+      "nombre_expedients": "839"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2011,
+      "tipus": "PES",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2014,
+      "tipus": "EUC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "DEP",
+      "nombre_expedients_ubicats": 20,
+      "nombre_expedients": "20"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2002,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 271,
+      "nombre_expedients": "1649"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2006,
+      "tipus": "NUI",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "1"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2013,
+      "tipus": "DTQ",
+      "nombre_expedients_ubicats": 47,
+      "nombre_expedients": "47"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2005,
+      "tipus": "PO",
+      "nombre_expedients_ubicats": 4,
+      "nombre_expedients": "4"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2015,
+      "tipus": "ORD",
+      "nombre_expedients_ubicats": 41,
+      "nombre_expedients": "41"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "NUH",
+      "nombre_expedients_ubicats": 1,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2010,
+      "tipus": "LIA",
+      "nombre_expedients_ubicats": 6,
+      "nombre_expedients": "6"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2017,
+      "tipus": "PGM",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "3"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2018,
+      "tipus": "LIC",
+      "nombre_expedients_ubicats": 3,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2008,
+      "tipus": "RES",
+      "nombre_expedients_ubicats": 2,
+      "nombre_expedients": "2"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 1995,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 522,
+      "nombre_expedients": "1219"
+    },
+    {
+      "idmun": "07000",
+      "dsmun": "Menorca",
+      "exercici": 2003,
+      "tipus": "CED",
+      "nombre_expedients_ubicats": 387,
+      "nombre_expedients": "1617"
+    }
+  ]
+}

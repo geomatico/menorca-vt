@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 
 
 const GeolocatedExpedients = ({data, categories}) => {
+
   const labelCategories = categories?.map(cat => cat.id);
   const colorCategories = categories?.map(cat => cat.color);
 
@@ -15,8 +16,8 @@ const GeolocatedExpedients = ({data, categories}) => {
     data?.map(
       dat => ({
         ...dat,
-        color: dat.label === 'No' ? undefined : categories?.find(cat => cat.id === dat.type).color,
-        stroke: dat.label === 'No' ? categories?.find(cat => cat.id === dat.type).color : undefined
+        color: dat.label === 'No' ? undefined : categories?.find(cat => cat.id === dat.type)?.color,
+        stroke: dat.label === 'No' ? categories?.find(cat => cat.id === dat.type)?.color : undefined
       }))
   ), [data]);
   
