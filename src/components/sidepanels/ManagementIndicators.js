@@ -12,6 +12,7 @@ import AverageProcessingTimeByType from '../charts/AverageProcessingTimeByType';
 import ResolutionStateCountByYear from '../charts/ResolutionStateCountByYear';
 import ResolutionState from '../charts/ResolutionState';
 import useStats from '../../hooks/useStats';
+import Typography from '@mui/material/Typography';
 
 const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
   const [startPeriod, setStartPeriod] = useState('year');
@@ -42,6 +43,7 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
   };
 
   return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1}}>
+    <Typography variant='h6' color='primary' sx={{ml: 2, fontWeight: 500}}>INDICADORS DE GESTIÓ I TRAMITACIÓ EXPEDIENTS</Typography>
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <SectionTitle titleKey="Expedients iniciats per tipus i"/>
