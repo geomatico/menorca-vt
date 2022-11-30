@@ -103,7 +103,7 @@ const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
       <GeolocatedExpedients data={dataGeolocated} categories={allVisibleCategories}/>
     </Box>
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
-      <SectionTitle titleKey='Completitud dels expedientes'/>
+      <SectionTitle titleKey='Completitud dels expedientes (DATOS DEMO)'/>
       <DataCompleteness data={completenessdata}/>
     </Box>
   </Box>;
