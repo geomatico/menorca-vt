@@ -1,30 +1,35 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 
 //MUI
 import {VegaLite} from 'react-vega';
+import {getTypeCountByEndDate} from '../../calculations/getTypeCountByEndDate';
+import {getTypeCountByStartDate} from '../../calculations/getTypeCountByStartDate';
 
-const TypeCountByYearChart = ({data, categories}) => {
+const TypeCountByDate = ({data, categories, filterBy, dataLabel}) => {
+
   const labelCategories = categories?.map(cat => cat.id);
   const colorCategories = categories?.map(cat => cat.color);
+
+  const formattedData = useMemo(() => {
+    return dataLabel === 'Any de fi'
+      ? getTypeCountByEndDate(data, filterBy)
+      : getTypeCountByStartDate(data, filterBy);
+  }, [data, filterBy, dataLabel]);
 
   /*STACKED_AREA*/
   const spec = {
     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
     data: {
-      values: data,
+      values: formattedData,
     },
     width: 'container',
-    /*transform: [
-      {
-        filter: 'datum.year > 2010'
-      }
-    ],*/
+    height: 250,
     mark: 'area',
     encoding: {
       x: {
         type: 'nominal',
-        field: 'year',
+        field: 'date',
         title: null
       },
       y: {
@@ -44,17 +49,17 @@ const TypeCountByYearChart = ({data, categories}) => {
       tooltip: [
         {
           field: 'type',
-          title: 'Tipo',
+          title: 'Tipus',
           type: 'nominal'
         },
         {
-          field: 'year',
-          title: 'Año',
+          field: 'date',
+          title: dataLabel,
           type: 'nominal',
         },
         {
           field: 'value',
-          title: 'Número',
+          title: 'Nombre',
           type: 'quantitative'
         },
       ]
@@ -64,17 +69,24 @@ const TypeCountByYearChart = ({data, categories}) => {
   return <VegaLite spec={spec} actions={false}/>;
 };
 
-TypeCountByYearChart.propTypes = {
+TypeCountByDate.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string,
-    year: PropTypes.number,
-    value: PropTypes.number
+    date: PropTypes.number,
+    value: PropTypes.number,
+    dataLabel: PropTypes.string,
   })),
+  filterBy: PropTypes.string,
   categories: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     color: PropTypes.string,
     label: PropTypes.string,
-  }))
+  })),
+  dataLabel: PropTypes.string
 };
 
-export default TypeCountByYearChart;
+TypeCountByDate.defaultProps = {
+  dataLabel: 'Any'
+};
+
+export default TypeCountByDate;

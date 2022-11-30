@@ -6,9 +6,9 @@ import Box from '@mui/material/Box';
 import styled from '@mui/styles/styled';
 
 import GeomaticoLink from './GeomaticoLink';
-import ManagementIndicators from './ManagementIndicators';
-import PlanningIndicators from './PlanningIndicators';
-import QualityIndicators from './QualityIndicators';
+import ManagementIndicators from './sidepanels/ManagementIndicators';
+import PlanningIndicators from './sidepanels/PlanningIndicators';
+import QualityIndicators from './sidepanels/QualityIndicators';
 
 const ScrollableContent = styled(Box)({
   overflow: 'auto',
@@ -25,7 +25,11 @@ const SidePanelContent = ({manager, visibleCategories, dateRange, BBOX}) =>
     <ScrollableContent>
       {manager === 'quality' &&
         <>
-          <QualityIndicators/>
+          <QualityIndicators
+            visibleCategories={visibleCategories}
+            dateRange={dateRange}
+            BBOX={BBOX}
+          />
         </>
       }
       {manager === 'management' &&

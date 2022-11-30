@@ -13,6 +13,5 @@ export const getStatusCountByYear = (data) => {
     }
     return r;
   }, {}));
-
   return sortByTwoProperties(res, 'status', 'year');
 };

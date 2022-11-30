@@ -9,9 +9,10 @@ const days_between = (date1, date2) => {
 
 export const getAverageProcessingTimeByType = (data) => {
   // limpia las fixtures de datos corruptos
+
   const filteredData = Object.values(data)
-    .map(fix => ({type: fix.tipus, daysDiff: days_between(fix.data_inici, fix.data_fi)}))
-    .filter(el => !!el.daysDiff);
+    .filter(el => el.data_inici && el.data_fi)
+    .map(fix => ({type: fix.tipus, daysDiff: days_between(fix.data_inici, fix.data_fi)}));
 
   return Object.values(filteredData
     .reduce((r, e) => {

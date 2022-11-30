@@ -19,7 +19,7 @@ const useTotalExpedients = (dateRange, visibleCategories) => {
           .reduce((data, {totals}) => data + parseInt(totals), 0)
       );
     }
-  }, [expedientsResponse]);
+  }, [expedientsResponse, visibleCategories]);
 
   return totalExpedients;
 };
