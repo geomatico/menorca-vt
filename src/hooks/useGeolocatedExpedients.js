@@ -3,7 +3,7 @@ import useFetch from '@geomatico/geocomponents/hooks/useFetch';
 
 const useGeolocatedExpedients = (visibleCategories, dateRange) => {
 
-  const url = 'http://ide.cime.es/indicadors/?accio=valor&variable=90';
+  const url = 'https://ide.cime.es/indicadors/?accio=valor&variable=90';
   const {data: allExpedients} = useFetch(url);
 
   const allVisibleCategoriesIds = Object.values(visibleCategories).flat();
