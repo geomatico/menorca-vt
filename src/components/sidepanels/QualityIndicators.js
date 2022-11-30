@@ -93,17 +93,17 @@ const QualityIndicators = ({visibleCategories, dateRange, BBOX}) => {
   const dataGeolocated = getGeolocatedExpedientsByType(useGeolocatedExpedients(visibleCategories, dateRange));
 
   return <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1, flexWrap: 'wrap'}}>
-    <Typography variant='h6' color='primary' sx={{ml: 2, fontWeight: 500}}>INDICADORS DE QUALITAT DE LES DADES</Typography>
+    <Typography variant='h6' color='primary' sx={{ml: 2, fontWeight: 500}}>INDICADORS DE QUALITAT</Typography>
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
-      <SectionTitle titleKey="Nombre d'expedients total (Consell)"/>
+      <SectionTitle titleKey="Expedients del Consell visibles (vs. total)"/>
       <NumericIndicator main={statsConsellOnly.expedients} total={totalExpedients}/>
     </Box>
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
-      <SectionTitle titleKey='Expedients no localizats i localizats' />
+      <SectionTitle titleKey='Expedients no localitzats vs. localitzats' />
       <GeolocatedExpedients data={dataGeolocated} categories={allVisibleCategories}/>
     </Box>
     <Box sx={{mr: 1, width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
-      <SectionTitle titleKey='Completitud dels expedientes (DATOS DEMO)'/>
+      <SectionTitle titleKey='Completitud dels expedients (DADES DE PROVA)'/>
       <DataCompleteness data={completenessdata}/>
     </Box>
   </Box>;

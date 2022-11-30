@@ -118,7 +118,7 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
         isAggregateData && <>
           <Divider/>
           <Box sx={{pl: 1, mt: 4, ml: 1.5}}>
-            <Typography sx={{fontWeight: 'bold', mb: 1}}>Superfície agregada</Typography>
+            <Typography sx={{fontWeight: 'bold', mb: 1}}>Radi d&apos;agregació (m)</Typography>
             <Box sx={{
               display: 'flex',
               justifyContent: 'center'
@@ -131,7 +131,7 @@ const ExpedientsRight = ({mapStyle, onMapStyleChanged, dateRange, onDateRangeCha
                   mt: 2,
                   ml: 1
                 }}
-                min={0}
+                min={1}
                 max={100}
                 marks={marks}
                 value={radius}

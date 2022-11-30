@@ -152,11 +152,11 @@ const GeolocatedExpedients = ({data, categories}) => {
     <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', mt: 1, ml: 2, gap: 2}}>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
         <Box sx={{width: '16px', height: '16px', border: '1.5px dashed black', bgcolor: 'lightgrey'}}></Box>
-        <Typography variant='caption'>No localizats</Typography>
+        <Typography variant='caption'>No localitzats</Typography>
       </Box>
       <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1}}>
         <Box sx={{width: '16px', height: '16px', bgcolor: 'grey'}}></Box>
-        <Typography variant='caption'>Localizats</Typography>
+        <Typography variant='caption'>Localitzats</Typography>
       </Box>
     </Box>
   </Box>;

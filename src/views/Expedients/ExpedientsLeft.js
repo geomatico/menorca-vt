@@ -28,12 +28,12 @@ const MINI_SIDE_PANEL_WIDTH = '48px';
 const MINISIDEPANEL_CONFIG = [
   {
     id: 'quality',
-    label: 'Qualitat',
+    label: 'Indicadors de Qualitat',
     content: <DatasetIcon/>
   },
   {
     id: 'management',
-    label: 'Gestió',
+    label: 'Indicadors de Gestió',
     content: <WorkIcon/>
   },
   /*{

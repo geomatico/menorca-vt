@@ -61,12 +61,12 @@ const ManagementIndicators = ({visibleCategories, dateRange, BBOX}) => {
     </Box>
 
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
-      <SectionTitle titleKey="Mitjana del temps de tramitació per any i tipus"/>
+      <SectionTitle titleKey="Mitjana del temps de tramitació per tipus i any"/>
       <AverageProcessingTimeByType data={stats.averageProcessingTimeByType} categories={allVisibleCategories}/>
     </Box>
     
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', boxShadow: 3, borderRadius: 1, p: 2}}>
-      <SectionTitle titleKey="Evolució de estat de resolució per tipus i any"/>
+      <SectionTitle titleKey="Evolució de l'estat de resolució per tipus i any"/>
       <ResolutionStateCountByYear data={stats?.resolutionStateCountByYear}/>
     </Box>
     
