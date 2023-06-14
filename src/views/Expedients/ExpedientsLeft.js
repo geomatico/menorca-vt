@@ -22,7 +22,7 @@ import DatasetIcon from '@mui/icons-material/Dataset';
 import WorkIcon from '@mui/icons-material/Work';
 /*import ApartmentIcon from '@mui/icons-material/Apartment';*/
 
-const LEFT_DRAWER_WIDTH = '45vw';
+const LEFT_DRAWER_WIDTH = '35vw';
 const MINI_SIDE_PANEL_WIDTH = '48px';
 
 const MINISIDEPANEL_CONFIG = [
